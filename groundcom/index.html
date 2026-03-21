@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUNDCOM - Investor Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        body {
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #0a0e1a;
+            color: white;
+            padding: 40px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .sidebar-subtitle {
+            font-size: 12px;
+            font-weight: 500;
+            color: #a0a8b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .reports-list {
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        .report-button {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background-color: transparent;
+            border: 1px solid #2a2f3d;
+            color: #a0a8b8;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .report-button:hover {
+            background-color: #1a1f2d;
+            border-color: #3a3f4d;
+            color: #ffffff;
+        }
+
+        .report-button.active {
+            background-color: #00d4aa;
+            border-color: #00d4aa;
+            color: #0a0e1a;
+            font-weight: 600;
+        }
+
+        .report-button.active:hover {
+            background-color: #00e5b8;
+            border-color: #00e5b8;
+        }
+
+        .sidebar-footer {
+            padding-top: 20px;
+            border-top: 1px solid #2a2f3d;
+        }
+
+        .back-link {
+            font-size: 12px;
+            color: #6a7280;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover {
+            color: #a0a8b8;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .report-header {
+            padding: 20px 40px;
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .report-header h1 {
+            font-size: 18px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .report-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .report-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                flex-direction: row;
+                align-items: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .sidebar-header {
+                margin-bottom: 0;
+                margin-right: 30px;
+                flex-shrink: 0;
+            }
+
+            .sidebar-title {
+                font-size: 18px;
+            }
+
+            .sidebar-subtitle {
+                font-size: 10px;
+            }
+
+            .reports-list {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 0;
+                flex: 1;
+                overflow-x: auto;
+                align-items: center;
+            }
+
+            .report-button {
+                margin-bottom: 0;
+                flex-shrink: 0;
+                white-space: nowrap;
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+
+            .sidebar-footer {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                height: calc(100vh - 80px);
+            }
+
+            .report-header {
+                padding: 15px 20px;
+            }
+
+            .report-header h1 {
+                font-size: 16px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #0a0e1a;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #3a3f4d;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #4a4f5d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">GROUNDCOM</h1>
+            <p class="sidebar-subtitle">Investor Reports</p>
+        </div>
+
+        <nav class="reports-list" id="reportsList">
+            <!-- Reports will be dynamically populated here -->
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="back-link">← Zpět na portál</a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="report-header">
+            <h1 id="reportTitle">Investor Report</h1>
+        </div>
+        <div class="report-container">
+            <iframe
+                id="reportFrame"
+                class="report-iframe"
+                src="./2026-03-21/index.html"
+                title="Report Content"
+            ></iframe>
+        </div>
+    </main>
+
+    <script>
+        // Configuration: List of reports (most recent first)
+        const reports = [
+            {
+                date: '21. 3. 2026',
+                folder: '2026-03-21'
+            }
+            // Add more reports here as they become available
+            // {
+            //     date: '14. 3. 2026',
+            //     folder: '2026-03-14'
+            // }
+        ];
+
+        // Initialize the page
+        function initializeReports() {
+            const reportsList = document.getElementById('reportsList');
+            const reportFrame = document.getElementById('reportFrame');
+            const reportTitle = document.getElementById('reportTitle');
+
+            // Populate reports list
+            reports.forEach((report, index) => {
+                const button = document.createElement('button');
+                button.className = 'report-button';
+                if (index === 0) button.classList.add('active'); // First (most recent) is active by default
+                button.textContent = report.date;
+
+                button.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.report-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+
+                    // Load report in iframe
+                    reportFrame.src = `./${report.folder}/index.html`;
+                    reportTitle.textContent = `Investor Report - ${report.date}`;
+                });
+
+                reportsList.appendChild(button);
+            });
+
+            // Set initial title
+            if (reports.length > 0) {
+                reportTitle.textContent = `Investor Report - ${reports[0].date}`;
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeReports);
+    </script>
+</body>
+</html>
