@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR VITALIS - Investor Update Q1 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            color: #1a1a2e;
+            background-color: #f9fafb;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Color Palette */
+        :root {
+            --primary-dark: #1a1a2e;
+            --accent-blue: #4361ee;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6b7280;
+            --border-light: #e5e7eb;
+            --bg-light: #f9fafb;
+            --bg-card: #ffffff;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero-meta {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* KPI Strip */
+        .kpi-strip {
+            background-color: var(--bg-light);
+            padding: 2rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .kpi-card {
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--accent-blue);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .kpi-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-detail {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .kpi-positive {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .summary-box p {
+            color: #1e40af;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.9375rem;
+        }
+
+        thead {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        tbody tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        /* Text Alignment in Tables */
+        .numeric {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .positive {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .negative {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* Two Column Section */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-top: 4px solid var(--accent-blue);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* Market Cards Grid */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .market-card {
+            background-color: var(--bg-card);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-header {
+            padding: 1.5rem;
+            border-left: 4px solid;
+            background-color: var(--bg-light);
+        }
+
+        .market-header.priority-1 {
+            border-left-color: var(--accent-blue);
+        }
+
+        .market-header.priority-2 {
+            border-left-color: var(--accent-green);
+        }
+
+        .market-header.active {
+            border-left-color: var(--accent-amber);
+        }
+
+        .market-header.explore {
+            border-left-color: #8b5cf6;
+        }
+
+        .market-header.monitor {
+            border-left-color: #9ca3af;
+        }
+
+        .market-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .market-badge.priority-1 {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .market-badge.priority-2 {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .market-badge.active {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .market-badge.explore {
+            background-color: #f3e8ff;
+            color: #6d28d9;
+        }
+
+        .market-badge.monitor {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .market-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.125rem;
+        }
+
+        .market-card p {
+            margin: 0.5rem 0;
+        }
+
+        .market-content {
+            padding: 1.5rem;
+        }
+
+        .market-content p {
+            font-size: 0.9375rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            margin-top: 0.375rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot.green {
+            background-color: var(--accent-green);
+        }
+
+        .timeline-dot.blue {
+            background-color: var(--accent-blue);
+        }
+
+        .timeline-dot.amber {
+            background-color: var(--accent-amber);
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        /* Challenges Grid */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .challenge-card {
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #ef4444;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-card h3 {
+            color: #dc2626;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .challenge-card p {
+            font-size: 0.9375rem;
+            margin-bottom: 0;
+        }
+
+        /* Asks Grid */
+        .asks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .ask-card {
+            background-color: #ecfdf5;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .ask-card h3 {
+            color: #047857;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        .ask-card p {
+            font-size: 0.9375rem;
+            color: #065f46;
+            margin-bottom: 0;
+        }
+
+        /* Action Items Table */
+        .action-table {
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .action-table th {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .action-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .priority-high {
+            font-weight: 600;
+            color: #dc2626;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.875rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .asks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.8125rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">INVESTOR UPDATE</div>
+            <h1>VR VITALIS</h1>
+            <p class="hero-subtitle">VR rehabilitace pro zdravotnictví a sociální služby</p>
+            <p class="hero-meta">Q1 2026 — Březen 2026 | Interní dokument pro investory</p>
+        </div>
+    </section>
+
+    <!-- KPI Strip -->
+    <section class="kpi-strip">
+        <div class="container">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">MRR (měsíční opakující se příjmy)</div>
+                    <div class="kpi-value">310 K CZK</div>
+                    <div class="kpi-detail">12 785 EUR | <span class="kpi-positive">+4,7 % m/m</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Aktivní licence</div>
+                    <div class="kpi-value">67</div>
+                    <div class="kpi-detail">Care: 30 | Pro: 37 | <span class="kpi-positive">+2 net nové</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Cash position</div>
+                    <div class="kpi-value">12,3 M CZK</div>
+                    <div class="kpi-detail">Po Pre-seed II | <span class="kpi-positive">~15 měsíc. runway</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Pipeline H1 2026</div>
+                    <div class="kpi-value">6,8 M CZK</div>
+                    <div class="kpi-detail">Vážený z 21,9 M celkový</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section>
+        <div class="container">
+            <h2>Shrnutí</h2>
+            <div class="summary-box">
+                <p>V Q1 2026 VR VITALIS dokončila Pre-seed II investici (14,6 M CZK) a zahájila strategický pivot v zahraniční expanzi. Německo vyřazeno z prioritních trhů (on-prem požadavek). Nová priorita č. 1: Polsko (5 licencí, potřeba systematické práce s distributorem), následováno USA (FDA 510k registrace zahájena). MRR roste mírně (+4,7 % m/m), hlavní růstový potenciál v zahraničních trzích (~300 nových licencí ročně).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan vs Reality -->
+    <section>
+        <div class="container">
+            <h2>Plán vs. Realita</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metrika</th>
+                            <th class="numeric">Plán Led</th>
+                            <th class="numeric">Real Led</th>
+                            <th class="numeric">Plán Úno</th>
+                            <th class="numeric">Real Úfo</th>
+                            <th class="numeric">Plán Bře</th>
+                            <th class="numeric">Výhled Bře</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nové licence</td>
+                            <td class="numeric">14</td>
+                            <td class="numeric">3</td>
+                            <td class="numeric">28</td>
+                            <td class="numeric">1</td>
+                            <td class="numeric">15</td>
+                            <td class="numeric">~5</td>
+                        </tr>
+                        <tr>
+                            <td>MRR (CZK)</td>
+                            <td class="numeric">310 K</td>
+                            <td class="numeric">296 K</td>
+                            <td class="numeric">320 K</td>
+                            <td class="numeric">310 K</td>
+                            <td class="numeric">330 K</td>
+                            <td class="numeric">~315 K</td>
+                        </tr>
+                        <tr>
+                            <td>Churn</td>
+                            <td class="numeric">&lt;2%</td>
+                            <td class="numeric"><span class="positive">1,6%</span></td>
+                            <td class="numeric">&lt;2%</td>
+                            <td class="numeric"><span class="positive">0%</span></td>
+                            <td class="numeric">&lt;2%</td>
+                            <td class="numeric">~1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Overview -->
+    <section>
+        <div class="container">
+            <h2>Finanční přehled</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metrika</th>
+                            <th class="numeric">2024</th>
+                            <th class="numeric">2025</th>
+                            <th class="numeric">Led 2026</th>
+                            <th class="numeric">Úno 2026</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MRR (CZK)</td>
+                            <td class="numeric">306 822</td>
+                            <td class="numeric">290 942</td>
+                            <td class="numeric">296 083</td>
+                            <td class="numeric">309 964</td>
+                        </tr>
+                        <tr>
+                            <td>MRR (EUR)</td>
+                            <td class="numeric">12 205</td>
+                            <td class="numeric">12 000</td>
+                            <td class="numeric">12 169</td>
+                            <td class="numeric">12 785</td>
+                        </tr>
+                        <tr>
+                            <td>Příjmy z prodejů</td>
+                            <td class="numeric">4 612 K</td>
+                            <td class="numeric">5 828 K</td>
+                            <td class="numeric">595 K</td>
+                            <td class="numeric">245 K</td>
+                        </tr>
+                        <tr>
+                            <td>Provozní výdaje</td>
+                            <td class="numeric">14 905 K</td>
+                            <td class="numeric">14 056 K</td>
+                            <td class="numeric">787 K</td>
+                            <td class="numeric">979 K</td>
+                        </tr>
+                        <tr>
+                            <td>Nové licence</td>
+                            <td class="numeric">46</td>
+                            <td class="numeric">31</td>
+                            <td class="numeric">3</td>
+                            <td class="numeric">1</td>
+                        </tr>
+                        <tr>
+                            <td>Retence/Reaktivace</td>
+                            <td class="numeric">10</td>
+                            <td class="numeric">17</td>
+                            <td class="numeric">2</td>
+                            <td class="numeric">3</td>
+                        </tr>
+                        <tr>
+                            <td>Ukončené licence</td>
+                            <td class="numeric">-3</td>
+                            <td class="numeric">-25</td>
+                            <td class="numeric">-1</td>
+                            <td class="numeric">0</td>
+                        </tr>
+                        <tr>
+                            <td>Churn</td>
+                            <td class="numeric">—</td>
+                            <td class="numeric">—</td>
+                            <td class="numeric">1,6%</td>
+                            <td class="numeric"><span class="positive">0%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Split -->
+    <section>
+        <div class="container">
+            <h2>Rozdělení produktu</h2>
+            <div class="two-column">
+                <div class="product-card">
+                    <h3>VR VITALIS Pro</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Rehabilitace ve zdravotnictví</p>
+                    <div class="stat-row">
+                        <span class="stat-label">MRR</span>
+                        <span class="stat-value">204 K CZK</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Aktivní licence</span>
+                        <span class="stat-value">37</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Měsíční růst</span>
+                        <span class="stat-value positive">+7,5 %</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <h3>VR VITALIS Care</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Sociální služby a péče</p>
+                    <div class="stat-row">
+                        <span class="stat-label">MRR</span>
+                        <span class="stat-value">92 K CZK</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Aktivní licence</span>
+                        <span class="stat-value">30</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Trend</span>
+                        <span class="stat-value">Stabilní</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Round -->
+    <section>
+        <div class="container">
+            <h2>Investiční kolo</h2>
+            <div class="summary-box" style="background-color: #ecfdf5; border-left-color: var(--accent-green);">
+                <p style="color: #047857;">
+                    <strong>Pre-seed II uzavřeno — Leden 2026</strong><br>
+                    14 631 680 CZK (~601 K EUR) | Cash position: 12,95 M CZK | Runway: 12–15 měsíců
+                </p>
+                <p style="color: #047857; margin-bottom: 0;">
+                    <strong>Alokace kapitálu:</strong> Zahraniční expanze (Polsko, USA), Obchodní tým (CSO, manažeři), FDA 510k registrace
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foreign Markets -->
+    <section>
+        <div class="container">
+            <h2>Zahraniční trhy</h2>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="market-header priority-1">
+                        <span class="market-badge priority-1">PRIORITA #1</span>
+                        <h3>Polsko</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Stav:</strong> 5 licencí</p>
+                        <p><strong>Distributor:</strong> 1 partner (rozvíjíme)</p>
+                        <p><strong>Cíl 2026:</strong> ~300 licencí/rok</p>
+                        <p>Největší tržní potenciál v regionu. Vyžaduje systematickou práci s distributorem a lokalizaci.</p>
+                    </div>
+                </div>
+
+                <div class="market-card">
+                    <div class="market-header priority-2">
+                        <span class="market-badge priority-2">PRIORITA #2</span>
+                        <h3>USA</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Stav:</strong> FDA 510k v procesu</p>
+                        <p><strong>Partner:</strong> Vybrán (sladění v únoru ✓)</p>
+                        <p><strong>Náklady:</strong> ~1,5 M CZK (FDA, marketing, práce s partnerem)</p>
+                        <p>Vysoce regulovaný trh. Registrace zahájena v březnu 2026.</p>
+                    </div>
+                </div>
+
+                <div class="market-card">
+                    <div class="market-header active">
+                        <span class="market-badge active">AKTIVNÍ</span>
+                        <h3>Pobaltí</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Stav:</strong> Existující distributor</p>
+                        <p><strong>Taktika:</strong> Strategické čekání</p>
+                        <p>Lze aktivizovat po úspěchu v Polsku. Distributor je v kontaktu.</p>
+                    </div>
+                </div>
+
+                <div class="market-card">
+                    <div class="market-header explore">
+                        <span class="market-badge explore">PRŮZKUM</span>
+                        <h3>Velká Británie</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Rámec:</strong> Digital by Default (NHS)</p>
+                        <p><strong>Aktivita:</strong> Event s ambasádou (březen 2026)</p>
+                        <p>Potenciál pro B2G prodej. Vyžaduje certifikaci a compliance.</p>
+                    </div>
+                </div>
+
+                <div class="market-card">
+                    <div class="market-header explore">
+                        <span class="market-badge explore">PRŮZKUM</span>
+                        <h3>Skandinávie</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Připravenost:</strong> Cloud infrastruktura ✓</p>
+                        <p><strong>Status:</strong> Bez distributora</p>
+                        <p>Vysoká kupní sílá. Vyžaduje hledání přímého partnera.</p>
+                    </div>
+                </div>
+
+                <div class="market-card">
+                    <div class="market-header monitor">
+                        <span class="market-badge monitor">MONITOROVÁNÍ</span>
+                        <h3>Ostatní</h3>
+                    </div>
+                    <div class="market-content">
+                        <p><strong>Trhy:</strong> Francie, Itálie, Španělsko, Portugalsko, Rumunsko</p>
+                        <p>Dlouhodobý potenciál. V současnosti bez aktivních iniciativ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pipeline H1 2026 -->
+    <section>
+        <div class="container">
+            <h2>Pipeline H1 2026 (vážený)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pravděpodobnost</th>
+                            <th class="numeric">Bruttě (CZK)</th>
+                            <th class="numeric">Váženo (CZK)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>75% (blízko finalizaci)</td>
+                            <td class="numeric">1 109 000</td>
+                            <td class="numeric">672 000</td>
+                        </tr>
+                        <tr>
+                            <td>50% (aktivní jednání)</td>
+                            <td class="numeric">4 524 000</td>
+                            <td class="numeric">2 239 000</td>
+                        </tr>
+                        <tr>
+                            <td>25% (včasné fázi)</td>
+                            <td class="numeric">5 877 000</td>
+                            <td class="numeric">829 000</td>
+                        </tr>
+                        <tr style="background-color: #f0fdf4; font-weight: 700;">
+                            <td>Celkem</td>
+                            <td class="numeric">21 910 000</td>
+                            <td class="numeric positive">6 808 000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Milestones -->
+    <section>
+        <div class="container">
+            <h2>Milníky — Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot green"></div>
+                    <div class="timeline-content">
+                        <h4>Leden 2026 — Pre-seed II zavřeno + USA partner</h4>
+                        <p>14,6 M CZK investice přijata. Sladění s USA partnerem (20. ledna).</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot green"></div>
+                    <div class="timeline-content">
+                        <h4>Únor 2026 — Německo vyřazeno ze strategie</h4>
+                        <p>Klíčové rozhodnutí: On-premise požadavky jsou pro cloud-first model neudržitelné.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot blue"></div>
+                    <div class="timeline-content">
+                        <h4>Březen 2026 — FDA 510k podání + Revize strategie (NYNÍ)</h4>
+                        <p>Formální podání FDA zahájena. Revize priorit: Polsko #1, USA #2, Pobaltí připraveno.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot amber"></div>
+                    <div class="timeline-content">
+                        <h4>Q2 2026 — Noví distributoři Polska + Cesta USA</h4>
+                        <p>Selhání: 1 distribuce, 300/rok cíl. Výcvik a onboarding. Pracovní cesta do USA pro FDA a demonstrace (květen 2026).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges -->
+    <section>
+        <div class="container">
+            <h2>Výzvy</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h3>1. Distributoři v Polsku</h3>
+                    <p>Současný výkon: 5 licencí za rok. Trh: ~300-400 potenciálních nových licencí ročně. Problém: Distributor není dostatečně aktivní nebo je nevhodný. Potřeba: Najít nebo vycvičit druhého partnera.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3>2. Kapacita týmu</h3>
+                    <p>Marie (obchod) + Jana (provoz) přetíženy. Nábor probíhá: CSO + manažer zahraničního obchodu. Doba do nájmu: 2–3 měsíce.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3>3. Plnění plánu</h3>
+                    <p>Leden: 3 nové licence vs. plán 14 (21% plnění). Únor: 1 vs. 28 (3% plnění). Březen: Výhled ~5 vs. plán 15 (33%). Příčiny: Distributor, čekání na FDA, tým.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3>4. Konkurence</h3>
+                    <p>Nové hráče v zdravotnickém VR (např. Recovery, PhysioVR). Cenový dumping v zahraničí. Strategie: Zaměření na efektivitu + unikátní ceník za regiony.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investor Asks -->
+    <section>
+        <div class="container">
+            <h2>Investor Asks</h2>
+            <div class="asks-grid">
+                <div class="ask-card">
+                    <h3>1. Kontakty distributor Polska</h3>
+                    <p>Hledáme druhého partnera nebo zlepšení vztahu se stávajícím. Jakékoli zdravotnické distribuce / IT distribuce vhodné.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>2. Introductions do sítě distributorů</h3>
+                    <p>Lidi se zkušeností s B2B2C modelem v medicínských zařízeních, ideálně v EU nebo USA.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>3. Pilotní kliniky v zahraničí</h3>
+                    <p>Potřebujeme reference / case studies z Polska, UK, nebo USA. Jakýkoli zdravotnický kontakt je cenný.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>4. Kandidáti na pozici CSO / VP Sales</h3>
+                    <p>Senior sales leadership se zkušeností s healthtech či SaaS B2B2C v EU. Je možné i pro 3–6 měsíců konzultantsky.</p>
+                </div>
+                <div class="ask-card">
+                    <h3>5. Zpětná vazba na cenový model</h3>
+                    <p>Aktuálně: 3–5 K CZK/měsíc za instituci. Potřebujeme validaci pro zahraniční trhy (Polsko: 2–3 K? USA: 5–10 K?).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Items -->
+    <section>
+        <div class="container">
+            <h2>Akční kroky</h2>
+            <div class="table-container">
+                <table class="action-table">
+                    <thead>
+                        <tr>
+                            <th>Úkol</th>
+                            <th>Vlastník</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>FDA 510k podání</strong></td>
+                            <td>Jan (Product) + Externí právník</td>
+                            <td>15. březen 2026</td>
+                            <td><span class="positive">V PROCESU</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nábor CSO</strong></td>
+                            <td>HR + Jakub</td>
+                            <td>30. březen 2026</td>
+                            <td>Pokračuje</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nábor Manager zahraničního obchodu</strong></td>
+                            <td>HR + Jakub</td>
+                            <td>30. březen 2026</td>
+                                                 <td>Pokračuje</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revize distributora Polska</strong></td>
+                            <td>Jakub + Jan</td>
+                            <td>31. březen 2026</td>
+                            <td>Pokračuje</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pilotní klinika Polska (scouting)</strong></td>
+                            <td>Bude vlastněno novým manažerem (nebo Jakub)</td>
+                            <td>30. duben 2026</td>
+                            <td>Čeká na nájmy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cesta do USA (FDA + partner)</strong></td>
+                            <td>Jakub + Jan + Nový CSO</td>
+                            <td>Květen 2026</td>
+                            <td>Plánováno</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Onboarding druhého distributora Polska</strong></td>
+                            <td>Nový manager + Jakub</td>
+                            <td>31. květen 2026</td>
+                            <td>Čeká na hledání</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Validation cenového modelu pro zahraniční trhy</strong></td>
+                            <td>CSO + Jan (Product)</td>
+                            <td>30. duben 2026</td>
+                            <td>Čeká na CSO nájmy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Příprava UK Digital by Default (event březen)</strong></td>
+                            <td>Marie (pokud kapacita) nebo externí</td>
+                            <td>20. březen 2026</td>
+                            <td>Pokračuje</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktualizace roadmapu pro Q2 2026</strong></td>
+                            <td>Jakub + Vedení</td>
+                            <td>25. březen 2026</td>
+                            <td>Čeká na schválení</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>VR VITALIS s.r.o. — Investor Update Q1 2026 | 19. března 2026</p>
+    </footer>
+</body>
+</html>
