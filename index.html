@@ -1,1 +1,376 @@
-<h1>Test</h1>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Angels Reporting — Přehled portfolia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #0f1117;
+            color: #e6edf3;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0f1117 0%, #1a1d2e 100%);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b949e;
+            font-weight: 400;
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Card */
+        .startup-card {
+            background-color: #1a1d2e;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .startup-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Active Card Styling */
+        .startup-card.active {
+            border-left: 4px solid #10b981;
+            background-color: rgba(16, 185, 129, 0.03);
+        }
+
+        .startup-card.active:hover {
+            border-left-color: #10b981;
+            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Inactive Card Styling */
+        .startup-card.inactive {
+            opacity: 0.65;
+            border-color: rgba(75, 85, 99, 0.2);
+        }
+
+        .startup-card.inactive:hover {
+            opacity: 0.75;
+        }
+
+        .startup-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .startup-card.inactive .startup-name {
+            color: #6b7280;
+        }
+
+        .startup-description {
+            font-size: 0.95rem;
+            color: #8b949e;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .startup-card.inactive .startup-description {
+            color: #4b5563;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .startup-card.inactive .card-date {
+            color: #4b5563;
+        }
+
+        .card-status {
+            font-size: 0.85rem;
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .startup-card.inactive .card-status {
+            color: #6b7280;
+        }
+
+        /* Link Button */
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            background-color: rgba(99, 102, 241, 0.15);
+            color: #6366f1;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .card-link:hover {
+            background-color: rgba(99, 102, 241, 0.25);
+            border-color: #6366f1;
+            color: #ffffff;
+        }
+
+        .startup-card.inactive .card-link {
+            background-color: rgba(75, 85, 99, 0.1);
+            color: #4b5563;
+            border-color: rgba(75, 85, 99, 0.2);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f1117;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            .startup-card {
+                padding: 1.5rem;
+            }
+
+            .startup-name {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>G-ANGELS REPORTING</h1>
+        <p class="subtitle">Přehled portfolia startupů</p>
+    </header>
+
+    <main>
+        <div class="cards-grid">
+            <!-- Active: VR Vitalis Pro -->
+            <div class="startup-card active">
+                <h2 class="startup-name">VR Vitalis Pro</h2>
+                <p class="startup-description">VR rehabilitace pro zdravotnictví</p>
+                <div class="card-footer">
+                    <div class="card-date">Poslední update: 19. 3. 2026</div>
+                    <a href="./vr-vitalis/" class="card-link">Zobrazit report →</a>
+                </div>
+            </div>
+
+            <!-- Active: Groundcom -->
+            <div class="startup-card active">
+                <h2 class="startup-name">Groundcom</h2>
+                <p class="startup-description">Satelitní pozemní infrastruktura</p>
+                <div class="card-footer">
+                    <div class="card-date">Poslední update: 21. 3. 2026</div>
+                    <a href="./groundcom/" class="card-link">Zobrazit report →</a>
+                </div>
+            </div>
+
+            <!-- Inactive: sendance -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">sendance</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: Scaut -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">Scaut</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: CasInvent Pharma -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">CasInvent Pharma</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: Kardi AI -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">Kardi AI</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: MYCO -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">MYCO</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: AI|ffinity -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">AI|ffinity</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: AG Data -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">AG Data</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: LocalLazy -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">LocalLazy</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: RealPad -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">RealPad</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: KeyGuru -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">KeyGuru</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+
+            <!-- Inactive: Senzoor czech s.r.o. -->
+            <div class="startup-card inactive">
+                <h2 class="startup-name">Senzoor czech s.r.o.</h2>
+                <p class="startup-description">—</p>
+                <div class="card-footer">
+                    <div class="card-status">Žádný report</div>
+                    <button class="card-link" disabled>Žádný report</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>G-Angels Portfolio Reporting | Interní portál | 2026</p>
+    </footer>
+</body>
+</html>
