@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUNDCOM Investor Update Q1 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f1527 50%, #0a1a24 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(30, 136, 229, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 212, 170, 0.15);
+            border: 1px solid #00d4aa;
+            color: #00d4aa;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: #00d4aa;
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .hero .meta {
+            font-size: 14px;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 32px;
+            background: #00d4aa;
+            border-radius: 2px;
+        }
+
+        /* KPI Strip */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: rgba(30, 136, 229, 0.05);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.05);
+        }
+
+        .kpi-card:hover {
+            border-color: #00d4aa;
+            box-shadow: 0 8px 32px rgba(0, 212, 170, 0.12);
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #00d4aa;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .kpi-detail {
+            font-size: 13px;
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.08) 0%, rgba(30, 136, 229, 0.08) 100%);
+            border-left: 4px solid #00d4aa;
+            border-radius: 8px;
+            padding: 32px;
+            margin: 40px 0;
+            line-height: 1.8;
+            font-size: 15px;
+            color: #d0d0d0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: rgba(0, 212, 170, 0.1);
+            color: #00d4aa;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #00d4aa;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 212, 170, 0.1);
+        }
+
+        table tr:hover {
+            background: rgba(0, 212, 170, 0.05);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: #00c853;
+            font-weight: 600;
+        }
+
+        .negative {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(0, 212, 170, 0.05);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 32px 0;
+            font-size: 14px;
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            color: #00d4aa;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+            font-weight: 700;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .column-card {
+            background: rgba(30, 136, 229, 0.05);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 28px;
+        }
+
+        .column-card h3 {
+            font-size: 18px;
+            color: #00d4aa;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .column-card p {
+            font-size: 14px;
+            color: #d0d0d0;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .column-card ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 14px;
+            color: #d0d0d0;
+        }
+
+        .column-card li {
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .column-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+        }
+
+        /* Customer Cards */
+        .customer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .customer-card {
+            background: rgba(15, 21, 39, 0.8);
+            border-left: 4px solid #00d4aa;
+            border-radius: 8px;
+            padding: 24px;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+            border-right: 1px solid rgba(0, 212, 170, 0.1);
+            border-bottom: 1px solid rgba(0, 212, 170, 0.1);
+        }
+
+        .customer-card.green {
+            border-left-color: #00c853;
+        }
+
+        .customer-card.amber {
+            border-left-color: #ffb300;
+        }
+
+        .customer-card.purple {
+            border-left-color: #7c4dff;
+        }
+
+        .customer-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .customer-status {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .customer-status.onboarding {
+            background: rgba(0, 212, 170, 0.15);
+            color: #00d4aa;
+        }
+
+        .customer-status.new {
+            background: rgba(0, 200, 83, 0.15);
+            color: #00c853;
+        }
+
+        .customer-status.amber {
+            background: rgba(255, 179, 0, 0.15);
+            color: #ffb300;
+        }
+
+        .customer-status.prospecting {
+            background: rgba(124, 77, 255, 0.15);
+            color: #7c4dff;
+        }
+
+        .customer-card p {
+            font-size: 13px;
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .customer-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+        }
+
+        .stat-item {
+            font-size: 12px;
+            color: #a0a0a0;
+        }
+
+        .stat-item strong {
+            color: #00d4aa;
+            display: block;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            margin: 40px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            min-width: 100%;
+        }
+
+        .comparison-table td {
+            padding: 14px 12px;
+        }
+
+        .comparison-table tr:first-child td:nth-child(3) {
+            background: rgba(0, 212, 170, 0.1);
+            color: #00d4aa;
+            font-weight: 600;
+        }
+
+        .comparison-table tbody tr td:nth-child(3) {
+            background: rgba(0, 212, 170, 0.05);
+            color: #00d4aa;
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00d4aa;
+            flex-shrink: 0;
+            margin-top: 2px;
+            box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.2);
+        }
+
+        .timeline-dot.done {
+            background: #00c853;
+            box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.2);
+        }
+
+        .timeline-dot.current {
+            background: #1e88e5;
+            box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.2);
+        }
+
+        .timeline-dot.upcoming {
+            background: #ffb300;
+            box-shadow: 0 0 0 4px rgba(255, 179, 0, 0.2);
+        }
+
+        .timeline-dot.future {
+            background: #6a6a6a;
+            box-shadow: 0 0 0 4px rgba(106, 106, 106, 0.2);
+        }
+
+        .timeline-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: #a0a0a0;
+        }
+
+        /* Risk Cards */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .risk-card {
+            background: rgba(255, 107, 107, 0.05);
+            border-left: 4px solid #ff6b6b;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .risk-card h4 {
+            font-size: 15px;
+            color: #ff8a8a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .risk-card p {
+            font-size: 13px;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* How to Help */
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .help-card {
+            background: rgba(0, 212, 170, 0.05);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .help-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .help-card h4 {
+            font-size: 14px;
+            color: #00d4aa;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        /* Action Items Table */
+        .action-table {
+            margin: 40px 0;
+            overflow-x: auto;
+        }
+
+        .action-table table {
+            min-width: 100%;
+            font-size: 13px;
+        }
+
+        .action-table th {
+            background: rgba(30, 136, 229, 0.1);
+        }
+
+        .action-table td {
+            padding: 12px;
+        }
+
+        /* Market Context */
+        .market-box {
+            background: rgba(10, 14, 26, 0.9);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 40px 0;
+            font-size: 14px;
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 212, 170, 0.05);
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #a0a0a0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .customer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .customer-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                gap: 12px;
+            }
+
+            .summary-box {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            .kpi-card {
+                padding: 16px;
+            }
+
+            .kpi-value {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">INVESTOR UPDATE</div>
+            <h1>GROUNDCOM</h1>
+            <p class="subtitle">Real-time downlink from space — satelitní pozemní infrastruktura</p>
+            <p class="meta">Q1 2026 — Březen 2026 | Interní dokument pro investory</p>
+        </div>
+    </section>
+
+    <!-- KPI Strip -->
+    <section class="container">
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Cash on Hand</div>
+                <div class="kpi-value">€836K</div>
+                <div class="kpi-detail">Měsíční výdaje €62K<br>Runway ~13 měsíců</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Pipeline (Vážený)</div>
+                <div class="kpi-value">€7,27M</div>
+                <div class="kpi-detail">Celkový objem pipeline<br>Rostoucí dynamika</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Pozemní Stanice</div>
+                <div class="kpi-value">6</div>
+                <div class="kpi-detail">3x VHF/UHF + 3x S/X<br>Nový Zéland operační</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tým</div>
+                <div class="kpi-value">19</div>
+                <div class="kpi-detail">13 FT + 6 PT<br>Nábor signal processing inženýrů</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="container">
+        <h2 class="section-title">Shrnutí</h2>
+        <div class="summary-box">
+            V Q1 2026 Groundcom pokračuje v budování pozice jako evropský lídr v satelitní pozemní infrastruktuře s vlastním hardware. Klíčové úspěchy zahrnují úspěšné obsazení kritických technických pozic (nábor z Dicomu — vojenské vysílačky), operační spuštění stanice na Novém Zélandu a akceleraci onboardingu řeckého týmu Q-Technology. Společnost má prokázanou nákladovou výhodu ~30% oproti konkurenci (Leaf Space) díky vlastnímu HW designu. Hlavní výzvou zůstává dlouhý onboarding cyklus zákazníků, který oddaluje revenue, a potřeba working capital na naskladnění stanic a rozšíření sítě. Otevíráme nové investiční kolo (~€4M) na working capital, inventory a CAPEX.
+        </div>
+    </section>
+
+    <!-- Financial Overview -->
+    <section class="container">
+        <h2 class="section-title">Finanční Přehled</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metrika</th>
+                    <th>2025 (prel.)</th>
+                    <th>2026 (plán)</th>
+                    <th>2027</th>
+                    <th>2028</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Connectivity služba</td>
+                    <td>€1,900</td>
+                    <td>€146,800</td>
+                    <td>€653,600</td>
+                    <td>€1,687,200</td>
+                </tr>
+                <tr>
+                    <td>Prodej stanic</td>
+                    <td>€200,000</td>
+                    <td>€508,000</td>
+                    <td>€4,060,000</td>
+                    <td>€2,765,000</td>
+                </tr>
+                <tr>
+                    <td>Projektové financování</td>
+                    <td>€181,000</td>
+                    <td>€406,589</td>
+                    <td>€340,971</td>
+                    <td>€1,205,000</td>
+                </tr>
+                <tr>
+                    <td>Ostatní služby</td>
+                    <td>€17,900</td>
+                    <td>€65,000</td>
+                    <td>€20,000</td>
+                    <td>€20,000</td>
+                </tr>
+                <tr style="border-top: 2px solid #00d4aa;">
+                    <td><strong>CELKOVÉ PŘÍJMY</strong></td>
+                    <td><strong>€400,900</strong></td>
+                    <td><strong>€1,126,389</strong></td>
+                    <td><strong>€5,074,571</strong></td>
+                    <td><strong>€5,677,200</strong></td>
+                </tr>
+                <tr>
+                    <td>Celkové výdaje</td>
+                    <td class="negative">-€697,790</td>
+                    <td class="negative">-€2,118,600</td>
+                    <td class="negative">-€5,239,000</td>
+                    <td class="negative">-€4,845,000</td>
+                </tr>
+                <tr style="border-top: 2px solid #00d4aa;">
+                    <td><strong>EBITDA</strong></td>
+                    <td class="negative"><strong>-€296,890</strong></td>
+                    <td class="negative"><strong>-€992,211</strong></td>
+                    <td class="negative"><strong>-€164,429</strong></td>
+                    <td class="positive"><strong>+€832,200</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Operational Metrics -->
+    <section class="container">
+        <div class="info-box">
+            <h4>Operační Metriky (Únor 2026)</h4>
+            <ul>
+                <li><strong>Cash on hand:</strong> €836,252</li>
+                <li><strong>Monthly burn:</strong> -€61,610 (R&D: -€44,158 | SG&A: -€17,056 | Station ops: -€396)</li>
+                <li><strong>VHF/UHF stanice:</strong> 1 interní + 2 externí = 3</li>
+                <li><strong>S/X stanice:</strong> 2 interní + 1 externí = 3</li>
+                <li><strong>Pipeline vážený:</strong> €7,274,923</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Product Portfolio -->
+    <section class="container">
+        <h2 class="section-title">Produktové Portfolio</h2>
+        <div class="two-column">
+            <div class="column-card">
+                <h3>Ground Station Hardware (S/X-Band)</h3>
+                <p>Vlastní design, mobilní stanice. Cena €110-280K/stanice, marže 60-100%. Výrobní náklady €40-120K. 3 stanice vyrobeny v 2025. SX-band produkt TRL 6, produktivizace do konce 2026.</p>
+                <ul>
+                    <li>Cena: €110–280K/stanice</li>
+                    <li>Marže: 60–100%</li>
+                    <li>Výroba: 3 stanice (2025)</li>
+                    <li>Produktivizace: Konec 2026</li>
+                </ul>
+            </div>
+            <div class="column-card">
+                <h3>Ground Station as a Service (GSaaS)</h3>
+                <p>Konektivita jako služba, recurring revenue model. Operační náklady ~€30K/rok na stanici (vs €80-100K u konkurence). Onboarding: dlouhý cyklus, ale po dokončení multiplikace je snadná.</p>
+                <ul>
+                    <li>Model: Recurring revenue</li>
+                    <li>OpEx: ~€30K/rok (vs €80-100K)</li>
+                    <li>Onboarding: Dlouhý cyklus</li>
+                    <li>Škálování: Multiplikace snadná</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Pipeline -->
+    <section class="container">
+        <h2 class="section-title">Zákaznický Pipeline</h2>
+        <div class="customer-grid">
+            <div class="customer-card">
+                <h3>Q-TECHNOLOGY (KVETECH)</h3>
+                <div class="customer-status onboarding">Onboarding</div>
+                <p>Klíčový zákazník, přechod od Leaf Space. Řecká pobočka: 2 satelity startují za 11 dní, rychlý onboarding. Luxemburská: pomalejší. Celkem 4 satelity na orbitě, plán až 70 družic. Potenciál: stovky tisíc EUR ročně.</p>
+                <div class="customer-stats">
+                    <div class="stat-item"><strong>Satelity</strong> 4 (plán 70)</div>
+                    <div class="stat-item"><strong>Potenciál</strong> Vysoký</div>
+                </div>
+            </div>
+
+            <div class="customer-card green">
+                <h3>SATELLIOT</h3>
+                <div class="customer-status new">Nový Zákazník</div>
+                <p>Prodána 1 stanice za €110K (náklad €40K). Chce koupit 15 stanic. Strategie: konvertovat na servisní model. Plán: 120 satelitů, potřeba desítek stanic.</p>
+                <div class="customer-stats">
+                    <div class="stat-item"><strong>Prodej</strong> €110K (1 st.)</div>
+                    <div class="stat-item"><strong>Plán</strong> 120 satelitů</div>
+                </div>
+            </div>
+
+            <div class="customer-card">
+                <h3>TERMINAL ORBITAL SYSTEMS (GOS)</h3>
+                <div class="customer-status onboarding">Onboarding</div>
+                <p>Nový zákazník od konce 2025. Začali s UHF, nyní chtějí i S-Band. Konstelace. Nikdo jiný (KSAT, Leaf Space) neumí UHF.</p>
+                <div class="customer-stats">
+                    <div class="stat-item"><strong>Produkt</strong> UHF + S-Band</div>
+                    <div class="stat-item"><strong>Potenciál</strong> Střední-Vysoký</div>
+                </div>
+            </div>
+
+            <div class="customer-card amber">
+                <h3>DEFENSE ZÁKAZNÍK (KOREA)</h3>
+                <div class="customer-status amber">Vyjednávání</div>
+                <p>K-band produkt, B2G. Velký kontrakt ale komplikace. Reference pro budoucí K-band produkci.</p>
+                <div class="customer-stats">
+                    <div class="stat-item"><strong>Typ</strong> B2G defense</div>
+                    <div class="stat-item"><strong>Produkt</strong> K-band</div>
+                </div>
+            </div>
+
+            <div class="customer-card purple">
+                <h3>VOZILOU / EO ZÁKAZNÍCI</h3>
+                <div class="customer-status prospecting">Prospecting</div>
+                <p>Placený X-band test dokončen (€2K). Zájem od 2 EO operátorů (ICEYE, Satellogic). Dual-use real-time imaging potenciál.</p>
+                <div class="customer-stats">
+                    <div class="stat-item"><strong>Test</strong> Dokončen (€2K)</div>
+                    <div class="stat-item"><strong>Segment</strong> EO + Defense</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competition -->
+    <section class="container">
+        <h2 class="section-title">Konkurenční Pozice</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>KSAT</th>
+                        <th>Leaf Space</th>
+                        <th>GROUNDCOM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Typ</strong></td>
+                        <td>Lídr trhu</td>
+                        <td>SW challenger</td>
+                        <td>HW challenger</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Antény</strong></td>
+                        <td>300</td>
+                        <td>27</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Model</strong></td>
+                        <td>Premium služba</td>
+                        <td>GSaaS (nakupovaný HW)</td>
+                        <td>GSaaS (vlastní HW)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cena</strong></td>
+                        <td>Vysoká</td>
+                        <td>~$3–5/min</td>
+                        <td>Nižší (30% nákladů LS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Výhoda</strong></td>
+                        <td>Škála, pokrytí</td>
+                        <td>Software scheduler</td>
+                        <td>Vlastní HW, mobilita, cena</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container">
+        <h2 class="section-title">Klíčové Milníky</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot done"></div>
+                <div class="timeline-content">
+                    <h4>Q4 2025: Spuštění NZ stanice</h4>
+                    <p>Nový zákazník GOS, placený X-band test (€2K) — Hotovo</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot done"></div>
+                <div class="timeline-content">
+                    <h4>Q1 2026: Nábor z Dicomu</h4>
+                    <p>Řecký KveTech onboarding, prodej stanice Satelliot — Hotovo</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot current"></div>
+                <div class="timeline-content">
+                    <h4>Q1 2026: Nové investiční kolo</h4>
+                    <p>Otevření nového investičního kola (~€4M) — Právě probíhá</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot upcoming"></div>
+                <div class="timeline-content">
+                    <h4>Q2 2026: Dodání stanice Satelliot</h4>
+                    <p>Start pilotní prevádzky — Připraveno</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot upcoming"></div>
+                <div class="timeline-content">
+                    <h4>Q2–Q3 2026: SX-band testy</h4>
+                    <p>Testy s externími zákazníky — Plánováno</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot upcoming"></div>
+                <div class="timeline-content">
+                    <h4>H2 2026: SX-band produktivizace</h4>
+                    <p>První SX dodávky — Plánováno</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot future"></div>
+                <div class="timeline-content">
+                    <h4>2028: Break-even</h4>
+                    <p>Plánovaný break-even (EBITDA +€832K) — Budoucnost</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges -->
+    <section class="container">
+        <h2 class="section-title">Výzvy a Rizika</h2>
+        <div class="risk-grid">
+            <div class="risk-card">
+                <h4>Dlouhý Onboarding Cyklus</h4>
+                <p>Měsíce effortu na jednoho zákazníka. R&D tým přepíná mezi vývojem a onboardingem. Chybí dedikovaný technický sales tým.</p>
+            </div>
+            <div class="risk-card">
+                <h4>Cash Flow Timing</h4>
+                <p>Revenue z onboardingu přichází později než plánováno. Potenciál roste, ale příjmy se odkládají. Dashboard se připravuje.</p>
+            </div>
+            <div class="risk-card">
+                <h4>Žádné Stanice na Skladě</h4>
+                <p>Poslední stanice prodána. Naskladnění komponentů (€60K na 3 sady). Potřeba 5 stanic in stock.</p>
+            </div>
+            <div class="risk-card">
+                <h4>Supply Chain Rizika</h4>
+                <p>Klíčové komponenty (převodovky, zesilovače) — omezená dostupnost. Analýza alternativ probíhá.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Help -->
+    <section class="container">
+        <h2 class="section-title">Jak Mohou Investoři Pomoci</h2>
+        <div class="help-grid">
+            <div class="help-card">
+                <div class="help-icon">💰</div>
+                <h4>Working Capital na Inventory Stanic a Rozšíření Sítě</h4>
+                <p>~€4M celkem</p>
+            </div>
+            <div class="help-card">
+                <div class="help-icon">🔄</div>
+                <h4>Alternativní Zdroje Financování</h4>
+                <p>Leasing vs equity pro CAPEX</p>
+            </div>
+            <div class="help-card">
+                <div class="help-icon">🌍</div>
+                <h4>Kontakty na Zákazníky</h4>
+                <p>B2G/defense zákazníci a distributory (Middle East, Asia)</p>
+            </div>
+            <div class="help-card">
+                <div class="help-icon">🔧</div>
+                <h4>Supply Chain Kontakty</h4>
+                <p>Dodavatelé klíčových komponentů</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Items -->
+    <section class="container">
+        <h2 class="section-title">Akční Kroky</h2>
+        <div class="action-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Akce</th>
+                        <th>Odpovědný</th>
+                        <th>Termín</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Poslat aktualizovaný pipeline dashboard</td>
+                        <td>Aleš / Tomáš</td>
+                        <td>Před dalším meetingem</td>
+                    </tr>
+                    <tr>
+                        <td>Dokončit tabulku plateb po měsících</td>
+                        <td>Tomáš</td>
+                        <td>Do 2 týdnů</td>
+                    </tr>
+                    <tr>
+                        <td>Připravit business case (Satelliot, KveTech)</td>
+                        <td>Aleš / Tomáš</td>
+                        <td>Duben</td>
+                    </tr>
+                    <tr>
+                        <td>Dodání stanice Satelliot</td>
+                        <td>Tým</td>
+                        <td>Q2 2026</td>
+                    </tr>
+                    <tr>
+                        <td>SX-band testy s externími zákazníky</td>
+                        <td>R&D tým</td>
+                        <td>Před létem 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Řešit alternativní financování (leasing)</td>
+                        <td>Aleš</td>
+                        <td>Q2 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Market Context -->
+    <section class="container">
+        <h2 class="section-title">Tržní Kontext</h2>
+        <div class="market-box">
+            <strong>Globální trh satelitních pozemních stanic:</strong> $60–70B (2022) → $180B+ (2032), CAGR 12–13%. GSaaS segment ~$2.3B, rostoucí 6–12% ročně. Aktivní M&A: Viasat+Inmarsat ($7.3B), Eutelsat+OneWeb ($3.4B), Eutelsat prodej 80% stanic EQT (€790M). Groundcom jako jeden z mála evropských výrobců stanic — atraktivní akviziční cíl.
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Groundcom s.r.o. — Investor Update Q1 2026 | Interní dokument | Generováno 21. března 2026</p>
+    </footer>
+</body>
+</html>
