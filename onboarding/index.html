@@ -673,6 +673,160 @@
         }
 
         /* ========== RESPONSIVE ========== */
+        /* ========== TAX SECTION ========== */
+        .tax-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .tax-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            background: var(--white);
+        }
+        .tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 700px;
+        }
+        .tax-table thead {
+            background: var(--dark);
+            color: white;
+        }
+        .tax-table th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+        .tax-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        .tax-table tbody tr:hover {
+            background: var(--gray-50);
+        }
+        .tax-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .tax-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .tax-badge-green { background: #d1fae5; color: #065f46; }
+        .tax-badge-amber { background: #fef3c7; color: #92400e; }
+        .tax-badge-red { background: #fee2e2; color: #991b1b; }
+        .tax-note {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        .tax-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .tax-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.2s;
+        }
+        .tax-card:hover { border-color: var(--accent); }
+        .tax-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .tax-card p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ========== EDIT MODE ========== */
+        .edit-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edit-fab:hover { background: var(--dark); transform: scale(1.1); }
+        .edit-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 200;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .edit-bar.visible { transform: translateY(0); }
+        .edit-bar button {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .edit-bar .btn-save { background: var(--green); color: white; }
+        .edit-bar .btn-save:hover { opacity: 0.9; }
+        .edit-bar .btn-cancel { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .edit-bar .btn-cancel:hover { border-color: white; }
+        .edit-bar .btn-reset { background: transparent; color: #f87171; border: 1px solid #f87171; }
+        .edit-bar .btn-reset:hover { background: #f87171; color: white; }
+        .edit-bar span { font-size: 14px; color: rgba(255,255,255,0.7); }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+            min-height: 1em;
+        }
+        body.editing [data-editable]:focus {
+            outline-color: var(--green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        body.editing .edit-fab { display: none; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .nav-links.open {
@@ -723,6 +877,7 @@
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#investori">Investoři</a></li>
             <li><a href="#dokumenty">Dokumenty</a></li>
+            <li><a href="#daneni">Danění</a></li>
             <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
         </ul>
     </div>
@@ -732,9 +887,9 @@
 <section class="hero">
     <div class="container">
         <div class="hero-inner">
-            <div class="hero-badge">Investor Onboarding</div>
-            <h1>Investujte s námi do věcí, které dávají smysl</h1>
-            <p class="subtitle">
+            <div class="hero-badge" data-editable="hero-badge">Investor Onboarding</div>
+            <h1 data-editable="hero-title">Investujte s námi do věcí, které dávají smysl</h1>
+            <p class="subtitle" data-editable="hero-subtitle">
                 Využijte svůj instinkt pro byznys k něčemu většímu než jen pasivnímu zhodnocení. Investujte s námi do talentů, kteří mají ambici ovládnout trh.
             </p>
             <div class="hero-ctas">
@@ -753,20 +908,20 @@
     <div class="container">
         <div class="kpi-grid">
             <div class="kpi-item">
-                <div class="kpi-value">€9M+</div>
-                <div class="kpi-label">proinvestovaného kapitálu</div>
+                <div class="kpi-value" data-editable="kpi-1-value">€9M+</div>
+                <div class="kpi-label" data-editable="kpi-1-label">proinvestovaného kapitálu</div>
             </div>
             <div class="kpi-item">
-                <div class="kpi-value">14</div>
-                <div class="kpi-label">firem v portfoliu GA</div>
+                <div class="kpi-value" data-editable="kpi-2-value">14</div>
+                <div class="kpi-label" data-editable="kpi-2-label">firem v portfoliu GA</div>
             </div>
             <div class="kpi-item">
-                <div class="kpi-value">20+</div>
-                <div class="kpi-label">investorů s unikátním know-how</div>
+                <div class="kpi-value" data-editable="kpi-3-value">20+</div>
+                <div class="kpi-label" data-editable="kpi-3-label">investorů s unikátním know-how</div>
             </div>
             <div class="kpi-item">
-                <div class="kpi-value">60+</div>
-                <div class="kpi-label">investic našich členů mimo GA</div>
+                <div class="kpi-value" data-editable="kpi-4-value">60+</div>
+                <div class="kpi-label" data-editable="kpi-4-label">investic našich členů mimo GA</div>
             </div>
         </div>
     </div>
@@ -776,40 +931,40 @@
 <section class="section section-alt" id="proc-my">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Proč Garage Angels</div>
-            <h2 class="section-title">Nejsme anonymní fond</h2>
-            <p class="section-desc">Jsme skupina podnikatelů, kteří si prošli cestou od garáže až po miliardové exity a teď investují svůj vlastní čas a peníze.</p>
+            <div class="section-label" data-editable="why-label">Proč Garage Angels</div>
+            <h2 class="section-title" data-editable="why-title">Nejsme anonymní fond</h2>
+            <p class="section-desc" data-editable="why-desc">Jsme skupina podnikatelů, kteří si prošli cestou od garáže až po miliardové exity a teď investují svůj vlastní čas a peníze.</p>
         </div>
         <div class="why-grid">
             <div class="why-card">
-                <div class="why-icon">👥</div>
-                <h3>Komunita stejně smýšlejících lidí</h3>
-                <p>Spojuje nás chuť podporovat zajímavé projekty a nové technologie. Část z nás stále řídí vlastní firmy, část se věnuje startupovým investicím naplno.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 data-editable="why1-title">Komunita stejně smýšlejících lidí</h3>
+                <p data-editable="why1-desc">Spojuje nás chuť podporovat zajímavé projekty a nové technologie. Část z nás stále řídí vlastní firmy, část se věnuje startupovým investicím naplno.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">🎯</div>
-                <h3>Expertní skupiny podle oborů</h3>
-                <p>Máme interní expertní skupiny: HealthTech & MedTech, Cybersecurity, E-commerce, SaaS, Deep Tech a další. Každý projekt posoudí lidé, kteří oboru rozumí.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                <h3 data-editable="why2-title">Expertní skupiny podle oborů</h3>
+                <p data-editable="why2-desc">Máme interní expertní skupiny: HealthTech & MedTech, Cybersecurity, E-commerce, SaaS, Deep Tech a další. Každý projekt posoudí lidé, kteří oboru rozumí.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">🚀</div>
-                <h3>Deep Tech & High Tech fokus</h3>
-                <p>Hodně z nás aktivně hledá průlomové technologie. Zajímá nás vše od kvantové chemie přes kosmické technologie po AI v medicíně.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                <h3 data-editable="why3-title">Deep Tech & High Tech fokus</h3>
+                <p data-editable="why3-desc">Hodně z nás aktivně hledá průlomové technologie. Zajímá nás vše od kvantové chemie přes kosmické technologie po AI v medicíně.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">🎓</div>
-                <h3>Podpora univerzitních spin-offů</h3>
-                <p>Aktivně se podílíme na vzniku spin-offů z univerzit. Pomáháme nastavovat procesy, jak správně spin-offovat a přenést výzkum do komerční praxe.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <h3 data-editable="why4-title">Podpora univerzitních spin-offů</h3>
+                <p data-editable="why4-desc">Aktivně se podílíme na vzniku spin-offů z univerzit. Pomáháme nastavovat procesy, jak správně spin-offovat a přenést výzkum do komerční praxe.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">💰</div>
-                <h3>Vlastní peníze, vlastní rozhodování</h3>
-                <p>Investujeme výhradně své peníze. Žádní LP, žádný umělý tlak na exit. Rozhodujeme se v řádu dnů, ne měsíců.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <h3 data-editable="why5-title">Vlastní peníze, vlastní rozhodování</h3>
+                <p data-editable="why5-desc">Investujeme výhradně své peníze. Žádní LP, žádný umělý tlak na exit. Rozhodujeme se v řádu dnů, ne měsíců.</p>
             </div>
             <div class="why-card">
-                <div class="why-icon">🤝</div>
-                <h3>Hands-on, ne hands-off</h3>
-                <p>Radíme, mentorujeme, otevíráme dveře. Ale neřídíme — vaše firma, vaše rozhodnutí. Jsme v minoritě a chceme, abyste uspěli.</p>
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <h3 data-editable="why6-title">Hands-on, ne hands-off</h3>
+                <p data-editable="why6-desc">Radíme, mentorujeme, otevíráme dveře. Ale neřídíme — vaše firma, vaše rozhodnutí. Jsme v minoritě a chceme, abyste uspěli.</p>
             </div>
         </div>
     </div>
@@ -819,48 +974,53 @@
 <section class="section" id="jak-to-funguje">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Investiční proces</div>
-            <h2 class="section-title">Jak to celé funguje</h2>
-            <p class="section-desc">Za hladký chod Garage Angels zodpovídá Aleš Filipenský, investiční ředitel. Naší základnou je platforma Dealum.</p>
+            <div class="section-label" data-editable="process-label">Investiční proces</div>
+            <h2 class="section-title" data-editable="process-title">Jak to celé funguje</h2>
+            <p class="section-desc" data-editable="process-desc">Za hladký chod Garage Angels zodpovídá Aleš Filipenský, investiční ředitel. Naší základnou je platforma Dealum.</p>
         </div>
         <div class="process-steps">
             <div class="process-step">
                 <div class="step-number">1</div>
-                <h4>Screening</h4>
-                <p>David s Alešem zhodnotí přicházející pitch decky. Projekty, které dávají smysl, se objeví v Dealum.</p>
+                <h4 data-editable="step1-title">Internal Screening</h4>
+                <p data-editable="step1-desc">David s Alešem zhodnotí přicházející pitch decky. Projekty, které dávají smysl, se objeví v Dealum.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">2</div>
-                <h4>Pitching</h4>
-                <p>Společný call s foundery. Cílíme se doptat na klíčové informace a osobně poznat zakladatele.</p>
+                <h4 data-editable="step2-title">Investor Screening</h4>
+                <p data-editable="step2-desc">Investoři v Dealum hodnotí projekt, dávají feedback a hlasují o dalším postupu.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">3</div>
-                <h4>Round Open</h4>
-                <p>Projekt má zelenou. Investoři vyplní, zda a kolik chtějí investovat. Potvrzujeme lead investora.</p>
+                <h4 data-editable="step3-title">Pitching</h4>
+                <p data-editable="step3-desc">Společný call s foundery. Snažíme se doptat na klíčové informace a osobně poznat zakladatele.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">4</div>
-                <h4>Term Sheet</h4>
-                <p>Lead investor a Aleš vyjednávají podmínky investice s foundery. Kdo chce, může se zapojit.</p>
+                <h4 data-editable="step4-title">Round Open</h4>
+                <p data-editable="step4-desc">Projekt má zelenou. Investoři vyplní, zda a kolik chtějí investovat. Potvrzujeme lead investora.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">5</div>
-                <h4>Due Diligence</h4>
-                <p>Vedené Leadem a Alešem ve spolupráci s právním týmem Hladký.Legal.</p>
+                <h4 data-editable="step5-title">Term Sheet</h4>
+                <p data-editable="step5-desc">Lead investor a Aleš vyjednávají podmínky investice s foundery. Kdo chce, může se zapojit.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">6</div>
-                <h4>Closing</h4>
-                <p>Finální transakční dokumentace. Projekt se přesouváme do složky Portfolio.</p>
+                <h4 data-editable="step6-title">Due Diligence</h4>
+                <p data-editable="step6-desc">Vedená leadem a Alešem ve spolupráci s právním týmem Hladký.Legal.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">7</div>
+                <h4 data-editable="step7-title">Closing</h4>
+                <p data-editable="step7-desc">Finální transakční dokumentace. Projekt přesouváme do složky Portfolio.</p>
             </div>
         </div>
 
         <!-- SPV Explainer -->
         <div class="spv-box">
             <div style="text-align: center; margin-bottom: 32px;">
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">Technická struktura: SPV</h3>
-                <p style="font-size: 15px; color: var(--gray-500);">Každý deal = vlastní účelové SPV. Jednoduché, transparentní, právně čisté.</p>
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="spv-title">Technická struktura: SPV</h3>
+                <p style="font-size: 15px; color: var(--gray-500);" data-editable="spv-desc">Každý deal = vlastní účelové SPV. Jednoduché, transparentní, právně čisté.</p>
             </div>
             <div class="spv-flow">
                 <div class="spv-node">
@@ -900,24 +1060,24 @@
 
         <!-- Tools Grid -->
         <div style="margin-top: 64px;">
-            <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); text-align: center; margin-bottom: 8px;">Naše nástroje</h3>
-            <p style="font-size: 15px; color: var(--gray-500); text-align: center; margin-bottom: 32px;">Efektivní proces postavený na osvědčených nástrojích.</p>
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); text-align: center; margin-bottom: 8px;" data-editable="tools-title">Naše nástroje</h3>
+            <p style="font-size: 15px; color: var(--gray-500); text-align: center; margin-bottom: 32px;" data-editable="tools-desc">Efektivní proces postavený na osvědčených nástrojích.</p>
             <div class="tech-grid">
                 <div class="tech-card">
-                    <h4>Dealum</h4>
-                    <p>Platforma pro sdílení projektů, hlasování a komunikaci mezi investory. Naše centrála pro dealflow.</p>
+                    <h4 data-editable="tool1-title">Dealum</h4>
+                    <p data-editable="tool1-desc">Platforma pro sdílení projektů, hlasování a komunikaci mezi investory. Naše centrála pro dealflow.</p>
                 </div>
                 <div class="tech-card">
-                    <h4>Hladký.Legal</h4>
-                    <p>Právní podpora pro due diligence, transakční dokumentaci a vyjednávání investičních podmínek.</p>
+                    <h4 data-editable="tool2-title">Hladký.Legal</h4>
+                    <p data-editable="tool2-desc">Právní podpora pro due diligence, transakční dokumentaci a vyjednávání investičních podmínek.</p>
                 </div>
                 <div class="tech-card">
-                    <h4>SPV s.r.o.</h4>
-                    <p>Každý deal = vlastní účelová společnost. Čistý právní rámec, transparentní podíly, SHA pro všechny.</p>
+                    <h4 data-editable="tool3-title">SPV s.r.o.</h4>
+                    <p data-editable="tool3-desc">Každý deal = vlastní účelová společnost. Čistý právní rámec, transparentní podíly, SHA pro všechny.</p>
                 </div>
                 <div class="tech-card">
-                    <h4>Měsíční reporting</h4>
-                    <p>Pravidelné cally s foundery, kde informují o aktuálním dění. Zúčastnit se může každý investor.</p>
+                    <h4 data-editable="tool4-title">Měsíční reporting</h4>
+                    <p data-editable="tool4-desc">Pravidelné cally s foundery, kde informují o aktuálním dění. Zúčastnit se může každý investor.</p>
                 </div>
             </div>
         </div>
@@ -928,51 +1088,51 @@
 <section class="section section-alt" id="principy">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Naše dohody</div>
-            <h2 class="section-title">Na čem jsme se domluvili</h2>
-            <p class="section-desc">Pravidla, která vznikla z praxe. Jsme živý organismus, ne rigidní struktura.</p>
+            <div class="section-label" data-editable="principles-label">Naše dohody</div>
+            <h2 class="section-title" data-editable="principles-title">Na čem jsme se domluvili</h2>
+            <p class="section-desc" data-editable="principles-desc">Pravidla, která vznikla z praxe. Jsme živý organismus, ne rigidní struktura.</p>
         </div>
         <div class="principles-grid">
             <div class="principle-card">
-                <div class="principle-icon">🎯</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
                 <div>
-                    <h4>Investiční apetit</h4>
-                    <p>Každý z nás zná svůj reálný roční investiční apetit — abychom věděli, s čím může GA jako celek počítat.</p>
+                    <h4 data-editable="prin1-title">Investiční apetit</h4>
+                    <p data-editable="prin1-desc">Každý z nás zná svůj reálný roční investiční apetit — abychom věděli, s čím může GA jako celek počítat.</p>
                 </div>
             </div>
             <div class="principle-card">
-                <div class="principle-icon">💼</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
                 <div>
-                    <h4>Follow-up rezerva</h4>
-                    <p>Doporučujeme mít v záloze +50 až +100% původní částky. Dobré projekty budou růst a s nimi i potřeba kapitálu.</p>
+                    <h4 data-editable="prin2-title">Follow-up rezerva</h4>
+                    <p data-editable="prin2-desc">Doporučujeme mít v záloze +50 až +100 % původní částky. Dobré projekty budou růst a s nimi i potřeba kapitálu.</p>
                 </div>
             </div>
             <div class="principle-card">
-                <div class="principle-icon">📊</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
                 <div>
-                    <h4>1,5x preference</h4>
-                    <p>Pokud někdo do dalšího kola nepůjde, ostatní mohou získat vyšší výnos při exitu jako kompenzaci za vyšší riziko.</p>
+                    <h4 data-editable="prin3-title">1,5x preference</h4>
+                    <p data-editable="prin3-desc">Pokud někdo do dalšího kola nepůjde, ostatní mohou získat vyšší výnos při exitu jako kompenzaci za vyšší riziko.</p>
                 </div>
             </div>
             <div class="principle-card">
-                <div class="principle-icon">€</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                 <div>
-                    <h4>Min. ticket €20K</h4>
-                    <p>Abychom netristili příliš drobnými částkami, které komplikují správu i vyjednávání.</p>
+                    <h4 data-editable="prin4-title">Min. ticket €20K</h4>
+                    <p data-editable="prin4-desc">Abychom netříštili příliš drobnými částkami, které komplikují správu i vyjednávání.</p>
                 </div>
             </div>
             <div class="principle-card">
-                <div class="principle-icon">👤</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                 <div>
-                    <h4>Lead manažer</h4>
-                    <p>Každá investice musí mít na straně GA lead manažera — jasného partnera pro komunikaci a koordinaci.</p>
+                    <h4 data-editable="prin5-title">Lead manažer</h4>
+                    <p data-editable="prin5-desc">Každá investice musí mít na straně GA lead manažera — jasného partnera pro komunikaci a koordinaci.</p>
                 </div>
             </div>
             <div class="principle-card">
-                <div class="principle-icon">✅</div>
+                <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                 <div>
-                    <h4>Svoboda rozhodnutí</h4>
-                    <p>Každý garažník se sám rozhoduje, zda a kolik do dané investice vloží. Tohle je v našich genech.</p>
+                    <h4 data-editable="prin6-title">Svoboda rozhodnutí</h4>
+                    <p data-editable="prin6-desc">Každý garažník se sám rozhoduje, zda a kolik do dané investice vloží. Tohle je v našich genech.</p>
                 </div>
             </div>
         </div>
@@ -983,9 +1143,9 @@
 <section class="section section-alt" id="portfolio">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Naše portfolio</div>
-            <h2 class="section-title">Nekoukáme na obor, koukáme na potenciál</h2>
-            <p class="section-desc">Od kvantové chemie po pěstování hub — investujeme do nápadů, které mění trh.</p>
+            <div class="section-label" data-editable="portfolio-label">Naše portfolio</div>
+            <h2 class="section-title" data-editable="portfolio-title">Nekoukáme na obor, koukáme na potenciál</h2>
+            <p class="section-desc" data-editable="portfolio-desc">Od kvantové chemie po pěstování hub — investujeme do nápadů, které mění trh.</p>
         </div>
         <div class="portfolio-grid">
             <a href="https://www.sendance.at/" target="_blank" class="startup-card">
@@ -1061,9 +1221,9 @@
 <section class="section" id="investori">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Naši investoři</div>
-            <h2 class="section-title">Sami víme, jaké to je stavět firmu od nuly</h2>
-            <p class="section-desc">Jsme lidé, kteří si prošli celým cyklem od první vize přes probdělé noci až po globální exit.</p>
+            <div class="section-label" data-editable="investors-label">Naši investoři</div>
+            <h2 class="section-title" data-editable="investors-title">Sami víme, jaké to je stavět firmu od nuly</h2>
+            <p class="section-desc" data-editable="investors-desc">Jsme lidé, kteří si prošli celým cyklem od první vize přes probdělé noci až po globální exit.</p>
         </div>
         <div class="investors-grid">
             <a href="https://www.linkedin.com/in/jiri-hlavenka-a9887b3" target="_blank" class="investor-card">
@@ -1159,16 +1319,16 @@
 <section class="section section-alt" id="dokumenty">
     <div class="container">
         <div class="section-header">
-            <div class="section-label">Dokumenty</div>
-            <h2 class="section-title">Jedname na rovinu</h2>
-            <p class="section-desc">Dokumenty k prostudování dopředu. Žádná překvapení, žádné skryté podmínky.</p>
+            <div class="section-label" data-editable="docs-label">Dokumenty</div>
+            <h2 class="section-title" data-editable="docs-title">Jednáme na rovinu</h2>
+            <p class="section-desc" data-editable="docs-desc">Dokumenty k prostudování dopředu. Žádná překvapení, žádné skryté podmínky.</p>
         </div>
         <div class="docs-grid">
             <div class="doc-card">
-                <div class="doc-icon">📋</div>
+                <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
                 <div>
-                    <h4>Přihláška do spolku GA</h4>
-                    <p>Oficiální přihláška pro nové investory, kteří chtějí vstoupit do syndikátu Garage Angels.</p>
+                    <h4 data-editable="doc1-title">Přihláška do spolku GA</h4>
+                    <p data-editable="doc1-desc">Oficiální přihláška pro nové investory, kteří chtějí vstoupit do syndikátu Garage Angels.</p>
                     <a href="Prihlaska_GA_2026.pdf" class="doc-download" download>
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
                         Stáhnout PDF
@@ -1176,10 +1336,10 @@
                 </div>
             </div>
             <div class="doc-card">
-                <div class="doc-icon">📄</div>
+                <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
                 <div>
-                    <h4>Vzorové SHA (Shareholders Agreement)</h4>
-                    <p>Standardní dohoda mezi akcionáři, kterou používáme u všech SPV. Transparentní podmínky pro všechny.</p>
+                    <h4 data-editable="doc2-title">Vzorové SHA (Shareholders Agreement)</h4>
+                    <p data-editable="doc2-desc">Standardní dohoda mezi akcionáři, kterou používáme u všech SPV. Transparentní podmínky pro všechny.</p>
                     <a href="VZOR_SHA_GA.pdf" class="doc-download" download>
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
                         Stáhnout PDF
@@ -1190,11 +1350,111 @@
     </div>
 </section>
 
+<!-- ========== DANĚNÍ ========== -->
+<section class="section" id="daneni">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="tax-label">Zdanění příjmů</div>
+            <h2 class="section-title" data-editable="tax-title">Jak se daní příjmy z investic v ČR</h2>
+            <p class="section-desc" data-editable="tax-desc">Přehled zdanění podílů na zisku, převodů cenných papírů a obchodních podílů v českých a.s. a s.r.o.</p>
+        </div>
+
+        <!-- Fyzická osoba -->
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px;" data-editable="tax-fo-title">Fyzická osoba</h3>
+        <div class="tax-table-wrap">
+            <table class="tax-table">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Typ příjmu</th>
+                        <th style="width: 26%;">Zdanění</th>
+                        <th style="width: 26%;">Osvobození</th>
+                        <th style="width: 26%;">Podmínky osvobození</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Podíl na zisku (dividenda)</strong></td>
+                        <td>15% srážková daň, neodečítá se nabývací cena</td>
+                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
+                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců (lze splnit i následně)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Převod cenného papíru</strong> (akcie nabytá po 1.1.2014)</td>
+                        <td>Rozdíl prodejní a nabývací ceny v daňovém přiznání (§ 10 ZDP)</td>
+                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
+                        <td>3letý časový test pro CP (mimo kmenové listy), 5letý test pro kmenové listy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Převod obchodního podílu</strong> (mimo CP)</td>
+                        <td>Rozdíl prodejní ceny a nabývací hodnoty v daňovém přiznání (§ 10 ZDP)</td>
+                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
+                        <td>5letý časový test</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prodej CP do 100 tis. Kč/rok</strong></td>
+                        <td colspan="3"><span class="tax-badge tax-badge-green">Osvobozeno</span> — příjmy z prodeje CP jsou v roce 2026 osvobozeny, pokud jejich úhrn u poplatníka nepřesáhne 100 tis. Kč za zdaňovací období</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Právnická osoba -->
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--gray-900); margin: 32px 0 16px;" data-editable="tax-po-title">Právnická osoba</h3>
+        <div class="tax-table-wrap">
+            <table class="tax-table">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Typ příjmu</th>
+                        <th style="width: 26%;">Zdanění</th>
+                        <th style="width: 26%;">Osvobození</th>
+                        <th style="width: 26%;">Podmínky osvobození</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Podíl na zisku (dividenda)</strong></td>
+                        <td>15% srážková daň (samostatný základ daně)</td>
+                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
+                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců (mateřská/dceřiná společnost)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Převod CP / podílu</strong></td>
+                        <td>Rozdíl prodejní ceny a nabývací hodnoty zdaněn v obecném základu daně a.s./s.r.o. (21 %)</td>
+                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
+                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Doplňkové info karty -->
+        <div class="tax-cards">
+            <div class="tax-card">
+                <h4 data-editable="tax-card1-title">Mateřská/dceřiná společnost</h4>
+                <p data-editable="tax-card1-desc">Osvobození u PO vyžaduje formu a.s., s.r.o. nebo družstva (příp. daňový rezident EU). Mateřská společnost musí držet min. 10 % na základním kapitálu dceřiné společnosti nepřetržitě po dobu 12 měsíců.</p>
+            </div>
+            <div class="tax-card">
+                <h4 data-editable="tax-card2-title">CP v obchodním majetku</h4>
+                <p data-editable="tax-card2-desc">Pokud jsou CP zahrnuty v obchodním majetku poplatníka (FO), zdaňuje se v rámci § 7 ZDP (příjem ze samostatné činnosti) bez možnosti osvobození časovým testem.</p>
+            </div>
+            <div class="tax-card">
+                <h4 data-editable="tax-card3-title">Dědictví a přeměny</h4>
+                <p data-editable="tax-card3-desc">U CP nabytých dědictvím se časový test zkracuje o dobu držby zůstavitelem (přímý příbuzný/manžel). U některých přeměn a výměn akcií je možné zachovat časový test.</p>
+            </div>
+        </div>
+
+        <div class="tax-note">
+            <strong>Upozornění:</strong> Tento přehled poskytuje pouze orientační shrnutí. S ohledem na možné další výjimky a speciální kritéria doporučujeme zdanění v konkrétní situaci konzultovat s daňovým poradcem. Nepopisujeme specifika vyplývající ze smluv o zamezení dvojího zdanění.<br>
+            <strong>Zdroj:</strong> Grant Thornton / Hladký.Legal — informační souhrn, právní stav k 27. 2. 2026.
+        </div>
+    </div>
+</section>
+
 <!-- ========== CTA ========== -->
 <section class="cta-section" id="kontakt">
     <div class="container">
-        <h2>Máte zájem investovat s námi?</h2>
-        <p>Ozvoťe se Alešovi. Rád vám vysvětlí, jak GA fungují a jestli do sebe zapadáme.</p>
+        <h2 data-editable="cta-title">Máte zájem investovat s námi?</h2>
+        <p data-editable="cta-desc">Ozvěte se Alešovi. Rád vám vysvětlí, jak GA fungují a jestli do sebe zapadáme.</p>
         <a href="mailto:filipensky@g-angels.cz" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l6 4 6-4M2 4v8h12V4"/></svg>
             filipensky@g-angels.cz
@@ -1228,8 +1488,98 @@
     </div>
 </footer>
 
+<!-- EDIT FAB + BAR -->
+<button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<div class="edit-bar" id="editBar">
+    <span>Editujete texty</span>
+    <button class="btn-save" onclick="saveEdits()">Uložit</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+    <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
+</div>
+
 <script>
-// Navbar scroll effect
+// ========== EDIT MODE ==========
+let isEditing = false;
+let savedState = {};
+
+function toggleEdit() {
+    if (isEditing) return;
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        savedState[el.dataset.editable] = el.innerHTML;
+        el.contentEditable = 'true';
+    });
+    // Prevent link navigation in edit mode
+    document.querySelectorAll('a[href]').forEach(a => {
+        if (a.closest('[data-editable]') || a.querySelector('[data-editable]')) {
+            a.dataset.href = a.href;
+            a.removeAttribute('href');
+        }
+    });
+}
+
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        edits[el.dataset.editable] = el.innerHTML;
+    });
+    localStorage.setItem('onboarding-edits', JSON.stringify(edits));
+    exitEditMode();
+    showToast('Změny uloženy');
+}
+
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        el.innerHTML = savedState[el.dataset.editable];
+    });
+    exitEditMode();
+}
+
+function resetEdits() {
+    localStorage.removeItem('onboarding-edits');
+    location.reload();
+}
+
+function exitEditMode() {
+    isEditing = false;
+    document.body.classList.remove('editing');
+    document.getElementById('editBar').classList.remove('visible');
+    savedState = {};
+    document.querySelectorAll('a[data-href]').forEach(a => {
+        a.href = a.dataset.href;
+        a.removeAttribute('data-href');
+    });
+}
+
+function loadEdits() {
+    const saved = localStorage.getItem('onboarding-edits');
+    if (!saved) return;
+    try {
+        const edits = JSON.parse(saved);
+        Object.entries(edits).forEach(([key, val]) => {
+            const el = document.querySelector(`[data-editable="${key}"]`);
+            if (el) el.innerHTML = val;
+        });
+    } catch(e) {}
+}
+
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    Object.assign(t.style, {
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px',
+        fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+    });
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+}
+
+// ========== NAV SCROLL ==========
 window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
 });
@@ -1245,6 +1595,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Init
+loadEdits();
 </script>
 
 </body>
