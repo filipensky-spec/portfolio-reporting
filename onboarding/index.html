@@ -1493,6 +1493,7 @@
 <div class="edit-bar" id="editBar">
     <span>Editujete texty</span>
     <button class="btn-save" onclick="saveEdits()">Uložit</button>
+    <button class="btn-save" onclick="exportEdits()" style="background: var(--accent);">Exportovat pro deploy</button>
     <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
     <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
 </div>
@@ -1565,6 +1566,23 @@ function loadEdits() {
             if (el) el.innerHTML = val;
         });
     } catch(e) {}
+}
+
+function exportEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        if (savedState[el.dataset.editable] !== el.innerHTML) {
+            edits[el.dataset.editable] = el.innerHTML;
+        }
+    });
+    if (Object.keys(edits).length === 0) {
+        showToast('Žádné změny k exportu');
+        return;
+    }
+    const json = JSON.stringify(edits, null, 2);
+    navigator.clipboard.writeText(json).then(() => {
+        showToast('Změny zkopírovány — pošli je Claudovi');
+    });
 }
 
 function showToast(msg) {
