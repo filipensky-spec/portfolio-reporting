@@ -280,12 +280,14 @@
 
         /* ========== PROCESS ========== */
         .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             position: relative;
         }
         .process-step {
+            flex: 0 0 calc(100% / 3);
+            max-width: calc(100% / 3);
             text-align: center;
             padding: 32px 24px;
             position: relative;
@@ -761,6 +763,101 @@
             line-height: 1.6;
         }
 
+        /* ========== CALCULATOR ========== */
+        .calc-wrap {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .calc-row {
+            margin-bottom: 28px;
+        }
+        .calc-row label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 10px;
+        }
+        .calc-row label span {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .calc-row input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--gray-200);
+            border-radius: 3px;
+            outline: none;
+        }
+        .calc-row input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.3);
+        }
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .calc-result {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--accent-bg);
+            border-radius: var(--radius);
+            border: 1px solid rgba(37,99,235,0.15);
+        }
+        .calc-result .val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+        .calc-result .lbl {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        .calc-benchmark {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 32px;
+        }
+        .bench-item {
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+        .bench-item .val {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .bench-item .lbl {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            .calc-results { grid-template-columns: 1fr; }
+            .calc-wrap { padding: 24px; }
+        }
+
         /* ========== EDIT MODE ========== */
         .edit-fab {
             position: fixed;
@@ -853,6 +950,7 @@
             .spv-flow { flex-direction: column; }
             .spv-arrow { transform: rotate(90deg); }
             .spv-details { grid-template-columns: 1fr; }
+            .process-step { flex: 0 0 100%; max-width: 100%; }
             .process-step::after { display: none; }
             .footer-inner { flex-direction: column; text-align: center; }
             .footer-contact { text-align: center; }
@@ -874,9 +972,9 @@
         <ul class="nav-links">
             <li><a href="#proc-my">Proč my</a></li>
             <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+            <li><a href="#naklady">Náklady</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#investori">Investoři</a></li>
-            <li><a href="#dokumenty">Dokumenty</a></li>
+            <li><a href="#kalkulacka">Kalkulačka</a></li>
             <li><a href="#daneni">Danění</a></li>
             <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
         </ul>
@@ -965,6 +1063,49 @@
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
                 <h3 data-editable="why6-title">Hands-on</h3>
                 <p data-editable="why6-desc">Radíme, mentorujeme, otevíráme dveře. Ale neřídíme — firma je founderů, tak jako odpovědnost za rozhodování.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <h3 data-editable="why7-title">Spolupráce s JIC</h3>
+                <p data-editable="why7-desc">Spolupracujeme s <a href="https://www.jic.cz" target="_blank" style="color: var(--accent); font-weight: 600;">Jihomoravským inovačním centrem</a> — jedním z nejsilnějších startupových hubů v regionu. Společně podporujeme inovace a propojujeme startupy s kapitálem.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 data-editable="why8-title">Coinvestujeme s dalšími</h3>
+                <p data-editable="why8-desc">Investujeme společně s dalšími angel investory a VC fondy. Sdílíme dealflow, kombinujeme kapitál a rozšiřujeme síť kontaktů pro naše portfolio firmy.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                <h3 data-editable="why9-title">Učíme se od sebe navzájem</h3>
+                <p data-editable="why9-desc">Každý z nás přináší unikátní zkušenosti a perspektivu. Vznikají nová byznysová propojení, společné projekty a cenné know-how, které bychom sami nezískali.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ROZPTÝLENÍ OBAV ========== -->
+<section class="section" id="cas">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="fears-label">Jak to funguje v praxi</div>
+            <h2 class="section-title" data-editable="fears-title">Nemám na to čas — a to je v pořádku</h2>
+            <p class="section-desc" data-editable="fears-desc">Máme rádi aktivní investory, ale chápeme, že čas je pro vás cenná komodita. Proto jsme to nastavili tak, aby to fungovalo.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h3 data-editable="fears1-title">Aleš se stará o admin</h3>
+                <p data-editable="fears1-desc">Vyjednávání, komunikace se startupem, transakční dokumentace, koordinace s právníky — to vše řeší investiční ředitel. Vy se soustředíte na rozhodování.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+                <h3 data-editable="fears2-title">Posuzujete to, čemu rozumíte</h3>
+                <p data-editable="fears2-desc">Investoři hodnotí projekty ve svých oborech, sdílejí know-how a přinášejí perspektivu, kterou žádný fond nemá. Vaše expertíza je to, co nás odlišuje.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <h3 data-editable="fears3-title">Podporujete foundera</h3>
+                <p data-editable="fears3-desc">Hands-on podpora neznamená denní cally. Stačí být k dispozici, když to founder potřebuje — otevřít dveře, poradit, propojit se správnými lidmi.</p>
             </div>
         </div>
     </div>
@@ -1079,6 +1220,10 @@
                     <h4 data-editable="tool4-title">Měsíční reporting</h4>
                     <p data-editable="tool4-desc">Pravidelné cally s foundery, kde informují o aktuálním dění. Zúčastnit se může každý investor.</p>
                 </div>
+                <div class="tech-card">
+                    <h4 data-editable="tool5-title">Slack</h4>
+                    <p data-editable="tool5-desc">Rychlá domluva a komunikace investorů. Sdílení informací, koordinace a neformální diskuze — vše na jednom místě.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1133,6 +1278,45 @@
                 <div>
                     <h4 data-editable="prin6-title">Svoboda rozhodnutí</h4>
                     <p data-editable="prin6-desc">Každý garažník se sám rozhoduje, zda a kolik do dané investice vloží. Tohle je v našich genech.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FEE A NÁKLADY ========== -->
+<section class="section" id="naklady">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="fee-label">Náklady a fee</div>
+            <h2 class="section-title" data-editable="fee-title">Transparentní nákladová struktura</h2>
+            <p class="section-desc" data-editable="fee-desc">Žádné skryté poplatky. Tady je přesný přehled toho, co a za co platíte.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card" style="border-left: 3px solid var(--accent);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">100 000 CZK</div>
+                <h3 data-editable="fee1-title">Roční členské fee</h3>
+                <p data-editable="fee1-desc">Pokrývá provozní náklady Garage Angels — správu platformy, organizaci eventů, komunikaci a koordinaci dealflow.</p>
+            </div>
+            <div class="why-card" style="border-left: 3px solid var(--green);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 8px;">10 % carry</div>
+                <h3 data-editable="fee2-title">Carry pro investičního ředitele</h3>
+                <p data-editable="fee2-desc">Z výnosu při exitu. Motivační složka zajišťující, že zájmy investičního ředitele jsou v souladu se zájmy investorů.</p>
+            </div>
+        </div>
+        <div class="spv-box" style="margin-top: 32px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="fee3-title">Transakční náklady (per deal)</h3>
+                <p style="font-size: 15px; color: var(--gray-500);" data-editable="fee3-desc">Ke každé investici se váží tyto jednorázové náklady, rozdělené poměrově dle výše investice.</p>
+            </div>
+            <div class="spv-details">
+                <div class="spv-detail">
+                    <strong>Právní náklady na transakci</strong>
+                    <span data-editable="fee3-legal">Část hradí startup, část investoři. Platí se poměrově dle toho, kolik kdo investoval.</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Provozní půjčka SPV — 80 000 CZK</strong>
+                    <span data-editable="fee3-spv">Pokrývá notáře, účetního a právní náklady spojené s fungováním SPV. Vydrží 2–3 roky. Splácí se poměrově dle investice do startupu.</span>
                 </div>
             </div>
         </div>
@@ -1213,6 +1397,62 @@
                 <div class="startup-logo">Senzoor</div>
                 <span class="startup-link">senzoor.cz &rarr;</span>
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PORTFOLIO KALKULAČKA ========== -->
+<section class="section" id="kalkulacka">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="calc-label">Tvorba portfolia</div>
+            <h2 class="section-title" data-editable="calc-title">Proč neinvestovat jen do jednoho startupu</h2>
+            <p class="section-desc" data-editable="calc-desc">Statisticky uspěje 1–2 z 10 startupů. Proto je klíčové budovat diverzifikované portfolio alespoň 15–20 investic. Spočítejte si, jak na to.</p>
+        </div>
+
+        <div class="calc-wrap">
+            <div class="calc-row">
+                <label>Roční investiční budget <span id="budgetVal">500 000 CZK</span></label>
+                <input type="range" id="budget" min="100000" max="5000000" step="50000" value="500000" oninput="calcUpdate()">
+            </div>
+            <div class="calc-row">
+                <label>Počet let investování <span id="yearsVal">5 let</span></label>
+                <input type="range" id="years" min="2" max="10" step="1" value="5" oninput="calcUpdate()">
+            </div>
+
+            <div class="calc-results">
+                <div class="calc-result">
+                    <div class="val" id="totalInvest">2 500 000 CZK</div>
+                    <div class="lbl">Celková investice</div>
+                </div>
+                <div class="calc-result">
+                    <div class="val" id="ticketSize">140 000 CZK</div>
+                    <div class="lbl">Doporučený ticket / startup</div>
+                </div>
+                <div class="calc-result">
+                    <div class="val" id="startupCount">18 startupů</div>
+                    <div class="lbl">Startupů v portfoliu</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-benchmark">
+            <div class="bench-item">
+                <div class="val">15–25</div>
+                <div class="lbl">Typický angel investor — počet startupů</div>
+            </div>
+            <div class="bench-item">
+                <div class="val">€20–50K</div>
+                <div class="lbl">Typický angel ticket</div>
+            </div>
+            <div class="bench-item">
+                <div class="val">20–40</div>
+                <div class="lbl">VC fond — investic za fond</div>
+            </div>
+            <div class="bench-item">
+                <div class="val">1–2 z 10</div>
+                <div class="lbl">Startupů skutečně uspěje</div>
+            </div>
         </div>
     </div>
 </section>
@@ -1349,9 +1589,9 @@
                 <div>
                     <h4 data-editable="doc1-title">Přihláška do spolku GA</h4>
                     <p data-editable="doc1-desc">Oficiální přihláška pro nové investory, kteří chtějí vstoupit do syndikátu Garage Angels.</p>
-                    <a href="Prihlaska_GA_2026.pdf" class="doc-download" download>
+                    <a href="mailto:filipensky@g-angels.cz?subject=Přihláška do GA — žádost o zaslání" class="doc-download">
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
-                        Stáhnout PDF
+                        Vyžádat PDF
                     </a>
                 </div>
             </div>
@@ -1360,9 +1600,9 @@
                 <div>
                     <h4 data-editable="doc2-title">Vzorové SHA (Shareholders Agreement)</h4>
                     <p data-editable="doc2-desc">Standardní dohoda mezi akcionáři, kterou používáme u všech SPV. Transparentní podmínky pro všechny.</p>
-                    <a href="VZOR_SHA_GA.pdf" class="doc-download" download>
+                    <a href="mailto:filipensky@g-angels.cz?subject=Vzorové SHA — žádost o zaslání" class="doc-download">
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
-                        Stáhnout PDF
+                        Vyžádat PDF
                     </a>
                 </div>
             </div>
@@ -1376,96 +1616,60 @@
         <div class="section-header">
             <div class="section-label" data-editable="tax-label">Zdanění příjmů</div>
             <h2 class="section-title" data-editable="tax-title">Jak se daní příjmy z investic v ČR</h2>
-            <p class="section-desc" data-editable="tax-desc">Přehled zdanění podílů na zisku, převodů cenných papírů a obchodních podílů v českých a.s. a s.r.o.</p>
+            <p class="section-desc" data-editable="tax-desc">Dva hlavní typy příjmů, které vás jako angel investora zajímají.</p>
         </div>
 
-        <!-- Fyzická osoba -->
-        <h3 style="font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px;" data-editable="tax-fo-title">Fyzická osoba</h3>
-        <div class="tax-table-wrap">
-            <table class="tax-table">
-                <thead>
-                    <tr>
-                        <th style="width: 22%;">Typ příjmu</th>
-                        <th style="width: 26%;">Zdanění</th>
-                        <th style="width: 26%;">Osvobození</th>
-                        <th style="width: 26%;">Podmínky osvobození</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Podíl na zisku (dividenda)</strong></td>
-                        <td>15% srážková daň, neodečítá se nabývací cena</td>
-                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
-                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců (lze splnit i následně)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Převod cenného papíru</strong> (akcie nabytá po 1.1.2014)</td>
-                        <td>Rozdíl prodejní a nabývací ceny v daňovém přiznání (§ 10 ZDP)</td>
-                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
-                        <td>3letý časový test pro CP (mimo kmenové listy), 5letý test pro kmenové listy</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Převod obchodního podílu</strong> (mimo CP)</td>
-                        <td>Rozdíl prodejní ceny a nabývací hodnoty v daňovém přiznání (§ 10 ZDP)</td>
-                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
-                        <td>5letý časový test</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Prodej CP do 100 tis. Kč/rok</strong></td>
-                        <td colspan="3"><span class="tax-badge tax-badge-green">Osvobozeno</span> — příjmy z prodeje CP jsou v roce 2026 osvobozeny, pokud jejich úhrn u poplatníka nepřesáhne 100 tis. Kč za zdaňovací období</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Právnická osoba -->
-        <h3 style="font-size: 18px; font-weight: 700; color: var(--gray-900); margin: 32px 0 16px;" data-editable="tax-po-title">Právnická osoba</h3>
-        <div class="tax-table-wrap">
-            <table class="tax-table">
-                <thead>
-                    <tr>
-                        <th style="width: 22%;">Typ příjmu</th>
-                        <th style="width: 26%;">Zdanění</th>
-                        <th style="width: 26%;">Osvobození</th>
-                        <th style="width: 26%;">Podmínky osvobození</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Podíl na zisku (dividenda)</strong></td>
-                        <td>15% srážková daň (samostatný základ daně)</td>
-                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
-                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců (mateřská/dceřiná společnost)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Převod CP / podílu</strong></td>
-                        <td>Rozdíl prodejní ceny a nabývací hodnoty zdaněn v obecném základu daně a.s./s.r.o. (21 %)</td>
-                        <td><span class="tax-badge tax-badge-green">Možné osvobození</span></td>
-                        <td>Držba alespoň 10 % podílu po dobu 12 měsíců</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Doplňkové info karty -->
-        <div class="tax-cards">
-            <div class="tax-card">
-                <h4 data-editable="tax-card1-title">Mateřská/dceřiná společnost</h4>
-                <p data-editable="tax-card1-desc">Osvobození u PO vyžaduje formu a.s., s.r.o. nebo družstva (příp. daňový rezident EU). Mateřská společnost musí držet min. 10 % na základním kapitálu dceřiné společnosti nepřetržitě po dobu 12 měsíců.</p>
+        <div class="why-grid">
+            <!-- Dividendy -->
+            <div class="why-card" style="border-top: 3px solid var(--accent);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <div style="width: 48px; height: 48px; background: var(--accent-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 style="font-size: 20px; font-weight: 800; color: var(--gray-900);">Dividendy</h3>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="background: var(--gray-50); border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 13px; color: var(--gray-500); margin-bottom: 4px;">Zdanění</div>
+                        <div style="font-size: 17px; font-weight: 700; color: var(--gray-900);">15 % srážková daň</div>
+                    </div>
+                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">Držba alespoň 10 % podílu po dobu 12 měsíců</div>
+                        <div style="font-size: 13px; color: #065f46; margin-top: 4px;">Platí pro FO i PO (mateřská/dceřiná)</div>
+                    </div>
+                </div>
             </div>
-            <div class="tax-card">
-                <h4 data-editable="tax-card2-title">CP v obchodním majetku</h4>
-                <p data-editable="tax-card2-desc">Pokud jsou CP zahrnuty v obchodním majetku poplatníka (FO), zdaňuje se v rámci § 7 ZDP (příjem ze samostatné činnosti) bez možnosti osvobození časovým testem.</p>
-            </div>
-            <div class="tax-card">
-                <h4 data-editable="tax-card3-title">Dědictví a přeměny</h4>
-                <p data-editable="tax-card3-desc">U CP nabytých dědictvím se časový test zkracuje o dobu držby zůstavitelem (přímý příbuzný/manžel). U některých přeměn a výměn akcií je možné zachovat časový test.</p>
+
+            <!-- Prodej podílu -->
+            <div class="why-card" style="border-top: 3px solid var(--green);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <div style="width: 48px; height: 48px; background: #d1fae5; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3 style="font-size: 20px; font-weight: 800; color: var(--gray-900);">Prodej podílu</h3>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="background: var(--gray-50); border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 13px; color: var(--gray-500); margin-bottom: 4px;">Zdanění (FO)</div>
+                        <div style="font-size: 17px; font-weight: 700; color: var(--gray-900);">Rozdíl prodejní a nabývací ceny</div>
+                        <div style="font-size: 13px; color: var(--gray-500); margin-top: 4px;">Daňové přiznání § 10 ZDP</div>
+                    </div>
+                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození FO</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">5letý časový test</div>
+                    </div>
+                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
+                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození PO</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">Držba 10 % po dobu 12 měsíců</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="tax-note">
-            <strong>Upozornění:</strong> Tento přehled poskytuje pouze orientační shrnutí. S ohledem na možné další výjimky a speciální kritéria doporučujeme zdanění v konkrétní situaci konzultovat s daňovým poradcem. Nepopisujeme specifika vyplývající ze smluv o zamezení dvojího zdanění.<br>
-            <strong>Zdroj:</strong> Grant Thornton / Hladký.Legal — informační souhrn, právní stav k 27. 2. 2026.
+        <div class="tax-note" style="margin-top: 32px;">
+            <strong>Upozornění:</strong> Orientační shrnutí. Doporučujeme konzultovat s daňovým poradcem.<br>
+            <strong>Zdroj:</strong> Grant Thornton / Hladký.Legal — právní stav k 27. 2. 2026.
         </div>
     </div>
 </section>
@@ -1609,6 +1813,22 @@ function showToast(msg) {
     });
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 2000);
+}
+
+// ========== CALCULATOR ==========
+function calcUpdate() {
+    const budget = parseInt(document.getElementById('budget').value);
+    const years = parseInt(document.getElementById('years').value);
+    const total = budget * years;
+    const targetPortfolio = 18;
+    const ticket = Math.round(total / targetPortfolio / 1000) * 1000;
+    const actualCount = ticket > 0 ? Math.floor(total / ticket) : 0;
+
+    document.getElementById('budgetVal').textContent = budget.toLocaleString('cs-CZ') + ' CZK';
+    document.getElementById('yearsVal').textContent = years + (years === 1 ? ' rok' : years < 5 ? ' roky' : ' let');
+    document.getElementById('totalInvest').textContent = total.toLocaleString('cs-CZ') + ' CZK';
+    document.getElementById('ticketSize').textContent = ticket.toLocaleString('cs-CZ') + ' CZK';
+    document.getElementById('startupCount').textContent = actualCount + ' startupů';
 }
 
 // ========== NAV SCROLL ==========
