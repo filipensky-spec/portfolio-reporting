@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleš Filipenský — Projekty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #1a1a2e;
+            --dark-light: #2d2d44;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --violet: #7c3aed;
+            --violet-bg: #ede9fe;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 16px;
+        }
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--dark); }
+
+        /* ========== EDIT TOOLBAR ========== */
+        .edit-bar {
+            display: none;
+            position: fixed;
+            bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            background: var(--dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .edit-bar.visible { display: flex; }
+        .edit-bar button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+        .edit-bar button:hover { background: var(--accent-light); }
+        .edit-bar .btn-cancel {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .edit-bar .btn-cancel:hover { background: rgba(255,255,255,0.1); }
+
+        .edit-toggle {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .edit-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Editable highlights */
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent-light);
+            outline-offset: 4px;
+            border-radius: 4px;
+            cursor: text;
+        }
+        body.editing [data-editable]:focus {
+            outline: 2px solid var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 120px 0 64px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner { max-width: 720px; }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+        }
+        .hero .subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section { padding: 64px 0; }
+        .section-alt { background: var(--gray-50); }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            font-size: 16px;
+            color: var(--gray-500);
+            max-width: 580px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* ========== CARDS GRID ========== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+        a.project-card { cursor: pointer; }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .icon-online { background: var(--green-bg); }
+        .icon-app { background: var(--violet-bg); }
+        .icon-html { background: var(--accent-bg); }
+        .icon-data { background: var(--gray-100); }
+        .icon-kb { background: var(--amber-bg); }
+
+        .card-status {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-online { background: var(--green-bg); color: var(--green); }
+        .status-local { background: var(--gray-100); color: var(--gray-500); }
+        .status-html { background: var(--accent-bg); color: var(--accent); }
+        .status-deploy { background: var(--amber-bg); color: var(--amber); }
+        .status-data { background: var(--gray-100); color: var(--gray-400); }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .card-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        .card-url {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            word-break: break-all;
+        }
+        .card-meta {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
+        .card-cmd {
+            font-size: 12px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            position: relative;
+        }
+        .card-cmd:hover { background: var(--gray-200); }
+        .card-cmd.copied { background: var(--green-bg); color: var(--green); }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 40px 0 28px;
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 100px 0 48px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .section { padding: 48px 0; }
+            .edit-bar { left: 16px; right: 16px; transform: none; border-radius: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">AF</div>
+            <span>Moje projekty</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#online">Online</a></li>
+            <li><a href="#lokalni">Lokální</a></li>
+            <li><a href="#nastroje">Nástroje</a></li>
+            <li><a href="#osobni">Osobní</a></li>
+            <li><button class="edit-toggle" onclick="toggleEdit()">Upravit texty</button></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar">
+    <span>Režim úprav aktivní</span>
+    <button onclick="saveEdits()">Uložit změny</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-badge" data-editable="hero-badge">Claude Code projekty</div>
+            <h1 data-editable="hero-title">Všechny moje projekty na jednom místě</h1>
+            <p class="subtitle" data-editable="hero-subtitle">Rozcestník na online stránky, lokální aplikace a nástroje vytvořené s Claude Code. Vše přehledně, vše po ruce.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ONLINE -->
+<section class="section section-alt" id="online">
+    <div class="container">
+        <div class="section-label">GitHub Pages</div>
+        <h2 class="section-title" data-editable="online-title">Online projekty</h2>
+        <p class="section-desc" data-editable="online-desc">Veřejně dostupné stránky deploynuté na GitHub Pages. Klikni na kartu pro otevření.</p>
+        <div class="cards-grid">
+
+            <a class="project-card" href="https://filipensky-spec.github.io/portfolio-reporting/" target="_blank">
+                <div class="card-top">
+                    <div class="card-icon icon-online">📊</div>
+                    <span class="card-status status-online">Online</span>
+                </div>
+                <div class="card-title" data-editable="card-portfolio-title">Portfolio Reporting</div>
+                <div class="card-desc" data-editable="card-portfolio-desc">Přehled portfolia Garage Angels s reporty pro investory. 14 startupů, aktivní reporty pro VR Vitalis a Groundcom.</div>
+                <div class="card-url">filipensky-spec.github.io/portfolio-reporting/</div>
+            </a>
+
+            <a class="project-card" href="https://filipensky-spec.github.io/portfolio-reporting/vr-vitalis/" target="_blank">
+                <div class="card-top">
+                    <div class="card-icon icon-online">🏥</div>
+                    <span class="card-status status-online">Online</span>
+                </div>
+                <div class="card-title" data-editable="card-vrvitalis-title">VR Vitalis — Investor Report</div>
+                <div class="card-desc" data-editable="card-vrvitalis-desc">Investor report pro VR Vitalis. VR rehabilitace pro zdravotnictví.</div>
+                <div class="card-url">filipensky-spec.github.io/portfolio-reporting/vr-vitalis/</div>
+            </a>
+
+            <a class="project-card" href="https://filipensky-spec.github.io/portfolio-reporting/groundcom/" target="_blank">
+                <div class="card-top">
+                    <div class="card-icon icon-online">🛰</div>
+                    <span class="card-status status-online">Online</span>
+                </div>
+                <div class="card-title" data-editable="card-groundcom-title">Groundcom — Investor Report</div>
+                <div class="card-desc" data-editable="card-groundcom-desc">Investor report pro Groundcom. Satelitní pozemní infrastruktura.</div>
+                <div class="card-url">filipensky-spec.github.io/portfolio-reporting/groundcom/</div>
+            </a>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-online">👥</div>
+                    <span class="card-status status-deploy">Deploy ready</span>
+                </div>
+                <div class="card-title" data-editable="card-onboarding-title">Investor Onboarding</div>
+                <div class="card-desc" data-editable="card-onboarding-desc">Kompletní onboarding stránka pro nové investory GA — portfolio, investiční proces, dokumenty, kontakt.</div>
+                <div class="card-meta">investor-onboarding-DEPLOY.html &middot; připraveno k deployi</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- LOKÁLNÍ APLIKACE -->
+<section class="section" id="lokalni">
+    <div class="container">
+        <div class="section-label">Lokální</div>
+        <h2 class="section-title" data-editable="local-title">Garage Angels — Aplikace</h2>
+        <p class="section-desc" data-editable="local-desc">Next.js a Node.js projekty, které běží lokálně. Klikni na příkaz pro zkopírování do terminálu.</p>
+        <div class="cards-grid">
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-app">📈</div>
+                    <span class="card-status status-local">Lokální</span>
+                </div>
+                <div class="card-title" data-editable="card-dashboard-title">Startup Dashboard</div>
+                <div class="card-desc" data-editable="card-dashboard-desc">Dashboard pro správu portfolia startupů.</div>
+                <div class="card-meta">Next.js &middot; port 3000</div>
+                <div class="card-cmd" onclick="copyCmd(this, event)">cd 'startup-dashboard' && npm run dev</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-app">🗂</div>
+                    <span class="card-status status-local">Lokální</span>
+                </div>
+                <div class="card-title" data-editable="card-workspace-title">Workspace Hub</div>
+                <div class="card-desc" data-editable="card-workspace-desc">Centrální hub pro registraci a správu všech projektů.</div>
+                <div class="card-meta">Node.js &middot; port 4000</div>
+                <div class="card-cmd" onclick="copyCmd(this, event)">cd 'workspace' && npm start</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-app">🏠</div>
+                    <span class="card-status status-local">Lokální</span>
+                </div>
+                <div class="card-title" data-editable="card-gaplatform-title">GA Platform</div>
+                <div class="card-desc" data-editable="card-gaplatform-desc">Garage Angels platforma — hlavní webová aplikace.</div>
+                <div class="card-meta">Next.js &middot; lokální projekt</div>
+                <div class="card-cmd" onclick="copyCmd(this, event)">cd 'garage-angels-platform' && npm run dev</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-app">🤖</div>
+                    <span class="card-status status-local">Lokální</span>
+                </div>
+                <div class="card-title" data-editable="card-mcp-title">MCP Server</div>
+                <div class="card-desc" data-editable="card-mcp-desc">Vlastní MCP server pro rozšíření Claude Code.</div>
+                <div class="card-meta">Node.js &middot; MCP protokol</div>
+                <div class="card-cmd" onclick="copyCmd(this, event)">cd 'my-mcp-server' && node index.js</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- NÁSTROJE -->
+<section class="section section-alt" id="nastroje">
+    <div class="container">
+        <div class="section-label">Nástroje</div>
+        <h2 class="section-title" data-editable="tools-title">Cowork — Účetnictví & Reporting</h2>
+        <p class="section-desc" data-editable="tools-desc">HTML nástroje pro práci s reporty a účetnictvím. Otevírají se přímo v prohlížeči.</p>
+        <div class="cards-grid">
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-html">✏️</div>
+                    <span class="card-status status-html">HTML</span>
+                </div>
+                <div class="card-title" data-editable="card-editor-title">Report Editor</div>
+                <div class="card-desc" data-editable="card-editor-desc">Inline editor pro review a úpravu reportů startupů. Standalone HTML soubor (320 KB).</div>
+                <div class="card-meta">inline-report-editor-review.html</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-html">🧪</div>
+                    <span class="card-status status-html">HTML</span>
+                </div>
+                <div class="card-title" data-editable="card-lab-title">Report Lab</div>
+                <div class="card-desc" data-editable="card-lab-desc">Laboratoř pro generování a testování reportů portfolia. Standalone HTML (88 KB).</div>
+                <div class="card-meta">report-lab.html</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-html">🍽</div>
+                    <span class="card-status status-html">HTML</span>
+                </div>
+                <div class="card-title" data-editable="card-menu-title">Menu ukázka</div>
+                <div class="card-desc" data-editable="card-menu-desc">Ukázka menu designu.</div>
+                <div class="card-meta">menu-ukazka.html</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-data">📁</div>
+                    <span class="card-status status-data">Data</span>
+                </div>
+                <div class="card-title" data-editable="card-reporting-title">Reporting — 14 startupů</div>
+                <div class="card-desc" data-editable="card-reporting-desc">Senzoor, AIffinity, Groundcom, Kardi AI, KeyGuru, LocalLazy, MYCO, RealPad, Scaut, sendance, VR Vitalis Pro, AG Data, CasInvent Pharma.</div>
+                <div class="card-meta">reporting/ &middot; datové složky</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-data">💰</div>
+                    <span class="card-status status-data">Data</span>
+                </div>
+                <div class="card-title" data-editable="card-ucetnictvi-title">Účetnictví GA Management</div>
+                <div class="card-desc" data-editable="card-ucetnictvi-desc">DPH, faktury, párování — podklady pro účetnictví 2025/2026.</div>
+                <div class="card-meta">podklady pro účetnictví/ &middot; CSV, XLSX</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- OSOBNÍ -->
+<section class="section" id="osobni">
+    <div class="container">
+        <div class="section-label">Osobní</div>
+        <h2 class="section-title" data-editable="personal-title">Osobní projekty</h2>
+        <p class="section-desc" data-editable="personal-desc">Dashboard, zdraví a další osobní věci.</p>
+        <div class="cards-grid">
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-app">🏃</div>
+                    <span class="card-status status-local">Lokální</span>
+                </div>
+                <div class="card-title" data-editable="card-personal-title">Personal Dashboard</div>
+                <div class="card-desc" data-editable="card-personal-desc">Osobní dashboard — Next.js aplikace.</div>
+                <div class="card-meta">Next.js &middot; port 3001</div>
+                <div class="card-cmd" onclick="copyCmd(this, event)">cd 'personal-dashboard' && npm run dev</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-kb">💪</div>
+                    <span class="card-status status-data">Knowledge</span>
+                </div>
+                <div class="card-title" data-editable="card-trener-title">Trenér & Výživa</div>
+                <div class="card-desc" data-editable="card-trener-desc">12-týdenní strategie — trénink, výživa, mentální zdraví, tracking. 14 markdown souborů.</div>
+                <div class="card-meta">Trenér&výživový poradce/</div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-top">
+                    <div class="card-icon icon-data">📋</div>
+                    <span class="card-status status-data">Data</span>
+                </div>
+                <div class="card-title" data-editable="card-dane-title">Daně 2025</div>
+                <div class="card-desc" data-editable="card-dane-desc">Podklady pro daňové přiznání za rok 2025.</div>
+                <div class="card-meta">Daně/</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p>Aleš Filipenský &middot; Garage Angels &middot; 2025 &middot; Vytvořeno s Claude Code</p>
+    </div>
+</footer>
+
+<script>
+// ========== EDIT MODE ==========
+let isEditing = false;
+let savedState = {};
+
+function toggleEdit() {
+    if (isEditing) return;
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+
+    // Save current state & make editable
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        savedState[el.dataset.editable] = el.innerHTML;
+        el.contentEditable = 'true';
+    });
+
+    // Prevent link navigation in edit mode
+    document.querySelectorAll('a.project-card').forEach(a => {
+        a.dataset.href = a.href;
+        a.removeAttribute('href');
+    });
+}
+
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        edits[el.dataset.editable] = el.innerHTML;
+    });
+    localStorage.setItem('landing-page-edits', JSON.stringify(edits));
+    exitEditMode();
+    showToast('Změny uloženy');
+}
+
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        el.innerHTML = savedState[el.dataset.editable];
+    });
+    exitEditMode();
+}
+
+function exitEditMode() {
+    isEditing = false;
+    document.body.classList.remove('editing');
+    document.getElementById('editBar').classList.remove('visible');
+    savedState = {};
+
+    // Restore links
+    document.querySelectorAll('a.project-card[data-href]').forEach(a => {
+        a.href = a.dataset.href;
+        a.removeAttribute('data-href');
+    });
+}
+
+// Load saved edits on page load
+function loadEdits() {
+    const saved = localStorage.getItem('landing-page-edits');
+    if (!saved) return;
+    try {
+        const edits = JSON.parse(saved);
+        Object.entries(edits).forEach(([key, val]) => {
+            const el = document.querySelector(`[data-editable="${key}"]`);
+            if (el) el.innerHTML = val;
+        });
+    } catch(e) {}
+}
+
+// ========== COPY COMMAND ==========
+function copyCmd(el, event) {
+    if (isEditing) return;
+    event.stopPropagation();
+    const cmd = el.textContent;
+    navigator.clipboard.writeText(cmd).then(() => {
+        el.classList.add('copied');
+        el.dataset.orig = el.textContent;
+        el.textContent = 'Zkopírováno!';
+        setTimeout(() => {
+            el.classList.remove('copied');
+            el.textContent = el.dataset.orig;
+        }, 1500);
+    });
+}
+
+// ========== TOAST ==========
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    Object.assign(t.style, {
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px',
+        fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+    });
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+}
+
+// ========== NAV SCROLL ==========
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Init
+loadEdits();
+</script>
+</body>
+</html>
