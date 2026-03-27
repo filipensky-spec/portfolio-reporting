@@ -1510,10 +1510,10 @@
 
 <!-- EDIT FAB + BAR -->
 <button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<button class="edit-fab" onclick="exportEdits()" title="Exportovat změny pro deploy" style="bottom: 80px; background: var(--green); font-size: 16px;">&#8682;</button>
 <div class="edit-bar" id="editBar">
     <span>Editujete texty</span>
     <button class="btn-save" onclick="saveEdits()">Uložit</button>
-    <button class="btn-save" onclick="exportEdits()" style="background: var(--accent);">Exportovat pro deploy</button>
     <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
     <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
 </div>
@@ -1589,18 +1589,12 @@ function loadEdits() {
 }
 
 function exportEdits() {
-    const edits = {};
-    document.querySelectorAll('[data-editable]').forEach(el => {
-        if (savedState[el.dataset.editable] !== el.innerHTML) {
-            edits[el.dataset.editable] = el.innerHTML;
-        }
-    });
-    if (Object.keys(edits).length === 0) {
-        showToast('Žádné změny k exportu');
+    const saved = localStorage.getItem('onboarding-edits');
+    if (!saved || saved === '{}') {
+        showToast('Žádné uložené změny k exportu');
         return;
     }
-    const json = JSON.stringify(edits, null, 2);
-    navigator.clipboard.writeText(json).then(() => {
+    navigator.clipboard.writeText(saved).then(() => {
         showToast('Změny zkopírovány — pošli je Claudovi');
     });
 }
