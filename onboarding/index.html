@@ -963,7 +963,7 @@
 <nav class="nav" id="nav">
     <div class="container nav-inner">
         <a href="#" class="nav-logo">
-            <img src="ga-logo.png" alt="Garage Angels">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--dark)"/><text x="18" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="16" fill="white">GA</text></svg>
             <span>Garage Angels</span>
         </a>
         <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -1262,7 +1262,7 @@
             <div class="principle-card">
                 <div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                 <div>
-                    <h4 data-editable="prin4-title">Min. ticket €20K</h4>
+                    <h4 data-editable="prin4-title">Min. ticket €10–20K</h4>
                     <p data-editable="prin4-desc">Abychom netříštili příliš drobnými částkami, které komplikují správu i vyjednávání.</p>
                 </div>
             </div>
@@ -1289,8 +1289,8 @@
     <div class="container">
         <div class="section-header">
             <div class="section-label" data-editable="fee-label">Náklady a fee</div>
-            <h2 class="section-title" data-editable="fee-title">Transparentní nákladová struktura</h2>
-            <p class="section-desc" data-editable="fee-desc">Žádné skryté poplatky. Tady je přesný přehled toho, co a za co platíte.</p>
+            <h2 class="section-title" data-editable="fee-title">Jaké jsou vstupní a investiční náklady?</h2>
+            <p class="section-desc" data-editable="fee-desc"></p>
         </div>
         <div class="why-grid">
             <div class="why-card" style="border-left: 3px solid var(--accent);">
@@ -1302,6 +1302,11 @@
                 <div style="font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 8px;">10 % carry</div>
                 <h3 data-editable="fee2-title">Carry pro investičního ředitele</h3>
                 <p data-editable="fee2-desc">Z výnosu při exitu. Motivační složka zajišťující, že zájmy investičního ředitele jsou v souladu se zájmy investorů.</p>
+            </div>
+            <div class="why-card" style="border-left: 3px solid var(--amber);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--amber); margin-bottom: 8px;">Skin in the game</div>
+                <h3 data-editable="fee3a-title">Investiční ředitel také investuje</h3>
+                <p data-editable="fee3a-desc">Investiční ředitel vkládá do každého dealu vlastní peníze. Máme stejné motivace a neseme stejná rizika jako ostatní investoři.</p>
             </div>
         </div>
         <div class="spv-box" style="margin-top: 32px;">
@@ -1412,26 +1417,30 @@
 
         <div class="calc-wrap">
             <div class="calc-row">
-                <label>Roční investiční budget <span id="budgetVal">500 000 CZK</span></label>
-                <input type="range" id="budget" min="100000" max="5000000" step="50000" value="500000" oninput="calcUpdate()">
+                <label>Roční investiční budget <span id="budgetVal">€100 000</span></label>
+                <input type="range" id="budget" min="50000" max="500000" step="10000" value="100000" oninput="calcUpdate()">
             </div>
             <div class="calc-row">
                 <label>Počet let investování <span id="yearsVal">5 let</span></label>
-                <input type="range" id="years" min="2" max="10" step="1" value="5" oninput="calcUpdate()">
+                <input type="range" id="years" min="3" max="10" step="1" value="5" oninput="calcUpdate()">
             </div>
 
-            <div class="calc-results">
+            <div class="calc-results" style="grid-template-columns: repeat(2, 1fr);">
                 <div class="calc-result">
-                    <div class="val" id="totalInvest">2 500 000 CZK</div>
+                    <div class="val" id="totalInvest">€500 000</div>
                     <div class="lbl">Celková investice</div>
                 </div>
                 <div class="calc-result">
-                    <div class="val" id="ticketSize">140 000 CZK</div>
+                    <div class="val" id="ticketSize">€28 000</div>
                     <div class="lbl">Doporučený ticket / startup</div>
                 </div>
                 <div class="calc-result">
                     <div class="val" id="startupCount">18 startupů</div>
                     <div class="lbl">Startupů v portfoliu</div>
+                </div>
+                <div class="calc-result" style="background: #d1fae5; border-color: rgba(16,185,129,0.2);">
+                    <div class="val" style="color: var(--green);" id="returnVal">€1 750 000</div>
+                    <div class="lbl">Očekávaný výnos (3.5x)</div>
                 </div>
             </div>
         </div>
@@ -1446,12 +1455,12 @@
                 <div class="lbl">Typický angel ticket</div>
             </div>
             <div class="bench-item">
-                <div class="val">20–40</div>
-                <div class="lbl">VC fond — investic za fond</div>
-            </div>
-            <div class="bench-item">
                 <div class="val">1–2 z 10</div>
                 <div class="lbl">Startupů skutečně uspěje</div>
+            </div>
+            <div class="bench-item">
+                <div class="val">3.5x</div>
+                <div class="lbl">Cílová návratnost GA portfolia</div>
             </div>
         </div>
     </div>
@@ -1587,8 +1596,8 @@
             <div class="doc-card">
                 <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
                 <div>
-                    <h4 data-editable="doc1-title">Přihláška do spolku GA</h4>
-                    <p data-editable="doc1-desc">Oficiální přihláška pro nové investory, kteří chtějí vstoupit do syndikátu Garage Angels.</p>
+                    <h4 data-editable="doc1-title">Přihláška do spolku GA (FO)</h4>
+                    <p data-editable="doc1-desc">Přihláška pro fyzické osoby, které chtějí vstoupit do syndikátu Garage Angels.</p>
                     <a href="mailto:filipensky@g-angels.cz?subject=Přihláška do GA — žádost o zaslání" class="doc-download">
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
                         Vyžádat PDF
@@ -1601,6 +1610,17 @@
                     <h4 data-editable="doc2-title">Vzorové SHA (Shareholders Agreement)</h4>
                     <p data-editable="doc2-desc">Standardní dohoda mezi akcionáři, kterou používáme u všech SPV. Transparentní podmínky pro všechny.</p>
                     <a href="mailto:filipensky@g-angels.cz?subject=Vzorové SHA — žádost o zaslání" class="doc-download">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
+                        Vyžádat PDF
+                    </a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                <div>
+                    <h4 data-editable="doc3-title">Přihláška do spolku GA (PO)</h4>
+                    <p data-editable="doc3-desc">Přihláška pro právnické osoby — společnosti investující přes svou firmu.</p>
+                    <a href="mailto:filipensky@g-angels.cz?subject=Přihláška PO — žádost o zaslání" class="doc-download">
                         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
                         Vyžádat PDF
                     </a>
@@ -1695,7 +1715,7 @@
         <div class="footer-inner">
             <div>
                 <div class="footer-logo">
-                    <img src="ga-logo.png" alt="Garage Angels">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="var(--dark)"/><text x="18" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="16" fill="white">GA</text></svg>
                     <span>Garage Angels</span>
                 </div>
                 <div class="footer-tagline">Syndikát angelských investorů z Brna</div>
@@ -1821,14 +1841,19 @@ function calcUpdate() {
     const years = parseInt(document.getElementById('years').value);
     const total = budget * years;
     const targetPortfolio = 18;
-    const ticket = Math.round(total / targetPortfolio / 1000) * 1000;
-    const actualCount = ticket > 0 ? Math.floor(total / ticket) : 0;
+    let ticket = Math.round(total / targetPortfolio / 1000) * 1000;
+    if (ticket < 10000) ticket = 10000;
+    const actualCount = Math.floor(total / ticket);
+    const returnMultiple = 3.5;
+    const expectedReturn = Math.round(total * returnMultiple);
 
-    document.getElementById('budgetVal').textContent = budget.toLocaleString('cs-CZ') + ' CZK';
-    document.getElementById('yearsVal').textContent = years + (years === 1 ? ' rok' : years < 5 ? ' roky' : ' let');
-    document.getElementById('totalInvest').textContent = total.toLocaleString('cs-CZ') + ' CZK';
-    document.getElementById('ticketSize').textContent = ticket.toLocaleString('cs-CZ') + ' CZK';
+    const fmt = (v) => '€' + v.toLocaleString('cs-CZ');
+    document.getElementById('budgetVal').textContent = fmt(budget);
+    document.getElementById('yearsVal').textContent = years + (years < 5 ? ' roky' : ' let');
+    document.getElementById('totalInvest').textContent = fmt(total);
+    document.getElementById('ticketSize').textContent = fmt(ticket);
     document.getElementById('startupCount').textContent = actualCount + ' startupů';
+    document.getElementById('returnVal').textContent = fmt(expectedReturn);
 }
 
 // ========== NAV SCROLL ==========
