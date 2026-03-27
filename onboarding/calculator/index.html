@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Portfolio Kalkulačka — Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #1a1a2e; --accent: #2563eb; --accent-bg: #eff6ff;
+            --green: #10b981; --amber: #f59e0b;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+            --gray-300: #d1d5db; --gray-400: #9ca3af; --gray-500: #6b7280;
+            --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937;
+            --gray-900: #111827; --white: #ffffff; --radius: 12px; --radius-sm: 8px;
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--gray-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        .header { padding: 80px 0 40px; text-align: center; }
+        .header-logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; text-decoration: none; }
+        .header-logo img { height: 36px; }
+        .header h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--gray-900); letter-spacing: -1px; margin-bottom: 12px; }
+        .header p { font-size: 17px; color: var(--gray-500); max-width: 640px; margin: 0 auto; }
+
+        .section { padding: 40px 0; }
+        .section h3 { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
+
+        .calc-wrap { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 40px; }
+        .calc-row { margin-bottom: 24px; }
+        .calc-row label { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+        .calc-row label span { font-size: 18px; font-weight: 800; color: var(--accent); }
+        .calc-row input[type="range"] { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: var(--gray-200); border-radius: 3px; outline: none; }
+        .calc-row input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 6px rgba(37,99,235,0.3); }
+        .hint { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+        .calc-cards { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 32px; }
+        .calc-card { text-align: center; padding: 20px 12px; background: var(--accent-bg); border-radius: var(--radius); border: 1px solid rgba(37,99,235,0.12); }
+        .calc-card .cv { font-size: 22px; font-weight: 800; color: var(--accent); }
+        .calc-card .cl { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+        .health-bar-bg { height: 12px; background: var(--gray-200); border-radius: 6px; overflow: hidden; margin: 12px 0 8px; }
+        .health-bar-fill { height: 100%; border-radius: 6px; transition: width 0.4s, background 0.4s; }
+        .health-text { font-size: 14px; line-height: 1.6; }
+
+        .scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+        .scenario-card { padding: 28px 20px; border-radius: var(--radius); text-align: center; border: 1px solid var(--gray-200); }
+        .scenario-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .scenario-card .sc-mult { font-size: 36px; font-weight: 800; letter-spacing: -1px; }
+        .scenario-card .sc-eur { font-size: 15px; font-weight: 600; margin-top: 4px; }
+        .scenario-card .sc-irr { font-size: 13px; margin-top: 8px; }
+        .sc-pessimistic { background: var(--gray-50); } .sc-pessimistic .sc-mult { color: var(--gray-600); }
+        .sc-realistic { background: #fffbeb; border-color: #fbbf24; } .sc-realistic .sc-mult { color: #b45309; }
+        .sc-optimistic { background: #d1fae5; border-color: var(--green); } .sc-optimistic .sc-mult { color: #065f46; }
+
+        .compare-wrap { display: flex; gap: 24px; align-items: flex-end; margin-bottom: 32px; padding: 24px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); }
+        .compare-bar { flex: 1; text-align: center; }
+        .compare-bar-inner { border-radius: 6px 6px 0 0; transition: height 0.4s; min-height: 20px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-size: 13px; font-weight: 700; color: white; }
+        .compare-bar .cb-label { font-size: 13px; color: var(--gray-500); margin-top: 8px; }
+        .compare-bar .cb-val { font-size: 16px; font-weight: 700; color: var(--gray-900); }
+
+        .powerlaw-bar { display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
+        .powerlaw-bar div { transition: width 0.4s; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; min-width: 0; overflow: hidden; }
+        .powerlaw-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--gray-500); }
+        .powerlaw-legend span { display: inline-flex; align-items: center; gap: 4px; }
+        .powerlaw-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+        .calc-cta { text-align: center; padding: 48px 24px; background: var(--dark); border-radius: var(--radius); color: white; margin-top: 8px; }
+        .calc-cta h3 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: white; }
+        .calc-cta p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: white; color: var(--dark); }
+        .btn-primary:hover { background: var(--accent); color: white; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+
+        .footer { padding: 32px 0; text-align: center; font-size: 13px; color: var(--gray-400); border-top: 1px solid var(--gray-200); margin-top: 48px; }
+        .footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .calc-cards { grid-template-columns: repeat(2,1fr); }
+            .calc-cards .calc-card:last-child { grid-column: span 2; }
+            .scenario-grid { grid-template-columns: 1fr; }
+            .compare-wrap { flex-direction: column; }
+            .calc-wrap { padding: 24px; }
+            .header { padding: 48px 0 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="https://filipensky-spec.github.io/portfolio-reporting/onboarding/" class="header-logo">
+        <img src="Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
+    </a>
+    <h1>Angel Portfolio Kalkulačka</h1>
+    <p>50 % angel investic typicky selže. Horních 10 % generuje 85–90 % výnosu. Spočítejte si optimální portfolio.</p>
+</div>
+
+<div class="container">
+    <div class="calc-wrap">
+        <div class="calc-row">
+            <label>Investovatelný majetek (bez primárního bydlení) <span id="v_wealth">— zadejte —</span></label>
+            <input type="range" id="wealth" min="100000" max="50000000" step="50000" value="0" oninput="calcUpdate()">
+            <div class="hint">Celkový majetek k dispozici pro investice</div>
+        </div>
+        <div class="calc-row">
+            <label>Alokace na angel investice <span id="v_alloc">10 %</span></label>
+            <input type="range" id="alloc" min="5" max="20" step="1" value="10" oninput="calcUpdate()">
+            <div class="hint">Doporučení: 5–15 % čistého jmění. Více než 10 % jen pro zkušené investory.</div>
+        </div>
+        <div class="calc-row">
+            <label>Ticket na jeden startup <span id="v_ticket">€20 000</span></label>
+            <input type="range" id="ticket" min="10000" max="150000" step="5000" value="20000" oninput="calcUpdate()">
+            <div class="hint">V Garage Angels je minimum €10–20K.</div>
+        </div>
+        <div class="calc-row">
+            <label>Follow-on rezerva <span id="v_followon">40 %</span></label>
+            <input type="range" id="followon" min="30" max="50" step="1" value="40" oninput="calcUpdate()">
+            <div class="hint">Část budgetu na další investice do nejlepších firem. Doporučení: ~50 %.</div>
+        </div>
+        <div class="calc-row">
+            <label>Časový horizont (roky) <span id="v_horizon">5 let</span></label>
+            <input type="range" id="horizon" min="3" max="7" step="1" value="5" oninput="calcUpdate()">
+            <div class="hint">Za jak dlouho chcete mít portfolio vybudované. Typicky 3–5 let.</div>
+        </div>
+    </div>
+
+    <div id="calcOutputs" style="margin-top:40px;">
+        <div style="text-align:center;color:var(--gray-400);padding:40px;font-size:17px;">Nastavte investovatelný majetek výše pro zobrazení výsledků.</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="footer">
+        <a href="https://filipensky-spec.github.io/portfolio-reporting/onboarding/">← Zpět na Investor Onboarding</a> · Zdroj dat: AngelList (10 665 portfolií), Angel Capital Association
+    </div>
+</div>
+
+<script>
+function eur(v) { return '€' + Math.round(v).toLocaleString('cs-CZ'); }
+function pct(v) { return (v * 100).toFixed(1) + ' %'; }
+
+function runScenario(n, ticket, budget, horizonExit, dist) {
+    let totalReturn = 0;
+    dist.forEach(d => { totalReturn += Math.round(n * d.pct) * ticket * d.mult; });
+    const multiple = budget > 0 ? totalReturn / budget : 0;
+    const irr = horizonExit > 0 ? Math.pow(Math.max(multiple, 0.01), 1 / horizonExit) - 1 : 0;
+    return { totalReturn, multiple, irr };
+}
+
+function calcUpdate() {
+    const wealth = parseInt(document.getElementById('wealth').value) || 0;
+    const alloc = parseInt(document.getElementById('alloc').value);
+    const ticket = parseInt(document.getElementById('ticket').value);
+    const followon = parseInt(document.getElementById('followon').value);
+    const horizon = parseInt(document.getElementById('horizon').value);
+
+    document.getElementById('v_wealth').textContent = wealth > 0 ? eur(wealth) : '— zadejte —';
+    document.getElementById('v_alloc').textContent = alloc + ' %';
+    document.getElementById('v_ticket').textContent = eur(ticket);
+    document.getElementById('v_followon').textContent = followon + ' %';
+    document.getElementById('v_horizon').textContent = horizon + (horizon < 5 ? ' roky' : ' let');
+
+    const out = document.getElementById('calcOutputs');
+    if (wealth === 0) { out.innerHTML = '<div style="text-align:center;color:var(--gray-400);padding:40px;font-size:17px;">Nastavte investovatelný majetek výše pro zobrazení výsledků.</div>'; return; }
+
+    const angelBudget = wealth * alloc / 100;
+    const primaryInvest = angelBudget / (1 + followon / 100);
+    const followonReserve = angelBudget - primaryInvest;
+    const numStartups = Math.floor(primaryInvest / ticket);
+    const dealsPerYear = numStartups > 0 ? (numStartups / horizon).toFixed(1) : '0';
+    const horizonExit = horizon + 3;
+
+    let hColor, hWidth, hText;
+    if (numStartups < 10) { hColor = '#ef4444'; hWidth = Math.max(numStartups * 5, 5); hText = '⚠️ Příliš koncentrované portfolio. Zvažte snížení ticketu.'; }
+    else if (numStartups < 15) { hColor = '#f59e0b'; hWidth = 50 + (numStartups - 10) * 5; hText = 'Minimum pro základní diverzifikaci. Statisticky stále významné riziko.'; }
+    else if (numStartups <= 20) { hColor = '#10b981'; hWidth = 75 + (numStartups - 15) * 3; hText = '✅ Sweet spot. Dobrá šance zachytit outlier a snížit riziko ztráty.'; }
+    else { hColor = '#10b981'; hWidth = 100; hText = '🌟 Optimální. Portfolia nad 20 firem mají 4,5× vyšší medián IRR.'; }
+
+    const pessimistic = runScenario(numStartups, ticket, angelBudget, horizonExit, [{pct:0.60,mult:0},{pct:0.25,mult:1.5},{pct:0.13,mult:3},{pct:0.02,mult:5}]);
+    const realistic = runScenario(numStartups, ticket, angelBudget, horizonExit, [{pct:0.50,mult:0},{pct:0.20,mult:1.5},{pct:0.20,mult:3},{pct:0.08,mult:7},{pct:0.02,mult:20}]);
+    const optimistic = runScenario(numStartups, ticket, angelBudget, horizonExit, [{pct:0.40,mult:0},{pct:0.15,mult:1.5},{pct:0.25,mult:3.5},{pct:0.15,mult:10},{pct:0.05,mult:30}]);
+
+    const indexReturn = angelBudget * Math.pow(1.10, horizonExit);
+    const maxBar = Math.max(realistic.totalReturn, indexReturn, 1);
+
+    out.innerHTML = `
+    <div class="section"><h3>Základní čísla</h3>
+    <div class="calc-cards">
+        <div class="calc-card"><div class="cv">${eur(angelBudget)}</div><div class="cl">Angel budget</div></div>
+        <div class="calc-card"><div class="cv">${eur(primaryInvest)}</div><div class="cl">Prvotní investice</div></div>
+        <div class="calc-card"><div class="cv">${eur(followonReserve)}</div><div class="cl">Follow-on rezerva</div></div>
+        <div class="calc-card"><div class="cv">${numStartups}</div><div class="cl">Startupů v portfoliu</div></div>
+        <div class="calc-card"><div class="cv">${dealsPerYear}/rok</div><div class="cl">Dealů ročně</div></div>
+    </div></div>
+
+    <div class="section"><h3>Portfolio Health Check</h3>
+    <div class="health-bar-bg"><div class="health-bar-fill" style="width:${hWidth}%;background:${hColor};"></div></div>
+    <div class="health-text" style="color:${hColor};">${numStartups} firem — ${hText}</div></div>
+
+    <div class="section"><h3>Scénářová analýza</h3>
+    <div class="scenario-grid">
+        <div class="scenario-card sc-pessimistic"><h4>Pesimistický</h4><div class="sc-mult">${pessimistic.multiple.toFixed(1)}×</div><div class="sc-eur">${eur(pessimistic.totalReturn)}</div><div class="sc-irr" style="color:var(--gray-500);">IRR ${pct(pessimistic.irr)} p.a.</div></div>
+        <div class="scenario-card sc-realistic"><h4>Realistický</h4><div class="sc-mult">${realistic.multiple.toFixed(1)}×</div><div class="sc-eur" style="color:#b45309;">${eur(realistic.totalReturn)}</div><div class="sc-irr" style="color:#92400e;">IRR ${pct(realistic.irr)} p.a.</div></div>
+        <div class="scenario-card sc-optimistic"><h4>Optimistický</h4><div class="sc-mult">${optimistic.multiple.toFixed(1)}×</div><div class="sc-eur" style="color:#065f46;">${eur(optimistic.totalReturn)}</div><div class="sc-irr" style="color:#065f46;">IRR ${pct(optimistic.irr)} p.a.</div></div>
+    </div></div>
+
+    <div class="section"><h3>Srovnání s S&P 500 (~10 % p.a.)</h3>
+    <div class="compare-wrap">
+        <div class="compare-bar"><div class="compare-bar-inner" style="height:${Math.round(indexReturn/maxBar*180)}px;background:var(--gray-400);">${eur(indexReturn)}</div><div class="cb-label">S&P 500</div><div class="cb-val">${(Math.pow(1.10, horizonExit)).toFixed(1)}×</div></div>
+        <div class="compare-bar"><div class="compare-bar-inner" style="height:${Math.round(realistic.totalReturn/maxBar*180)}px;background:var(--accent);">${eur(realistic.totalReturn)}</div><div class="cb-label">Angel portfolio</div><div class="cb-val">${realistic.multiple.toFixed(1)}×</div></div>
+    </div></div>
+
+    <div class="section"><h3>Power Law — rozložení portfolia</h3>
+    <p style="font-size:13px;color:var(--gray-500);margin-bottom:8px;">Realistický scénář</p>
+    <div class="powerlaw-bar">
+        <div style="width:50%;background:#ef4444;">Ztráty</div>
+        <div style="width:20%;background:var(--gray-400);">1–2×</div>
+        <div style="width:20%;background:var(--accent);">2–5×</div>
+        <div style="width:8%;background:#f59e0b;">5–10×</div>
+        <div style="width:2%;background:#10b981;"></div>
+    </div>
+    <div class="powerlaw-legend">
+        <span><i style="background:#ef4444;"></i> Ztráty (50 %)</span>
+        <span><i style="background:var(--gray-400);"></i> Modest (20 %)</span>
+        <span><i style="background:var(--accent);"></i> Solid (20 %)</span>
+        <span><i style="background:#f59e0b;"></i> Big hit (8 %)</span>
+        <span><i style="background:#10b981;"></i> Outlier (2 %)</span>
+    </div>
+    <p style="font-size:13px;color:var(--gray-500);margin-top:12px;">Horních 10 % investic generuje 85–90 % celkového výnosu. Zdroj: AngelList.</p></div>
+
+    <div class="calc-cta">
+        <h3>Chcete investovat chytře?</h3>
+        <p>Garage Angels je největší syndikát business angels v ČR. Pomůžeme vám vybudovat diverzifikované portfolio.</p>
+        <a href="https://filipensky-spec.github.io/portfolio-reporting/onboarding/" class="btn btn-primary">Investor Onboarding →</a>
+    </div>`;
+}
+</script>
+
+</body>
+</html>
