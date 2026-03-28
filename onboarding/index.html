@@ -66,7 +66,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            height: 56px;
         }
         .nav-logo {
             display: flex;
@@ -75,7 +75,7 @@
             text-decoration: none;
         }
         .nav-logo img {
-            height: 36px;
+            height: 48px;
             width: auto;
         }
         .nav-logo span {
@@ -86,7 +86,7 @@
         }
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
             list-style: none;
         }
         .nav-links a {
@@ -569,8 +569,8 @@
         /* ========== TECH STACK ========== */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
         .tech-card {
             background: var(--white);
@@ -642,7 +642,7 @@
             gap: 8px;
         }
         .footer-logo img {
-            height: 28px;
+            height: 48px;
             width: auto;
         }
         .footer-logo span {
@@ -879,7 +879,6 @@
             <li><a href="#jak-to-funguje">Jak to funguje</a></li>
             <li><a href="#naklady">Náklady</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#daneni">Danění</a></li>
             <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
         </ul>
     </div>
@@ -1159,11 +1158,6 @@
                 <h4>Antonín Kunz</h4>
                 <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
             </a>
-            <a href="https://www.linkedin.com/in/ales-filipensky" target="_blank" class="investor-card">
-                <div class="investor-avatar">AF</div>
-                <h4>Aleš Filipenský</h4>
-                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
-            </a>
             <a href="https://www.linkedin.com/in/karel-bastl-12b31446/" target="_blank" class="investor-card">
                 <div class="investor-avatar">KB</div>
                 <h4>Karel Bastl</h4>
@@ -1197,10 +1191,25 @@
             <p class="section-desc" data-editable="fears-desc">Máme rádi aktivní investory, ale chápeme, že čas je pro vás cenná komodita. Proto jsme to nastavili tak, aby to fungovalo.</p>
         </div>
         <div class="why-grid">
-            <div class="why-card">
-                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <h3 data-editable="fears1-title">Aleš se stará o admin</h3>
+            <div class="why-card" style="border-left: 3px solid var(--accent);">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                    <div class="investor-avatar" style="width:44px;height:44px;font-size:15px;">AF</div>
+                    <div>
+                        <h3 style="font-size:16px;font-weight:700;color:var(--gray-900);margin:0;">Aleš Filipenský</h3>
+                        <a href="https://www.linkedin.com/in/ales-filipensky" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;">Investiční ředitel · LinkedIn →</a>
+                    </div>
+                </div>
                 <p data-editable="fears1-desc">Vyjednávání, komunikace se startupem, transakční dokumentace, koordinace s právníky — to vše řeší investiční ředitel. Vy se soustředíte na rozhodování.</p>
+            </div>
+            <div class="why-card" style="border-left: 3px solid var(--accent);">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                    <div class="investor-avatar" style="width:44px;height:44px;font-size:15px;">DZ</div>
+                    <div>
+                        <h3 style="font-size:16px;font-weight:700;color:var(--gray-900);margin:0;">David Zabadal</h3>
+                        <a href="https://www.linkedin.com/in/david-zabadal-83ba49190/" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;">Analytik · LinkedIn →</a>
+                    </div>
+                </div>
+                <p data-editable="fears1b-desc">Screening pitch decků, analýza tržního potenciálu a příprava podkladů pro investory. David zajišťuje, že do Dealum se dostanou jen relevantní projekty.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
@@ -1258,7 +1267,7 @@
             <div class="process-step">
                 <div class="step-number">7</div>
                 <h4 data-editable="step7-title">Closing</h4>
-                <p data-editable="step7-desc">Finální transakční dokumentace. Projekt přesouváme do složky Portfolio.</p>
+                <p data-editable="step7-desc">Finální transakční dokumentace.</p>
             </div>
         </div>
 
@@ -1322,12 +1331,8 @@
                     <p data-editable="tool3-desc">Každý deal = vlastní účelová společnost. Čistý právní rámec, transparentní podíly, standardní SHA.</p>
                 </div>
                 <div class="tech-card">
-                    <h4 data-editable="tool4-title">Měsíční reporting</h4>
-                    <p data-editable="tool4-desc">Pravidelné cally s foundery, kde informují o aktuálním dění. Zúčastnit se může každý investor.</p>
-                </div>
-                <div class="tech-card">
-                    <h4 data-editable="tool5-title">Slack</h4>
-                    <p data-editable="tool5-desc">Rychlá domluva a komunikace investorů. Sdílení informací, koordinace a neformální diskuze — vše na jednom místě.</p>
+                    <h4 data-editable="tool4-title">Reporting & Slack</h4>
+                    <p data-editable="tool4-desc">Měsíční reporting cally s foundery + Slack pro rychlou komunikaci investorů. Vše na jednom místě.</p>
                 </div>
             </div>
         </div>
@@ -1470,70 +1475,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== DANĚNÍ ========== -->
-<section class="section" id="daneni">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label" data-editable="tax-label">Zdanění příjmů</div>
-            <h2 class="section-title" data-editable="tax-title">Jak se daní příjmy z investic v ČR</h2>
-            <p class="section-desc" data-editable="tax-desc">Dva hlavní typy příjmů, které vás jako angel investora zajímají.</p>
-        </div>
-
-        <div class="why-grid">
-            <!-- Dividendy -->
-            <div class="why-card" style="border-top: 3px solid var(--accent);">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <div style="width: 48px; height: 48px; background: var(--accent-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 800; color: var(--gray-900);">Dividendy</h3>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <div style="background: var(--gray-50); border-radius: 8px; padding: 16px;">
-                        <div style="font-size: 13px; color: var(--gray-500); margin-bottom: 4px;">Zdanění</div>
-                        <div style="font-size: 17px; font-weight: 700; color: var(--gray-900);">15 % srážková daň</div>
-                    </div>
-                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
-                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">Držba alespoň 10 % podílu po dobu 12 měsíců</div>
-                        <div style="font-size: 13px; color: #065f46; margin-top: 4px;">Platí pro FO i PO (mateřská/dceřiná)</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Prodej podílu -->
-            <div class="why-card" style="border-top: 3px solid var(--green);">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <div style="width: 48px; height: 48px; background: #d1fae5; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 800; color: var(--gray-900);">Prodej podílu</h3>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <div style="background: var(--gray-50); border-radius: 8px; padding: 16px;">
-                        <div style="font-size: 13px; color: var(--gray-500); margin-bottom: 4px;">Zdanění (FO)</div>
-                        <div style="font-size: 17px; font-weight: 700; color: var(--gray-900);">Rozdíl prodejní a nabývací ceny</div>
-                        <div style="font-size: 13px; color: var(--gray-500); margin-top: 4px;">Daňové přiznání § 10 ZDP</div>
-                    </div>
-                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
-                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození FO</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">5letý časový test</div>
-                    </div>
-                    <div style="background: #d1fae5; border-radius: 8px; padding: 16px;">
-                        <div style="font-size: 13px; color: #065f46; margin-bottom: 4px;">Osvobození PO</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #065f46;">Držba 10 % po dobu 12 měsíců</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tax-note" style="margin-top: 32px;">
-            <strong>Upozornění:</strong> Orientační shrnutí. Doporučujeme konzultovat s daňovým poradcem.<br>
-            <strong>Zdroj:</strong> Grant Thornton / Hladký.Legal — právní stav k 27. 2. 2026.
         </div>
     </div>
 </section>
