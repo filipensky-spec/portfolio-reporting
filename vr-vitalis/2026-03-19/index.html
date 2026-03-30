@@ -213,7 +213,7 @@
         <div class="kpi-item">
             <div class="kpi-value">12,3 M</div>
             <div class="kpi-label">Cash (CZK)</div>
-            <div class="kpi-detail">~15 měs. runway</div>
+            <div class="kpi-detail">Runway ~15 měs. → do 04/2027<br><span style="color:var(--amber);font-weight:600;">Příprava dalšího kola: 07/2026</span></div>
         </div>
         <div class="kpi-item">
             <div class="kpi-value positive">6,8 M</div>
@@ -291,8 +291,8 @@
             <thead>
                 <tr>
                     <th>Metrika</th>
-                    <th class="num">2024</th>
-                    <th class="num">2025</th>
+                    <th class="num">Ø/měs. 2024</th>
+                    <th class="num">Ø/měs. 2025</th>
                     <th class="num">Led 2026</th>
                     <th class="num">Úno 2026</th>
                 </tr>
@@ -314,36 +314,36 @@
                 </tr>
                 <tr>
                     <td>Příjmy z prodejů</td>
-                    <td class="num">4 612 K</td>
-                    <td class="num">5 828 K</td>
+                    <td class="num">384 K</td>
+                    <td class="num">486 K</td>
                     <td class="num">595 K</td>
                     <td class="num">245 K</td>
                 </tr>
                 <tr>
                     <td>Provozní výdaje</td>
-                    <td class="num">14 905 K</td>
-                    <td class="num">14 056 K</td>
+                    <td class="num">1 242 K</td>
+                    <td class="num">1 171 K</td>
                     <td class="num">787 K</td>
                     <td class="num">979 K</td>
                 </tr>
                 <tr>
                     <td>Nové licence</td>
-                    <td class="num">46</td>
-                    <td class="num">31</td>
+                    <td class="num">3,8</td>
+                    <td class="num">2,6</td>
                     <td class="num">3</td>
                     <td class="num">1</td>
                 </tr>
                 <tr>
                     <td>Retence/Reaktivace</td>
-                    <td class="num">10</td>
-                    <td class="num">17</td>
+                    <td class="num">0,8</td>
+                    <td class="num">1,4</td>
                     <td class="num">2</td>
                     <td class="num">3</td>
                 </tr>
                 <tr>
                     <td>Ukončené licence</td>
-                    <td class="num">-3</td>
-                    <td class="num">-25</td>
+                    <td class="num">-0,3</td>
+                    <td class="num">-2,1</td>
                     <td class="num">-1</td>
                     <td class="num">0</td>
                 </tr>
@@ -493,40 +493,59 @@
 <!-- PIPELINE H1 2026 -->
 <div class="section">
     <div class="section-label">Pipeline</div>
-    <h2 class="section-title">Pipeline H1 2026 (vážený)</h2>
+    <h2 class="section-title">Pipeline H1 2026</h2>
+    <p style="font-size: 14px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.6;">Obchodní pipeline = hodnota potenciálních kontraktů (licence + implementace) vážená pravděpodobností uzavření. Brutto = celková hodnota všech příležitostí v dané fázi. Váženo = brutto &times; pravděpodobnost &times; korekční faktor (dle historické konverze).</p>
     <div class="table-wrap">
         <table>
             <thead>
                 <tr>
+                    <th>Fáze</th>
                     <th>Pravděpodobnost</th>
                     <th class="num">Brutto (CZK)</th>
                     <th class="num">Váženo (CZK)</th>
+                    <th class="num">Korekce</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>75% (blízko finalizaci)</td>
+                    <td>Blízko finalizaci</td>
+                    <td>75%</td>
                     <td class="num">1 109 000</td>
                     <td class="num">672 000</td>
+                    <td class="num" style="color: var(--gray-400);">~81%</td>
                 </tr>
                 <tr>
-                    <td>50% (aktivní jednání)</td>
+                    <td>Aktivní jednání</td>
+                    <td>50%</td>
                     <td class="num">4 524 000</td>
                     <td class="num">2 239 000</td>
+                    <td class="num" style="color: var(--gray-400);">~99%</td>
                 </tr>
                 <tr>
-                    <td>25% (včasné fázi)</td>
+                    <td>Rané fáze</td>
+                    <td>25%</td>
                     <td class="num">5 877 000</td>
                     <td class="num">829 000</td>
+                    <td class="num" style="color: var(--amber);">~56%</td>
+                </tr>
+                <tr>
+                    <td>Nespecifikováno</td>
+                    <td>—</td>
+                    <td class="num">10 400 000</td>
+                    <td class="num">3 068 000</td>
+                    <td class="num" style="color: var(--gray-400);">—</td>
                 </tr>
                 <tr style="background: var(--gray-50); font-weight: 600;">
                     <td><strong>Celkem</strong></td>
+                    <td></td>
                     <td class="num">21 910 000</td>
                     <td class="num" style="color: var(--green); font-weight: 700;">6 808 000</td>
+                    <td class="num" style="color: var(--gray-400);">~31% avg</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <p style="font-size: 13px; color: var(--gray-400); margin-top: 12px; line-height: 1.6;"><strong>Poznámka:</strong> Vážené hodnoty zahrnují historický korekční faktor — skutečná konverze v raných fázích je nižší než nominální pravděpodobnost (56% z 25% = efektivně ~14%). Celková brutto/váženo konverze je 31%.</p>
 </div>
 
 <!-- TIMELINE -->
