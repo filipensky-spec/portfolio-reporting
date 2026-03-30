@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senzoor — Baseline | Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #1a1a2e;
+            --accent: #2563eb;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            padding: 48px 40px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .hero-top { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+        .hero-favicon { width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--gray-200); object-fit: contain; padding: 8px; background: white; }
+        .hero-title-wrap { flex: 1; }
+        h1 { font-size: 36px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; line-height: 1.1; }
+        .hero-sub { font-size: 15px; color: var(--gray-500); margin-top: 4px; }
+        .hero-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; background: var(--amber-bg); color: var(--amber); }
+        .hero-link { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; }
+        .hero-link:hover { text-decoration: underline; }
+        .kpi-strip { padding: 32px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin: 32px 0; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .kpi-item { text-align: center; padding: 12px 16px; border-right: 1px solid var(--gray-200); }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value { font-size: 28px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .kpi-value.positive { color: var(--green); }
+        .kpi-value.amber { color: var(--amber); }
+        .kpi-label { font-size: 12px; color: var(--gray-500); margin-top: 2px; font-weight: 500; }
+        .section { padding: 40px 0; }
+        .section-alt { background: var(--gray-50); margin: 0 -40px; padding: 40px 40px; border-radius: var(--radius); }
+        .section-label { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .section-title { font-size: 24px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; margin-bottom: 24px; }
+        .notice-box { background: var(--amber-bg); border: 1px solid #fde68a; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+        .notice-box p { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+        .notice-box strong { color: var(--amber); }
+        .table-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: var(--radius); background: var(--white); }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        thead { background: var(--dark); color: white; }
+        th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; text-transform: uppercase; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+        tbody tr:hover { background: var(--gray-50); }
+        tbody tr:last-child td { border-bottom: none; }
+        .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .info-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+        .info-card h4 { font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
+        .info-card p { font-size: 16px; color: var(--gray-900); font-weight: 600; }
+        .info-card .detail { font-size: 13px; color: var(--gray-500); margin-top: 4px; font-weight: 400; }
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -32px; top: 4px; width: 22px; height: 22px; background: var(--accent); border-radius: 50%; border: 3px solid white; box-shadow: var(--shadow); }
+        .timeline-dot.green { background: var(--green); }
+        .timeline-dot.amber { background: var(--amber); }
+        .timeline-date { font-size: 12px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .timeline-title { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .timeline-desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+        .report-footer { padding-top: 32px; margin-top: 40px; border-top: 1px solid var(--gray-200); text-align: center; }
+        .report-footer p { font-size: 13px; color: var(--gray-400); }
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-item { border-bottom: 1px solid var(--gray-200); }
+            .kpi-item:nth-child(2) { border-right: none; }
+            h1 { font-size: 28px; }
+            .hero-top { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
+            .section-alt { margin: 0 -16px; padding: 32px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero-top">
+    <a href="https://senzoor.cz/" target="_blank"><img src="https://www.google.com/s2/favicons?domain=senzoor.cz&sz=128" alt="Senzoor" class="hero-favicon"></a>
+    <div class="hero-title-wrap">
+        <h1>Senzoor</h1>
+        <div class="hero-sub">IoT senzory a monitoring — historická investice ve fázi vypořádání</div>
+    </div>
+    <span class="hero-badge">Vypořádání</span>
+</div>
+<a href="https://senzoor.cz/" target="_blank" class="hero-link">senzoor.cz &rarr;</a>
+
+<!-- KPI -->
+<div class="kpi-strip">
+    <div class="kpi-grid">
+        <div class="kpi-item">
+            <div class="kpi-value amber">Vypořádání</div>
+            <div class="kpi-label">Status investice</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">GA Inv. I.</div>
+            <div class="kpi-label">SPV</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">8</div>
+            <div class="kpi-label">Dodatků ke smlouvě</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">2019</div>
+            <div class="kpi-label">Rok vstupu</div>
+        </div>
+    </div>
+</div>
+
+<!-- UPOZORNĚNÍ -->
+<div class="notice-box">
+    <p><strong>Historická investice — probíhá vypořádání.</strong> Tato investice vznikla před rokem 2021 a prošla komplexní restrukturalizací. V únoru 2021 byla podepsána Dohoda o finančním vypořádání. Následovalo celkem 8 dodatků ke Smlouvě o zápůjčce (poslední v lednu 2025) a 8 dodatků k Dohodě o vypořádání. Investice je ve fázi postupného vypořádání se startupem Senzoor Czech s.r.o.</p>
+</div>
+
+<!-- SMLUVNÍ STRUKTURA -->
+<div class="section">
+    <div class="section-label">Smluvní struktura</div>
+    <h2 class="section-title">Přehled klíčových dokumentů</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dokument</th>
+                    <th>Datum</th>
+                    <th>Popis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Rámcová smlouva o transakci</strong></td>
+                    <td>16. 10. 2019</td>
+                    <td>Vstup GA do Senzoor Czech s.r.o.</td>
+                </tr>
+                <tr>
+                    <td><strong>Smlouva o úvěru</strong></td>
+                    <td>29. 5. 2020</td>
+                    <td>Senzoor + Muzikář + David + GA Investiční — úvěrová linka</td>
+                </tr>
+                <tr>
+                    <td><strong>Smlouva o úvěru (multi-investor)</strong></td>
+                    <td>13. 7. 2020</td>
+                    <td>Ala, Artin, Clean Water, Elvenport, ITS Priv, Koopeo, Pineinvest, Hyklová, Božek, AFN, Čajka, GA Inv</td>
+                </tr>
+                <tr>
+                    <td><strong>Dohoda o finančním vypořádání</strong></td>
+                    <td>16. 2. 2021</td>
+                    <td>Hlavní dokument vypořádání — základ pro smlouvu o zápůjčce</td>
+                </tr>
+                <tr>
+                    <td><strong>Smlouva o zápůjčce + Dodatky 1–8</strong></td>
+                    <td>2021–2025</td>
+                    <td>8 dodatků (poslední Dodatek č. 8 podepsán 2025)</td>
+                </tr>
+                <tr>
+                    <td><strong>Dohoda o vypořádání + Dodatky 1–8</strong></td>
+                    <td>2021–2025</td>
+                    <td>Dodatky 7 a 8 k Dohodě o vypořádání (leden 2025)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DETAIL INVESTICE -->
+<div class="section-alt">
+    <div class="section-label">Detail</div>
+    <h2 class="section-title">Investiční parametry</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>SPV</h4>
+            <p>GA Investiční I. s.r.o.</p>
+            <div class="detail">První SPV v historii Garage Angels</div>
+        </div>
+        <div class="info-card">
+            <h4>Jednatel GA</h4>
+            <p>Aleš Filipenský</p>
+            <div class="detail">Odpovědný za správu SPV</div>
+        </div>
+        <div class="info-card">
+            <h4>Rok vstupu</h4>
+            <p>2019</p>
+            <div class="detail">Historická investice, restrukturalizace 2021</div>
+        </div>
+        <div class="info-card">
+            <h4>Status</h4>
+            <p style="color: var(--amber);">Vypořádání</p>
+            <div class="detail">Postupné splácení zápůjčky, koordinace s investory</div>
+        </div>
+        <div class="info-card">
+            <h4>Počet investorů v SPV</h4>
+            <p>12+</p>
+            <div class="detail">Ala Capital, ArtinGroup, Clean Water, Elvenport, ITS Private, Koopeo, Pineinvest, Hyklová, Božek, AFN, Čajka, MP Holding a další</div>
+        </div>
+        <div class="info-card">
+            <h4>Celkem dodatků</h4>
+            <p>8 + 8</p>
+            <div class="detail">8 ke smlouvě o zápůjčce + 8 k dohodě o vypořádání</div>
+        </div>
+    </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section">
+    <div class="section-label">Historie</div>
+    <h2 class="section-title">Klíčové milníky</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot green"></div>
+            <div class="timeline-date">Říjen 2019</div>
+            <div class="timeline-title">Vstup GA — rámcová smlouva o transakci</div>
+            <div class="timeline-desc">GA Investiční I. s.r.o. vstupuje do Senzoor Czech s.r.o. Podpis termsheet, smluv o převodu podílů a příplatků mimo základní kapitál od 8+ investorů.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Květen–Červenec 2020</div>
+            <div class="timeline-title">Úvěrové financování</div>
+            <div class="timeline-desc">Smlouva o úvěru (Senzoor + Muzikář + David + GA, 29. 5. 2020) a rozsáhlá úvěrová smlouva s 12 investory (13. 7. 2020).</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-date">Únor 2021</div>
+            <div class="timeline-title">Dohoda o finančním vypořádání</div>
+            <div class="timeline-desc">Klíčový dokument restrukturalizace. Podepsána Dohoda o vypořádání, Dohoda společníků, Smlouva o zápůjčce. Zahájení procesu vypořádání.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-date">2021–2025</div>
+            <div class="timeline-title">Postupné vypořádání — 8 dodatků</div>
+            <div class="timeline-desc">Celkem 8 dodatků ke Smlouvě o zápůjčce a 8 dodatků k Dohodě o vypořádání. Poslední Dodatek č. 7 a č. 8 podepsány v lednu 2025. Proces stále probíhá.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-date">Březen 2026</div>
+            <div class="timeline-title">Aktuální stav — vypořádání pokračuje</div>
+            <div class="timeline-desc">Senzoor Czech s.r.o. stále aktivní v IoT monitoringu. Vypořádání s investory probíhá formou postupného splácení zápůjčky. Finální ukončení nebylo ke dni sestavení tohoto přehledu potvrzeno.</div>
+        </div>
+    </div>
+</div>
+
+<!-- DOKUMENTACE -->
+<div class="section-alt">
+    <div class="section-label">Dokumentace</div>
+    <h2 class="section-title">Stav složky</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>Transakční dokumentace 2019</h4>
+            <p style="color: var(--green);">Kompletní</p>
+            <div class="detail">Termsheet, převody podílů, příplatky — vše archivováno</div>
+        </div>
+        <div class="info-card">
+            <h4>Interní dokumentace GA I</h4>
+            <p style="color: var(--green);">Kompletní</p>
+            <div class="detail">Investice 2019/2020 + Vypořádání 2021 + Zápůjčky — vše archivováno</div>
+        </div>
+        <div class="info-card">
+            <h4>Smlouva o zápůjčce</h4>
+            <p style="color: var(--green);">Kompletní + Dodatky 1–8</p>
+            <div class="detail">Všechny dodatky k dispozici (naposledy Dodatek č. 8, 2025)</div>
+        </div>
+        <div class="info-card">
+            <h4>Dohoda o vypořádání</h4>
+            <p style="color: var(--green);">Kompletní + Dodatky 1–8</p>
+            <div class="detail">Dohoda o finančním vypořádání + všechny dodatky</div>
+        </div>
+        <div class="info-card">
+            <h4>Reporting</h4>
+            <p style="color: var(--amber);">Omezený</p>
+            <div class="detail">Annual Report 2023 k dispozici; aktuální stav k ověření</div>
+        </div>
+        <div class="info-card">
+            <h4>ÚZ 2024</h4>
+            <p style="color: var(--green);">K dispozici</p>
+            <div class="detail">Rozvaha analyticky + Výsledovka analyticky 2024</div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+    <p>Garage Angels &middot; Senzoor — Baseline &middot; Aktualizováno 30. 3. 2026</p>
+</div>
+
+</div>
+</body>
+</html>
