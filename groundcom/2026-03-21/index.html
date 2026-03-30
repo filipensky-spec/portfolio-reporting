@@ -3,1110 +3,625 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROUNDCOM Investor Update Q1 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Groundcom — Investor Update Q1 2026 | Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #1a1a2e;
+            --accent: #2563eb;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --red: #ef4444;
+            --red-bg: #fef2f2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
         }
-
-        html, body {
-            font-family: 'Outfit', sans-serif;
-            background: #f0f0f0;
-            color: #313131;
-            line-height: 1.6;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(74, 154, 110, 0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(74, 154, 110, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(49, 49, 49, 0.15);
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: 72px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .hero .subtitle {
-            font-size: 24px;
-            color: #ffffff;
-            font-weight: 300;
-            margin-bottom: 12px;
-        }
-
-        .hero .meta {
-            font-size: 14px;
-            color: #d0d0d0;
-            font-weight: 400;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Sections */
-        section {
-            padding: 60px 20px;
-            border-top: 1px solid #d0d0d0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #313131;
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 32px;
-            background: #313131;
-            border-radius: 2px;
-        }
-
-        /* KPI Strip */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .kpi-card {
-            background: #fafafa;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(49, 49, 49, 0.05);
-        }
-
-        .kpi-card:hover {
-            border-color: #313131;
-            box-shadow: 0 4px 16px rgba(49, 49, 49, 0.12);
-        }
-
-        .kpi-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #4a9a6e;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .kpi-value {
-            font-size: 36px;
-            font-weight: 700;
-            color: #313131;
-            margin-bottom: 8px;
-        }
-
-        .kpi-detail {
-            font-size: 13px;
-            color: #666666;
-            line-height: 1.5;
-        }
-
-        /* Summary Box */
-        .summary-box {
-            background: #fafafa;
-            border-left: 4px solid #4a9a6e;
-            border-radius: 4px;
-            padding: 32px;
-            margin: 40px 0;
-            line-height: 1.8;
-            font-size: 15px;
-            color: #313131;
-        }
-
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 32px 0;
-            font-size: 14px;
-        }
-
-        table th {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 16px 12px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid #1a1a1a;
-        }
-
-        table td {
-            padding: 12px;
-            border-bottom: 1px solid #d0d0d0;
-            color: #313131;
-        }
-
-        table tr:hover {
-            background: #f0f0f0;
-        }
-
-        table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .positive {
-            color: #00c853;
-            font-weight: 600;
-        }
-
-        .negative {
-            color: #ff6b6b;
-            font-weight: 600;
-        }
-
-        /* Info Box */
-        .info-box {
-            background: #fafafa;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 24px;
-            margin: 32px 0;
-            font-size: 14px;
-            color: #313131;
-        }
-
-        .info-box h4 {
-            font-size: 16px;
-            color: #313131;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .info-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .info-box li {
-            padding: 6px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .info-box li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #4a9a6e;
-            font-weight: 700;
-        }
-
-        /* Two Column Layout */
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin: 40px 0;
-        }
-
-        .column-card {
-            background: #fafafa;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 28px;
-        }
-
-        .column-card h3 {
-            font-size: 18px;
-            color: #313131;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .column-card p {
-            font-size: 14px;
-            color: #313131;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
             line-height: 1.7;
-            margin-bottom: 12px;
+            -webkit-font-smoothing: antialiased;
+            padding: 48px 40px;
         }
+        .container { max-width: 960px; margin: 0 auto; }
 
-        .column-card ul {
-            list-style: none;
-            padding-left: 0;
-            font-size: 14px;
-            color: #313131;
-        }
+        /* HERO */
+        .hero-top { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+        .hero-favicon { width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--gray-200); object-fit: contain; padding: 8px; background: white; }
+        .hero-favicon-link { display: block; flex-shrink: 0; }
+        .hero-title-wrap { flex: 1; }
+        h1 { font-size: 36px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; line-height: 1.1; }
+        .hero-sub { font-size: 15px; color: var(--gray-500); margin-top: 4px; }
+        .hero-badge { display: inline-block; background: var(--accent-bg); color: var(--accent); padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .hero-link { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; }
+        .hero-link:hover { text-decoration: underline; }
 
-        .column-card li {
-            padding: 6px 0;
-            padding-left: 16px;
-            position: relative;
-        }
+        /* KPI */
+        .kpi-strip { padding: 32px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin: 32px 0; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .kpi-item { text-align: center; padding: 12px 16px; border-right: 1px solid var(--gray-200); }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value { font-size: 28px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .kpi-value.positive { color: var(--green); }
+        .kpi-label { font-size: 12px; color: var(--gray-500); margin-top: 2px; font-weight: 500; }
+        .kpi-detail { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
 
-        .column-card li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #4a9a6e;
-        }
+        /* SECTIONS */
+        .section { padding: 40px 0; }
+        .section-alt { background: var(--gray-50); margin: 0 -40px; padding: 40px 40px; }
+        .section-label { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .section-title { font-size: 24px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; margin-bottom: 24px; }
 
-        /* Customer Cards */
-        .customer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
-        }
+        /* SUMMARY BOX */
+        .summary-box { background: var(--gray-50); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 24px 28px; font-size: 15px; color: var(--gray-700); line-height: 1.8; }
 
-        .customer-card {
-            background: #fafafa;
-            border-left: 4px solid #313131;
-            border-radius: 4px;
-            padding: 24px;
-            border-top: 1px solid #d0d0d0;
-            border-right: 1px solid #d0d0d0;
-            border-bottom: 1px solid #d0d0d0;
-        }
+        /* TABLE */
+        .table-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: var(--radius); background: var(--white); }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        thead { background: var(--dark); color: white; }
+        th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; text-transform: uppercase; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+        tbody tr:hover { background: var(--gray-50); }
+        tbody tr:last-child td { border-bottom: none; }
+        .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .positive { color: var(--green); font-weight: 600; }
+        .negative { color: var(--red); font-weight: 600; }
+        .total-row { background: var(--gray-50); font-weight: 600; }
+        .total-row td { border-top: 2px solid var(--gray-200); }
 
-        .customer-card.green {
-            border-left-color: #4a9a6e;
-        }
+        /* INFO GRID */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .info-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+        .info-card h4 { font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
+        .info-card p { font-size: 16px; color: var(--gray-900); font-weight: 600; }
+        .info-card .detail { font-size: 13px; color: var(--gray-500); margin-top: 4px; font-weight: 400; }
 
-        .customer-card.amber {
-            border-left-color: #d4a574;
-        }
+        /* INFO BOX (bullet list) */
+        .info-box { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+        .info-box h4 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
+        .info-box ul { list-style: none; padding-left: 0; }
+        .info-box li { padding: 6px 0; padding-left: 20px; position: relative; font-size: 14px; color: var(--gray-700); }
+        .info-box li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 
-        .customer-card.purple {
-            border-left-color: #6b7289;
-        }
+        /* TWO COLUMN */
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .column-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+        .column-card h3 { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+        .column-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 12px; }
+        .column-card ul { list-style: none; padding-left: 0; font-size: 14px; color: var(--gray-700); }
+        .column-card li { padding: 5px 0; padding-left: 16px; position: relative; }
+        .column-card li::before { content: '•'; position: absolute; left: 0; color: var(--accent); }
 
-        .customer-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #313131;
-            margin-bottom: 4px;
-        }
+        /* CUSTOMER CARDS */
+        .customer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .customer-card { background: var(--white); border: 1px solid var(--gray-200); border-left: 4px solid var(--gray-400); border-radius: var(--radius); padding: 20px; }
+        .customer-card.green { border-left-color: var(--green); }
+        .customer-card.amber { border-left-color: var(--amber); }
+        .customer-card.purple { border-left-color: #8b5cf6; }
+        .customer-card h3 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+        .customer-status { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .customer-status.onboarding { background: var(--accent-bg); color: var(--accent); }
+        .customer-status.new { background: var(--green-bg); color: var(--green); }
+        .customer-status.amber { background: var(--amber-bg); color: var(--amber); }
+        .customer-status.prospecting { background: var(--gray-100); color: var(--gray-500); }
+        .customer-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; margin-bottom: 12px; }
+        .customer-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200); }
+        .stat-item { font-size: 12px; color: var(--gray-500); }
+        .stat-item strong { color: var(--gray-900); display: block; font-size: 13px; margin-bottom: 2px; }
 
-        .customer-status {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 3px;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
+        /* COMPARISON TABLE highlight */
+        .comparison-col-highlight thead th:nth-child(3),
+        .comparison-col-highlight tbody td:nth-child(3) { background: var(--green-bg); }
+        .comparison-col-highlight tbody td:nth-child(3) { color: var(--gray-900); font-weight: 600; }
 
-        .customer-status.onboarding {
-            background: rgba(74, 154, 110, 0.15);
-            color: #4a9a6e;
-        }
+        /* TIMELINE */
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -32px; top: 4px; width: 22px; height: 22px; border-radius: 50%; border: 3px solid white; box-shadow: var(--shadow); background: var(--green); }
+        .timeline-dot.done { background: var(--green); }
+        .timeline-dot.current { background: var(--accent); }
+        .timeline-dot.upcoming { background: var(--amber); }
+        .timeline-dot.future { background: var(--gray-400); }
+        .timeline-date { font-size: 12px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .timeline-title { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .timeline-desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
 
-        .customer-status.new {
-            background: rgba(74, 154, 110, 0.15);
-            color: #4a9a6e;
-        }
+        /* RISK CARDS */
+        .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-left: 4px solid var(--red); border-radius: var(--radius); padding: 20px; }
+        .risk-card h4 { font-size: 14px; font-weight: 700; color: var(--red); margin-bottom: 8px; }
+        .risk-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
 
-        .customer-status.amber {
-            background: rgba(212, 165, 116, 0.15);
-            color: #d4a574;
-        }
+        /* HELP CARDS */
+        .help-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .help-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; text-align: center; }
+        .help-icon { font-size: 26px; margin-bottom: 10px; }
+        .help-card h4 { font-size: 13px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; line-height: 1.4; }
+        .help-card p { font-size: 13px; color: var(--gray-500); }
 
-        .customer-status.prospecting {
-            background: rgba(107, 114, 137, 0.15);
-            color: #6b7289;
-        }
+        /* MARKET BOX */
+        .market-box { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px 28px; font-size: 14px; color: var(--gray-700); line-height: 1.8; }
 
-        .customer-card p {
-            font-size: 13px;
-            color: #666666;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
+        /* FOOTER */
+        .report-footer { padding-top: 32px; margin-top: 40px; border-top: 1px solid var(--gray-200); text-align: center; }
+        .report-footer p { font-size: 13px; color: var(--gray-400); }
 
-        .customer-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid #d0d0d0;
-        }
-
-        .stat-item {
-            font-size: 12px;
-            color: #666666;
-        }
-
-        .stat-item strong {
-            color: #313131;
-            display: block;
-            font-size: 13px;
-            margin-bottom: 2px;
-        }
-
-        /* Comparison Table */
-        .comparison-table {
-            margin: 40px 0;
-            overflow-x: auto;
-        }
-
-        .comparison-table table {
-            min-width: 100%;
-        }
-
-        .comparison-table td {
-            padding: 14px 12px;
-        }
-
-        .comparison-table tr:first-child td:nth-child(3) {
-            background: #e8f5e9;
-            color: #313131;
-            font-weight: 600;
-        }
-
-        .comparison-table tbody tr td:nth-child(3) {
-            background: #f1f8f5;
-            color: #313131;
-            font-weight: 500;
-        }
-
-        /* Timeline */
-        .timeline {
-            margin: 40px 0;
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .timeline-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #4a9a6e;
-            flex-shrink: 0;
-            margin-top: 2px;
-            box-shadow: 0 0 0 4px rgba(74, 154, 110, 0.2);
-        }
-
-        .timeline-dot.done {
-            background: #4a9a6e;
-            box-shadow: 0 0 0 4px rgba(74, 154, 110, 0.2);
-        }
-
-        .timeline-dot.current {
-            background: #313131;
-            box-shadow: 0 0 0 4px rgba(49, 49, 49, 0.2);
-        }
-
-        .timeline-dot.upcoming {
-            background: #d4a574;
-            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.2);
-        }
-
-        .timeline-dot.future {
-            background: #999999;
-            box-shadow: 0 0 0 4px rgba(153, 153, 153, 0.2);
-        }
-
-        .timeline-content h4 {
-            font-size: 15px;
-            font-weight: 600;
-            color: #313131;
-            margin-bottom: 4px;
-        }
-
-        .timeline-content p {
-            font-size: 13px;
-            color: #666666;
-        }
-
-        /* Risk Cards */
-        .risk-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .risk-card {
-            background: #fafafa;
-            border-left: 4px solid #d9534f;
-            border-radius: 4px;
-            padding: 20px;
-            border: 1px solid #d0d0d0;
-            border-left: 4px solid #d9534f;
-        }
-
-        .risk-card h4 {
-            font-size: 15px;
-            color: #c23632;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .risk-card p {
-            font-size: 13px;
-            color: #666666;
-            line-height: 1.6;
-        }
-
-        /* How to Help */
-        .help-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .help-card {
-            background: #fafafa;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .help-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .help-card h4 {
-            font-size: 14px;
-            color: #313131;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .help-card p {
-            color: #666666;
-        }
-
-        /* Action Items Table */
-        .action-table {
-            margin: 40px 0;
-            overflow-x: auto;
-        }
-
-        .action-table table {
-            min-width: 100%;
-            font-size: 13px;
-        }
-
-        .action-table th {
-            background: rgba(30, 136, 229, 0.1);
-        }
-
-        .action-table td {
-            padding: 12px;
-        }
-
-        /* Market Context */
-        .market-box {
-            background: #fafafa;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 32px;
-            margin: 40px 0;
-            font-size: 14px;
-            color: #313131;
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            border-top: 1px solid #d0d0d0;
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 13px;
-            color: #d0d0d0;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero .subtitle {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .kpi-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .two-column {
-                grid-template-columns: 1fr;
-            }
-
-            .customer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-table {
-                overflow-x: auto;
-            }
-
-            .help-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .customer-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item {
-                gap: 12px;
-            }
-
-            .summary-box {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 50px 15px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            section {
-                padding: 40px 15px;
-            }
-
-            .kpi-card {
-                padding: 16px;
-            }
-
-            .kpi-value {
-                font-size: 28px;
-            }
-        }
-
-        /* Logo Bar */
-        .logo-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 2rem;
-            background: #f0f0f0;
-            border-bottom: 1px solid #d0d0d0;
-        }
-
-        .ga-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .ga-logo img {
-            height: 36px;
-            width: auto;
-            opacity: 0.9;
+            body { padding: 24px 16px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-item { border-bottom: 1px solid var(--gray-200); }
+            .kpi-item:nth-child(2) { border-right: none; }
+            h1 { font-size: 28px; }
+            .hero-top { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
+            .two-column { grid-template-columns: 1fr; }
+            .customer-grid { grid-template-columns: 1fr; }
+            .risk-grid { grid-template-columns: 1fr; }
+            .help-grid { grid-template-columns: 1fr 1fr; }
+            .section-alt { margin: 0 -16px; padding: 32px 16px; }
         }
     </style>
 </head>
 <body>
-    <!-- Logo Bar -->
-    <div class="logo-bar">
-        <div class="ga-logo">
-            <img src="data:image/png;base64,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" alt="Garage Angels">
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero-top">
+    <a href="https://groundcom.space/" target="_blank" class="hero-favicon-link">
+        <img src="https://www.google.com/s2/favicons?domain=groundcom.space&sz=128" alt="Groundcom" class="hero-favicon">
+    </a>
+    <div class="hero-title-wrap">
+        <h1>Groundcom</h1>
+        <div class="hero-sub">Real-time downlink from space — satelitní pozemní infrastruktura</div>
+    </div>
+    <span class="hero-badge">Investor Update</span>
+</div>
+<a href="https://groundcom.space/" target="_blank" class="hero-link">groundcom.space &rarr;</a>
+
+<!-- KPI -->
+<div class="kpi-strip">
+    <div class="kpi-grid">
+        <div class="kpi-item">
+            <div class="kpi-value">€836K</div>
+            <div class="kpi-label">Cash on Hand</div>
+            <div class="kpi-detail">Burn €62K/měs · Runway ~13 měs</div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:0.85rem;font-weight:600;color:#313131;letter-spacing:0.02em;">
-            <div style="width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:white;background:#313131;">GC</div>
-            <span>Groundcom</span>
+        <div class="kpi-item">
+            <div class="kpi-value">€7,27M</div>
+            <div class="kpi-label">Pipeline (vážený)</div>
+            <div class="kpi-detail">Celkový objem · Rostoucí dynamika</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">6</div>
+            <div class="kpi-label">Pozemní stanice</div>
+            <div class="kpi-detail">3× VHF/UHF + 3× S/X · NZ operační</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">19</div>
+            <div class="kpi-label">Tým</div>
+            <div class="kpi-detail">13 FT + 6 PT · Nábor SP inženýrů</div>
         </div>
     </div>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="badge">INVESTOR UPDATE</div>
-            <h1>GROUNDCOM</h1>
-            <p class="subtitle">Real-time downlink from space — satelitní pozemní infrastruktura</p>
-            <p class="meta">Q1 2026 — Březen 2026 | Interní dokument pro investory</p>
-        </div>
-    </section>
+<!-- SHRNUTÍ -->
+<div class="section">
+    <div class="section-label">Executive Summary</div>
+    <h2 class="section-title">Shrnutí Q1 2026</h2>
+    <div class="summary-box">
+        V Q1 2026 Groundcom pokračuje v budování pozice jako evropský lídr v satelitní pozemní infrastruktuře s vlastním hardware. Klíčové úspěchy zahrnují úspěšné obsazení kritických technických pozic (nábor z Dicomu — vojenské vysílačky), operační spuštění stanice na Novém Zélandu a akceleraci onboardingu řeckého týmu Q-Technology. Společnost má prokázanou nákladovou výhodu ~30% oproti konkurenci (Leaf Space) díky vlastnímu HW designu. Hlavní výzvou zůstává dlouhý onboarding cyklus zákazníků, který oddaluje revenue, a potřeba working capital na naskladnění stanic a rozšíření sítě. Otevíráme nové investiční kolo (~€4M) na working capital, inventory a CAPEX.
+    </div>
+</div>
 
-    <!-- KPI Strip -->
-    <section class="container">
-        <div class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-label">Cash on Hand</div>
-                <div class="kpi-value">€836K</div>
-                <div class="kpi-detail">Měsíční výdaje €62K<br>Runway ~13 měsíců</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-label">Pipeline (Vážený)</div>
-                <div class="kpi-value">€7,27M</div>
-                <div class="kpi-detail">Celkový objem pipeline<br>Rostoucí dynamika</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-label">Pozemní Stanice</div>
-                <div class="kpi-value">6</div>
-                <div class="kpi-detail">3x VHF/UHF + 3x S/X<br>Nový Zéland operační</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-label">Tým</div>
-                <div class="kpi-value">19</div>
-                <div class="kpi-detail">13 FT + 6 PT<br>Nábor signal processing inženýrů</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Summary -->
-    <section class="container">
-        <h2 class="section-title">Shrnutí</h2>
-        <div class="summary-box">
-            V Q1 2026 Groundcom pokračuje v budování pozice jako evropský lídr v satelitní pozemní infrastruktuře s vlastním hardware. Klíčové úspěchy zahrnují úspěšné obsazení kritických technických pozic (nábor z Dicomu — vojenské vysílačky), operační spuštění stanice na Novém Zélandu a akceleraci onboardingu řeckého týmu Q-Technology. Společnost má prokázanou nákladovou výhodu ~30% oproti konkurenci (Leaf Space) díky vlastnímu HW designu. Hlavní výzvou zůstává dlouhý onboarding cyklus zákazníků, který oddaluje revenue, a potřeba working capital na naskladnění stanic a rozšíření sítě. Otevíráme nové investiční kolo (~€4M) na working capital, inventory a CAPEX.
-        </div>
-    </section>
-
-    <!-- Financial Overview -->
-    <section class="container">
-        <h2 class="section-title">Finanční Přehled</h2>
+<!-- FINANČNÍ PŘEHLED -->
+<div class="section-alt">
+    <div class="section-label">Finance</div>
+    <h2 class="section-title">Finanční Přehled</h2>
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
                     <th>Metrika</th>
-                    <th>2025 (prel.)</th>
-                    <th>2026 (plán)</th>
-                    <th>2027</th>
-                    <th>2028</th>
+                    <th class="num">2025 (prel.)</th>
+                    <th class="num">2026 (plán)</th>
+                    <th class="num">2027</th>
+                    <th class="num">2028</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Connectivity služba</td>
-                    <td>€1,900</td>
-                    <td>€146,800</td>
-                    <td>€653,600</td>
-                    <td>€1,687,200</td>
+                    <td class="num">€1,900</td>
+                    <td class="num">€146,800</td>
+                    <td class="num">€653,600</td>
+                    <td class="num">€1,687,200</td>
                 </tr>
                 <tr>
                     <td>Prodej stanic</td>
-                    <td>€200,000</td>
-                    <td>€508,000</td>
-                    <td>€4,060,000</td>
-                    <td>€2,765,000</td>
+                    <td class="num">€200,000</td>
+                    <td class="num">€508,000</td>
+                    <td class="num">€4,060,000</td>
+                    <td class="num">€2,765,000</td>
                 </tr>
                 <tr>
                     <td>Projektové financování</td>
-                    <td>€181,000</td>
-                    <td>€406,589</td>
-                    <td>€340,971</td>
-                    <td>€1,205,000</td>
+                    <td class="num">€181,000</td>
+                    <td class="num">€406,589</td>
+                    <td class="num">€340,971</td>
+                    <td class="num">€1,205,000</td>
                 </tr>
                 <tr>
                     <td>Ostatní služby</td>
-                    <td>€17,900</td>
-                    <td>€65,000</td>
-                    <td>€20,000</td>
-                    <td>€20,000</td>
+                    <td class="num">€17,900</td>
+                    <td class="num">€65,000</td>
+                    <td class="num">€20,000</td>
+                    <td class="num">€20,000</td>
                 </tr>
-                <tr style="border-top: 2px solid #00d4aa;">
+                <tr class="total-row">
                     <td><strong>CELKOVÉ PŘÍJMY</strong></td>
-                    <td><strong>€400,900</strong></td>
-                    <td><strong>€1,126,389</strong></td>
-                    <td><strong>€5,074,571</strong></td>
-                    <td><strong>€5,677,200</strong></td>
+                    <td class="num"><strong>€400,900</strong></td>
+                    <td class="num"><strong>€1,126,389</strong></td>
+                    <td class="num"><strong>€5,074,571</strong></td>
+                    <td class="num"><strong>€5,677,200</strong></td>
                 </tr>
                 <tr>
                     <td>Celkové výdaje</td>
-                    <td class="negative">-€697,790</td>
-                    <td class="negative">-€2,118,600</td>
-                    <td class="negative">-€5,239,000</td>
-                    <td class="negative">-€4,845,000</td>
+                    <td class="num negative">-€697,790</td>
+                    <td class="num negative">-€2,118,600</td>
+                    <td class="num negative">-€5,239,000</td>
+                    <td class="num negative">-€4,845,000</td>
                 </tr>
-                <tr style="border-top: 2px solid #00d4aa;">
+                <tr class="total-row">
                     <td><strong>EBITDA</strong></td>
-                    <td class="negative"><strong>-€296,890</strong></td>
-                    <td class="negative"><strong>-€992,211</strong></td>
-                    <td class="negative"><strong>-€164,429</strong></td>
-                    <td class="positive"><strong>+€832,200</strong></td>
+                    <td class="num negative"><strong>-€296,890</strong></td>
+                    <td class="num negative"><strong>-€992,211</strong></td>
+                    <td class="num negative"><strong>-€164,429</strong></td>
+                    <td class="num positive"><strong>+€832,200</strong></td>
                 </tr>
             </tbody>
         </table>
-    </section>
+    </div>
+</div>
 
-    <!-- Operational Metrics -->
-    <section class="container">
-        <div class="info-box">
-            <h4>Operační Metriky (Únor 2026)</h4>
+<!-- OPERAČNÍ METRIKY -->
+<div class="section">
+    <div class="section-label">Operace</div>
+    <h2 class="section-title">Operační Metriky (Únor 2026)</h2>
+    <div class="info-box">
+        <h4>Aktuální stav</h4>
+        <ul>
+            <li><strong>Cash on hand:</strong> €836,252</li>
+            <li><strong>Monthly burn:</strong> -€61,610 (R&D: -€44,158 | SG&amp;A: -€17,056 | Station ops: -€396)</li>
+            <li><strong>VHF/UHF stanice:</strong> 1 interní + 2 externí = 3</li>
+            <li><strong>S/X stanice:</strong> 2 interní + 1 externí = 3</li>
+            <li><strong>Pipeline vážený:</strong> €7,274,923</li>
+        </ul>
+    </div>
+</div>
+
+<!-- PRODUKTOVÉ PORTFOLIO -->
+<div class="section-alt">
+    <div class="section-label">Produkt</div>
+    <h2 class="section-title">Produktové Portfolio</h2>
+    <div class="two-column">
+        <div class="column-card">
+            <h3>Ground Station Hardware (S/X-Band)</h3>
+            <p>Vlastní design, mobilní stanice. Cena €110–280K/stanice, marže 60–100%. Výrobní náklady €40–120K. 3 stanice vyrobeny v 2025. SX-band produkt TRL 6, produktivizace do konce 2026.</p>
             <ul>
-                <li><strong>Cash on hand:</strong> €836,252</li>
-                <li><strong>Monthly burn:</strong> -€61,610 (R&D: -€44,158 | SG&A: -€17,056 | Station ops: -€396)</li>
-                <li><strong>VHF/UHF stanice:</strong> 1 interní + 2 externí = 3</li>
-                <li><strong>S/X stanice:</strong> 2 interní + 1 externí = 3</li>
-                <li><strong>Pipeline vážený:</strong> €7,274,923</li>
+                <li>Cena: €110–280K/stanice</li>
+                <li>Marže: 60–100%</li>
+                <li>Výroba: 3 stanice (2025)</li>
+                <li>Produktivizace: Konec 2026</li>
             </ul>
         </div>
-    </section>
+        <div class="column-card">
+            <h3>Ground Station as a Service (GSaaS)</h3>
+            <p>Konektivita jako služba, recurring revenue model. Operační náklady ~€30K/rok na stanici (vs €80–100K u konkurence). Onboarding: dlouhý cyklus, ale po dokončení multiplikace je snadná.</p>
+            <ul>
+                <li>Model: Recurring revenue</li>
+                <li>OpEx: ~€30K/rok (vs €80–100K)</li>
+                <li>Onboarding: Dlouhý cyklus</li>
+                <li>Škálování: Multiplikace snadná</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-    <!-- Product Portfolio -->
-    <section class="container">
-        <h2 class="section-title">Produktové Portfolio</h2>
-        <div class="two-column">
-            <div class="column-card">
-                <h3>Ground Station Hardware (S/X-Band)</h3>
-                <p>Vlastní design, mobilní stanice. Cena €110-280K/stanice, marže 60-100%. Výrobní náklady €40-120K. 3 stanice vyrobeny v 2025. SX-band produkt TRL 6, produktivizace do konce 2026.</p>
-                <ul>
-                    <li>Cena: €110–280K/stanice</li>
-                    <li>Marže: 60–100%</li>
-                    <li>Výroba: 3 stanice (2025)</li>
-                    <li>Produktivizace: Konec 2026</li>
-                </ul>
-            </div>
-            <div class="column-card">
-                <h3>Ground Station as a Service (GSaaS)</h3>
-                <p>Konektivita jako služba, recurring revenue model. Operační náklady ~€30K/rok na stanici (vs €80-100K u konkurence). Onboarding: dlouhý cyklus, ale po dokončení multiplikace je snadná.</p>
-                <ul>
-                    <li>Model: Recurring revenue</li>
-                    <li>OpEx: ~€30K/rok (vs €80-100K)</li>
-                    <li>Onboarding: Dlouhý cyklus</li>
-                    <li>Škálování: Multiplikace snadná</li>
-                </ul>
+<!-- ZÁKAZNICKÝ PIPELINE -->
+<div class="section">
+    <div class="section-label">Zákazníci</div>
+    <h2 class="section-title">Zákaznický Pipeline</h2>
+    <div class="customer-grid">
+        <div class="customer-card">
+            <h3>Q-TECHNOLOGY (KVETECH)</h3>
+            <div class="customer-status onboarding">Onboarding</div>
+            <p>Klíčový zákazník, přechod od Leaf Space. Řecká pobočka: 2 satelity startují za 11 dní, rychlý onboarding. Luxemburská: pomalejší. Celkem 4 satelity na orbitě, plán až 70 družic. Potenciál: stovky tisíc EUR ročně.</p>
+            <div class="customer-stats">
+                <div class="stat-item"><strong>Satelity</strong> 4 (plán 70)</div>
+                <div class="stat-item"><strong>Potenciál</strong> Vysoký</div>
             </div>
         </div>
-    </section>
 
-    <!-- Customer Pipeline -->
-    <section class="container">
-        <h2 class="section-title">Zákaznický Pipeline</h2>
-        <div class="customer-grid">
-            <div class="customer-card">
-                <h3>Q-TECHNOLOGY (KVETECH)</h3>
-                <div class="customer-status onboarding">Onboarding</div>
-                <p>Klíčový zákazník, přechod od Leaf Space. Řecká pobočka: 2 satelity startují za 11 dní, rychlý onboarding. Luxemburská: pomalejší. Celkem 4 satelity na orbitě, plán až 70 družic. Potenciál: stovky tisíc EUR ročně.</p>
-                <div class="customer-stats">
-                    <div class="stat-item"><strong>Satelity</strong> 4 (plán 70)</div>
-                    <div class="stat-item"><strong>Potenciál</strong> Vysoký</div>
-                </div>
-            </div>
-
-            <div class="customer-card green">
-                <h3>SATELLIOT</h3>
-                <div class="customer-status new">Nový Zákazník</div>
-                <p>Prodána 1 stanice za €110K (náklad €40K). Chce koupit 15 stanic. Strategie: konvertovat na servisní model. Plán: 120 satelitů, potřeba desítek stanic.</p>
-                <div class="customer-stats">
-                    <div class="stat-item"><strong>Prodej</strong> €110K (1 st.)</div>
-                    <div class="stat-item"><strong>Plán</strong> 120 satelitů</div>
-                </div>
-            </div>
-
-            <div class="customer-card">
-                <h3>TERMINAL ORBITAL SYSTEMS (GOS)</h3>
-                <div class="customer-status onboarding">Onboarding</div>
-                <p>Nový zákazník od konce 2025. Začali s UHF, nyní chtějí i S-Band. Konstelace. Nikdo jiný (KSAT, Leaf Space) neumí UHF.</p>
-                <div class="customer-stats">
-                    <div class="stat-item"><strong>Produkt</strong> UHF + S-Band</div>
-                    <div class="stat-item"><strong>Potenciál</strong> Střední-Vysoký</div>
-                </div>
-            </div>
-
-            <div class="customer-card amber">
-                <h3>DEFENSE ZÁKAZNÍK (KOREA)</h3>
-                <div class="customer-status amber">Vyjednávání</div>
-                <p>K-band produkt, B2G. Velký kontrakt ale komplikace. Reference pro budoucí K-band produkci.</p>
-                <div class="customer-stats">
-                    <div class="stat-item"><strong>Typ</strong> B2G defense</div>
-                    <div class="stat-item"><strong>Produkt</strong> K-band</div>
-                </div>
-            </div>
-
-            <div class="customer-card purple">
-                <h3>VOZILOU / EO ZÁKAZNÍCI</h3>
-                <div class="customer-status prospecting">Prospecting</div>
-                <p>Placený X-band test dokončen (€2K). Zájem od 2 EO operátorů (ICEYE, Satellogic). Dual-use real-time imaging potenciál.</p>
-                <div class="customer-stats">
-                    <div class="stat-item"><strong>Test</strong> Dokončen (€2K)</div>
-                    <div class="stat-item"><strong>Segment</strong> EO + Defense</div>
-                </div>
+        <div class="customer-card green">
+            <h3>SATELLIOT</h3>
+            <div class="customer-status new">Nový Zákazník</div>
+            <p>Prodána 1 stanice za €110K (náklad €40K). Chce koupit 15 stanic. Strategie: konvertovat na servisní model. Plán: 120 satelitů, potřeba desítek stanic.</p>
+            <div class="customer-stats">
+                <div class="stat-item"><strong>Prodej</strong> €110K (1 st.)</div>
+                <div class="stat-item"><strong>Plán</strong> 120 satelitů</div>
             </div>
         </div>
-    </section>
 
-    <!-- Competition -->
-    <section class="container">
-        <h2 class="section-title">Konkurenční Pozice</h2>
-        <div class="comparison-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>KSAT</th>
-                        <th>Leaf Space</th>
-                        <th>GROUNDCOM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Typ</strong></td>
-                        <td>Lídr trhu</td>
-                        <td>SW challenger</td>
-                        <td>HW challenger</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Antény</strong></td>
-                        <td>300</td>
-                        <td>27</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Model</strong></td>
-                        <td>Premium služba</td>
-                        <td>GSaaS (nakupovaný HW)</td>
-                        <td>GSaaS (vlastní HW)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cena</strong></td>
-                        <td>Vysoká</td>
-                        <td>~$3–5/min</td>
-                        <td>Nižší (30% nákladů LS)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Výhoda</strong></td>
-                        <td>Škála, pokrytí</td>
-                        <td>Software scheduler</td>
-                        <td>Vlastní HW, mobilita, cena</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Timeline -->
-    <section class="container">
-        <h2 class="section-title">Klíčové Milníky</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot done"></div>
-                <div class="timeline-content">
-                    <h4>Q4 2025: Spuštění NZ stanice</h4>
-                    <p>Nový zákazník GOS, placený X-band test (€2K) — Hotovo</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot done"></div>
-                <div class="timeline-content">
-                    <h4>Q1 2026: Nábor z Dicomu</h4>
-                    <p>Řecký KveTech onboarding, prodej stanice Satelliot — Hotovo</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot current"></div>
-                <div class="timeline-content">
-                    <h4>Q1 2026: Nové investiční kolo</h4>
-                    <p>Otevření nového investičního kola (~€4M) — Právě probíhá</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot upcoming"></div>
-                <div class="timeline-content">
-                    <h4>Q2 2026: Dodání stanice Satelliot</h4>
-                    <p>Start pilotní prevádzky — Připraveno</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot upcoming"></div>
-                <div class="timeline-content">
-                    <h4>Q2–Q3 2026: SX-band testy</h4>
-                    <p>Testy s externími zákazníky — Plánováno</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot upcoming"></div>
-                <div class="timeline-content">
-                    <h4>H2 2026: SX-band produktivizace</h4>
-                    <p>První SX dodávky — Plánováno</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot future"></div>
-                <div class="timeline-content">
-                    <h4>2028: Break-even</h4>
-                    <p>Plánovaný break-even (EBITDA +€832K) — Budoucnost</p>
-                </div>
+        <div class="customer-card">
+            <h3>TERMINAL ORBITAL SYSTEMS (GOS)</h3>
+            <div class="customer-status onboarding">Onboarding</div>
+            <p>Nový zákazník od konce 2025. Začali s UHF, nyní chtějí i S-Band. Konstelace. Nikdo jiný (KSAT, Leaf Space) neumí UHF.</p>
+            <div class="customer-stats">
+                <div class="stat-item"><strong>Produkt</strong> UHF + S-Band</div>
+                <div class="stat-item"><strong>Potenciál</strong> Střední–Vysoký</div>
             </div>
         </div>
-    </section>
 
-    <!-- Challenges -->
-    <section class="container">
-        <h2 class="section-title">Výzvy a Rizika</h2>
-        <div class="risk-grid">
-            <div class="risk-card">
-                <h4>Dlouhý Onboarding Cyklus</h4>
-                <p>Měsíce effortu na jednoho zákazníka. R&D tým přepíná mezi vývojem a onboardingem. Chybí dedikovaný technický sales tým.</p>
-            </div>
-            <div class="risk-card">
-                <h4>Cash Flow Timing</h4>
-                <p>Revenue z onboardingu přichází později než plánováno. Potenciál roste, ale příjmy se odkládají. Dashboard se připravuje.</p>
-            </div>
-            <div class="risk-card">
-                <h4>Žádné Stanice na Skladě</h4>
-                <p>Poslední stanice prodána. Naskladnění komponentů (€60K na 3 sady). Potřeba 5 stanic in stock.</p>
-            </div>
-            <div class="risk-card">
-                <h4>Supply Chain Rizika</h4>
-                <p>Klíčové komponenty (převodovky, zesilovače) — omezená dostupnost. Analýza alternativ probíhá.</p>
+        <div class="customer-card amber">
+            <h3>DEFENSE ZÁKAZNÍK (KOREA)</h3>
+            <div class="customer-status amber">Vyjednávání</div>
+            <p>K-band produkt, B2G. Velký kontrakt ale komplikace. Reference pro budoucí K-band produkci.</p>
+            <div class="customer-stats">
+                <div class="stat-item"><strong>Typ</strong> B2G defense</div>
+                <div class="stat-item"><strong>Produkt</strong> K-band</div>
             </div>
         </div>
-    </section>
 
-    <!-- How to Help -->
-    <section class="container">
-        <h2 class="section-title">Jak Mohou Investoři Pomoci</h2>
-        <div class="help-grid">
-            <div class="help-card">
-                <div class="help-icon">💰</div>
-                <h4>Working Capital na Inventory Stanic a Rozšíření Sítě</h4>
-                <p>~€4M celkem</p>
-            </div>
-            <div class="help-card">
-                <div class="help-icon">🔄</div>
-                <h4>Alternativní Zdroje Financování</h4>
-                <p>Leasing vs equity pro CAPEX</p>
-            </div>
-            <div class="help-card">
-                <div class="help-icon">🌍</div>
-                <h4>Kontakty na Zákazníky</h4>
-                <p>B2G/defense zákazníci a distributory (Middle East, Asia)</p>
-            </div>
-            <div class="help-card">
-                <div class="help-icon">🔧</div>
-                <h4>Supply Chain Kontakty</h4>
-                <p>Dodavatelé klíčových komponentů</p>
+        <div class="customer-card purple">
+            <h3>VOZILOU / EO ZÁKAZNÍCI</h3>
+            <div class="customer-status prospecting">Prospecting</div>
+            <p>Placený X-band test dokončen (€2K). Zájem od 2 EO operátorů (ICEYE, Satellogic). Dual-use real-time imaging potenciál.</p>
+            <div class="customer-stats">
+                <div class="stat-item"><strong>Test</strong> Dokončen (€2K)</div>
+                <div class="stat-item"><strong>Segment</strong> EO + Defense</div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Action Items -->
-    <section class="container">
-        <h2 class="section-title">Akční Kroky</h2>
-        <div class="action-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Akce</th>
-                        <th>Odpovědný</th>
-                        <th>Termín</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Poslat aktualizovaný pipeline dashboard</td>
-                        <td>Aleš / Tomáš</td>
-                        <td>Před dalším meetingem</td>
-                    </tr>
-                    <tr>
-                        <td>Dokončit tabulku plateb po měsících</td>
-                        <td>Tomáš</td>
-                        <td>Do 2 týdnů</td>
-                    </tr>
-                    <tr>
-                        <td>Připravit business case (Satelliot, KveTech)</td>
-                        <td>Aleš / Tomáš</td>
-                        <td>Duben</td>
-                    </tr>
-                    <tr>
-                        <td>Dodání stanice Satelliot</td>
-                        <td>Tým</td>
-                        <td>Q2 2026</td>
-                    </tr>
-                    <tr>
-                        <td>SX-band testy s externími zákazníky</td>
-                        <td>R&D tým</td>
-                        <td>Před létem 2026</td>
-                    </tr>
-                    <tr>
-                        <td>Řešit alternativní financování (leasing)</td>
-                        <td>Aleš</td>
-                        <td>Q2 2026</td>
-                    </tr>
-                </tbody>
-            </table>
+<!-- KONKURENČNÍ POZICE -->
+<div class="section-alt">
+    <div class="section-label">Trh</div>
+    <h2 class="section-title">Konkurenční Pozice</h2>
+    <div class="table-wrap">
+        <table class="comparison-col-highlight">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>KSAT</th>
+                    <th>Leaf Space</th>
+                    <th>GROUNDCOM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Typ</strong></td>
+                    <td>Lídr trhu</td>
+                    <td>SW challenger</td>
+                    <td>HW challenger</td>
+                </tr>
+                <tr>
+                    <td><strong>Antény</strong></td>
+                    <td>300</td>
+                    <td>27</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td><strong>Model</strong></td>
+                    <td>Premium služba</td>
+                    <td>GSaaS (nakupovaný HW)</td>
+                    <td>GSaaS (vlastní HW)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cena</strong></td>
+                    <td>Vysoká</td>
+                    <td>~$3–5/min</td>
+                    <td>Nižší (30% nákladů LS)</td>
+                </tr>
+                <tr>
+                    <td><strong>Výhoda</strong></td>
+                    <td>Škála, pokrytí</td>
+                    <td>Software scheduler</td>
+                    <td>Vlastní HW, mobilita, cena</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- KLÍČOVÉ MILNÍKY -->
+<div class="section">
+    <div class="section-label">Timeline</div>
+    <h2 class="section-title">Klíčové Milníky</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-date">Q4 2025</div>
+            <div class="timeline-title">Spuštění NZ stanice</div>
+            <div class="timeline-desc">Nový zákazník GOS, placený X-band test (€2K) — Hotovo</div>
         </div>
-    </section>
-
-    <!-- Market Context -->
-    <section class="container">
-        <h2 class="section-title">Tržní Kontext</h2>
-        <div class="market-box">
-            <strong>Globální trh satelitních pozemních stanic:</strong> $60–70B (2022) → $180B+ (2032), CAGR 12–13%. GSaaS segment ~$2.3B, rostoucí 6–12% ročně. Aktivní M&A: Viasat+Inmarsat ($7.3B), Eutelsat+OneWeb ($3.4B), Eutelsat prodej 80% stanic EQT (€790M). Groundcom jako jeden z mála evropských výrobců stanic — atraktivní akviziční cíl.
+        <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-date">Q1 2026</div>
+            <div class="timeline-title">Nábor z Dicomu</div>
+            <div class="timeline-desc">Řecký KveTech onboarding, prodej stanice Satelliot — Hotovo</div>
         </div>
-    </section>
+        <div class="timeline-item">
+            <div class="timeline-dot current"></div>
+            <div class="timeline-date">Q1 2026</div>
+            <div class="timeline-title">Nové investiční kolo</div>
+            <div class="timeline-desc">Otevření nového investičního kola (~€4M) — Právě probíhá</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot upcoming"></div>
+            <div class="timeline-date">Q2 2026</div>
+            <div class="timeline-title">Dodání stanice Satelliot</div>
+            <div class="timeline-desc">Start pilotní prevádzky — Připraveno</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot upcoming"></div>
+            <div class="timeline-date">Q2–Q3 2026</div>
+            <div class="timeline-title">SX-band testy</div>
+            <div class="timeline-desc">Testy s externími zákazníky — Plánováno</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot upcoming"></div>
+            <div class="timeline-date">H2 2026</div>
+            <div class="timeline-title">SX-band produktivizace</div>
+            <div class="timeline-desc">První SX dodávky — Plánováno</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot future"></div>
+            <div class="timeline-date">2028</div>
+            <div class="timeline-title">Break-even</div>
+            <div class="timeline-desc">Plánovaný break-even (EBITDA +€832K) — Budoucnost</div>
+        </div>
+    </div>
+</div>
 
-    <!-- Footer -->
-    <footer>
-        <div style="text-align:center;">
-            <div style="margin-bottom:8px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARcAAAB2CAYAAADiDNefAAADdElEQVR42u3dwZKbOhBA0emU//+XO5ssUi4zlgRCEjqn6q2SwZhBl4bUsyMzfwCu9schAMQFEBdAXADEBRAXQFwAxAUQF0BcAMQFEBdAXADEBRAXQFwAxAUQF0BcAMQFEBdAXADEBRAXQFwAxAUQF0BcAJq9Jt63LPx70bDd8KuHveKSDfHIhtD0CIxowYRxyRPTSPy3jfzy89l5/wUG/pnhmcuZsLz/XPwSkfTrhj0ml5ZboNpJBthscukVlp7bK30vogaD4pI3hsDzD9gkLjkgACMCY3pBXDZZcPHA9wTi8ssidNsC4rL81f3ukJlqEJdNFrt4wIPiMtsCjEm3BeJiYZpuYHRcdlhYpheYbHLZiekFcdlkQZk24KGTy9MWt1jBTXFxG+CYwLbPXEwbIC5iBeJi/HdswOQCiItbIxAX3BqBuJhe4DFxsfhML4gLgLi4Ndpnilp58ssBrzfseL20YNhJFpOc5CXftV3yrZjZENxs/Ht58X78VGz/6M9L96ll36Ph/MmK9yMuLHvlPxPTvGi7Mfh4x4eJIhr2M0+85qMnl12+qD0mHd+PppQ8eTIfLZBe2y35+Sti9u18LfnzT/sSg87JW3nmsvezg5p78pqF3WO7UbntfPuvdiFG4X7nxcf8zH4fHash55q4POhKMXHwYuH3n53eV8l24+QxH3pbJC57Ty/frtB5wb5G5Xaz4BYjKt5bNCzS2smr5kv/vu3PFWHJg9e79Xx7dThZc7MFuto0lRcdt9+eN7y/Tgz4Xbd+L3l0OL9ywBTx6bj716KLR+5eD/5WjV/pBaDl4W9tYKIwCHctxpaQlkwvNZPQtygebS9OvGafEy0z715Ms32t6gxx8b9F8DieuQDLxMVV2PGAIZOLB7COCeLiag2sM7m4NQJxsaDcGsFak8uOC0lsERcLyvQCK0wuYSGBuJgETHKwVFxML26NEBdXbWC926LaD1R+4gQgsojLwoFZ/dbCrRHissAEY4qAEYurw+e5nL1K9/hc0hkj4nNeEJdBCy1ObmOmhXnlQRYcxOWG0KSFB3Oa8TN0P31ea6+vdwA2iotwwAP4PBdAXABxAcQFQFwAcQHEBUBcAHEBxAVAXABxAcQFQFwAcQHEBUBcAHEBxAVAXABxAcQFQFwAcQHEBUBcAHEBxAVAXABxAcQFoNFfIUnI0ug3FqsAAAAASUVORK5CYII=" alt="Garage Angels" style="height:24px;width:auto;opacity:0.7;filter:brightness(2) invert(1);"></div>
-            </div>
-        <p>Groundcom s.r.o. — Investor Update Q1 2026 | Interní dokument | Generováno 21. března 2026</p>
-    </footer>
+<!-- VÝZVY A RIZIKA -->
+<div class="section-alt">
+    <div class="section-label">Rizika</div>
+    <h2 class="section-title">Výzvy a Rizika</h2>
+    <div class="risk-grid">
+        <div class="risk-card">
+            <h4>Dlouhý Onboarding Cyklus</h4>
+            <p>Měsíce effortu na jednoho zákazníka. R&amp;D tým přepíná mezi vývojem a onboardingem. Chybí dedikovaný technický sales tým.</p>
+        </div>
+        <div class="risk-card">
+            <h4>Cash Flow Timing</h4>
+            <p>Revenue z onboardingu přichází později než plánováno. Potenciál roste, ale příjmy se odkládají. Dashboard se připravuje.</p>
+        </div>
+        <div class="risk-card">
+            <h4>Žádné Stanice na Skladě</h4>
+            <p>Poslední stanice prodána. Naskladnění komponentů (€60K na 3 sady). Potřeba 5 stanic in stock.</p>
+        </div>
+        <div class="risk-card">
+            <h4>Supply Chain Rizika</h4>
+            <p>Klíčové komponenty (převodovky, zesilovače) — omezená dostupnost. Analýza alternativ probíhá.</p>
+        </div>
+    </div>
+</div>
+
+<!-- JAK MOHOU INVESTOŘI POMOCI -->
+<div class="section">
+    <div class="section-label">Zapojení Investorů</div>
+    <h2 class="section-title">Jak Mohou Investoři Pomoci</h2>
+    <div class="help-grid">
+        <div class="help-card">
+            <div class="help-icon">💰</div>
+            <h4>Working Capital na Inventory Stanic a Rozšíření Sítě</h4>
+            <p>~€4M celkem</p>
+        </div>
+        <div class="help-card">
+            <div class="help-icon">🔄</div>
+            <h4>Alternativní Zdroje Financování</h4>
+            <p>Leasing vs equity pro CAPEX</p>
+        </div>
+        <div class="help-card">
+            <div class="help-icon">🌍</div>
+            <h4>Kontakty na Zákazníky</h4>
+            <p>B2G/defense zákazníci a distributory (Middle East, Asia)</p>
+        </div>
+        <div class="help-card">
+            <div class="help-icon">🔧</div>
+            <h4>Supply Chain Kontakty</h4>
+            <p>Dodavatelé klíčových komponentů</p>
+        </div>
+    </div>
+</div>
+
+<!-- AKČNÍ KROKY -->
+<div class="section-alt">
+    <div class="section-label">Next Steps</div>
+    <h2 class="section-title">Akční Kroky</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Akce</th>
+                    <th>Odpovědný</th>
+                    <th>Termín</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Poslat aktualizovaný pipeline dashboard</td>
+                    <td>Aleš / Tomáš</td>
+                    <td>Před dalším meetingem</td>
+                </tr>
+                <tr>
+                    <td>Dokončit tabulku plateb po měsících</td>
+                    <td>Tomáš</td>
+                    <td>Do 2 týdnů</td>
+                </tr>
+                <tr>
+                    <td>Připravit business case (Satelliot, KveTech)</td>
+                    <td>Aleš / Tomáš</td>
+                    <td>Duben</td>
+                </tr>
+                <tr>
+                    <td>Dodání stanice Satelliot</td>
+                    <td>Tým</td>
+                    <td>Q2 2026</td>
+                </tr>
+                <tr>
+                    <td>SX-band testy s externími zákazníky</td>
+                    <td>R&amp;D tým</td>
+                    <td>Před létem 2026</td>
+                </tr>
+                <tr>
+                    <td>Řešit alternativní financování (leasing)</td>
+                    <td>Aleš</td>
+                    <td>Q2 2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- TRŽNÍ KONTEXT -->
+<div class="section">
+    <div class="section-label">Trh</div>
+    <h2 class="section-title">Tržní Kontext</h2>
+    <div class="market-box">
+        <strong>Globální trh satelitních pozemních stanic:</strong> $60–70B (2022) → $180B+ (2032), CAGR 12–13%. GSaaS segment ~$2.3B, rostoucí 6–12% ročně. Aktivní M&amp;A: Viasat+Inmarsat ($7.3B), Eutelsat+OneWeb ($3.4B), Eutelsat prodej 80% stanic EQT (€790M). Groundcom jako jeden z mála evropských výrobců stanic — atraktivní akviziční cíl.
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+    <p>Garage Angels &middot; Groundcom — Investor Update Q1 2026 &middot; Interní dokument &middot; 21. března 2026</p>
+</div>
+
+</div>
 </body>
 </html>
