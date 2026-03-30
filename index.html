@@ -3,374 +3,714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Angels Reporting — Přehled portfolia</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <title>Garage Angels — Portfolio Reporting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #1a1a2e;
+            --dark-light: #2d2d44;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #0f1117;
-            color: #e6edf3;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #0f1117 0%, #1a1d2e 100%);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #8b949e;
-            font-weight: 400;
-        }
-
-        /* Main Container */
-        main {
-            flex: 1;
-            max-width: 1400px;
-            width: 100%;
+        .container {
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 0 24px;
         }
 
-        /* Cards Grid */
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 16px;
+        }
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--dark); }
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--dark) !important; }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 120px 0 64px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner { max-width: 720px; }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+        }
+        .hero .subtitle {
+            font-size: 18px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        /* ========== KPI STRIP ========== */
+        .kpi-strip {
+            padding: 40px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+        .kpi-item {
+            text-align: center;
+            padding: 16px 24px;
+            border-right: 1px solid var(--gray-200);
+        }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -1px;
+        }
+        .kpi-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section { padding: 64px 0; }
+        .section-alt { background: var(--gray-50); }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            font-size: 16px;
+            color: var(--gray-500);
+            max-width: 580px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* ========== CARDS GRID ========== */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
-        @media (min-width: 768px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .cards-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Card */
         .startup-card {
-            background-color: #1a1d2e;
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 8px;
-            padding: 1.75rem;
-            transition: all 0.3s ease;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.25s;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        a.startup-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
         }
 
-        .startup-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        /* Active Card Styling */
-        .startup-card.active {
-            border-left: 4px solid #10b981;
-            background-color: rgba(16, 185, 129, 0.03);
-        }
-
-        .startup-card.active:hover {
-            border-left-color: #10b981;
-            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Inactive Card Styling */
-        .startup-card.inactive {
-            opacity: 0.65;
-            border-color: rgba(75, 85, 99, 0.2);
-        }
-
-        .startup-card.inactive:hover {
-            opacity: 0.75;
-        }
-
-        .startup-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .startup-card.inactive .startup-name {
-            color: #6b7280;
-        }
-
-        .startup-description {
-            font-size: 0.95rem;
-            color: #8b949e;
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
-
-        .startup-card.inactive .startup-description {
-            color: #4b5563;
-        }
-
-        .card-footer {
+        .card-top {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            align-items: center;
+            justify-content: space-between;
         }
-
-        .card-date {
-            font-size: 0.85rem;
-            color: #6b7280;
-        }
-
-        .startup-card.inactive .card-date {
-            color: #4b5563;
+        .card-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
         .card-status {
-            font-size: 0.85rem;
-            color: #8b949e;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-active { background: var(--green-bg); color: var(--green); }
+        .status-pending { background: var(--gray-100); color: var(--gray-400); }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .card-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        .card-meta {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .card-meta-gray {
+            font-size: 13px;
+            color: var(--gray-400);
             font-style: italic;
         }
 
-        .startup-card.inactive .card-status {
-            color: #6b7280;
+        /* Inactive cards */
+        .startup-card.inactive {
+            opacity: 0.6;
+        }
+        .startup-card.inactive:hover {
+            opacity: 0.75;
+            transform: none;
+            box-shadow: none;
+            border-color: var(--gray-200);
         }
 
-        /* Link Button */
-        .card-link {
-            display: inline-flex;
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 40px 0 28px;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-logo-icon {
+            width: 32px; height: 32px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 14px;
+        }
+        .footer-logo span {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+        .footer-right {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .footer-right a {
+            color: var(--gray-400);
+            text-decoration: none;
+        }
+        .footer-right a:hover { color: white; }
+
+        /* ========== EDIT MODE ========== */
+        .edit-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.25rem;
-            background-color: rgba(99, 102, 241, 0.15);
-            color: #6366f1;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(99, 102, 241, 0.3);
         }
-
-        .card-link:hover {
-            background-color: rgba(99, 102, 241, 0.25);
-            border-color: #6366f1;
-            color: #ffffff;
+        .edit-fab:hover { background: var(--dark); transform: scale(1.1); }
+        .edit-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 200;
+            transform: translateY(100%);
+            transition: transform 0.3s;
         }
-
-        .startup-card.inactive .card-link {
-            background-color: rgba(75, 85, 99, 0.1);
-            color: #4b5563;
-            border-color: rgba(75, 85, 99, 0.2);
-            cursor: default;
-            pointer-events: none;
+        .edit-bar.visible { transform: translateY(0); }
+        .edit-bar button {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
         }
-
-        /* Footer */
-        footer {
-            background-color: #0f1117;
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 2rem;
-            text-align: center;
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: auto;
+        .edit-bar .btn-save { background: var(--green); color: white; }
+        .edit-bar .btn-save:hover { opacity: 0.9; }
+        .edit-bar .btn-cancel { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .edit-bar .btn-cancel:hover { border-color: white; }
+        .edit-bar .btn-reset { background: transparent; color: #f87171; border: 1px solid #f87171; }
+        .edit-bar .btn-reset:hover { background: #f87171; color: white; }
+        .edit-bar span { font-size: 14px; color: rgba(255,255,255,0.7); }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+            min-height: 1em;
         }
+        body.editing [data-editable]:focus {
+            outline-color: var(--green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        body.editing .edit-fab { display: none; }
 
-        /* Responsive Typography */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            main {
-                padding: 1.5rem 1rem;
-            }
-
-            .startup-card {
-                padding: 1.5rem;
-            }
-
-            .startup-name {
-                font-size: 1.1rem;
-            }
+            .nav-links { display: none; }
+            .hero { padding: 100px 0 48px; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .kpi-item { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .kpi-item:last-child { border-bottom: none; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>G-ANGELS REPORTING</h1>
-        <p class="subtitle">Přehled portfolia startupů</p>
-    </header>
 
-    <main>
-        <div class="cards-grid">
-            <!-- Active: VR Vitalis Pro -->
-            <div class="startup-card active">
-                <h2 class="startup-name">VR Vitalis Pro</h2>
-                <p class="startup-description">VR rehabilitace pro zdravotnictví</p>
-                <div class="card-footer">
-                    <div class="card-date">Poslední update: 19. 3. 2026</div>
-                    <a href="./vr-vitalis/" class="card-link">Zobrazit report →</a>
-                </div>
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">GA</div>
+            <span>Garage Angels</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="./projects/">Projekty</a></li>
+            <li><a href="./onboarding/" class="nav-cta">Investor Onboarding</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-badge" data-editable="hero-badge">Portfolio Reporting</div>
+            <h1 data-editable="hero-title">Přehled portfolia startupů</h1>
+            <p class="subtitle" data-editable="hero-subtitle">Interní portál Garage Angels pro sdílení investor reportů a klíčových informací o portfoliových firmách.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KPI STRIP ========== -->
+<section class="kpi-strip">
+    <div class="container">
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-1-value">14</div>
+                <div class="kpi-label" data-editable="kpi-1-label">firem v portfoliu</div>
             </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-2-value">2</div>
+                <div class="kpi-label" data-editable="kpi-2-label">aktivní investor reporty</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-3-value">2026</div>
+                <div class="kpi-label" data-editable="kpi-3-label">aktuální rok reportingu</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PORTFOLIO ========== -->
+<section class="section" id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="portfolio-label">Portfolio</div>
+            <h2 class="section-title" data-editable="portfolio-title">Investor reporty startupů</h2>
+            <p class="section-desc" data-editable="portfolio-desc">Klikněte na kartu pro zobrazení detailního investor reportu. Další reporty průběžně přibývají.</p>
+        </div>
+        <div class="cards-grid">
+
+            <!-- Active: VR Vitalis Pro -->
+            <a href="./vr-vitalis/" class="startup-card">
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--green-bg);">🏥</div>
+                    <span class="card-status status-active">Report</span>
+                </div>
+                <div class="card-title" data-editable="card-vrvitalis-title">VR Vitalis Pro</div>
+                <div class="card-desc" data-editable="card-vrvitalis-desc">VR rehabilitace pro zdravotnictví</div>
+                <div class="card-meta">Poslední update: 19. 3. 2026 &rarr;</div>
+            </a>
 
             <!-- Active: Groundcom -->
-            <div class="startup-card active">
-                <h2 class="startup-name">Groundcom</h2>
-                <p class="startup-description">Satelitní pozemní infrastruktura</p>
-                <div class="card-footer">
-                    <div class="card-date">Poslední update: 21. 3. 2026</div>
-                    <a href="./groundcom/" class="card-link">Zobrazit report →</a>
+            <a href="./groundcom/" class="startup-card">
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--green-bg);">🛰</div>
+                    <span class="card-status status-active">Report</span>
                 </div>
-            </div>
+                <div class="card-title" data-editable="card-groundcom-title">Groundcom</div>
+                <div class="card-desc" data-editable="card-groundcom-desc">Satelitní pozemní infrastruktura</div>
+                <div class="card-meta">Poslední update: 21. 3. 2026 &rarr;</div>
+            </a>
 
-            <!-- Inactive: sendance -->
-            <div class="startup-card inactive">
-                <h2 class="startup-name">sendance</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+            <!-- Active: AG Data -->
+            <a href="./ag-data/" class="startup-card">
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--green-bg);">🌾</div>
+                    <span class="card-status status-active">Report</span>
                 </div>
+                <div class="card-title" data-editable="card-agdata-title">AG Data</div>
+                <div class="card-desc" data-editable="card-agdata-desc">Precizní zemědělství a agro data</div>
+                <div class="card-meta">Zobrazit report &rarr;</div>
+            </a>
+
+            <!-- Inactive: Sendance -->
+            <div class="startup-card inactive">
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">⚡</div>
+                    <span class="card-status status-pending">Připravujeme</span>
+                </div>
+                <div class="card-title" data-editable="card-sendance-title">Sendance</div>
+                <div class="card-desc" data-editable="card-sendance-desc">Flexibilní tištěné senzory</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: Scaut -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">Scaut</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🔒</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-scaut-title">Scaut</div>
+                <div class="card-desc" data-editable="card-scaut-desc">Kybernetická bezpečnost</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: CasInvent Pharma -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">CasInvent Pharma</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">💊</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-casinvent-title">CasInvent Pharma</div>
+                <div class="card-desc" data-editable="card-casinvent-desc">Genová terapie a CRISPR</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: Kardi AI -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">Kardi AI</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">❤️</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-kardi-title">Kardi AI</div>
+                <div class="card-desc" data-editable="card-kardi-desc">AI diagnostika srdečních onemocnění</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: MYCO -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">MYCO</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🍄</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-myco-title">MYCO</div>
+                <div class="card-desc" data-editable="card-myco-desc">Mycelium-based materiály</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
-            <!-- Inactive: AI|ffinity -->
+            <!-- Inactive: AIffinity -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">AI|ffinity</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🧬</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-aiffinity-title">AIffinity</div>
+                <div class="card-desc" data-editable="card-aiffinity-desc">AI pro drug discovery</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
-            <!-- Inactive: AG Data -->
+            <!-- Inactive: Localazy -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">AG Data</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🌍</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
-            </div>
-
-            <!-- Inactive: LocalLazy -->
-            <div class="startup-card inactive">
-                <h2 class="startup-name">LocalLazy</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
-                </div>
+                <div class="card-title" data-editable="card-localazy-title">Localazy</div>
+                <div class="card-desc" data-editable="card-localazy-desc">Lokalizační platforma</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: RealPad -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">RealPad</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🏗</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-realpad-title">RealPad</div>
+                <div class="card-desc" data-editable="card-realpad-desc">Software pro developery nemovitostí</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
             <!-- Inactive: KeyGuru -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">KeyGuru</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">🔑</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-keyguru-title">KeyGuru</div>
+                <div class="card-desc" data-editable="card-keyguru-desc">Chytré schránky na klíče</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
             </div>
 
-            <!-- Inactive: Senzoor czech s.r.o. -->
+            <!-- Inactive: Senzoor -->
             <div class="startup-card inactive">
-                <h2 class="startup-name">Senzoor czech s.r.o.</h2>
-                <p class="startup-description">—</p>
-                <div class="card-footer">
-                    <div class="card-status">Žádný report</div>
-                    <button class="card-link" disabled>Žádný report</button>
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--gray-100);">📡</div>
+                    <span class="card-status status-pending">Připravujeme</span>
                 </div>
+                <div class="card-title" data-editable="card-senzoor-title">Senzoor Czech</div>
+                <div class="card-desc" data-editable="card-senzoor-desc">IoT senzory a monitoring</div>
+                <div class="card-meta-gray">Report zatím není k dispozici</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">GA</div>
+                <span>Garage Angels</span>
+            </div>
+            <div class="footer-right">
+                &copy; 2026 Garage Angels &middot; Interní portál &middot;
+                <a href="./projects/">Projekty</a> &middot;
+                <a href="./onboarding/">Onboarding</a>
             </div>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <footer>
-        <p>G-Angels Portfolio Reporting | Interní portál | 2026</p>
-    </footer>
+<!-- EDIT FAB + BAR -->
+<button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<div class="edit-bar" id="editBar">
+    <span>Editujete texty</span>
+    <button class="btn-save" onclick="saveEdits()">Uložit</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+    <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
+</div>
+
+<script>
+// ========== EDIT MODE ==========
+const STORAGE_KEY = 'ga-reporting-index-edits';
+let isEditing = false;
+let savedState = {};
+
+function toggleEdit() {
+    if (isEditing) return;
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        savedState[el.dataset.editable] = el.innerHTML;
+        el.contentEditable = 'true';
+    });
+}
+
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        edits[el.dataset.editable] = el.innerHTML;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    exitEditMode();
+    showToast('Změny uloženy');
+}
+
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        el.innerHTML = savedState[el.dataset.editable];
+    });
+    exitEditMode();
+}
+
+function resetEdits() {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+}
+
+function exitEditMode() {
+    isEditing = false;
+    document.body.classList.remove('editing');
+    document.getElementById('editBar').classList.remove('visible');
+    savedState = {};
+}
+
+function loadEdits() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    try {
+        const edits = JSON.parse(saved);
+        Object.entries(edits).forEach(([key, val]) => {
+            const el = document.querySelector(`[data-editable="${key}"]`);
+            if (el) el.innerHTML = val;
+        });
+    } catch(e) {}
+}
+
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    Object.assign(t.style, {
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px',
+        fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+    });
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+}
+
+// ========== NAV SCROLL ==========
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Init
+loadEdits();
+</script>
+
 </body>
 </html>
