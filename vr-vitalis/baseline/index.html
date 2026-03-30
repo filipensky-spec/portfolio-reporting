@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Vitalis — Baseline | Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --dark: #1a1a2e;
+            --accent: #2563eb;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            padding: 48px 40px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .hero-top { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+        .hero-favicon { width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--gray-200); object-fit: contain; padding: 8px; background: white; }
+        .hero-title-wrap { flex: 1; }
+        h1 { font-size: 36px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; line-height: 1.1; }
+        .hero-sub { font-size: 15px; color: var(--gray-500); margin-top: 4px; }
+        .hero-badge { display: inline-block; background: var(--green-bg); color: var(--green); padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .hero-link { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; }
+        .hero-link:hover { text-decoration: underline; }
+        .kpi-strip { padding: 32px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin: 32px 0; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .kpi-item { text-align: center; padding: 12px 16px; border-right: 1px solid var(--gray-200); }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value { font-size: 28px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; }
+        .kpi-value.positive { color: var(--green); }
+        .kpi-label { font-size: 12px; color: var(--gray-500); margin-top: 2px; font-weight: 500; }
+        .section { padding: 40px 0; }
+        .section-alt { background: var(--gray-50); margin: 0 -40px; padding: 40px 40px; border-radius: var(--radius); }
+        .section-label { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .section-title { font-size: 24px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.5px; margin-bottom: 24px; }
+        .table-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: var(--radius); background: var(--white); }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        thead { background: var(--dark); color: white; }
+        th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; text-transform: uppercase; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+        tbody tr:hover { background: var(--gray-50); }
+        tbody tr:last-child td { border-bottom: none; }
+        .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .info-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+        .info-card h4 { font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
+        .info-card p { font-size: 16px; color: var(--gray-900); font-weight: 600; }
+        .info-card .detail { font-size: 13px; color: var(--gray-500); margin-top: 4px; font-weight: 400; }
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -32px; top: 4px; width: 22px; height: 22px; background: var(--accent); border-radius: 50%; border: 3px solid white; box-shadow: var(--shadow); }
+        .timeline-dot.green { background: var(--green); }
+        .timeline-date { font-size: 12px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .timeline-title { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .timeline-desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+        .report-footer { padding-top: 32px; margin-top: 40px; border-top: 1px solid var(--gray-200); text-align: center; }
+        .report-footer p { font-size: 13px; color: var(--gray-400); }
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-item { border-bottom: 1px solid var(--gray-200); }
+            .kpi-item:nth-child(2) { border-right: none; }
+            h1 { font-size: 28px; }
+            .hero-top { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
+            .section-alt { margin: 0 -16px; padding: 32px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero-top">
+    <a href="https://vrvitalis.cz/" target="_blank"><img src="https://www.google.com/s2/favicons?domain=vrvitalis.cz&sz=128" alt="VR Vitalis" class="hero-favicon"></a>
+    <div class="hero-title-wrap">
+        <h1>VR Vitalis</h1>
+        <div class="hero-sub">VR rehabilitace pro zdravotnictví — digitální terapie pomocí virtuální reality</div>
+    </div>
+    <span class="hero-badge">Aktivní</span>
+</div>
+<a href="https://vrvitalis.cz/" target="_blank" class="hero-link">vrvitalis.cz &rarr;</a>
+
+<!-- KPI -->
+<div class="kpi-strip">
+    <div class="kpi-grid">
+        <div class="kpi-item">
+            <div class="kpi-value">~€400K</div>
+            <div class="kpi-label">Investováno (GA)</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">€6.9M</div>
+            <div class="kpi-label">Pre-money valuace</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">€700K</div>
+            <div class="kpi-label">Celkové kolo</div>
+        </div>
+        <div class="kpi-item">
+            <div class="kpi-value">12–15M</div>
+            <div class="kpi-label">Runway (měsíce)</div>
+        </div>
+    </div>
+</div>
+
+<!-- INVESTIČNÍ KOLO -->
+<div class="section">
+    <div class="section-label">Investiční kolo</div>
+    <h2 class="section-title">Pre-seed II — Leden 2026</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Parametr</th>
+                    <th>Hodnota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Typ kola</strong></td>
+                    <td>Pre-seed II</td>
+                </tr>
+                <tr>
+                    <td><strong>Datum uzavření</strong></td>
+                    <td>Leden 2026</td>
+                </tr>
+                <tr>
+                    <td><strong>Celkem získáno</strong></td>
+                    <td>14,631,680 CZK (~€601K)</td>
+                </tr>
+                <tr>
+                    <td><strong>GA investice</strong></td>
+                    <td style="color: var(--accent); font-weight: 700;">~€400K</td>
+                </tr>
+                <tr>
+                    <td><strong>Celkové kolo</strong></td>
+                    <td>€700K</td>
+                </tr>
+                <tr>
+                    <td><strong>Pre-money valuace</strong></td>
+                    <td>€6.9M</td>
+                </tr>
+                <tr>
+                    <td><strong>Cash position po kole</strong></td>
+                    <td>12.95M CZK</td>
+                </tr>
+                <tr>
+                    <td><strong>Měsíční burn</strong></td>
+                    <td>~1M CZK</td>
+                </tr>
+                <tr>
+                    <td><strong>Runway</strong></td>
+                    <td style="color: var(--green); font-weight: 700;">12–15 měsíců</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DETAIL INVESTICE -->
+<div class="section-alt">
+    <div class="section-label">Detail</div>
+    <h2 class="section-title">Investiční parametry</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>SPV</h4>
+            <p>GA Investiční VRV s.r.o.</p>
+            <div class="detail">Účelová společnost pro investici</div>
+        </div>
+        <div class="info-card">
+            <h4>Jednatel SPV</h4>
+            <p>Aleš Filipenský</p>
+            <div class="detail">Investiční ředitel Garage Angels</div>
+        </div>
+        <div class="info-card">
+            <h4>Pre-money valuace</h4>
+            <p>€6.9M</p>
+            <div class="detail">Pre-seed II, leden 2026</div>
+        </div>
+        <div class="info-card">
+            <h4>GA investice</h4>
+            <p>~€400K</p>
+            <div class="detail">Majoritní investor v kole</div>
+        </div>
+        <div class="info-card">
+            <h4>Alokace kapitálu</h4>
+            <p>Expanze</p>
+            <div class="detail">Polsko, USA, obchodní tým, FDA 510k</div>
+        </div>
+        <div class="info-card">
+            <h4>Runway</h4>
+            <p>12–15 měsíců</p>
+            <div class="detail">Cash position 12.95M CZK, burn ~1M/měs</div>
+        </div>
+    </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section">
+    <div class="section-label">Historie</div>
+    <h2 class="section-title">Klíčové milníky</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot green"></div>
+            <div class="timeline-date">Leden 2026</div>
+            <div class="timeline-title">Pre-seed II — vstup GA</div>
+            <div class="timeline-desc">GA investuje ~€400K při pre-money valuaci €6.9M. Celkové kolo €700K (14.6M CZK). Kapitál alokován na zahraniční expanzi (Polsko, USA), posílení obchodního týmu a FDA 510k registraci.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Březen 2026</div>
+            <div class="timeline-title">Aktuální stav</div>
+            <div class="timeline-desc">Produkt nasazen v 50+ zařízeních v ČR. Expanze do Polska (5 licencí, cíl 300/rok). USA registrace FDA 510k zahájena. Cash position 12.95M CZK, runway 12–15 měsíců.</div>
+        </div>
+    </div>
+</div>
+
+<!-- DOKUMENTACE -->
+<div class="section-alt">
+    <div class="section-label">Dokumentace</div>
+    <h2 class="section-title">Stav složky</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h4>Cap table</h4>
+            <p style="color: var(--green);">K dispozici</p>
+            <div class="detail">Cap_table___VR_Vitalis.pdf</div>
+        </div>
+        <div class="info-card">
+            <h4>Reporting</h4>
+            <p style="color: var(--green);">Aktivní</p>
+            <div class="detail">Investor update Q1 2026</div>
+        </div>
+        <div class="info-card">
+            <h4>Strategické doporučení</h4>
+            <p style="color: var(--green);">Zpracováno</p>
+            <div class="detail">GA strategické doporučení pro VR Vitalis</div>
+        </div>
+        <div class="info-card">
+            <h4>VDR + DD</h4>
+            <p style="color: var(--green);">Kompletní</p>
+            <div class="detail">Due diligence dokumenty k dispozici</div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+    <p>Garage Angels &middot; VR Vitalis — Baseline &middot; Investice leden 2026</p>
+</div>
+
+</div>
+</body>
+</html>
