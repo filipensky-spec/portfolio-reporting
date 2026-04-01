@@ -1573,8 +1573,8 @@
       "membershipType": null,
       "membershipStatus": "pipeline",
       "membershipPeriods": [],
-      "snoozeUntil": null,
-      "snoozeFromStage": null,
+      "snoozeUntil": "2026-04-01",
+      "snoozeFromStage": "acq_qualified",
       "notes": "",
       "willRenew": true,
       "churnReason": ""
