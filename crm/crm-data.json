@@ -9,70 +9,70 @@
     },
     {
       "id": "acq_qualified",
-      "label": "Qualified",
+      "label": "Kvalifikovaný",
       "color": "#f59e0b",
       "order": 1,
       "pipelineType": "acquisition"
     },
     {
       "id": "acq_meeting",
-      "label": "Meeting",
+      "label": "Schůzka",
       "color": "#f97316",
       "order": 2,
       "pipelineType": "acquisition"
     },
     {
       "id": "acq_proposal",
-      "label": "Proposal",
+      "label": "Nabídka",
       "color": "#3b82f6",
       "order": 3,
       "pipelineType": "acquisition"
     },
     {
       "id": "acq_won",
-      "label": "Won",
+      "label": "Uzavřeno",
       "color": "#10b981",
       "order": 4,
       "pipelineType": "acquisition"
     },
     {
       "id": "acq_lost",
-      "label": "Lost",
+      "label": "Ztraceno",
       "color": "#94a3b8",
       "order": 5,
       "pipelineType": "acquisition"
     },
     {
       "id": "ups_identified",
-      "label": "Identified",
+      "label": "Vytipovaný",
       "color": "#f59e0b",
       "order": 0,
       "pipelineType": "upsell"
     },
     {
       "id": "ups_contacted",
-      "label": "Contacted",
+      "label": "Kontaktovaný",
       "color": "#f97316",
       "order": 1,
       "pipelineType": "upsell"
     },
     {
       "id": "ups_proposal",
-      "label": "Proposal",
+      "label": "Nabídka",
       "color": "#3b82f6",
       "order": 2,
       "pipelineType": "upsell"
     },
     {
       "id": "ups_upgraded",
-      "label": "Upgraded",
+      "label": "Upgradovaný",
       "color": "#10b981",
       "order": 3,
       "pipelineType": "upsell"
     },
     {
       "id": "ups_declined",
-      "label": "Declined",
+      "label": "Odmítnutý",
       "color": "#94a3b8",
       "order": 4,
       "pipelineType": "upsell"
@@ -1463,7 +1463,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-09-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1496,7 +1496,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-10-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1529,7 +1529,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-11-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1562,7 +1562,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2027-02-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1595,7 +1595,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-07-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1636,7 +1636,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-12-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1669,7 +1669,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-09-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
