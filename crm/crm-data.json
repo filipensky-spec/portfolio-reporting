@@ -1637,7 +1637,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "2026-12-01",
+        "expectedClose": "",
         "lastContact": ""
       },
       "backgroundInfo": [],
