@@ -883,7 +883,7 @@
         {
           "year": 2026,
           "fee": 100000,
-          "paid": false,
+          "paid": true,
           "startDate": "2026-01-01",
           "endDate": "2027-01-01"
         }
