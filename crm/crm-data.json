@@ -792,7 +792,7 @@
       "fields": {
         "company": "MP Capital Investments s.r.o.",
         "priority": "High",
-        "estimatedValue": 100000,
+        "estimatedValue": 20000,
         "accountOwner": "Aleš Filipenský",
         "email": "",
         "phone": "",
@@ -809,7 +809,7 @@
       "actionItems": [],
       "contactedToday": false,
       "addedAt": "2026-01-01T00:00:00Z",
-      "membershipType": "GA spolek",
+      "membershipType": "GA klub",
       "membershipStatus": "active",
       "membershipPeriods": [
         {
