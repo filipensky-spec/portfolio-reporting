@@ -1529,7 +1529,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "2026-11-01",
+        "expectedClose": "",
         "lastContact": ""
       },
       "backgroundInfo": [],
