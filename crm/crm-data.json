@@ -825,6 +825,13 @@
           "paid": true,
           "startDate": "2025-01-01",
           "endDate": "2026-01-01"
+        },
+        {
+          "year": 2026,
+          "fee": 20000,
+          "paid": false,
+          "startDate": "2026-01-01",
+          "endDate": "2027-01-01"
         }
       ],
       "snoozeUntil": null,
