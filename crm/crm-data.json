@@ -1680,8 +1680,8 @@
       "membershipType": null,
       "membershipStatus": "deciding",
       "membershipPeriods": [],
-      "snoozeUntil": null,
-      "snoozeFromStage": null,
+      "snoozeUntil": "2026-09-01",
+      "snoozeFromStage": "acq_proposal",
       "notes": "Ozvat se v srpnu 2026",
       "willRenew": true,
       "churnReason": ""
