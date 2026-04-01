@@ -203,7 +203,8 @@
       199694,
       214694,
       189694
-    ]
+    ],
+    "annualCostsOverride": null
   },
   "schemaVersion": 2,
   "investors": [
@@ -791,7 +792,7 @@
       "fields": {
         "company": "MP Capital Investments s.r.o.",
         "priority": "High",
-        "estimatedValue": 20000,
+        "estimatedValue": 100000,
         "accountOwner": "Aleš Filipenský",
         "email": "",
         "phone": "",
@@ -808,7 +809,7 @@
       "actionItems": [],
       "contactedToday": false,
       "addedAt": "2026-01-01T00:00:00Z",
-      "membershipType": "GA klub",
+      "membershipType": "GA spolek",
       "membershipStatus": "active",
       "membershipPeriods": [
         {
@@ -827,7 +828,7 @@
         },
         {
           "year": 2026,
-          "fee": 20000,
+          "fee": 100000,
           "paid": false,
           "startDate": "2026-01-01",
           "endDate": "2027-01-01"
@@ -883,7 +884,7 @@
         {
           "year": 2026,
           "fee": 100000,
-          "paid": true,
+          "paid": false,
           "startDate": "2026-01-01",
           "endDate": "2027-01-01"
         }
@@ -1041,7 +1042,7 @@
         {
           "year": 2026,
           "fee": 100000,
-          "paid": true,
+          "paid": false,
           "startDate": "2026-01-01",
           "endDate": "2027-01-01"
         }
@@ -1417,7 +1418,7 @@
     {
       "id": "inv25",
       "name": "JIC",
-      "stage": "acq_lost",
+      "stage": "acq_lead",
       "fields": {
         "company": "",
         "priority": "Medium",
@@ -1474,8 +1475,8 @@
       "membershipType": null,
       "membershipStatus": "pipeline",
       "membershipPeriods": [],
-      "snoozeUntil": "2026-09-01",
-      "snoozeFromStage": "acq_qualified",
+      "snoozeUntil": null,
+      "snoozeFromStage": null,
       "notes": "",
       "willRenew": true,
       "churnReason": ""
@@ -1483,7 +1484,7 @@
     {
       "id": "inv27",
       "name": "Milan Šimek",
-      "stage": "acq_lost",
+      "stage": "acq_qualified",
       "fields": {
         "company": "ex Sewio",
         "priority": "High",
@@ -1529,7 +1530,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "",
+        "expectedClose": "2026-11-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1573,8 +1574,8 @@
       "membershipType": null,
       "membershipStatus": "pipeline",
       "membershipPeriods": [],
-      "snoozeUntil": "2027-02-01",
-      "snoozeFromStage": "acq_qualified",
+      "snoozeUntil": null,
+      "snoozeFromStage": null,
       "notes": "",
       "willRenew": true,
       "churnReason": ""
@@ -1595,7 +1596,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "2026-04-30",
+        "expectedClose": "2026-07-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1623,7 +1624,7 @@
     {
       "id": "inv31",
       "name": "Josef Hos",
-      "stage": "acq_meeting",
+      "stage": "acq_proposal",
       "fields": {
         "company": "",
         "priority": "High",
@@ -1636,7 +1637,7 @@
         "entityType": "",
         "vatPayer": "",
         "gaEntity": "",
-        "expectedClose": "2026-04-30",
+        "expectedClose": "2026-12-01",
         "lastContact": ""
       },
       "backgroundInfo": [],
@@ -1680,8 +1681,8 @@
       "membershipType": null,
       "membershipStatus": "deciding",
       "membershipPeriods": [],
-      "snoozeUntil": "2026-09-01",
-      "snoozeFromStage": "acq_proposal",
+      "snoozeUntil": null,
+      "snoozeFromStage": null,
       "notes": "Ozvat se v srpnu 2026",
       "willRenew": true,
       "churnReason": ""
@@ -1755,7 +1756,7 @@
     {
       "id": "inv35",
       "name": "Radek Orság",
-      "stage": "acq_lost",
+      "stage": "acq_lead",
       "fields": {
         "company": "SOLSOL",
         "priority": "High",
@@ -2207,72 +2208,6 @@
       "addedAt": "2026-01-01T00:00:00Z",
       "membershipType": null,
       "membershipStatus": "pipeline",
-      "membershipPeriods": [],
-      "snoozeUntil": null,
-      "snoozeFromStage": null,
-      "notes": "",
-      "willRenew": true,
-      "churnReason": ""
-    },
-    {
-      "id": "inv49",
-      "name": "Adam Daněk (upsell)",
-      "stage": "ups_identified",
-      "fields": {
-        "company": "JOYRACE Advisory s.r.o.",
-        "priority": "Medium",
-        "estimatedValue": 100000,
-        "accountOwner": "Aleš Filipenský",
-        "email": "",
-        "phone": "",
-        "url": "",
-        "billingCompany": "JOYRACE Advisory s.r.o.",
-        "entityType": "PO",
-        "vatPayer": "ANO",
-        "gaEntity": "GA management s.r.o.",
-        "expectedClose": "",
-        "lastContact": ""
-      },
-      "backgroundInfo": [],
-      "interactions": [],
-      "actionItems": [],
-      "contactedToday": false,
-      "addedAt": "2026-01-01T00:00:00Z",
-      "membershipType": "GA klub",
-      "membershipStatus": "active",
-      "membershipPeriods": [],
-      "snoozeUntil": null,
-      "snoozeFromStage": null,
-      "notes": "",
-      "willRenew": true,
-      "churnReason": ""
-    },
-    {
-      "id": "inv50",
-      "name": "Antonín Kunz (upsell)",
-      "stage": "ups_identified",
-      "fields": {
-        "company": "",
-        "priority": "Medium",
-        "estimatedValue": 100000,
-        "accountOwner": "Aleš Filipenský",
-        "email": "",
-        "phone": "",
-        "url": "",
-        "billingCompany": "",
-        "entityType": "FO",
-        "vatPayer": "NE",
-        "gaEntity": "GA s.z.",
-        "expectedClose": "",
-        "lastContact": ""
-      },
-      "backgroundInfo": [],
-      "interactions": [],
-      "actionItems": [],
-      "contactedToday": false,
-      "addedAt": "2026-01-01T00:00:00Z",
-      "membershipType": "GA klub",
-      "membershipStatus": "active",
       "membershipPeriods": [],
       "snoozeUntil": null,
       "snoozeFromStage": null,
