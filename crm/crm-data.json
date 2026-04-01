@@ -1417,7 +1417,7 @@
     {
       "id": "inv25",
       "name": "JIC",
-      "stage": "acq_lead",
+      "stage": "acq_lost",
       "fields": {
         "company": "",
         "priority": "Medium",
