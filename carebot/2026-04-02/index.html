@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carebot s.r.o. — Investiční memorandum | Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Carebot design language — dark navy + clean medical */
+            --color-primary: #192347;
+            --color-primary-light: #243165;
+            --color-primary-lighter: #2d3d7a;
+            --color-accent: #4A7CFF;
+            --color-accent-light: #6B95FF;
+            --color-accent-bg: rgba(74, 124, 255, 0.08);
+            --color-accent-border: rgba(74, 124, 255, 0.2);
+            --color-success: #10B981;
+            --color-success-bg: rgba(16, 185, 129, 0.08);
+            --color-warning: #F59E0B;
+            --color-warning-bg: rgba(245, 158, 11, 0.08);
+            --color-warning-border: rgba(245, 158, 11, 0.3);
+            --color-critical: #EF4444;
+            --color-critical-bg: rgba(239, 68, 68, 0.08);
+            --color-high: #F97316;
+            --color-medium: #F59E0B;
+            --color-low: #10B981;
+            --color-bg: #ffffff;
+            --color-bg-soft: #F8F9FC;
+            --color-bg-card: #ffffff;
+            --color-border: #E2E8F0;
+            --color-border-light: #F1F5F9;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-text-muted: #94A3B8;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-pill: 100px;
+            --shadow-sm: 0 1px 2px rgba(25, 35, 71, 0.04);
+            --shadow-md: 0 4px 12px rgba(25, 35, 71, 0.06);
+            --shadow-lg: 0 8px 30px rgba(25, 35, 71, 0.08);
+            --shadow-card: 0 1px 3px rgba(25, 35, 71, 0.04), 0 4px 12px rgba(25, 35, 71, 0.03);
+            --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg-soft);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ═══════════════════════════════════════
+           HEADER — Logo bar
+           ═══════════════════════════════════════ */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 var(--spacing-xl);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .ga-logo {
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            color: var(--color-primary);
+            text-transform: uppercase;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--color-border);
+        }
+
+        .startup-logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 16px;
+            transition: all var(--transition);
+        }
+
+        .btn-icon:hover {
+            background: var(--color-bg-soft);
+            border-color: var(--color-text-muted);
+            color: var(--color-text);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--color-text);
+            padding: var(--spacing-xs);
+        }
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-lighter) 100%);
+            color: white;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(74, 124, 255, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(74, 124, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-lg);
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.15;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.85;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-2xl);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-value {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .hero-meta-label {
+            font-size: 12px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ═══════════════════════════════════════
+           LAYOUT — Sidebar + Content
+           ═══════════════════════════════════════ */
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            max-width: 1440px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: var(--color-bg);
+            border-right: 1px solid var(--color-border);
+            padding: var(--spacing-xl) 0;
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+
+        .sidebar::-webkit-scrollbar { width: 3px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+
+        .nav-group {
+            margin-bottom: var(--spacing-lg);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .nav-group-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            padding: 0 var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--color-bg-soft);
+            color: var(--color-primary);
+        }
+
+        .nav-link.active {
+            background: var(--color-accent-bg);
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .nav-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            min-width: 20px;
+        }
+
+        .nav-link.active .nav-num {
+            color: var(--color-accent);
+        }
+
+        /* ═══════════════════════════════════════
+           MAIN CONTENT
+           ═══════════════════════════════════════ */
+        .main {
+            padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-3xl);
+            background: var(--color-bg-soft);
+        }
+
+        .content {
+            max-width: 860px;
+        }
+
+        section {
+            margin-bottom: var(--spacing-3xl);
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+
+        /* ═══════════════════════════════════════
+           CARDS & CALLOUTS
+           ═══════════════════════════════════════ */
+        .card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        .callout {
+            background: var(--color-bg-card);
+            border-left: 4px solid var(--color-accent);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .callout-accent {
+            border-left-color: var(--color-success);
+        }
+
+        .callout-warning {
+            border-left-color: var(--color-warning);
+            background: var(--color-warning-bg);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-primary);
+        }
+
+        /* ═══════════════════════════════════════
+           BADGES
+           ═══════════════════════════════════════ */
+        .badge {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-right: var(--spacing-sm);
+        }
+
+        .badge-explore {
+            background: var(--color-warning-bg);
+            color: #92400E;
+            border: 1px solid var(--color-warning-border);
+        }
+
+        .badge-critical {
+            background: var(--color-critical-bg);
+            color: var(--color-critical);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .badge-high {
+            background: rgba(249, 115, 22, 0.08);
+            color: var(--color-high);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .badge-medium {
+            background: var(--color-warning-bg);
+            color: var(--color-medium);
+            border: 1px solid var(--color-warning-border);
+        }
+
+        .badge-low {
+            background: var(--color-success-bg);
+            color: var(--color-low);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* ═══════════════════════════════════════
+           UNVERIFIED WARNING
+           ═══════════════════════════════════════ */
+        .unverified {
+            background: var(--color-warning-bg);
+            border: 1px solid var(--color-warning-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            margin: var(--spacing-md) 0;
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+            font-size: 13px;
+            color: #92400E;
+        }
+
+        .unverified-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+        /* ═══════════════════════════════════════
+           TABLES
+           ═══════════════════════════════════════ */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        tr:nth-child(even) { background: var(--color-bg-soft); }
+        tr:last-child td { border-bottom: none; }
+
+        .mono {
+            font-family: var(--font-mono);
+            font-size: 13px;
+        }
+
+        /* Simple inline table (no header) */
+        table.simple { border: none; }
+        table.simple td { padding: var(--spacing-sm) var(--spacing-md); border-bottom: 1px solid var(--color-border-light); }
+        table.simple tr:nth-child(even) { background: transparent; }
+
+        /* ═══════════════════════════════════════
+           LISTS
+           ═══════════════════════════════════════ */
+        ul, ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        li {
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.7;
+        }
+
+        /* Pro / Con columns */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .pros-cons .card { margin: 0; }
+
+        .pros-title {
+            color: var(--color-success);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cons-title {
+            color: var(--color-critical);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-xl);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-date {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            opacity: 0.6;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ═══════════════════════════════════════
+           EDIT MODE
+           ═══════════════════════════════════════ */
+        .edit-mode .edit-toggle {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .editable {
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background var(--transition);
+        }
+
+        .editable:hover { background: rgba(74, 124, 255, 0.04); }
+        .editable[contenteditable="true"] {
+            background: rgba(74, 124, 255, 0.08);
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                width: 280px;
+                height: calc(100vh - 64px);
+                z-index: 99;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .sidebar.open { display: block; }
+            .nav-toggle { display: block; }
+            .main { padding: var(--spacing-xl); }
+            .section-title { font-size: 22px; }
+            .hero h1 { font-size: 30px; }
+            .hero-subtitle { font-size: 16px; }
+            .hero-meta { gap: var(--spacing-lg); }
+            .pros-cons { grid-template-columns: 1fr; }
+
+            th, td { padding: var(--spacing-sm) var(--spacing-md); }
+        }
+
+        @media print {
+            .header, .sidebar, .nav-toggle, .header-actions, .hero::before { display: none; }
+            .layout { grid-template-columns: 1fr; }
+            .hero { padding: var(--spacing-xl); }
+            section { page-break-inside: avoid; }
+        }
+
+        /* Utility */
+        .text-muted { color: var(--color-text-muted); }
+        .text-secondary { color: var(--color-text-secondary); }
+        .text-small { font-size: 13px; }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <div class="logo-bar">
+            <div class="ga-logo">Garage Angels</div>
+            <div class="logo-divider"></div>
+            <div class="startup-logo">carebot</div>
+        </div>
+        <div class="header-actions">
+            <button class="btn-icon edit-toggle" id="editToggle" title="Režim úprav" data-edit="false">✎</button>
+            <button class="btn-icon" id="exportBtn" title="Exportovat JSON">⬇</button>
+        </div>
+    </header>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Investiční memorandum</div>
+            <h1>Carebot s.r.o.</h1>
+            <p class="hero-subtitle">AI platforma pro radiologii — diagnostika nové generace pro evropské nemocnice a farmaceutické partnery</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">1,5M EUR</span>
+                    <span class="hero-meta-label">Bridge round</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">25M EUR</span>
+                    <span class="hero-meta-label">Pre-money</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">Equity</span>
+                    <span class="hero-meta-label">Instrument</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">EXPLORE</span>
+                    <span class="hero-meta-label">GA Verdict</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ LAYOUT ═══════════════ -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <div class="nav-group">
+                    <div class="nav-group-title">Přehled</div>
+                    <a href="#executive-summary" class="nav-link active"><span class="nav-num">01</span> Executive Summary</a>
+                    <a href="#team" class="nav-link"><span class="nav-num">02</span> Tým a zakladatelé</a>
+                    <a href="#problem" class="nav-link"><span class="nav-num">03</span> Problém a řešení</a>
+                    <a href="#product" class="nav-link"><span class="nav-num">04</span> Produkt a technologie</a>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Tržní analýza</div>
+                    <a href="#market" class="nav-link"><span class="nav-num">05</span> Trh — TAM/SAM/SOM</a>
+                    <a href="#competition" class="nav-link"><span class="nav-num">06</span> Konkurence</a>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Obchodní model</div>
+                    <a href="#business-model" class="nav-link"><span class="nav-num">07</span> Business model</a>
+                    <a href="#traction" class="nav-link"><span class="nav-num">08</span> Trakce a validace</a>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Financials</div>
+                    <a href="#financials" class="nav-link"><span class="nav-num">09</span> Financials a podmínky</a>
+                    <a href="#exit-analysis" class="nav-link"><span class="nav-num">9b</span> Exit analýza</a>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Risk &amp; Compliance</div>
+                    <a href="#regulation" class="nav-link"><span class="nav-num">10</span> Regulace</a>
+                    <a href="#risks" class="nav-link"><span class="nav-num">11</span> Rizika</a>
+                    <a href="#next-steps" class="nav-link"><span class="nav-num">12</span> Další kroky</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main">
+            <div class="content">
+
+                <!-- ══════ 1. EXECUTIVE SUMMARY ══════ -->
+                <section id="executive-summary">
+                    <div class="section-header">
+                        <div class="section-num">1</div>
+                        <h2 class="section-title">Executive Summary</h2>
+                    </div>
+
+                    <p><strong>Carebot s.r.o.</strong> je česká AI medtech firma vyvíjející platformu <strong>Horizon</strong> — integrovaný AI asistent pro radiologii pokrývající sedm diagnostických modalit (CXR, MSK XR, mamografie, CT hlavy, CT plic, bone age, měření páteře). Společnost se nachází ve fázi <strong>škálování (scaling stage)</strong> a hledá <strong>1,5 mil. EUR bridge round</strong> při pre-money valuaci <strong>25 mil. EUR</strong>. Investiční nástroj: <strong>equity</strong> (podíl v s.r.o.). Sektor: <strong>Digital Health / AI Medical Imaging / Diagnostics</strong>. Vertikála: <strong>B2B + B2B2C</strong> (nemocnice + farma).</p>
+
+                    <div style="margin: var(--spacing-lg) 0;">
+                        <span class="badge badge-explore">EXPLORE</span>
+                    </div>
+
+                    <div class="pros-cons">
+                        <div class="card">
+                            <div class="pros-title">Top 3 důvody pro</div>
+                            <ul>
+                                <li><strong>Strategické partnerství s Bristol Myers Squibb</strong> — validovaný pharma go-to-market model s pipeline do 2031, 60+ nemocnic ve fázi rolloutu, potenciál zdvojnásobení MRR přidáním CT plic</li>
+                                <li><strong>Silná pozice v CEE regionu</strong> — 100+ nasazení v 7+ zemích, hluboké PACS/NIS integrace, 40+ peer-reviewed publikací, senzitivita CXR 93,2 %</li>
+                                <li><strong>Příznivý tržní timing</strong> — akvizice Gleameru RadNetem ($270 mil.) vytváří příležitost pro Carebot jako nezávislou evropskou alternativu; trh AI medical imaging roste CAGR 23–35 %</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="cons-title">Top 3 důvody proti</div>
+                            <ul>
+                                <li><strong>Valuace 25 mil. EUR</strong> odpovídá ~25× aktuálního ARR (~1 mil. EUR) — nad mediánem pro scaling stage, oprávněná pouze při splnění agresivního plánu růstu</li>
+                                <li><strong>Vysoká závislost na jednom partnerovi</strong> (BMS tvoří ~60 % contracted MRR) — výpadek by kriticky ohrozil cash flow</li>
+                                <li><strong>Reported MRR výrazně zaostává za plánem</strong> (76,8 tis. EUR vs. plán 110,3 tis. EUR v 02/2026, −30 %) — růst je zatím poháněn spíše kontrakty než reálnými deployments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ══════ 2. TÝM ══════ -->
+                <section id="team">
+                    <div class="section-header">
+                        <div class="section-num">2</div>
+                        <h2 class="section-title">Tým a zakladatelé</h2>
+                    </div>
+
+                    <h3>Daniel Kvak — CTO, co-founder, full-time</h3>
+                    <ul>
+                        <li>PhD v machine learning + onkologie (Masarykova univerzita)</li>
+                        <li>Forbes 30 under 30, ocenění od Pfizer, Roche, Deloitte</li>
+                        <li>Reviewer pro European Radiology (Springer) — prestižní akademický status</li>
+                        <li>Technický mozek produktu, vývoj AI modelů</li>
+                    </ul>
+
+                    <h3>Matěj Misař — CEO, co-founder, full-time</h3>
+                    <ul>
+                        <li>Předchozí kariéra v médiích (moderátor hlavních zpravodajských pořadů)</li>
+                        <li>EY Young Entrepreneur of the Year</li>
+                        <li>Člen AI výboru Ministerstva zdravotnictví ČR</li>
+                        <li>Zodpovědný za sales, partnerství, fundraising</li>
+                    </ul>
+
+                    <h3>Celkový tým a struktura</h3>
+                    <p><strong>~42 lidí (FTE),</strong> z toho 12 v sales/aplikacích, zbytek vývoj + operations. Nově dedikovaná RA&amp;QA manažerka pro regulaci. Aktivně hledají <strong>Head of Sales / CSO</strong> — klíčová pozice pro škálování (nabídka podána jednomu kandidátovi, jednání se třemi dalšími).</p>
+
+                    <p><strong>Advisory board:</strong> Spolupráce s předsedy radiologických společností v CZ, SK, HU, BG. 150 radiologů v klinické síti pro anotace a validaci.</p>
+
+                    <h3>Hodnocení</h3>
+                    <p>Silný founder duo — komplementární profil (deep tech PhD + charismatický sales leader). Riziko: key-man dependency na obou zakladatelích. Klíčový gap: chybí seniorní obchodní leadership (Head of Sales pozice neobsazena).</p>
+
+                    <div class="callout callout-accent">
+                        <div class="callout-title">Referenční názor</div>
+                        <p>Investor Karel Bastl (angel od začátku, 5 let): „Matěj i Daniel jsou extrémně nadaní a pracovití. Absolutně unikátní kombinace. Za ty dva můžu položit ruku do ohně."</p>
+                    </div>
+                </section>
+
+                <!-- ══════ 3. PROBLÉM A ŘEŠENÍ ══════ -->
+                <section id="problem">
+                    <div class="section-header">
+                        <div class="section-num">3</div>
+                        <h2 class="section-title">Problém a řešení</h2>
+                    </div>
+
+                    <h3>Problém</h3>
+                    <p>Radiologická oddělení po celém světě čelí kritickému nedostatku personálu. V EU je 45 % radiologů ve věku 51+, poptávka po diagnostice roste +8 % ročně. 16 z 27 členských států EU je pod průměrem v hustotě radiologů (51–270 na milion obyvatel). UK utratila v roce 2024 £325 mil. za řešení čekacích dob, včetně £216 mil. za soukromou teleradiologii. V ČR dosud chybí plošný monitoring čekacích dob.</p>
+
+                    <h3>Pro koho</h3>
+                    <p>Nemocnice (radiologická oddělení), farmaceutické firmy (onkologické programy), národní zdravotní systémy (screeningové programy).</p>
+
+                    <h3>Jak to řeší dnes</h3>
+                    <p>Manuální čtení snímků jedním radiologem; izolované point solutions od různých vendorů = vysoká IT zátěž, fragmentace workflow.</p>
+
+                    <h3>Řešení Carebotu</h3>
+                    <p>Platforma <strong>Horizon</strong> — jeden vendor, jedna integrace, široké portfolio certifikovaných AI modulů integrovaných přímo do PACS/RIS/NIS. Automatická identifikace patologií na CXR (40+ patologií), fraktur, mamografických lézí, CT nálezů. <strong>Senzitivita 91,1 % vs. 76,2 % u radiologů</strong> na CXR (dle pitch decku, validováno retrospektivní studií v 9 nemocnicích, n = 96 459 CXR). Úspora času u negativních nálezů: −62 % (27,7s AI vs. ~79s manuálně).</p>
+
+                    <h3>Validace problému</h3>
+                    <p>Zdokumentováno ve studiích RCR Workforce Census 2023, NHS England DID (Jan 2025), Brady et al. 2025 (EU radiologist staffing).</p>
+                </section>
+
+                <!-- ══════ 4. PRODUKT ══════ -->
+                <section id="product">
+                    <div class="section-header">
+                        <div class="section-num">4</div>
+                        <h2 class="section-title">Produkt a technologie</h2>
+                    </div>
+
+                    <h3>Fáze produktu</h3>
+                    <p><strong>Production</strong> — certifikované zdravotnické prostředky v klinickém provozu.</p>
+
+                    <h3>Portfolio (platforma Horizon)</h3>
+                    <ul>
+                        <li><strong>Carebot AI CXR</strong> — CE MDR IIa, production, vlajkový produkt (40+ patologií, 93,2 % senzitivita)</li>
+                        <li><strong>Carebot AI Bones</strong> (fraktury) — CE MDR IIa, production</li>
+                        <li><strong>Carebot AI MMG</strong> (mamografie) — certifikace očekávána do 2–3 týdnů (dle callu 10.3.2026)</li>
+                        <li><strong>Horizon CT Head</strong> — white-label (Brainscan), integrace do Horizon, 3–5 placených pilotů podepsáno</li>
+                        <li><strong>Horizon CT Lungs</strong> — interní vývoj + externní integrace, v přípravě</li>
+                        <li><strong>Bone Age, Spine measurement</strong> — certifikované moduly</li>
+                    </ul>
+
+                    <h3>Technologické riziko</h3>
+                    <p>Nízké pro stávající certifikované moduly. Střední pro nové modality (CT). Jde primárně o engineering + certifikační proces, nikoli o průlomovou technologii.</p>
+
+                    <h3>IP</h3>
+                    <p>40+ peer-reviewed publikací. Obchodní tajemství (modely, trénovací data). Žádné patenty zmíněny.</p>
+                    <div class="unverified">
+                        <span class="unverified-icon">⚠️</span>
+                        <span>FTO analýza nezmíněna</span>
+                    </div>
+
+                    <h3>Integrace</h3>
+                    <p>Kompatibilita se všemi hlavními nemocničními systémy v CEE regionu (PACS, RIS, NIS, DICOM viewers). Cloud-first architektura.</p>
+                </section>
+
+                <!-- ══════ 5. TRH ══════ -->
+                <section id="market">
+                    <div class="section-header">
+                        <div class="section-num">5</div>
+                        <h2 class="section-title">Trh — TAM / SAM / SOM</h2>
+                    </div>
+
+                    <h3>TAM — Total Addressable Market</h3>
+                    <div class="unverified">
+                        <span class="unverified-icon">⚠️</span>
+                        <span>Dle pitch decku</span>
+                    </div>
+                    <p><strong>AI medical imaging</strong> = $1,5 mld. (2024) → $4,5 mld. (2029), CAGR 23 % (MarketsandMarkets). Alternativně: $0,75 mld. (2022) → $8,18 mld. (2030), CAGR 35 % (Grand View Research).</p>
+
+                    <h3>Bottom-up TAM kalkulace</h3>
+                    <ul>
+                        <li>~300 000 nemocnic globálně s radiologickým oddělením</li>
+                        <li>Průměrná roční licence AI diagnostiky: ~10 000 EUR / nemocnice / modalita</li>
+                        <li>Při průměru 2 modality: ~6 mld. EUR/rok TAM</li>
+                        <li class="text-muted">⚠️ Horní odhad; reálný attach-rate AI v nemocnicích je dnes &lt;5 %</li>
+                    </ul>
+
+                    <h3>SAM — Serviceable Addressable Market</h3>
+                    <p>(<strong>EU + MENA, dostupné trhy</strong>)</p>
+                    <ul>
+                        <li>~40 000 nemocnic v EU + MENA</li>
+                        <li>Při 2 modalitách × 10 000 EUR = ~800 mil. EUR/rok</li>
+                        <li>Sníženo o penetraci a readiness: ~300–400 mil. EUR/rok</li>
+                    </ul>
+
+                    <h3>SOM — Serviceable Obtainable Market</h3>
+                    <p>(<strong>CEE + rozšířená EU, dosažitelné 2–3 roky</strong>)</p>
+                    <ul>
+                        <li>Carebot aktuálně pokrývá ~200 nasazení v ~100 nemocnicích</li>
+                        <li>Cíl: 1 500 nasazení do Q4/2027 (dle BP)</li>
+                        <li>Při průměrné ceně ~5 000 EUR/nasazení/rok = ~7,5 mil. EUR ARR (realistický SOM)</li>
+                    </ul>
+
+                    <h3>Komentář</h3>
+                    <p>Čísla z decku ($1,5–8,18 mld.) jsou konzistentní s nezávislými zdroji (MarketsandMarkets, Grand View Research). Bottom-up SOM ~7,5 mil. EUR je konzistentní s BP projekcí 15,9 mil. EUR ARR v Q4/2027 — BP je optimističtější, ale řádově v rozmezí.</p>
+                </section>
+
+                <!-- ══════ 6. KONKURENCE ══════ -->
+                <section id="competition">
+                    <div class="section-header">
+                        <div class="section-num">6</div>
+                        <h2 class="section-title">Konkurence</h2>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Konkurent</th>
+                                    <th>Geo</th>
+                                    <th>Funding</th>
+                                    <th>Fáze</th>
+                                    <th>Klíčové features</th>
+                                    <th>Slabina</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Gleamer</strong> (→ RadNet)</td>
+                                    <td>FR/US</td>
+                                    <td class="mono">€27M + $270M akv.</td>
+                                    <td>Akvírován 03/2026</td>
+                                    <td>XR, CT, MMG, MRI; 2 500+ sites, 45 zemí</td>
+                                    <td>Pod americkým vlastníkem → datová suverenita</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Qure.ai</strong></td>
+                                    <td>IN</td>
+                                    <td class="mono">$65M Series D</td>
+                                    <td>Growth/Scale</td>
+                                    <td>CXR, CT neuro, 19 FDA clearances, 4 800+ sites</td>
+                                    <td>Slabší v CEE, globální south focus</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lunit</strong> (+Volpara)</td>
+                                    <td>KR/NZ</td>
+                                    <td class="mono">~$193M</td>
+                                    <td>Public (KRX)</td>
+                                    <td>CXR, breast; 10 000+ sites, 65+ zemí</td>
+                                    <td>Omezuje se na CXR + breast, škrty v EU org</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Milvue</strong></td>
+                                    <td>FR</td>
+                                    <td class="mono">€8M Series A</td>
+                                    <td>Early growth</td>
+                                    <td>FDA clearance TechCare Trauma, CE IIa</td>
+                                    <td>Menší scale, omezené modality</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AZmed</strong></td>
+                                    <td>FR</td>
+                                    <td class="mono">€15M Series A</td>
+                                    <td>Growth</td>
+                                    <td>FDA + CE frakturní detekce; 300+ center, 21 zemí</td>
+                                    <td>Pouze MSK / fraktury</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Oxipit</strong> (→ Sectra)</td>
+                                    <td>LT</td>
+                                    <td class="mono">$4,9M; akvírován</td>
+                                    <td>Akvírován</td>
+                                    <td>ChestLink CE IIb autonomous CXR</td>
+                                    <td>Akvírován, omezený na CXR niche</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Odlišení Carebotu</h3>
+                    <ol>
+                        <li><strong>Nejširší platforma v CEE regionu</strong> — multi-modality suite + rollout engine v jedné integraci</li>
+                        <li><strong>Pharma go-to-market model</strong> — unikátní distribuční kanál (BMS platí licence za nemocnice)</li>
+                        <li><strong>Nejsilnější klinická evidence v regionu</strong> — 40+ peer-reviewed studií, 93,2 % senzitivita CXR</li>
+                    </ol>
+
+                    <h3>Je diferenciace udržitelná?</h3>
+                    <p>Částečně. Distribuční moat v CEE je reálný (integrace PACS/NIS + vztahy s klíčovými nemocnicemi). Pharma model je replikovatelný, ale Carebot má first-mover advantage s BMS. Technologická diferenciace je omezená — konkurence může vyvinout srovnatelné modely. <strong>Hlavní moat = platforma + distribuce + pharma vztahy.</strong></p>
+                </section>
+
+                <!-- ══════ 7. BUSINESS MODEL ══════ -->
+                <section id="business-model">
+                    <div class="section-header">
+                        <div class="section-num">7</div>
+                        <h2 class="section-title">Business model a unit economics</h2>
+                    </div>
+
+                    <h3>Revenue model</h3>
+                    <p>Kombinace dvou kanálů:</p>
+                    <ol>
+                        <li><strong>Direct SaaS</strong> — nemocnice platí měsíční/roční licenci za modality (CXR, Bones, MMG atd.)</li>
+                        <li><strong>Pharma model (Carebot Evidence)</strong> — farmaceutické firmy platí licence za nemocnice v rámci klinických programů (BMS) + NIS studie (jednorázové revenue, 100 000 EUR / nemocnice)</li>
+                    </ol>
+
+                    <h3>Cenový bod</h3>
+                    <div class="unverified">
+                        <span class="unverified-icon">⚠️</span>
+                        <span>Přesné pricing nebylo sdíleno. Z BP lze odvodit průměrné MRR/nemocnice:</span>
+                    </div>
+                    <ul>
+                        <li>Q4/2025: MRR 74k EUR / 69 platících = ~1 073 EUR/měsíc/nemocnice</li>
+                        <li>Trend klesá: MRR per hospital padá z ~1 073 (Q4/25) na ~828 EUR (Q4/26 dle BP)</li>
+                    </ul>
+
+                    <h3>Unit economics</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metrika</th>
+                                    <th>Hodnota</th>
+                                    <th>Benchmark</th>
+                                    <th>Hodnocení</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MRR/nemocnice</td>
+                                    <td class="mono">~1 000 EUR</td>
+                                    <td class="mono">500–3 000 EUR</td>
+                                    <td>Průměr</td>
+                                </tr>
+                                <tr>
+                                    <td>Gross margin (z ÚZ 2025)</td>
+                                    <td class="mono">~47 %</td>
+                                    <td class="mono">50–70 %</td>
+                                    <td><span class="badge badge-medium">Pod benchmark</span></td>
+                                </tr>
+                                <tr>
+                                    <td>CAC</td>
+                                    <td class="mono">⚠️ Neznámo</td>
+                                    <td>—</td>
+                                    <td>Nedostatek dat</td>
+                                </tr>
+                                <tr>
+                                    <td>LTV</td>
+                                    <td class="mono">⚠️ Neznámo</td>
+                                    <td>—</td>
+                                    <td>Nedostatek dat</td>
+                                </tr>
+                                <tr>
+                                    <td>Churn rate</td>
+                                    <td class="mono">⚠️ Neznámo</td>
+                                    <td class="mono">&lt;10 % ročně</td>
+                                    <td>Nedostatek dat</td>
+                                </tr>
+                                <tr>
+                                    <td>Sales cycle</td>
+                                    <td class="mono">6–12 měsíců</td>
+                                    <td class="mono">6–18 měsíců</td>
+                                    <td>V normě</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>⚠️ Kritická poznámka k marži</h3>
+                    <p>COGS / Total revenue roste z 49 % (01/2026) na 73 % (12/2026 dle BP). Hlavní driver: cloud, sales commissions, služby. Toto je varovný signál — při škálování by se marže měla zlepšovat, nikoli zhoršovat.</p>
+                </section>
+
+                <!-- ══════ 8. TRAKCE ══════ -->
+                <section id="traction">
+                    <div class="section-header">
+                        <div class="section-num">8</div>
+                        <h2 class="section-title">Trakce a validace</h2>
+                    </div>
+
+                    <h3>Revenue (2025 ÚZ)</h3>
+                    <p><strong>18 892 tis. CZK (~756 tis. EUR)</strong> — nárůst z 5 902 tis. CZK v 2024 (+220 %)</p>
+
+                    <h3>MRR trend</h3>
+                    <ul>
+                        <li>11/2025: 62 tis. EUR</li>
+                        <li>12/2025: ~75 tis. EUR (dle deck)</li>
+                        <li>02/2026: <strong>76,8 tis. EUR reported / 194,8 tis. EUR contracted</strong></li>
+                        <li>Plan 02/2026: 110,3 tis. EUR → <strong>reported MRR zaostává o 30 % za plánem</strong></li>
+                    </ul>
+
+                    <h3>Struktura MRR (02/2026)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Zdroj</th>
+                                    <th>Reported MRR</th>
+                                    <th>Podíl</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Pharma (BMS)</td>
+                                    <td class="mono">48 000 EUR</td>
+                                    <td>63 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Organic (direct sales)</td>
+                                    <td class="mono">28 800 EUR</td>
+                                    <td>37 %</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Contracted (čeká na onboarding)</strong></td>
+                                    <td class="mono"><strong>+118 000 EUR</strong></td>
+                                    <td>—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Nasazení a geografie</h3>
+                    <ul>
+                        <li><strong>Platící nemocnice:</strong> 69 (Q4/2025), 139 plán (Q1/2026)</li>
+                        <li><strong>Aktivní nasazení:</strong> 155 (Q4/2025), 235 plán (Q1/2026)</li>
+                        <li><strong>Země:</strong> CZ, SK, PL, HU, RO, BG, DE, GR, SE, ES, UAE</li>
+                    </ul>
+
+                    <h3>QoQ růst</h3>
+                    <ul>
+                        <li>+24 % reported</li>
+                        <li>+78 % by byli bez zpoždění BMS onboardingu</li>
+                        <li>+214 % contracted</li>
+                    </ul>
+
+                    <h3>Klinická validace</h3>
+                    <ul>
+                        <li>40+ peer-reviewed publikací (Springer, ESMO, Elsevier, Diagnostics, Biomedicines)</li>
+                        <li>93,2 % senzitivita CXR v nezávislé retrospektivní analýze (Oblastní nemocnice Trutnov, n=500, 44 lézí)</li>
+                        <li>69 prvozáchytů rakoviny plic (BMS pilot, 9 nemocnic ČR, 96 459 CXR) — updatováno na 89</li>
+                        <li>92 % detekce fraktur, outperformed all radiologists, NPV 99 %</li>
+                        <li>−62 % čas reportingu u negativních nálezů</li>
+                    </ul>
+
+                    <h3>Hodnocení</h3>
+                    <p>Trakce je reálná, ale pod plánem. Růst je tažen primárně BMS kontraktem. Organic growth je pomalý. Contracted MRR (194,8k) je silný signál, ale konverze na reported MRR závisí na rychlosti onboardingu nemocnic.</p>
+                </section>
+
+                <!-- ══════ 9. FINANCIALS ══════ -->
+                <section id="financials">
+                    <div class="section-header">
+                        <div class="section-num">9</div>
+                        <h2 class="section-title">Financials a investiční podmínky</h2>
+                    </div>
+
+                    <h3>Investiční podmínky</h3>
+                    <div class="card">
+                        <table class="simple">
+                            <tr>
+                                <td><strong>Pre-money valuace:</strong></td>
+                                <td class="mono">25 mil. EUR</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Seeking:</strong></td>
+                                <td class="mono">1,5 mil. EUR</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Post-money:</strong></td>
+                                <td class="mono">26,5 mil. EUR</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Investiční nástroj:</strong></td>
+                                <td>Equity (podíl v s.r.o.)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>Srovnání valuace</h3>
+                    <ul>
+                        <li>25 mil. EUR / ~1 mil. EUR ARR (reported) = <strong>~25× ARR</strong> → výrazně nad mediánem pro scaling stage (typicky 8–15× ARR)</li>
+                        <li>25 mil. EUR / ~2,3 mil. EUR ARR (contracted) = <strong>~11× ARR</strong> → v normě, pokud se contracted konvertuje</li>
+                        <li>Gleamer akvírován za ~$270M / ~$30M ARR = ~9× ARR</li>
+                        <li>Qure.ai valuace ~$264M / ~$65M revenue = ~4× revenue</li>
+                    </ul>
+
+                    <div class="unverified">
+                        <span class="unverified-icon">⚠️</span>
+                        <span><strong>Valuace je na horní hranici</strong> a oprávněná pouze pokud: (1) Contracted MRR se konvertuje do Q2/2026, (2) BMS partnerství se rozšíří dle plánu, (3) Polský tender je úspěšný</span>
+                    </div>
+
+                    <h3>Cap table (po konverzi DENDIS Ventures, k 11.3.2026)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Investor</th>
+                                    <th>Podíl</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Daniel Kvak</td><td class="mono">28,68 %</td></tr>
+                                <tr><td>Matěj Misař</td><td class="mono">26,46 %</td></tr>
+                                <tr><td>ERGOAPEX LIMITED</td><td class="mono">8,47 %</td></tr>
+                                <tr><td>START GUIDE ONE a.s.</td><td class="mono">4,96 %</td></tr>
+                                <tr><td>Pilulka Lab s.r.o.</td><td class="mono">4,95 %</td></tr>
+                                <tr><td>Eva Janečková</td><td class="mono">4,69 %</td></tr>
+                                <tr><td>PAPER Media s.r.o.</td><td class="mono">4,68 %</td></tr>
+                                <tr><td>Dynumerics a.s.</td><td class="mono">4,24 %</td></tr>
+                                <tr><td>DENDIS Ventures s.r.o.</td><td class="mono">3,15 %</td></tr>
+                                <tr><td>GAIN Ventures s.r.o.</td><td class="mono">2,91 %</td></tr>
+                                <tr><td>Mediclinic a.s.</td><td class="mono">2,91 %</td></tr>
+                                <tr><td>Roman Trachta</td><td class="mono">2,12 %</td></tr>
+                                <tr><td>Lukáš Kopčaj</td><td class="mono">1,79 %</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-small text-secondary">Founders drží ~55 % → dostatečná motivace.</p>
+
+                    <h3>Finanční výkazy (ÚZ 2025, v tis. CZK)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Položka</th>
+                                    <th>Hodnota</th>
+                                    <th>Komentář</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Tržby</strong></td>
+                                    <td class="mono">18 892</td>
+                                    <td class="text-small text-secondary">(předchozí rok: 5 902) — růst +220 %</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Výkonová spotřeba</strong></td>
+                                    <td class="mono">35 529</td>
+                                    <td class="text-small text-secondary">(služby 34 040) — ⚠️ 188 % tržeb</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Osobní náklady</strong></td>
+                                    <td class="mono">6 979</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Provozní výsledek</strong></td>
+                                    <td class="mono">−12 695</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finanční výsledek</strong></td>
+                                    <td class="mono">+1 150</td>
+                                    <td class="text-small text-secondary">(ostatní finanční výnosy 1 304 — kurzové rozdíly?)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Výsledek hospodaření</strong></td>
+                                    <td class="mono">−11 545</td>
+                                    <td class="text-small text-secondary">(předchozí rok: −14 496) — ztráta se snižuje</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cash (k 31.12.2025)</strong></td>
+                                    <td class="mono">9 294</td>
+                                    <td class="text-small text-secondary">(~372 tis. EUR)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vlastní kapitál</strong></td>
+                                    <td class="mono">18 803</td>
+                                    <td class="text-small text-secondary">(kladný — díky ážiu 51 107 tis.)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kumulovaná ztráta</strong></td>
+                                    <td class="mono">−20 896</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cizí zdroje</strong></td>
+                                    <td class="mono">15 679</td>
+                                    <td class="text-small text-secondary">(dlouhodobé závazky 10 856)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pre-contracted cash</strong></td>
+                                    <td class="mono">~743 tis. EUR</td>
+                                    <td class="text-small text-secondary">(BMS + granty, splatný 4–6 měsíců)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Burn a runway</h3>
+                    <ul>
+                        <li><strong>Burn rate:</strong> ~150–180 tis. EUR/měsíc (odhad z BP Q1/2026: 641 tis. EUR / Q = ~214 tis./měs)</li>
+                        <li><strong>Runway bez investice:</strong> Cash 372 tis. EUR + příjmy → ~2–3 měsíce → <span class="badge badge-critical">URGENT</span> (Pozn.: founderové mají se stávajícími investory domluvený záložní plán ve formě půjčky; přesné podmínky GA neznámé ⚠️)</li>
+                    </ul>
+
+                    <h3>Use of funds (1,5 mil. EUR bridge)</h3>
+                    <ul>
+                        <li>Akcelerace onboardingu BMS nemocnic</li>
+                        <li>Posílení sales a rollout týmu</li>
+                        <li>Cashflow bridge do uzavření velkého kola (10 mil. EUR)</li>
+                        <li class="text-muted">⚠️ Neobsahuje prostředky na akvizici CT Head (ta je vázána na velké kolo)</li>
+                    </ul>
+
+                    <h3>Plán dalších kol</h3>
+                    <ul>
+                        <li><strong>Velké kolo:</strong> 10 mil. EUR při valuaci 50 mil. EUR, timeline 6–12 měsíců</li>
+                        <li><strong>Use of funds:</strong> 50 % akvizice CT Head (2M cash + 3M share swap), 30 % international rollout, 20 % pharma scaling + Evidence</li>
+                        <li>Hledání lead investora probíhá, zatím žádný potvrzený lead</li>
+                    </ul>
+                </section>
+
+                <!-- ══════ 9b. EXIT ANALÝZA ══════ -->
+                <section id="exit-analysis">
+                    <div class="section-header">
+                        <div class="section-num">9b</div>
+                        <h2 class="section-title">Exit analýza a návratnost investice</h2>
+                    </div>
+
+                    <h3>A) Srovnávací exit analýza</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Startup</th>
+                                    <th>Sektor</th>
+                                    <th>Exit rok</th>
+                                    <th>Exit typ</th>
+                                    <th>Exit valuace</th>
+                                    <th>Revenue</th>
+                                    <th>Multiple</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gleamer</td>
+                                    <td>Radiology AI</td>
+                                    <td>2026</td>
+                                    <td>M&amp;A (RadNet)</td>
+                                    <td class="mono">$270M</td>
+                                    <td class="mono">~$30M ARR</td>
+                                    <td class="mono">~9×</td>
+                                </tr>
+                                <tr>
+                                    <td>Volpara → Lunit</td>
+                                    <td>Breast AI</td>
+                                    <td>2024</td>
+                                    <td>M&amp;A</td>
+                                    <td class="mono">$193M</td>
+                                    <td class="mono">~$40M</td>
+                                    <td class="mono">~5×</td>
+                                </tr>
+                                <tr>
+                                    <td>Kheiron → RadNet</td>
+                                    <td>Breast AI</td>
+                                    <td>2024</td>
+                                    <td>M&amp;A (fire sale)</td>
+                                    <td class="mono">~$1M</td>
+                                    <td>Minimal</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Qure.ai</td>
+                                    <td>Radiology AI</td>
+                                    <td>2024 (funding)</td>
+                                    <td>Series D</td>
+                                    <td class="mono">$264M val</td>
+                                    <td class="mono">~$65M</td>
+                                    <td class="mono">~4×</td>
+                                </tr>
+                                <tr>
+                                    <td>Oxipit → Sectra</td>
+                                    <td>CXR autonomy</td>
+                                    <td>2026</td>
+                                    <td>M&amp;A</td>
+                                    <td>Undisclosed</td>
+                                    <td>Small</td>
+                                    <td>Unknown</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-small">Realistické rozmezí exit multiplů: <strong>5–10× ARR</strong> pro radiology AI s prokázanou trakcí a CE/FDA certifikací.</p>
+
+                    <h3>B) Zpětná kalkulace GA returnu</h3>
+                    <div class="callout callout-warning">
+                        <strong>⚠️ Upozornění:</strong> Níže uvedený výpočet je čistě ilustrativní příklad. Nezakládá se na skutečné výši investice GA do tohoto kola, která dosud nebyla stanovena. Slouží pouze k demonstraci mechaniky návratnosti při různých scénářích exitu a k posouzení, zda valuace dává smysl z pohledu potenciálního returnu. Skutečná čísla se budou lišit podle finální výše GA ticketu, podmínek investice a míry diluci v následných kolech.
+                    </div>
+                    <p class="text-small">Vstupní parametry (ilustrativní příklad):</p>
+                    <ul class="text-small">
+                        <li>Příklad GA ticket: 200 000 EUR (ilustrativní — skutečný tiket bude stanoven dle rozhodnutí GA)</li>
+                        <li>Post-money: 26 500 000 EUR</li>
+                        <li>Ilustrativní GA podíl: 200 000 / 26 500 000 = 0,755 %</li>
+                        <li>Odhadovaná diluci v dalších kolech: min. 2 kola (velké kolo 10M + případné další), diluci ~40–50 % celkem</li>
+                        <li>Ilustrativní GA podíl při exitu: ~0,755 % × (1 − 0,45) = ~0,415 %</li>
+                    </ul>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scénář</th>
+                                    <th>Cílový return</th>
+                                    <th>GA potřebuje z exitu</th>
+                                    <th>Potřebná exit valuace</th>
+                                    <th>Potřebný ARR (8×)</th>
+                                    <th>Roky</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Minimum (3×)</td>
+                                    <td class="mono">600 000 EUR</td>
+                                    <td class="mono">600 000 EUR</td>
+                                    <td class="mono">144,6 mil. EUR</td>
+                                    <td class="mono">18,1 mil. EUR</td>
+                                    <td>4–5</td>
+                                </tr>
+                                <tr>
+                                    <td>Cílový (10×)</td>
+                                    <td class="mono">2 000 000 EUR</td>
+                                    <td class="mono">2 000 000 EUR</td>
+                                    <td class="mono">481,9 mil. EUR</td>
+                                    <td class="mono">60,2 mil. EUR</td>
+                                    <td>6–7</td>
+                                </tr>
+                                <tr>
+                                    <td>Home run (25×)</td>
+                                    <td class="mono">5 000 000 EUR</td>
+                                    <td class="mono">5 000 000 EUR</td>
+                                    <td class="mono">1 204,8 mil. EUR</td>
+                                    <td class="mono">150,6 mil. EUR</td>
+                                    <td>8+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>C) Profil firmy při exitu — 3× scénář (minimum)</h3>
+                    <ul>
+                        <li>ARR: 18 mil. EUR</li>
+                        <li>YoY growth: &gt;40 %</li>
+                        <li>Gross margin: &gt;60 %</li>
+                        <li>Počet nemocnic: &gt;2 000</li>
+                        <li>Trhy: CEE + DACH + Nordics + Iberia</li>
+                        <li>Tým: 80–120 lidí</li>
+                        <li>Časový horizont: 4–5 let</li>
+                    </ul>
+                    <p class="text-small">Dosažitelné. Carebot BP projektuje ARR 15,9 mil. EUR už v Q4/2027, tj. za ~2 roky. Vyžaduje splnění BP.</p>
+
+                    <h3>D) Profil firmy při exitu — 10× scénář (cílový)</h3>
+                    <ul>
+                        <li>ARR: 60 mil. EUR</li>
+                        <li>YoY growth: &gt;50 %</li>
+                        <li>Gross margin: &gt;65 %</li>
+                        <li>Počet nemocnic: &gt;5 000</li>
+                        <li>Trhy: Pan-EU + MENA + APAC</li>
+                        <li>Tým: 200+ lidí</li>
+                        <li>Časový horizont: 6–7 let</li>
+                    </ul>
+                    <p class="text-small">Velmi ambiciózní. BP projekce ARR 87 mil. v 2029 by to technicky umožnila, ale BP předpokládá téměř bezchybnou exekuci.</p>
+
+                    <h3>E) Souhrnné hodnocení dosažitelnosti</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scénář</th>
+                                    <th>Exit valuace</th>
+                                    <th>Potřebný ARR</th>
+                                    <th>Pravděpodobnost</th>
+                                    <th>Komentář</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3× (minimum)</td>
+                                    <td class="mono">~145 mil. EUR</td>
+                                    <td class="mono">~18 mil. EUR</td>
+                                    <td>Střední</td>
+                                    <td class="text-small">Dosažitelné při splnění BP</td>
+                                </tr>
+                                <tr>
+                                    <td>10× (cílový)</td>
+                                    <td class="mono">~482 mil. EUR</td>
+                                    <td class="mono">~60 mil. EUR</td>
+                                    <td>Nízká</td>
+                                    <td class="text-small">Vyžaduje agresivní expanzi mimo CEE</td>
+                                </tr>
+                                <tr>
+                                    <td>25× (home run)</td>
+                                    <td class="mono">~1,2 mld. EUR</td>
+                                    <td class="mono">~150 mil. EUR</td>
+                                    <td>Nerealistické</td>
+                                    <td class="text-small">V sektoru neexistují srovnatelné exity</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Závěrečné hodnocení dealu</h3>
+                    <p>Investice při valuaci 25 mil. EUR dává smysl, <strong>POKUD se contracted MRR konvertuje na reported MRR v Q2/2026</strong> a BMS partnerství se rozšíří dle plánu. Při optimistickém, ale dosažitelném scénáři (exit při ~20 mil. EUR ARR za 8× multiple = ~160 mil. EUR) může GA dosáhnout <strong>3–4× return za 4–5 let.</strong> Pro vyšší returny je zásadní, zda Carebot dokáže expandovat mimo CEE a stát se relevantním celoevropským hráčem.</p>
+
+                    <h3>Doporučená valuace</h3>
+                    <p>Valuace 25 mil. EUR představuje ~25× aktuálního reported ARR (~1 mil. EUR), což je <strong>nad horní hranicí tržního standardu</strong> pro scaling-stage medtech/SaaS v CEE (typicky 8–15× ARR). Při contracted ARR (~2,3 mil. EUR) vychází ~11× ARR, což je přijatelnější, ale zahrnuje předpoklad konverze kontraktů na reálné revenue.</p>
+
+                    <p>Pro srovnání: Gleamer byl akvírován za ~9× ARR, Qure.ai je oceněna na ~4× revenue. Carebot nemá srovnatelný scale ani globální footprint — jeho premium je odůvodněna růstovým potenciálem a BMS partnerstvím, nikoli aktuální trakcí.</p>
+
+                    <div class="callout" style="border-left-color: var(--color-accent);">
+                        <div class="callout-title" style="color: var(--color-accent);">Doporučení GA pro valuaci</div>
+
+                        <p><strong>Vyjednat nižší valuaci v rozmezí 15–20 mil. EUR pre-money.</strong></p>
+                        <p>Doporučujeme argumentovat, že reported ARR ~1 mil. EUR při 12× násobku dává valuaci ~12 mil. EUR. S přirážkou za BMS partnerství, platformní přístup a 50% diskont k velkému kolu je obhajitelné rozmezí <strong>15–20 mil. EUR pre-money</strong>. Toto by odpovídalo 7–10× contracted ARR — stále generózní, ale pokrývající rizika investora.</p>
+                    </div>
+
+                    <p><strong>Souhrnný verdikt:</strong> Carebot je legitimní investiční příležitost s reálnou trakcí a unikátním positioning v CEE. Valuace 25 mil. EUR je však na horní hranici a nereflektuje aktuální rizika (MRR pod plánem, závislost na BMS, neuzavřené velké kolo). Doporučujeme vyjednat valuaci v rozmezí <strong>15–20 mil. EUR</strong>. Při nižší valuaci je deal atraktivní — Carebot hraje ve správném sektoru, ve správný čas, se silným partnerstvím.</p>
+                </section>
+
+                <!-- ══════ 10. REGULACE ══════ -->
+                <section id="regulation">
+                    <div class="section-header">
+                        <div class="section-num">10</div>
+                        <h2 class="section-title">Regulace a certifikace</h2>
+                    </div>
+
+                    <h3>MDR klasifikace a certifikace</h3>
+                    <ul>
+                        <li><strong>Třída:</strong> IIa (diagnostický software)</li>
+                        <li><strong>Certifikované produkty:</strong> Carebot AI CXR (CE MDR IIa), Carebot AI Bones (CE MDR IIa)</li>
+                        <li><strong>V procesu:</strong> Carebot AI MMG (certifikace ~2–3 týdny od 10.3.2026)</li>
+                        <li><strong>White-label:</strong> CT Head (Brainscan, CE certifikováno), CT Lungs (v přípravě)</li>
+                    </ul>
+
+                    <h3>FDA status</h3>
+                    <p>Carebot <strong>nemá FDA clearance</strong> a zatím nepodal žádost. Strategie je primárně EU/CEE market s postupnou expanzí. FDA by bylo relevantní až při ambici vstoupit na US trh — pravděpodobně v horizontu 3+ let, pokud vůbec.</p>
+
+                    <h3>AI Act implikace</h3>
+                    <p>AI software pro diagnostiku spadá do kategorie <strong>High-Risk AI System</strong> dle EU AI Act. Carebot bude muset splnit dodatečné požadavky na transparentnost, human oversight a risk management. Jako držitel CE MDR IIa certifikace je v lepší výchozí pozici než necertifikovaní konkurenti.</p>
+
+                    <h3>Regulatorní riziko</h3>
+                    <p>Střední. Hlavní riziko není v certifikaci (tu Carebot zvládá), ale v potenciálních změnách úhradových mechanismů v jednotlivých zemích. Bez centrální EU úhrady je adoption závislá na lokálních rozhodnutích nemocnic a pojišťoven.</p>
+                </section>
+
+                <!-- ══════ 11. RIZIKA ══════ -->
+                <section id="risks">
+                    <div class="section-header">
+                        <div class="section-num">11</div>
+                        <h2 class="section-title">Rizika</h2>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kategorie</th>
+                                    <th>Riziko</th>
+                                    <th>Závažnost</th>
+                                    <th>Mitigace</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Koncentrace</strong></td>
+                                    <td>BMS = ~60 % contracted MRR; výpadek BMS by znamenal cash flow crisis</td>
+                                    <td><span class="badge badge-critical">Kritické</span></td>
+                                    <td>Diverzifikace pharma pipeline (Pfizer, Novartis v jednání), organic sales growth</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MRR konverze</strong></td>
+                                    <td>Contracted ≠ reported; 118k EUR čeká na onboarding, konverze závisí na nemocnicích</td>
+                                    <td><span class="badge badge-high">Vysoké</span></td>
+                                    <td>Dedikovaný rollout tým, BMS push na nemocnice, paralelní onboarding</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Runway</strong></td>
+                                    <td>2–3 měsíce bez investice; závislost na uzavření bridge round</td>
+                                    <td><span class="badge badge-critical">Kritické</span></td>
+                                    <td>Záložní půjčka od stávajících investorů (podmínky neznámé), pre-contracted cash ~743k EUR</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Valuace</strong></td>
+                                    <td>25M EUR = ~25× reported ARR; nad benchmarkem, down-round riziko</td>
+                                    <td><span class="badge badge-high">Vysoké</span></td>
+                                    <td>Vyjednat 15–20M EUR; contracted ARR potvrzuje potenciál</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Key-man</strong></td>
+                                    <td>Závislost na 2 zakladatelích (Kvak + Misař), chybí CSO</td>
+                                    <td><span class="badge badge-medium">Střední</span></td>
+                                    <td>Nábor Head of Sales probíhá, advisory board rozšiřován</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Konkurence</strong></td>
+                                    <td>Gleamer (RadNet) s $270M war chest, Qure.ai expanduje do EU</td>
+                                    <td><span class="badge badge-medium">Střední</span></td>
+                                    <td>CEE moat, EU data sovereignty advantage, pharma model diferenciace</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Marže</strong></td>
+                                    <td>Gross margin ~47 % (2025), COGS/revenue roste v BP na 73 %</td>
+                                    <td><span class="badge badge-medium">Střední</span></td>
+                                    <td>Scale by mělo zlepšit unit economics; nutná revize COGS struktury</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Regulace</strong></td>
+                                    <td>EU AI Act = additional compliance burden; žádná FDA</td>
+                                    <td><span class="badge badge-low">Nízké</span></td>
+                                    <td>Existující CE MDR IIa certifikace, dedikovaná RA&amp;QA manažerka</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>IP</strong></td>
+                                    <td>Žádné patenty, žádná FTO analýza</td>
+                                    <td><span class="badge badge-low">Nízké</span></td>
+                                    <td>V sektoru AI diagnostiky jsou patenty méně relevantní; 40+ publikací vytváří prior art</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ══════ 12. DALŠÍ KROKY ══════ -->
+                <section id="next-steps">
+                    <div class="section-header">
+                        <div class="section-num">12</div>
+                        <h2 class="section-title">Další kroky</h2>
+                    </div>
+
+                    <h3>Doporučené další kroky</h3>
+                    <ol>
+                        <li>Vyžádat itemizovaný přehled faktur za posledních 12 měsíců pro ověření MRR</li>
+                        <li>Clarification call s founderem k BP předpokladům (10M investice, COGS růst, MRR/hospital pokles)</li>
+                        <li>Právní review BMS smlouvy (alespoň klíčové podmínky: exkluzivita, termination clauses)</li>
+                        <li>Ověřit status polského tendru (deadline 27.3.2026 — měl by být znám výsledek)</li>
+                        <li>JIC Fund má zájem se podívat — koordinace s Alešem pro potenciálně větší GA tiket</li>
+                        <li>Rozhodnutí o ticketu: bridge round deadline konec měsíce (03/2026) — ⚠️ již po termínu, ověřit aktuální stav</li>
+                    </ol>
+
+                    <h3>Doporučení pro GA zapojení</h3>
+                    <p>Investoři se zkušenostmi v healthcare/medtech, SaaS business modelech, nebo CEE expanzi. Karel Bastl a Miloš Dendis (stávající investoři) jako referenční body.</p>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <div class="footer-logo">Garage Angels</div>
+        <div class="footer-date">2. dubna 2026</div>
+        <div class="footer-disclaimer">
+            <strong>Interní dokument — pouze pro členy GA syndikátu</strong><br>
+            Toto memorandum obsahuje soukromé informace. Nesmí být šířeno bez souhlasu Garage Angels.
+        </div>
+    </footer>
+
+    <!-- ═══════════════ SCRIPTS ═══════════════ -->
+    <script>
+        // Navigation
+        const navToggle = document.getElementById('navToggle');
+        const sidebar = document.getElementById('sidebar');
+        const editToggle = document.getElementById('editToggle');
+        const exportBtn = document.getElementById('exportBtn');
+
+        navToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Scroll spy
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -80% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Edit mode
+        const params = new URLSearchParams(window.location.search);
+        const editMode = params.get('edit') === 'garageangels';
+
+        if (editMode) {
+            document.body.classList.add('edit-mode');
+            editToggle.setAttribute('data-edit', 'true');
+            document.querySelectorAll('p, h3, h4, li').forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+                el.classList.add('editable');
+            });
+        }
+
+        editToggle.addEventListener('click', () => {
+            const isEdit = editToggle.getAttribute('data-edit') === 'true';
+            if (isEdit) {
+                saveToLocalStorage();
+                window.location.href = window.location.pathname;
+            } else {
+                window.location.href = window.location.pathname + '?edit=garageangels';
+            }
+        });
+
+        function saveToLocalStorage() {
+            const data = { timestamp: new Date().toISOString(), content: [] };
+            document.querySelectorAll('p, h3, h4, li').forEach((el, idx) => {
+                data.content.push({ id: idx, tag: el.tagName, text: el.innerText });
+            });
+            localStorage.setItem('carebot-memo-edits', JSON.stringify(data));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('carebot-memo-edits');
+            if (!saved) return;
+            const data = JSON.parse(saved);
+            const elements = document.querySelectorAll('p, h3, h4, li');
+            data.content.forEach((item, idx) => {
+                if (elements[idx]) elements[idx].innerText = item.text;
+            });
+        }
+
+        exportBtn.addEventListener('click', () => {
+            const data = { title: 'Carebot s.r.o. — Investiční memorandum', date: '2. dubna 2026', content: {} };
+            document.querySelectorAll('section[id]').forEach(section => {
+                const id = section.id;
+                data.content[id] = { body: section.innerText };
+            });
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'carebot-memo-' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        if (editMode) loadFromLocalStorage();
+    </script>
+</body>
+</html>
