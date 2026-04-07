@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Příprava na schůzky — Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --red: #ef4444;
+            --red-bg: #fef2f2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 14px;
+        }
+        .nav-logo span {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+        .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--gray-200);
+        }
+        .nav-section {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+        }
+        .nav-back {
+            font-size: 13px;
+            color: var(--gray-500);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--accent); }
+
+        .edit-toggle {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .edit-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* EDIT BAR */
+        .edit-bar {
+            display: none;
+            position: fixed;
+            bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            background: var(--gray-900);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .edit-bar.visible { display: flex; }
+        .edit-bar button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .edit-bar .btn-cancel {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent-light);
+            outline-offset: 4px;
+            border-radius: 4px;
+            cursor: text;
+        }
+        body.editing [data-editable]:focus {
+            outline: 2px solid var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 0 48px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner { max-width: 720px; }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .hero .subtitle {
+            font-size: 17px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* MEETINGS GRID */
+        .section { padding: 48px 0 64px; }
+        .section-alt { background: var(--gray-50); }
+
+        .meetings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .meeting-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .meeting-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .meeting-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .meeting-icon {
+            width: 40px; height: 40px;
+            background: var(--accent-bg);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+
+        .meeting-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--amber-bg);
+            color: var(--amber);
+        }
+
+        .meeting-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.3;
+        }
+
+        .meeting-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .meeting-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .meeting-date {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .meeting-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 40px 0 28px;
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 100px 0 40px; }
+            .meetings-grid { grid-template-columns: 1fr; }
+            .stats { gap: 24px; }
+            .edit-bar { left: 16px; right: 16px; transform: none; border-radius: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <a href="../projects/" class="nav-logo">
+                <div class="nav-logo-icon">GA</div>
+                <span>Garage Angels</span>
+            </a>
+            <div class="nav-divider"></div>
+            <span class="nav-section">Příprava na schůzky</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+            <a href="../projects/" class="nav-back">Zpět na projekty</a>
+            <button class="edit-toggle" onclick="toggleEdit()">Upravit texty</button>
+        </div>
+    </div>
+</nav>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar">
+    <span>Režim úprav aktivní</span>
+    <button onclick="saveEdits()">Uložit změny</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="section-label">Garage Angels</div>
+            <h1 data-editable="meetings-hero-title">Příprava na schůzky</h1>
+            <p class="subtitle" data-editable="meetings-hero-desc">Interní briefing dokumenty pro přípravu na schůzky s potenciálními investory, foundery a partnery.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Celkem příprav</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MEETINGS LIST -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="meetings-grid">
+
+            <!-- RECRUITMENT GA MEMBERS -->
+            <a class="meeting-card" href="2026-04-07-ga-members/">
+                <div class="meeting-top">
+                    <div class="meeting-icon">🤝</div>
+                    <span class="meeting-badge">3 schůzky</span>
+                </div>
+                <div class="meeting-title" data-editable="meeting-ga-members-title">Recruitment nových členů GA</div>
+                <div class="meeting-desc" data-editable="meeting-ga-members-desc">Briefing pro 3 schůzky s potenciálními členy z brněnské cybersecurity scény — Pavel Minařík, Josef Hos, Jan Kořenek.</div>
+                <div class="meeting-footer">
+                    <span class="meeting-date">7. dubna 2026</span>
+                    <span class="meeting-tag">Recruitment</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p><strong>Interní dokumenty — pouze pro členy GA syndikátu</strong></p>
+        <p style="margin-top:8px;">Garage Angels &middot; 2026</p>
+    </div>
+</footer>
+
+<script>
+// ========== GITHUB PERSISTENCE ==========
+const REPO = 'filipensky-spec/portfolio-reporting';
+const DATA_FILE = 'data/meetings-index-edits.json';
+const GH_API = 'https://api.github.com';
+const PAT_KEY = 'ga-github-pat';
+const STORAGE_KEY = 'meetings-index-edits';
+let ghSha = null;
+let isEditing = false;
+let savedState = {};
+
+function getGitHubPAT() { return localStorage.getItem(PAT_KEY); }
+function setGitHubPAT(t) { localStorage.setItem(PAT_KEY, t); }
+
+async function validatePAT(token) {
+    try { return (await fetch(`${GH_API}/user`, { headers: { Authorization: `token ${token}` } })).ok; } catch { return false; }
+}
+
+function showPATDialog() {
+    const existing = document.getElementById('pat-dialog'); if (existing) existing.remove();
+    const d = document.createElement('div'); d.id = 'pat-dialog';
+    d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button><button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button></div></div></div>`;
+    document.body.appendChild(d); document.getElementById('pat-input').focus();
+}
+
+async function submitPAT() {
+    const input = document.getElementById('pat-input'), err = document.getElementById('pat-error'), token = input.value.trim();
+    if (!token) return; input.disabled = true;
+    if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token uložen'); }
+    else { err.style.display = 'block'; input.disabled = false; }
+}
+
+async function fetchFromGitHub() {
+    try {
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json' }, cache: 'no-store' });
+        if (!r.ok) return null; const json = await r.json(); ghSha = json.sha;
+        return JSON.parse(decodeURIComponent(escape(atob(json.content.replace(/\n/g, '')))));
+    } catch { return null; }
+}
+
+async function saveToGitHub(data) {
+    const token = getGitHubPAT(); if (!token) return false;
+    try {
+        if (!ghSha) {
+            const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}` }, cache: 'no-store' });
+            if (r.ok) ghSha = (await r.json()).sha;
+        }
+        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        const body = { message: `Update meetings-index edits ${new Date().toISOString().slice(0,16)}`, content: encoded };
+        if (ghSha) body.sha = ghSha;
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { method: 'PUT', headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        if (r.ok) { ghSha = (await r.json()).content.sha; return true; } return false;
+    } catch { return false; }
+}
+
+let _saveTimer = null;
+function debouncedSave(data) {
+    if (_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(async () => {
+        const ok = await saveToGitHub(data);
+        showToast(ok ? 'Uloženo do GitHubu' : 'Chyba při ukládání — zkontroluj token');
+        _saveTimer = null;
+    }, 1500);
+}
+
+function toggleEdit() {
+    if (isEditing) return;
+    if (!getGitHubPAT()) { showPATDialog(); return; }
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        savedState[el.dataset.editable] = el.innerHTML;
+        el.contentEditable = 'true';
+    });
+    document.querySelectorAll('a.meeting-card').forEach(a => { a.dataset.href = a.href; a.removeAttribute('href'); });
+}
+
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        edits[el.dataset.editable] = el.innerHTML;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    debouncedSave(edits);
+    exitEditMode();
+}
+
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        el.innerHTML = savedState[el.dataset.editable];
+    });
+    exitEditMode();
+}
+
+function exitEditMode() {
+    isEditing = false;
+    document.body.classList.remove('editing');
+    document.getElementById('editBar').classList.remove('visible');
+    savedState = {};
+    document.querySelectorAll('a.meeting-card[data-href]').forEach(a => { a.href = a.dataset.href; a.removeAttribute('data-href'); });
+}
+
+async function loadEdits() {
+    const ghData = await fetchFromGitHub();
+    if (ghData && Object.keys(ghData).length > 0) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData));
+        applyEdits(ghData);
+        return;
+    }
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) { try { applyEdits(JSON.parse(saved)); } catch {} }
+}
+
+function applyEdits(edits) {
+    Object.entries(edits).forEach(([key, val]) => {
+        const el = document.querySelector(`[data-editable="${key}"]`);
+        if (el) el.innerHTML = val;
+    });
+}
+
+function showToast(msg) {
+    const t = document.createElement('div'); t.textContent = msg;
+    Object.assign(t.style, {
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: '#10b981', color: 'white', padding: '10px 24px',
+        borderRadius: '10px', fontSize: '14px', fontWeight: '600',
+        zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+    });
+    document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+}
+
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+loadEdits();
+</script>
+</body>
+</html>

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GA Briefing — Příprava schůzek | Duben 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --accent-mid: #bfdbfe;
+      --green: #10b981;
+      --green-light: #ecfdf5;
+      --green-mid: #a7f3d0;
+      --amber: #f59e0b;
+      --amber-light: #fffbeb;
+      --amber-mid: #fde68a;
+      --red: #ef4444;
+      --red-light: #fef2f2;
+      --red-mid: #fecaca;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--gray-900);
+    }
+    .nav-logo {
+      width: 28px; height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 12px; font-weight: 800;
+    }
+    .nav-meta {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-outline {
+      background: transparent;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+    .btn-outline:hover { background: var(--gray-100); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--gray-500);
+      padding: 7px 10px;
+    }
+    .btn-ghost:hover { background: var(--gray-100); color: var(--gray-700); }
+
+    /* EDIT MODE */
+    body.edit-mode [data-editable] {
+      outline: 2px dashed var(--accent-mid);
+      border-radius: 4px;
+      cursor: text;
+      min-height: 1em;
+    }
+    body.edit-mode [data-editable]:hover {
+      outline-color: var(--accent);
+      background: var(--accent-light);
+    }
+    body.edit-mode [data-editable]:focus {
+      outline: 2px solid var(--accent);
+      background: var(--accent-light);
+    }
+    .edit-bar {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 40px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    body.edit-mode .edit-bar { display: flex; }
+    body.edit-mode nav { top: 36px; }
+    body.edit-mode .page-wrapper { padding-top: 108px; }
+
+    /* LAYOUT */
+    .page-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 88px 40px 80px;
+    }
+
+    /* HEADER */
+    .page-header {
+      margin-bottom: 40px;
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .page-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+    }
+    .page-meta {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin: 32px 0;
+    }
+
+    /* MEETING CARD */
+    .meeting-card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .meeting-card:hover {
+      box-shadow: var(--shadow-lg);
+      transition: box-shadow 0.2s;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card-header-left {
+      flex: 1;
+    }
+    .card-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+    }
+    .card-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+    .card-role {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+
+    /* BADGES */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-red {
+      background: var(--red-light);
+      color: var(--red);
+      border: 1px solid var(--red-mid);
+    }
+    .badge-amber {
+      background: var(--amber-light);
+      color: #92400e;
+      border: 1px solid var(--amber-mid);
+    }
+    .badge-green {
+      background: var(--green-light);
+      color: #065f46;
+      border: 1px solid var(--green-mid);
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .badge-red .badge-dot { background: var(--red); }
+    .badge-amber .badge-dot { background: var(--amber); }
+    .badge-green .badge-dot { background: var(--green); }
+
+    /* META ROW */
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .meta-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* SECTIONS INSIDE CARD */
+    .card-section {
+      margin-bottom: 20px;
+    }
+    .card-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+    }
+    .card-section-body {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.65;
+    }
+
+    /* LISTS */
+    ul.profile-list, ol.talking-list {
+      padding-left: 0;
+      list-style: none;
+    }
+    ul.profile-list li {
+      padding: 5px 0 5px 20px;
+      position: relative;
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+    ul.profile-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gray-400);
+      font-weight: 400;
+    }
+    ol.talking-list {
+      counter-reset: talk;
+    }
+    ol.talking-list li {
+      counter-increment: talk;
+      padding: 8px 0 8px 32px;
+      position: relative;
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.65;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    ol.talking-list li:last-child { border-bottom: none; }
+    ol.talking-list li::before {
+      content: counter(talk);
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 22px; height: 22px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      border-left: 4px solid;
+    }
+    .callout-green {
+      background: var(--green-light);
+      border-color: var(--green);
+      color: #065f46;
+    }
+    .callout-blue {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #1e40af;
+    }
+    .callout-amber {
+      background: var(--amber-light);
+      border-color: var(--amber);
+      color: #78350f;
+    }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--gray-200);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 4px 0 10px 20px;
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 8px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      border: 2px solid #fff;
+    }
+    .timeline-item.highlight::before {
+      background: var(--accent);
+    }
+    .timeline-date {
+      font-weight: 700;
+      color: var(--gray-500);
+      font-size: 12px;
+      display: inline-block;
+      min-width: 90px;
+    }
+    .timeline-text {
+      color: var(--gray-700);
+    }
+
+    /* EXPERTISE TAGS */
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .expertise-tag {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    /* STRATEGIC SUMMARY CARD */
+    .strategy-card {
+      background: #fff;
+      border: 2px solid var(--accent-mid);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+    .strategy-card .section-label {
+      margin-bottom: 6px;
+    }
+    .strategy-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+    }
+
+    /* PRIORITY ACTIONS TABLE */
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    .priority-table thead tr {
+      background: var(--gray-800);
+      color: #fff;
+    }
+    .priority-table thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .priority-table tbody tr {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .priority-table tbody tr:last-child { border-bottom: none; }
+    .priority-table tbody tr:hover { background: var(--gray-50); }
+    .priority-table td {
+      padding: 11px 16px;
+      color: var(--gray-700);
+      vertical-align: top;
+    }
+    .priority-table td:first-child {
+      font-weight: 600;
+      color: var(--gray-900);
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 40px 60px;
+      font-size: 13px;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+      margin-top: 12px;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--gray-900);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* PAT MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 14px;
+      padding: 32px;
+      width: 420px;
+      max-width: calc(100vw - 32px);
+      box-shadow: var(--shadow-lg);
+    }
+    .modal h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--gray-900);
+    }
+    .modal p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+    .modal input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    .modal input:focus { border-color: var(--accent); }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav { padding: 0 16px; }
+      .page-wrapper { padding: 88px 16px 60px; }
+      .meeting-card, .strategy-card { padding: 20px; }
+      .card-header { flex-direction: column; gap: 10px; }
+      .page-title { font-size: 24px; }
+      .meta-row { flex-direction: column; gap: 8px; }
+      .priority-table { font-size: 13px; }
+      .priority-table thead th, .priority-table td { padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- EDIT BAR -->
+<div class="edit-bar">
+  <span>✏️ Režim editace — klikni na text pro úpravu</span>
+  <div style="margin-left: auto; display: flex; gap: 8px;">
+    <button class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.15);" onclick="cancelEdits()">Zrušit</button>
+    <button class="btn" style="background:#fff;color:var(--accent);" onclick="saveEdits()">Uložit změny</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">GA</div>
+    GA Briefing
+  </div>
+  <div class="nav-meta">7. dubna 2026</div>
+  <div class="nav-actions">
+    <button class="btn btn-outline" onclick="toggleEdit()" id="editBtn">✏️ Upravit</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="page-wrapper">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="section-label" data-editable="page-label">Garage Angels — Interní dokument</div>
+    <h1 class="page-title" data-editable="page-title">GA Briefing — Příprava schůzek | Duben 2026</h1>
+    <div class="page-subtitle" data-editable="page-subtitle">Recruitment nových členů GA</div>
+    <div class="page-meta" data-editable="page-meta">Připraveno: 7. dubna 2026 &nbsp;|&nbsp; Cíl: získat potenciální angel investory do syndikátu</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== CARD 1: PAVEL MINAŘÍK ==================== -->
+  <div class="meeting-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-number">Schůzka 1 / 3</div>
+        <h2 class="card-name" data-editable="m1-name">Pavel Minařík</h2>
+        <div class="card-role" data-editable="m1-role">VP of Product Security @ Progress Software &nbsp;·&nbsp; ex-CTO Flowmon Networks</div>
+      </div>
+      <span class="badge badge-red"><span class="badge-dot"></span><span data-editable="m1-badge">Dnes 11:00</span></span>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-icon">📅</span><span data-editable="m1-kdy">Út 7.4. 2026, 11:00–12:00</span></div>
+      <div class="meta-item"><span class="meta-icon">📍</span><span data-editable="m1-kde">Lokál U Caipla, Kozí 3, Brno-střed</span></div>
+      <div class="meta-item"><span class="meta-icon">✉️</span><span data-editable="m1-email">pavel@minarikovi.com</span></div>
+      <div class="meta-item"><span class="meta-icon">🔗</span><a href="https://linkedin.com" style="color:var(--accent);font-size:13px;" data-editable="m1-linkedin">LinkedIn</a></div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Profesní profil</div>
+      <ul class="profile-list">
+        <li><span data-editable="m1-prof1">VP of Product Security @ Progress Software — globální IT firma (NASDAQ: PRGS), Brno office</span></li>
+        <li><span data-editable="m1-prof2">CTO Flowmon Networks — klíčová postava brněnského cybersecurity startupu. Flowmon vznikl jako spin-off z Masarykovy univerzity (2007), vyrostl v globálního hráče v network security monitoringu.</span></li>
+        <li><span data-editable="m1-prof3">Akvizice Progress Software (2021) — Flowmon byl akvírován Progressem, Minařík přešel do senior security leadership role.</span></li>
+        <li><span data-editable="m1-prof4">Ph.D. z Masarykovy univerzity (2013) — disertace "Building a System for Network Security Monitoring" na Fakultě informatiky.</span></li>
+        <li><span data-editable="m1-prof5">18+ let v tech sektoru, progrese od výzkumníka přes CTO po VP v globální korporaci.</span></li>
+      </ul>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Investiční potenciál</div>
+      <div class="card-section-body" data-editable="m1-invest">Jako CTO a klíčový zakladatel Flowmon Networks měl pravděpodobně podíl ve firmě, která byla úspěšně akvírována globálním hráčem. Kombinace exit money + senior executive kompenzace v NASDAQ firmě = solidní finanční zázemí pro angel investing.</div>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">🔗 Konexe s Janem Kořenkem!</div>
+      <span data-editable="m1-konexe">Oba jsou spojeni s Flowmon Networks — Kořenek byl jedním ze čtyř spoluzakladatelů Flowmonu, Minařík byl CTO. Pravděpodobně se dobře znají. Tohle je důležité zmínit při schůzce — pokud oslovujeme oba, je to silný signál pro komunitu.</span>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Historie komunikace</div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="timeline-date">23.1.2025</span> <span class="timeline-text" data-editable="m1-t1">Jirka Tobola ho propojil s GA (hromadný email skupině ex-Flowmon lidí): "všichni za sebou máte ohromné startup úspěchy… rádi bychom Vás pozvali na neformální setkání GA v Garage Wine."</span></div>
+        <div class="timeline-item"><span class="timeline-date">24.1.2025</span> <span class="timeline-text" data-editable="m1-t2">Minařík odpověděl: "zaujalo, prosím o termíny a více info"</span></div>
+        <div class="timeline-item"><span class="timeline-date">26.1.2025</span> <span class="timeline-text" data-editable="m1-t3">Nemůže 3.2., poptává další termín</span></div>
+        <div class="timeline-item"><span class="timeline-date">6.2.2025</span> <span class="timeline-text" data-editable="m1-t4">Souhlasil s termínem 3.3. před GA meetingem</span></div>
+        <div class="timeline-item"><span class="timeline-date">9.2.2025</span> <span class="timeline-text" data-editable="m1-t5">Přijal pozvánku do kalendáře na GA info meeting</span></div>
+        <div class="timeline-item"><span class="timeline-date">28.2.2025</span> <span class="timeline-text" data-editable="m1-t6">ZRUŠIL: "Teď asi není úplně dobrá doba, abych se nějak více zapojil. Odložme to prosím, v tuto chvíli zřejmě na neurčito." Aleš reagoval vstřícně: "můžeme si dát vědět třeba po létě"</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">18.3.2026</span> <span class="timeline-text" data-editable="m1-t7">Re-engagement po roce: Aleš napsal update o změnách v GA (noví investoři, sektorové skupiny, nižší časová náročnost)</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">18.3.2026</span> <span class="timeline-text" data-editable="m1-t8">Rychlá pozitivní reakce! Minařík si rovnou zaknihoval 7.4. a navrhl oběd v centru: "klidně někde v centru, mě vyhovuje v podstatě všechno (kromě pizzy)". Aleš navrhl Lokál U Caipla.</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">💡 Klíčový insight</div>
+      <span data-editable="m1-insight">Minulý rok odmítl kvůli "špatné době" (neurčitě). Teď reagoval rychle a pozitivně — viditelně se situace změnila. Zmínka o sektorových skupinách a nižší časové náročnosti ho zřejmě zaujala. Dnes je hlavní příležitost konvertovat jeho zájem v členství.</span>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Expertíza pro GA</div>
+      <div class="expertise-tags">
+        <span class="expertise-tag" data-editable="m1-ex1">Cybersecurity & network monitoring</span>
+        <span class="expertise-tag" data-editable="m1-ex2">Startup lifecycle — spin-off → akvizice</span>
+        <span class="expertise-tag" data-editable="m1-ex3">Tech due diligence</span>
+        <span class="expertise-tag" data-editable="m1-ex4">Brněnský tech ekosystém (MUNI, Progress, Flowmon)</span>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Talking points</div>
+      <ol class="talking-list">
+        <li><span data-editable="m1-tp1">Adresuj minulé obavy — "Vím, že minulý rok to časově nesedělo. Proto jsme zavedli sektorové skupiny — člověk se vyjadřuje jen k dealům z jeho oblasti, což zásadně snižuje time commitment."</span></li>
+        <li><span data-editable="m1-tp2">Flowmon story jako příklad — "Z akademického spin-offu do akvizice — přesně tohle chceme podpořit v GA. Tvoje zkušenost je přesně to, co naši foundeři potřebují."</span></li>
+        <li><span data-editable="m1-tp3">Cybersecurity skupina — "Stavíme cybersecurity vertikálu. S tvým backgroundem bys byl ideální lead pro hodnocení technické stránky dealů v této oblasti."</span></li>
+        <li><span data-editable="m1-tp4">Propojení s Kořenkem — zmínit, že Honza Kořenek je v procesu zapojení — mohli byste tvořit cybersecurity tandem.</span></li>
+        <li><span data-editable="m1-tp5">Konkrétní další krok — přihláška, přístup do Dealum CRM, pozvánka na další GA meeting.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 2: JOSEF HOS ==================== -->
+  <div class="meeting-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-number">Schůzka 2 / 3</div>
+        <h2 class="card-name" data-editable="m2-name">Josef Hos</h2>
+        <div class="card-role" data-editable="m2-role">COO @ Talsec &nbsp;·&nbsp; ex-CEO Webnode &nbsp;·&nbsp; ex-SVP Avast</div>
+      </div>
+      <span class="badge badge-amber"><span class="badge-dot"></span><span data-editable="m2-badge">Pátek 10:30</span></span>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-icon">📅</span><span data-editable="m2-kdy">Pá 10.4. 2026, 10:30–11:15</span></div>
+      <div class="meta-item"><span class="meta-icon">📍</span><span data-editable="m2-kde">Místo neuvedeno v kalendáři</span></div>
+      <div class="meta-item"><span class="meta-icon">✉️</span><span data-editable="m2-email">josef.hos.cz@gmail.com &nbsp;|&nbsp; josef.hos@seznam.cz</span></div>
+      <div class="meta-item"><span class="meta-icon">🔗</span><a href="https://linkedin.com" style="color:var(--accent);font-size:13px;" data-editable="m2-linkedin">LinkedIn</a></div>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-title">⚠️ Pozor — kolize v kalendáři!</div>
+      <span data-editable="m2-kolize">V 10:00–11:00 máš "Call with founders (Miroslav Novosvetsky)" — překrývá se 30 minut s Hosovou schůzkou (10:30–11:15). Vyřeš prioritu nebo posuň jeden z termínů.</span>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Profesní profil</div>
+      <ul class="profile-list">
+        <li><span data-editable="m2-prof1">COO @ Talsec — brněnský cybersecurity startup (mobilní bezpečnost), €1M funding v 2024.</span></li>
+        <li><span data-editable="m2-prof2">Dříve CEO Webnode AG (2019–2020s) — global website builder, 40M+ uživatelů, 100+ zaměstnanců v Brně. Pod jeho vedením se Webnode stal součástí team.blue (akvizice v prosinci 2020).</span></li>
+        <li><span data-editable="m2-prof3">SVP Product & Operations, Avast Software — senior role v consumer divizi, celosvětové operace.</span></li>
+        <li><span data-editable="m2-prof4">VP Worldwide Sales, AVG Technologies — globální sales leadership v dalším brněnském tech gigantu.</span></li>
+        <li><span data-editable="m2-prof5">Stanford GSB Executive Education — prestižní business vzdělání.</span></li>
+        <li><span data-editable="m2-prof6">25+ let v IT, od webového developera přes management po CEO/COO role.</span></li>
+      </ul>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Investiční potenciál</div>
+      <div class="card-section-body" data-editable="m2-invest">Seniorní pozice ve třech úspěšných tech firmách (AVG — akvíroval Avast za $1.3B; Avast — IPO na Londýnské burze; Webnode — akvizice team.blue). Jako CEO Webnode pravděpodobně equity stake + executive kompenzace. Nyní COO v VC-backed startupu — rozumí investor perspektivě z obou stran.</div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Historie komunikace</div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="timeline-date">23.1.2025</span> <span class="timeline-text" data-editable="m2-t1">Jirka Tobola ho propojil s GA (hromadný email): pozvánka na neformální setkání v Garage Wine.</span></div>
+        <div class="timeline-item"><span class="timeline-date">24.1.2025</span> <span class="timeline-text" data-editable="m2-t2">Hos odpověděl: "díky za možnost, měl bych zájem"</span></div>
+        <div class="timeline-item"><span class="timeline-date">30.1.2025</span> <span class="timeline-text" data-editable="m2-t3">Potvrdil účast 3.2. na setkání v Garage Wine</span></div>
+        <div class="timeline-item"><span class="timeline-date">6.2.2025</span> <span class="timeline-text" data-editable="m2-t4">Součást skupinového emailu o fungování GA</span></div>
+        <div class="timeline-item"><span class="timeline-date">13.2.2025</span> <span class="timeline-text" data-editable="m2-t5">Nabídl termíny: 20.2. nebo 24.2. na JICu (z jeho druhého emailu josef.hos@seznam.cz)</span></div>
+        <div class="timeline-item"><span class="timeline-date">Červenec 2025</span> <span class="timeline-text" data-editable="m2-t6">Aktivně se účastnil plánování GA Monday meetingu (email thread s Janem Hladkým a Karlem Oblukem)</span></div>
+        <div class="timeline-item"><span class="timeline-date">15.8.2025</span> <span class="timeline-text" data-editable="m2-t7">Aleš poslal oficiální přihlášku ke členství GA</span></div>
+        <div class="timeline-item"><span class="timeline-date">1.9.2025</span> <span class="timeline-text" data-editable="m2-t8">Odmítl plné zapojení: "narážím na vlastní kapacitu primárně kvůli Talsecu, který konzumuje téměř vše. Nerad bych jen seděl a nepřispíval. Přemýšlím, jestli nepozdržet plné zapojení a zrevidovat za 6 měsíců."</span></div>
+        <div class="timeline-item"><span class="timeline-date">1.9.2025</span> <span class="timeline-text" data-editable="m2-t9">Aleš reagoval chápavě, zmínil změny ke snížení time commitmentu. Hos nabídl schůzku v pátek na JICu, ale Aleš byl mimo Brno.</span></div>
+        <div class="timeline-item"><span class="timeline-date">30.9.2025</span> <span class="timeline-text" data-editable="m2-t10">Přijal pozvánku na Investorský meetup (6.10., JIC & GA) — stále v kontaktu</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">18.3.2026</span> <span class="timeline-text" data-editable="m2-t11">Re-engagement: Aleš napsal update (noví investoři, sektorové skupiny, nižší časová náročnost)</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">30.3.2026</span> <span class="timeline-text" data-editable="m2-t12">Hos si zaknihoval schůzku na 10.4. přes Superhuman Calendar</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">💡 Klíčový insight</div>
+      <span data-editable="m2-insight">Hos je v GA orbitu už 14 měsíců. V září 2025 explicitně řekl, že chce 6 měsíců pauzu kvůli Talsecu. Teď je to přesně těch 6+ měsíců. Zná fungování GA, chodil na meetingy, komunikoval s klíčovými členy (Hladký, Obluk). Potřebuje slyšet, jak snížená časová náročnost řeší jeho hlavní obavu. Pozor — jeho druhý email je josef.hos@seznam.cz (ne jen gmail).</span>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Expertíza pro GA</div>
+      <div class="expertise-tags">
+        <span class="expertise-tag" data-editable="m2-ex1">SaaS, product management, scaling</span>
+        <span class="expertise-tag" data-editable="m2-ex2">Go-to-market & globální sales</span>
+        <span class="expertise-tag" data-editable="m2-ex3">M&A perspektiva — multiple exits</span>
+        <span class="expertise-tag" data-editable="m2-ex4">Leadership — "people-first" přístup</span>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Talking points</div>
+      <ol class="talking-list">
+        <li><span data-editable="m2-tp1">Adresuj Talsec timing — "V září jsi říkal, že chceš 6 měsíců pauzu kvůli Talsecu. Jak se situace vyvíjí? Chci být upřímný — GA funguje tak, že time commitment je teď výrazně nižší díky sektorovým skupinám."</span></li>
+        <li><span data-editable="m2-tp2">Zmínit, co zná — "Už znáš jak GA funguje — chodil jsi na meetingy, komunikoval s Karlem Oblukem a Janem Hladkým. Teď je to jen formalizovat."</span></li>
+        <li><span data-editable="m2-tp3">Cybersecurity/SaaS skupina — "S tvým backgroundem z Avast/AVG/Webnode/Talsec bys ideálně pokryl SaaS i cybersecurity vertikálu."</span></li>
+        <li><span data-editable="m2-tp4">Talsec jako GA deal? — "Pokud Talsec bude hledat další funding, GA členové by mohli být zajímaví co-investoři nebo advisors."</span></li>
+        <li><span data-editable="m2-tp5">Konkrétní další krok — přihláška (měl ji od srpna 2025), přístup do Dealum.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 3: JAN KOŘENEK ==================== -->
+  <div class="meeting-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-number">Schůzka 3 / 3</div>
+        <h2 class="card-name" data-editable="m3-name">Jan Kořenek</h2>
+        <div class="card-role" data-editable="m3-role">doc. Ing. Ph.D. &nbsp;·&nbsp; CSO & Co-founder DYNANIC Semiconductors &nbsp;·&nbsp; Co-founder Flowmon Networks</div>
+      </div>
+      <span class="badge badge-green"><span class="badge-dot"></span><span data-editable="m3-badge">Proběhla 26.3.</span></span>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-icon">📅</span><span data-editable="m3-kdy">Čt 26.3. 2026, 10:00–10:45 (proběhlo)</span></div>
+      <div class="meta-item"><span class="meta-icon">📍</span><span data-editable="m3-kde">Caffé Ventana, Božetěchova 1, Brno-Královo Pole</span></div>
+      <div class="meta-item"><span class="meta-icon">✉️</span><span data-editable="m3-email">korenek.jan@gmail.com</span></div>
+      <div class="meta-item"><span class="meta-icon">🔗</span><a href="https://linkedin.com" style="color:var(--accent);font-size:13px;" data-editable="m3-linkedin">LinkedIn</a></div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Profesní profil</div>
+      <ul class="profile-list">
+        <li><span data-editable="m3-prof1">doc. Ing. Jan Kořenek, Ph.D. — docent na VUT FIT + Head of Department @ CESNET + CSO & Co-founder DYNANIC Semiconductors.</span></li>
+        <li><span data-editable="m3-prof2">Co-founder DYNANIC Semiconductors (2021) — spin-off VUT, FPGA-based SmartNIC řešení pro high-speed networking (100–800 Gbps). Technologie licencovaná Intelem a AMD!</span></li>
+        <li><span data-editable="m3-prof3">€550K pre-seed funding (listopad 2024) — Tensor Ventures + angel investoři z Dell, AMD, Intel, HPE.</span></li>
+        <li><span data-editable="m3-prof4">Venture Club Disrupt Awards 2025 winner — příležitost pro €3M investici.</span></li>
+        <li><span data-editable="m3-prof5">ECSO European Cybersecurity STARtup Award finalista (2026) — finále v červnu v Bruselu.</span></li>
+        <li><span data-editable="m3-prof6">Spoluzakladatel Flowmon Networks — jeden ze čtyř founding fathers (úspěšný exit do Progress).</span></li>
+        <li><span data-editable="m3-prof7">Spoluzakladatel Netcope Technologies — další úspěšný technology transfer z akademie.</span></li>
+        <li><span data-editable="m3-prof8">CESNET — vybudoval oddělení z 10 na 50 zaměstnanců, 6 klíčových výzkumných oblastí.</span></li>
+        <li><span data-editable="m3-prof9">93+ publikací, 680+ citací v oblasti FPGA, cybersecurity, network monitoring.</span></li>
+      </ul>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Investiční potenciál</div>
+      <div class="card-section-body" data-editable="m3-invest">Jako spoluzakladatel Flowmon Networks (akvizice Progress) i Netcope Technologies má za sebou dva úspěšné exity. DYNANIC je jeho třetí venture — tentokrát s backing od top-tier investorů. Kombinace exit proceeds + akademická pozice + aktivní fundraising = rozumí investování z obou stran.</div>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">⭐ Sériový zakladatel s track recordem!</div>
+      <span data-editable="m3-track">Tři startupy (Flowmon, Netcope, DYNANIC), dva úspěšné exity, třetí s €3M pipeline. Hello Tomorrow Deep Tech Pioneer z 4800+ aplikací. Tohle je top-tier kandidát pro GA — rozumí deep tech, má kontakty na globální VCs, a aktivně investuje.</span>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Historie komunikace</div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="timeline-date">23.1.2025</span> <span class="timeline-text" data-editable="m3-t1">Jirka Tobola ho propojil s GA (hromadný email skupině ex-Flowmon lidí)</span></div>
+        <div class="timeline-item"><span class="timeline-date">2.2.2025</span> <span class="timeline-text" data-editable="m3-t2">Ptal se na čas meetingu 3.3. na JICu</span></div>
+        <div class="timeline-item"><span class="timeline-date">4.2.2025</span> <span class="timeline-text" data-editable="m3-t3">Potvrdil účast, dal do kalendáře</span></div>
+        <div class="timeline-item"><span class="timeline-date">13.2.2025</span> <span class="timeline-text" data-editable="m3-t4">Vybral termín 24.2. na JICu, chtěl spojit s obědem (bistro KANCL). Ocenil odkaz na investiční akademii JIC.</span></div>
+        <div class="timeline-item"><span class="timeline-date">14.2.2025</span> <span class="timeline-text" data-editable="m3-t5">Info meeting potvrzen s Petrem Janošíkem</span></div>
+        <div class="timeline-item"><span class="timeline-date">27.2.2025</span> <span class="timeline-text" data-editable="m3-t6">Odmítl další zapojení: "Mám teď v rámci DYNANIC roli, která mi nedovolí se GA věnovat tak, jak bych chtěl. Myšlenka se mi líbí, odložme to řekněme o rok."</span></div>
+        <div class="timeline-item"><span class="timeline-date">27.2.2025</span> <span class="timeline-text" data-editable="m3-t7">Domluvili se na update "někdy na podzim"</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">18.3.2026</span> <span class="timeline-text" data-editable="m3-t8">Re-engagement po roce: Aleš napsal update (sektorové skupiny, nižší časová náročnost)</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">20.3.2026</span> <span class="timeline-text" data-editable="m3-t9">Pozitivní reakce: "Snížení časové náročnosti je pro mě zajímavé. Rád bych část portfolia investoval do start-upů. Pozval bych Tě na kávu do Ventana kafe na Božetěchovu."</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">26.3.2026</span> <span class="timeline-text" data-editable="m3-t10">Schůzka proběhla (Caffé Ventana, 10:00–10:45)</span></div>
+        <div class="timeline-item highlight"><span class="timeline-date">28.3.2026</span> <span class="timeline-text" data-editable="m3-t11">Follow-up od Aleše: Poslal onboarding materiály (portfolio-reporting), zmínil přístup do CRM/Dealum, požádal o termíny na oběd s lidmi ze spin-offů.</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">💡 Klíčový insight</div>
+      <span data-editable="m3-insight">Kořenek je nejdál v procesu! Schůzka proběhla, dostal onboarding materiály, plánuje se oběd se spin-off lidmi. Explicitně řekl, že chce "část portfolia investovat do start-upů". Jeho hlavní obava je pořád DYNANIC time commitment, ale sektorové skupiny ho zaujaly. Čeká se na jeho termíny pro oběd a přístup do Dealum CRM.</span>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-title">⏳ Stav po schůzce 26.3. — otevřené akce</div>
+      <ul style="list-style:none;padding:0;margin-top:4px;">
+        <li style="padding:3px 0;font-size:14px;" data-editable="m3-action1">✅ Onboarding materiály odeslány (portfolio-reporting link)</li>
+        <li style="padding:3px 0;font-size:14px;" data-editable="m3-action2">⏳ Přístup do Dealum CRM — Aleš slíbil pustit ho do systému</li>
+        <li style="padding:3px 0;font-size:14px;" data-editable="m3-action3">⏳ Čeká se na termíny od Kořenka pro oběd s lidmi ze spin-offů (5-6 termínů v následujících 2-3 týdnech od 28.3.)</li>
+      </ul>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Expertíza pro GA</div>
+      <div class="expertise-tags">
+        <span class="expertise-tag" data-editable="m3-ex1">Deep tech & hardware (FPGA, SmartNICs)</span>
+        <span class="expertise-tag" data-editable="m3-ex2">Technology transfer — uni → komerci</span>
+        <span class="expertise-tag" data-editable="m3-ex3">Globální investor network (Tensor, Dell, AMD, Intel, HPE)</span>
+        <span class="expertise-tag" data-editable="m3-ex4">Due diligence pro deep tech</span>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Talking points & další kroky</div>
+      <ol class="talking-list">
+        <li><span data-editable="m3-tp1">Urgovat termíny na oběd — pokud ještě neposlal termíny, připomenout (prošlo 10 dní od follow-upu).</span></li>
+        <li><span data-editable="m3-tp2">DYNANIC jako GA deal? — pokud DYNANIC hledá další funding (po pre-seedu), mohl by být zajímavý deal i pro GA členy.</span></li>
+        <li><span data-editable="m3-tp3">Propojení s Minaříkem — po dnešní schůzce: oba z Flowmon Networks — mohli by tvořit silný tandem v GA.</span></li>
+        <li><span data-editable="m3-tp4">Přednáška pro GA členy — jeho zkušenost s technology transfer by byla skvělá pro GA vzdělávací event.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ==================== STRATEGIC SUMMARY ==================== -->
+  <div class="strategy-card">
+    <div class="section-label" data-editable="strat-label">Strategické shrnutí</div>
+    <h2 class="strategy-title" data-editable="strat-title">Flowmon ekosystém jako základ GA cybersecurity vertikály</h2>
+
+    <div class="card-section">
+      <div class="card-section-title">Společný jmenovatel</div>
+      <div class="card-section-body" data-editable="strat-common">Všichni tři kandidáti pocházejí z brněnské cybersecurity / deep tech scény. Minařík a Kořenek jsou přímo spojeni přes Flowmon Networks, Hos přes Avast/AVG ekosystém. Toto vytváří přirozenou synergii — mohli by společně pokrýt cybersecurity vertikálu v GA portfoliu.</div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Kdo je propojil</div>
+      <div class="card-section-body" data-editable="strat-propojil">Jirka Tobola (ex-Flowmon, aktivní GA člen) je propojil všechny tři najednou 23. ledna 2025 hromadným emailem. Cílem bylo pozvat úspěšné lidi z Flowmon ekosystému do GA. Všichni tři projevili zájem, ale v první vlně (únor–březen 2025) všichni tři odmítli kvůli časové vytíženosti (Minařík neurčitě, Hos kvůli Talsecu, Kořenek kvůli DYNANICu). Aleš se vrátil v březnu 2026 s updatem o sektorových skupinách a nižší časové náročnosti — a všichni tři reagovali pozitivně.</div>
+    </div>
+
+    <div class="card-section">
+      <div class="card-section-title">Prioritní akce</div>
+      <table class="priority-table">
+        <thead>
+          <tr>
+            <th>Kdy</th>
+            <th>Akce</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span data-editable="pa-t1">Dnes</span></td>
+            <td><span data-editable="pa-a1">Schůzka s Minaříkem (11:00, Lokál U Caipla) — nezapomeň cestu tam od 10:30</span></td>
+          </tr>
+          <tr>
+            <td><span data-editable="pa-t2">Dnes/zítra</span></td>
+            <td><span data-editable="pa-a2">Vyřešit kolizi v pátek 10:00–11:15 (Novosvetsky vs. Hos)</span></td>
+          </tr>
+          <tr>
+            <td><span data-editable="pa-t3">Po schůzce s Minaříkem</span></td>
+            <td><span data-editable="pa-a3">Zapsat si poznámky, případně zmínit Kořenka/Hose jako potenciální GA členy ze stejné komunity</span></td>
+          </tr>
+          <tr>
+            <td><span data-editable="pa-t4">Po schůzce s Hosem</span></td>
+            <td><span data-editable="pa-a4">Follow-up s Kořenkem na základě výstupů ze všech tří meetingů</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span data-editable="footer-text">Garage Angels — Briefing dokument &nbsp;|&nbsp; 7. dubna 2026 &nbsp;|&nbsp; Interní dokument</span>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- PAT MODAL -->
+<div class="modal-overlay" id="patModal">
+  <div class="modal">
+    <h3>GitHub Personal Access Token</h3>
+    <p>Pro ukládání změn na GitHub zadej svůj PAT. Token se uloží pouze do localStorage tohoto prohlížeče.</p>
+    <input type="password" id="patInput" placeholder="ghp_..." />
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closePatModal()">Zrušit</button>
+      <button class="btn btn-primary" onclick="savePat()">Uložit token</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== CONFIG ====================
+const REPO = 'filipensky-spec/portfolio-reporting';
+const DATA_FILE = 'data/meetings-2026-04-07-edits.json';
+const GH_API = 'https://api.github.com';
+const PAT_KEY = 'ga-github-pat';
+const STORAGE_KEY = 'meetings-2026-04-07-edits';
+
+// ==================== STATE ====================
+let editMode = false;
+let pendingEdits = {};
+let savedEdits = {};
+let saveTimer = null;
+
+// ==================== TOAST ====================
+function showToast(msg, duration = 2800) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ==================== PAT ====================
+function getPat() { return localStorage.getItem(PAT_KEY) || ''; }
+function showPatModal() { document.getElementById('patModal').classList.add('show'); document.getElementById('patInput').focus(); }
+function closePatModal() { document.getElementById('patModal').classList.remove('show'); }
+function savePat() {
+  const val = document.getElementById('patInput').value.trim();
+  if (!val) { showToast('Zadej platný PAT token.'); return; }
+  localStorage.setItem(PAT_KEY, val);
+  closePatModal();
+  showToast('Token uložen.');
+}
+
+// ==================== GITHUB ====================
+async function fetchFromGitHub() {
+  const pat = getPat();
+  if (!pat) return null;
+  try {
+    const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, {
+      headers: { Authorization: `token ${pat}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (r.status === 404) return null;
+    if (!r.ok) return null;
+    const data = await r.json();
+    const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+    return { content, sha: data.sha };
+  } catch (e) { return null; }
+}
+
+async function saveToGitHub(edits) {
+  const pat = getPat();
+  if (!pat) { showPatModal(); return false; }
+  try {
+    const existing = await fetchFromGitHub();
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(edits, null, 2))));
+    const body = {
+      message: 'update: meetings-2026-04-07 edits',
+      content,
+      ...(existing ? { sha: existing.sha } : {})
+    };
+    const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${pat}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    return r.ok;
+  } catch (e) { return false; }
+}
+
+// ==================== DEBOUNCE ====================
+function debouncedSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    const allEdits = { ...savedEdits, ...pendingEdits };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allEdits));
+    const ok = await saveToGitHub(allEdits);
+    if (ok) showToast('Automaticky uloženo na GitHub');
+  }, 2000);
+}
+
+// ==================== EDIT TOGGLE ====================
+function toggleEdit() {
+  if (!editMode) {
+    enterEditMode();
+  } else {
+    exitEditMode();
+  }
+}
+
+function enterEditMode() {
+  editMode = true;
+  document.body.classList.add('edit-mode');
+  document.getElementById('editBtn').textContent = '✕ Zavřít';
+  pendingEdits = {};
+
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    el.contentEditable = 'true';
+    el.addEventListener('input', onEditInput);
+  });
+}
+
+function onEditInput(e) {
+  const key = e.target.dataset.editable;
+  pendingEdits[key] = e.target.innerHTML;
+  debouncedSave();
+}
+
+function exitEditMode() {
+  editMode = false;
+  document.body.classList.remove('edit-mode');
+  document.getElementById('editBtn').textContent = '✏️ Upravit';
+
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    el.contentEditable = 'false';
+    el.removeEventListener('input', onEditInput);
+  });
+  pendingEdits = {};
+}
+
+async function saveEdits() {
+  clearTimeout(saveTimer);
+  const allEdits = { ...savedEdits, ...pendingEdits };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(allEdits));
+  showToast('Ukládám na GitHub…');
+  const ok = await saveToGitHub(allEdits);
+  savedEdits = allEdits;
+  pendingEdits = {};
+  if (ok) {
+    showToast('Uloženo na GitHub ✓');
+  } else {
+    showToast('Uloženo lokálně (GitHub selhal nebo chybí PAT)');
+  }
+  exitEditMode();
+}
+
+function cancelEdits() {
+  clearTimeout(saveTimer);
+  // restore from saved
+  applyEdits(savedEdits);
+  exitEditMode();
+  showToast('Změny zrušeny');
+}
+
+// ==================== LOAD EDITS ====================
+async function loadEdits() {
+  // 1. localStorage
+  let edits = {};
+  const local = localStorage.getItem(STORAGE_KEY);
+  if (local) {
+    try { edits = JSON.parse(local); } catch(e) {}
+  }
+  // 2. GitHub (may override)
+  const pat = getPat();
+  if (pat) {
+    const ghData = await fetchFromGitHub();
+    if (ghData && ghData.content) {
+      edits = ghData.content;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    }
+  }
+  savedEdits = edits;
+  applyEdits(edits);
+}
+
+function applyEdits(edits) {
+  if (!edits || typeof edits !== 'object') return;
+  Object.entries(edits).forEach(([key, val]) => {
+    const el = document.querySelector(`[data-editable="${key}"]`);
+    if (el) el.innerHTML = val;
+  });
+}
+
+// ==================== INIT ====================
+document.addEventListener('DOMContentLoaded', loadEdits);
+</script>
+</body>
+</html>
