@@ -13,18 +13,6 @@
       "notes": "Před dalším meetingem"
     },
     {
-      "id": "t-gc02",
-      "title": "Dokončit tabulku plateb po měsících",
-      "owner": "Tomáš",
-      "deadline": "2026-04-04",
-      "priority": "medium",
-      "done": false,
-      "createdAt": "2026-03-21T09:00:00Z",
-      "createdInReport": "2026-03-21",
-      "completedAt": null,
-      "notes": "Do 2 týdnů od reportu"
-    },
-    {
       "id": "t-gc03",
       "title": "Připravit business case (Satelliot, KveTech)",
       "owner": "Aleš / Tomáš",
