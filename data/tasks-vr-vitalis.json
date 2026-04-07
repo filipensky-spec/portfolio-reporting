@@ -1,0 +1,112 @@
+{
+  "tasks": [
+    {
+      "id": "t-vr01",
+      "title": "Připravit otázky k ukončení Azmed; naplánovat termination meeting",
+      "owner": "Marie",
+      "deadline": "",
+      "priority": "high",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Do příštího callu"
+    },
+    {
+      "id": "t-vr02",
+      "title": "Sestavit seznam potenciálních polských distributorů",
+      "owner": "Marie",
+      "deadline": "",
+      "priority": "high",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Co nejdříve"
+    },
+    {
+      "id": "t-vr03",
+      "title": "Popohnat Miloše — intro na polského distributora",
+      "owner": "Aleš",
+      "deadline": "",
+      "priority": "high",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Ihned"
+    },
+    {
+      "id": "t-vr04",
+      "title": "Odeslat odkaz na certifikační disk USA partnerovi + checklist dokumentace",
+      "owner": "Marie/Jana",
+      "deadline": "",
+      "priority": "high",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Co nejdříve"
+    },
+    {
+      "id": "t-vr05",
+      "title": "Připravit plán USA distributora (včetně Minnesota-only varianty)",
+      "owner": "Jana",
+      "deadline": "",
+      "priority": "medium",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Rozpracovat"
+    },
+    {
+      "id": "t-vr06",
+      "title": "Získat nahrávky přednášek Milana Šemíka; sdílet s týmem",
+      "owner": "Aleš",
+      "deadline": "",
+      "priority": "medium",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Čeká na Šemíka"
+    },
+    {
+      "id": "t-vr07",
+      "title": "Naplánovat 2. pohovor s Janem Sikorou",
+      "owner": "Marie/Jana",
+      "deadline": "",
+      "priority": "medium",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": "Domluvit"
+    },
+    {
+      "id": "t-vr08",
+      "title": "Opravit GA kalendářové pozvánky — rozbalit skupinový email g-a-v-r-v@garageangels.cz",
+      "owner": "Aleš",
+      "deadline": "",
+      "priority": "low",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": ""
+    },
+    {
+      "id": "t-vr09",
+      "title": "Aktualizovat recurring měsíční pozvánky + 15.4. kvartální",
+      "owner": "Jana/Aleš",
+      "deadline": "2026-04-15",
+      "priority": "low",
+      "done": false,
+      "createdAt": "2026-03-26T09:00:00Z",
+      "createdInReport": "2026-03-26",
+      "completedAt": null,
+      "notes": ""
+    }
+  ]
+}
