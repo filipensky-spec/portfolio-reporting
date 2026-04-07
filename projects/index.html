@@ -630,23 +630,119 @@
 </footer>
 
 <script>
-// ========== EDIT MODE ==========
+// ========== GITHUB PERSISTENCE ==========
+const REPO = 'filipensky-spec/portfolio-reporting';
+const DATA_FILE = 'data/projects-edits.json';
+const GH_API = 'https://api.github.com';
+const PAT_KEY = 'ga-github-pat';
+const STORAGE_KEY = 'landing-page-edits';
+let ghSha = null;
 let isEditing = false;
 let savedState = {};
 
+function getGitHubPAT() { return localStorage.getItem(PAT_KEY); }
+function setGitHubPAT(t) { localStorage.setItem(PAT_KEY, t); }
+
+async function validatePAT(token) {
+    try { return (await fetch(`${GH_API}/user`, { headers: { Authorization: `token ${token}` } })).ok; }
+    catch { return false; }
+}
+
+function showPATDialog() {
+    const existing = document.getElementById('pat-dialog');
+    if (existing) existing.remove();
+    const d = document.createElement('div');
+    d.id = 'pat-dialog';
+    d.innerHTML = `
+        <div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;">
+            <div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;">
+                <h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3>
+                <p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p>
+                <input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;">
+                <div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;">
+                    <button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button>
+                    <button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button>
+                </div>
+            </div>
+        </div>`;
+    document.body.appendChild(d);
+    document.getElementById('pat-input').focus();
+}
+
+async function submitPAT() {
+    const input = document.getElementById('pat-input');
+    const err = document.getElementById('pat-error');
+    const token = input.value.trim();
+    if (!token) return;
+    input.disabled = true;
+    if (await validatePAT(token)) {
+        setGitHubPAT(token);
+        document.getElementById('pat-dialog').remove();
+        showToast('Token uložen');
+    } else {
+        err.style.display = 'block';
+        input.disabled = false;
+    }
+}
+
+async function fetchFromGitHub() {
+    try {
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, {
+            headers: { Accept: 'application/vnd.github.v3+json' }, cache: 'no-store'
+        });
+        if (!r.ok) return null;
+        const json = await r.json();
+        ghSha = json.sha;
+        const content = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
+        return JSON.parse(content);
+    } catch { return null; }
+}
+
+async function saveToGitHub(data) {
+    const token = getGitHubPAT();
+    if (!token) return false;
+    try {
+        if (!ghSha) {
+            const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, {
+                headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}` }, cache: 'no-store'
+            });
+            if (r.ok) ghSha = (await r.json()).sha;
+        }
+        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        const body = { message: `Update projects edits ${new Date().toISOString().slice(0, 16)}`, content: encoded };
+        if (ghSha) body.sha = ghSha;
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, {
+            method: 'PUT',
+            headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+        if (r.ok) { ghSha = (await r.json()).content.sha; return true; }
+        return false;
+    } catch { return false; }
+}
+
+let _saveTimer = null;
+function debouncedSave(data) {
+    if (_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(async () => {
+        const ok = await saveToGitHub(data);
+        if (ok) showToast('Uloženo do GitHubu');
+        else showToast('Chyba při ukládání — zkontroluj token');
+        _saveTimer = null;
+    }, 1500);
+}
+
 function toggleEdit() {
     if (isEditing) return;
+    if (!getGitHubPAT()) { showPATDialog(); return; }
     isEditing = true;
     document.body.classList.add('editing');
     document.getElementById('editBar').classList.add('visible');
-
-    // Save current state & make editable
     document.querySelectorAll('[data-editable]').forEach(el => {
         savedState[el.dataset.editable] = el.innerHTML;
         el.contentEditable = 'true';
     });
-
-    // Prevent link navigation in edit mode
     document.querySelectorAll('a.project-card').forEach(a => {
         a.dataset.href = a.href;
         a.removeAttribute('href');
@@ -659,9 +755,9 @@ function saveEdits() {
         el.contentEditable = 'false';
         edits[el.dataset.editable] = el.innerHTML;
     });
-    localStorage.setItem('landing-page-edits', JSON.stringify(edits));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    debouncedSave(edits);
     exitEditMode();
-    showToast('Změny uloženy');
 }
 
 function cancelEdits() {
@@ -677,28 +773,12 @@ function exitEditMode() {
     document.body.classList.remove('editing');
     document.getElementById('editBar').classList.remove('visible');
     savedState = {};
-
-    // Restore links
     document.querySelectorAll('a.project-card[data-href]').forEach(a => {
         a.href = a.dataset.href;
         a.removeAttribute('data-href');
     });
 }
 
-// Load saved edits on page load
-function loadEdits() {
-    const saved = localStorage.getItem('landing-page-edits');
-    if (!saved) return;
-    try {
-        const edits = JSON.parse(saved);
-        Object.entries(edits).forEach(([key, val]) => {
-            const el = document.querySelector(`[data-editable="${key}"]`);
-            if (el) el.innerHTML = val;
-        });
-    } catch(e) {}
-}
-
-// ========== COPY COMMAND ==========
 function copyCmd(el, event) {
     if (isEditing) return;
     event.stopPropagation();
@@ -714,7 +794,24 @@ function copyCmd(el, event) {
     });
 }
 
-// ========== TOAST ==========
+async function loadEdits() {
+    const ghData = await fetchFromGitHub();
+    if (ghData && Object.keys(ghData).length > 0) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData));
+        applyEdits(ghData);
+        return;
+    }
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) { try { applyEdits(JSON.parse(saved)); } catch {} }
+}
+
+function applyEdits(edits) {
+    Object.entries(edits).forEach(([key, val]) => {
+        const el = document.querySelector(`[data-editable="${key}"]`);
+        if (el) el.innerHTML = val;
+    });
+}
+
 function showToast(msg) {
     const t = document.createElement('div');
     t.textContent = msg;
@@ -727,12 +824,10 @@ function showToast(msg) {
     setTimeout(() => t.remove(), 2000);
 }
 
-// ========== NAV SCROLL ==========
 window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -741,7 +836,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Init
 loadEdits();
 </script>
 </body>
