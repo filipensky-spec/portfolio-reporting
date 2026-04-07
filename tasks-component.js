@@ -433,9 +433,23 @@
     saveLocal();
     if (saveTimer) clearTimeout(saveTimer);
     saveTimer = setTimeout(async () => {
-      if (!getGitHubPAT()) return;
+      if (!getGitHubPAT()) {
+        showPATDialog();
+        // After PAT is set, retry save
+        const waitForPAT = setInterval(async () => {
+          if (getGitHubPAT()) {
+            clearInterval(waitForPAT);
+            const ok = await saveToGitHub({ tasks });
+            showToast(ok ? 'Uloženo do GitHubu' : 'Chyba při ukládání');
+          }
+        }, 500);
+        // Stop waiting after 60s
+        setTimeout(() => clearInterval(waitForPAT), 60000);
+        return;
+      }
       const ok = await saveToGitHub({ tasks });
-      if (ok) showToast('Uloženo');
+      if (ok) showToast('Uloženo do GitHubu');
+      else showToast('Chyba při ukládání — zkontroluj token');
     }, 800);
   }
 
