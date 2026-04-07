@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investiční mema — Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --green-bg: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-bg: #fffbeb;
+            --red: #ef4444;
+            --red-bg: #fef2f2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 14px;
+        }
+        .nav-logo span {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+        .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--gray-200);
+        }
+        .nav-section {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+        }
+        .nav-back {
+            font-size: 13px;
+            color: var(--gray-500);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--accent); }
+
+        .edit-toggle {
+            background: none;
+            border: 1px solid var(--gray-300);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .edit-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* EDIT */
+        .edit-bar {
+            display: none;
+            position: fixed;
+            bottom: 24px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            background: var(--gray-900);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .edit-bar.visible { display: flex; }
+        .edit-bar button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .edit-bar .btn-cancel {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent-light);
+            outline-offset: 4px;
+            border-radius: 4px;
+            cursor: text;
+        }
+        body.editing [data-editable]:focus {
+            outline: 2px solid var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 0 48px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner { max-width: 720px; }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .hero .subtitle {
+            font-size: 17px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* MEMOS GRID */
+        .section { padding: 48px 0 64px; }
+        .section-alt { background: var(--gray-50); }
+
+        .memos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .memo-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .memo-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .memo-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .memo-logo {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+
+        .memo-verdict {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .verdict-explore { background: var(--amber-bg); color: var(--amber); }
+        .verdict-invest { background: var(--green-bg); color: var(--green); }
+        .verdict-pass { background: var(--red-bg); color: var(--red); }
+
+        .memo-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.3;
+        }
+
+        .memo-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .memo-metrics {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding-top: 8px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .memo-metric { display: flex; flex-direction: column; }
+
+        .memo-metric-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .memo-metric-label {
+            font-size: 11px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .memo-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
+        .memo-date {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .memo-sector {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 40px 0 28px;
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 100px 0 40px; }
+            .memos-grid { grid-template-columns: 1fr; }
+            .stats { gap: 24px; }
+            .edit-bar { left: 16px; right: 16px; transform: none; border-radius: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <a href="../projects/" class="nav-logo">
+                <div class="nav-logo-icon">GA</div>
+                <span>Garage Angels</span>
+            </a>
+            <div class="nav-divider"></div>
+            <span class="nav-section">Investiční mema</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+            <a href="../projects/" class="nav-back">Zpět na projekty</a>
+            <button class="edit-toggle" onclick="toggleEdit()">Upravit texty</button>
+        </div>
+    </div>
+</nav>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar">
+    <span>Režim úprav aktivní</span>
+    <button onclick="saveEdits()">Uložit změny</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="section-label">Garage Angels</div>
+            <h1 data-editable="memo-hero-title">Investiční mema</h1>
+            <p class="subtitle" data-editable="memo-hero-desc">Interní investiční memoranda pro GA syndikát. Kompletní analýza startupů zvažovaných k investici — tým, produkt, trh, financials, rizika a doporučení.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Celkem mem</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Explore</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Invest</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Pass</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MEMOS LIST -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="memos-grid">
+
+            <!-- CAREBOT -->
+            <a class="memo-card" href="carebot/">
+                <div class="memo-top">
+                    <div class="memo-logo">carebot</div>
+                    <span class="memo-verdict verdict-explore">Explore</span>
+                </div>
+                <div class="memo-title" data-editable="memo-carebot-title">Carebot s.r.o. — AI platforma pro radiologii</div>
+                <div class="memo-desc" data-editable="memo-carebot-desc">Diagnostika nové generace pro evropské nemocnice a farmaceutické partnery. Platforma Horizon pokrývá 7 diagnostických modalit. Strategické partnerství s Bristol Myers Squibb.</div>
+                <div class="memo-metrics">
+                    <div class="memo-metric">
+                        <div class="memo-metric-value">1,5M EUR</div>
+                        <div class="memo-metric-label">Bridge round</div>
+                    </div>
+                    <div class="memo-metric">
+                        <div class="memo-metric-value">25M EUR</div>
+                        <div class="memo-metric-label">Pre-money</div>
+                    </div>
+                    <div class="memo-metric">
+                        <div class="memo-metric-value">~1M EUR</div>
+                        <div class="memo-metric-label">ARR</div>
+                    </div>
+                    <div class="memo-metric">
+                        <div class="memo-metric-value">Equity</div>
+                        <div class="memo-metric-label">Instrument</div>
+                    </div>
+                </div>
+                <div class="memo-footer">
+                    <span class="memo-date">2. dubna 2026</span>
+                    <span class="memo-sector">AI Medical Imaging</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p><strong>Interní dokumenty — pouze pro členy GA syndikátu</strong></p>
+        <p style="margin-top:8px;">Garage Angels &middot; 2026 &middot; Vytvořeno s Claude Code</p>
+    </div>
+</footer>
+
+<script>
+// ========== EDIT MODE ==========
+const STORAGE_KEY = 'ga-memos-edits';
+let isEditing = false;
+let savedState = {};
+
+function toggleEdit() {
+    if (isEditing) return;
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        savedState[el.dataset.editable] = el.innerHTML;
+        el.contentEditable = 'true';
+    });
+    document.querySelectorAll('a.memo-card').forEach(a => {
+        a.dataset.href = a.href;
+        a.removeAttribute('href');
+    });
+}
+
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        edits[el.dataset.editable] = el.innerHTML;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    exitEditMode();
+    showToast('Změny uloženy');
+}
+
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+        el.contentEditable = 'false';
+        el.innerHTML = savedState[el.dataset.editable];
+    });
+    exitEditMode();
+}
+
+function exitEditMode() {
+    isEditing = false;
+    document.body.classList.remove('editing');
+    document.getElementById('editBar').classList.remove('visible');
+    savedState = {};
+    document.querySelectorAll('a.memo-card[data-href]').forEach(a => {
+        a.href = a.dataset.href;
+        a.removeAttribute('data-href');
+    });
+}
+
+function loadEdits() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    try {
+        const edits = JSON.parse(saved);
+        Object.entries(edits).forEach(([key, val]) => {
+            const el = document.querySelector(`[data-editable="${key}"]`);
+            if (el) el.innerHTML = val;
+        });
+    } catch(e) {}
+}
+
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    Object.assign(t.style, {
+        position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)',
+        background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px',
+        fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+    });
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+}
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+loadEdits();
+</script>
+</body>
+</html>
