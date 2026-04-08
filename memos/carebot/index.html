@@ -661,8 +661,6 @@
             <div class="startup-logo">carebot</div>
         </div>
         <div class="header-actions">
-            <button class="btn-icon edit-toggle" id="editToggle" title="Režim úprav" data-edit="false">✎</button>
-            <button class="btn-icon" id="exportBtn" title="Exportovat JSON">⬇</button>
         </div>
     </header>
 
@@ -1652,9 +1650,6 @@
         // Navigation
         const navToggle = document.getElementById('navToggle');
         const sidebar = document.getElementById('sidebar');
-        const editToggle = document.getElementById('editToggle');
-        const exportBtn = document.getElementById('exportBtn');
-
         navToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
 
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -1684,127 +1679,10 @@
 
         sections.forEach(section => observer.observe(section));
 
-        // ========== GITHUB PERSISTENCE ==========
-        const REPO = 'filipensky-spec/portfolio-reporting';
-        const DATA_FILE = 'data/carebot-memo-edits.json';
-        const GH_API = 'https://api.github.com';
-        const PAT_KEY = 'ga-github-pat';
-        const LOCAL_KEY = 'carebot-memo-edits';
-        let ghSha = null;
-
-        function getGitHubPAT() { return localStorage.getItem(PAT_KEY); }
-        function setGitHubPAT(t) { localStorage.setItem(PAT_KEY, t); }
-        async function validatePAT(token) {
-            try { return (await fetch(`${GH_API}/user`, { headers: { Authorization: `token ${token}` } })).ok; } catch { return false; }
-        }
-        function showPATDialog() {
-            const existing = document.getElementById('pat-dialog'); if (existing) existing.remove();
-            const d = document.createElement('div'); d.id = 'pat-dialog';
-            d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button><button onclick="window._submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button></div></div></div>`;
-            document.body.appendChild(d); document.getElementById('pat-input').focus();
-        }
-        window._submitPAT = async function() {
-            const input = document.getElementById('pat-input'), err = document.getElementById('pat-error'), token = input.value.trim();
-            if (!token) return; input.disabled = true;
-            if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token uložen'); }
-            else { err.style.display = 'block'; input.disabled = false; }
-        };
-        async function fetchFromGitHub() {
-            try {
-                const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json' }, cache: 'no-store' });
-                if (!r.ok) return null; const json = await r.json(); ghSha = json.sha;
-                return JSON.parse(decodeURIComponent(escape(atob(json.content.replace(/\n/g, '')))));
-            } catch { return null; }
-        }
-        async function saveToGitHub(data) {
-            const token = getGitHubPAT(); if (!token) return false;
-            try {
-                if (!ghSha) { const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}` }, cache: 'no-store' }); if (r.ok) ghSha = (await r.json()).sha; }
-                const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-                const body = { message: `Update carebot memo edits ${new Date().toISOString().slice(0,16)}`, content: encoded }; if (ghSha) body.sha = ghSha;
-                const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { method: 'PUT', headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-                if (r.ok) { ghSha = (await r.json()).content.sha; return true; } return false;
-            } catch { return false; }
-        }
-        function showToast(msg) {
-            const t = document.createElement('div'); t.textContent = msg;
-            Object.assign(t.style, { position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)', background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px', fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' });
-            document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
-        }
-
-        // Edit mode
-        const params = new URLSearchParams(window.location.search);
-        const editMode = params.get('edit') === 'garageangels';
-
-        if (editMode) {
-            if (!getGitHubPAT()) { showPATDialog(); }
-            document.body.classList.add('edit-mode');
-            editToggle.setAttribute('data-edit', 'true');
-            document.querySelectorAll('p, h3, h4, li').forEach(el => {
-                el.setAttribute('contenteditable', 'true');
-                el.classList.add('editable');
-            });
-        }
-
-        editToggle.addEventListener('click', () => {
-            const isEdit = editToggle.getAttribute('data-edit') === 'true';
-            if (isEdit) {
-                saveData();
-                window.location.href = window.location.pathname;
-            } else {
-                if (!getGitHubPAT()) { showPATDialog(); return; }
-                window.location.href = window.location.pathname + '?edit=garageangels';
-            }
-        });
-
-        function saveData() {
-            const data = { timestamp: new Date().toISOString(), content: [] };
-            document.querySelectorAll('p, h3, h4, li').forEach((el, idx) => {
-                data.content.push({ id: idx, tag: el.tagName, text: el.innerText });
-            });
-            localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
-            // Save to GitHub
-            saveToGitHub(data).then(ok => {
-                if (ok) showToast('Uloženo do GitHubu');
-            });
-        }
-
-        async function loadData() {
-            const ghData = await fetchFromGitHub();
-            if (ghData && ghData.content && ghData.content.length > 0) {
-                localStorage.setItem(LOCAL_KEY, JSON.stringify(ghData));
-                applyData(ghData);
-                return;
-            }
-            const saved = localStorage.getItem(LOCAL_KEY);
-            if (saved) { try { applyData(JSON.parse(saved)); } catch {} }
-        }
-
-        function applyData(data) {
-            if (!data || !data.content) return;
-            const elements = document.querySelectorAll('p, h3, h4, li');
-            data.content.forEach((item, idx) => {
-                if (elements[idx]) elements[idx].innerText = item.text;
-            });
-        }
-
-        exportBtn.addEventListener('click', () => {
-            const data = { title: 'Carebot s.r.o. — Investiční memorandum', date: '2. dubna 2026', content: {} };
-            document.querySelectorAll('section[id]').forEach(section => {
-                const id = section.id;
-                data.content[id] = { body: section.innerText };
-            });
-            const json = JSON.stringify(data, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'carebot-memo-' + new Date().toISOString().split('T')[0] + '.json';
-            a.click();
-            URL.revokeObjectURL(url);
-        });
-
-        loadData();
     </script>
+
+    <!-- GA Edit Component (pencil button + GitHub persistence) -->
+    <div id="ga-edit" data-startup="carebot" data-report="memo"></div>
+    <script src="https://filipensky-spec.github.io/portfolio-reporting/edit-component.js"></script>
 </body>
 </html>

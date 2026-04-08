@@ -97,20 +97,6 @@
             color: var(--color-text-secondary);
         }
 
-        .edit-badge {
-            display: none;
-            background: var(--color-accent-explore);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 12px;
-        }
-
-        .edit-badge.active {
-            display: inline-block;
-        }
-
         /* Main Layout */
         .container {
             display: flex;
@@ -396,71 +382,6 @@
             font-weight: 500;
         }
 
-        /* Edit Toolbar */
-        .edit-toolbar {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            padding: var(--space-md);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            display: none;
-            flex-direction: column;
-            gap: var(--space-sm);
-            z-index: 200;
-        }
-
-        .edit-toolbar.active {
-            display: flex;
-        }
-
-        .edit-toolbar button {
-            padding: 10px 16px;
-            background: var(--color-accent-invest);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .edit-toolbar button:hover {
-            background: #047857;
-            transform: translateY(-2px);
-        }
-
-        .edit-toolbar button.secondary {
-            background: var(--color-text-secondary);
-        }
-
-        .edit-toolbar button.secondary:hover {
-            background: var(--color-text-primary);
-        }
-
-        /* Edit Mode Styles */
-        body.edit-mode .editable {
-            outline: 2px dashed var(--color-accent-explore);
-            outline-offset: 4px;
-        }
-
-        body.edit-mode .editable:hover {
-            background: rgba(217, 119, 6, 0.05);
-        }
-
-        .editable {
-            cursor: default;
-            transition: var(--transition);
-        }
-
-        body.edit-mode .editable {
-            cursor: text;
-        }
-
         /* Footer */
         .footer {
             background: var(--color-bg-secondary);
@@ -574,18 +495,12 @@
                 padding: var(--space-sm);
             }
 
-            .edit-toolbar {
-                bottom: 10px;
-                right: 10px;
-                left: 10px;
-            }
         }
 
         /* Print Styles */
         @media print {
             .logo-bar,
-            .sidebar,
-            .edit-toolbar {
+            .sidebar {
                 display: none;
             }
 
@@ -616,7 +531,6 @@
         </div>
         <div class="logo-bar-right">
             <span id="current-date">8. dubna 2026</span>
-            <span class="edit-badge" id="edit-badge">Editační režim</span>
         </div>
     </div>
 
@@ -2222,32 +2136,12 @@
         </main>
     </div>
 
-    <!-- Edit Toolbar -->
-    <div class="edit-toolbar" id="edit-toolbar">
-        <button onclick="saveChanges()">💾 Uložit změny</button>
-        <button class="secondary" onclick="exportJSON()">📥 Exportovat JSON</button>
-    </div>
-
     <script>
-        // Initialize
-        const params = new URLSearchParams(window.location.search);
-        const isEditMode = params.get('edit') === 'garageangels';
+        // Initialize date
         const dateObj = new Date('2026-04-08');
-        const dateString = dateObj.toLocaleDateString('cs-CZ', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
+        const dateString = dateObj.toLocaleDateString('cs-CZ', { year: 'numeric', month: 'long', day: 'numeric' });
         document.getElementById('current-date').textContent = dateString;
         document.getElementById('footer-date').textContent = dateString;
-
-        if (isEditMode) {
-            document.body.classList.add('edit-mode');
-            document.getElementById('edit-badge').classList.add('active');
-            document.getElementById('edit-toolbar').classList.add('active');
-            enableEditMode();
-        }
 
         // Section Navigation
         const sectionLinks = document.querySelectorAll('.sidebar-nav-link');
@@ -2264,118 +2158,55 @@
         function showSection(sectionNum) {
             sections.forEach(s => s.classList.remove('active'));
             sectionLinks.forEach(l => l.classList.remove('active'));
-
             const targetSection = document.getElementById(`section-${sectionNum}`);
             const targetLink = document.querySelector(`[data-section="${sectionNum}"]`);
-
             if (targetSection) targetSection.classList.add('active');
             if (targetLink) targetLink.classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Edit Mode
-        function enableEditMode() {
-            const editables = document.querySelectorAll('.editable');
-            editables.forEach(el => {
-                el.addEventListener('click', (e) => {
-                    if (e.target !== el) return;
-                    makeEditable(el);
-                });
-            });
+        // Show all sections temporarily for edit-component indexing, then re-hide
+        function showAllSectionsForEdit() {
+            sections.forEach(s => s.style.display = 'block');
+        }
+        function restoreSectionVisibility() {
+            sections.forEach(s => { s.style.display = ''; });
         }
 
-        function makeEditable(element) {
-            const originalHTML = element.innerHTML;
-            const input = document.createElement('textarea');
-            input.value = originalHTML.replace(/<br>/g, '\n');
-            input.style.width = '100%';
-            input.style.minHeight = '200px';
-            input.style.fontFamily = 'monospace';
-            input.style.padding = '10px';
-            input.style.border = '2px solid #059669';
-            input.style.borderRadius = '4px';
+        // Override edit-component's enterEditMode to show all sections
+        const _origBodyClassAdd = document.body.classList.add.bind(document.body.classList);
+        const observer = new MutationObserver(() => {
+            if (document.body.classList.contains('ga-editing')) {
+                showAllSectionsForEdit();
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-            element.innerHTML = '';
-            element.appendChild(input);
-            input.focus();
-
-            const saveEdit = () => {
-                element.innerHTML = input.value.replace(/\n/g, '<br>');
-                loadStoredChanges();
-            };
-
-            input.addEventListener('blur', saveEdit);
-            input.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && e.key === 'Enter') {
-                    saveEdit();
-                    input.blur();
-                }
-            });
-        }
-
-        // Save/Load Changes
-        function saveChanges() {
-            const data = {};
-            sections.forEach((section, idx) => {
-                const sectionNum = idx + 1;
-                data[`section-${sectionNum}`] = section.innerHTML;
-            });
-            localStorage.setItem('htg-memo-changes', JSON.stringify(data));
-            localStorage.setItem('htg-memo-version', new Date().toISOString());
-            alert('Změny uloženy! (localStorage)');
-        }
-
-        function loadStoredChanges() {
-            const stored = localStorage.getItem('htg-memo-changes');
-            if (!stored) return;
-            const data = JSON.parse(stored);
-            Object.keys(data).forEach(key => {
-                const section = document.getElementById(key);
-                if (section) section.innerHTML = data[key];
-            });
-        }
-
-        function exportJSON() {
-            const data = {
-                title: 'HTG Medical – Investiční memorandum',
-                date: dateString,
-                sections: {}
-            };
-
-            sections.forEach((section, idx) => {
-                const sectionNum = idx + 1;
-                data.sections[`section-${sectionNum}`] = {
-                    html: section.innerHTML,
-                    text: section.innerText
-                };
-            });
-
-            const json = JSON.stringify(data, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'htg-medical-memo.json';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Load changes on page load
-        if (isEditMode) {
-            loadStoredChanges();
-        }
+        // Watch for edit mode exit to restore sections
+        const exitObserver = new MutationObserver(() => {
+            if (!document.body.classList.contains('ga-editing')) {
+                restoreSectionVisibility();
+                // Re-activate the current section
+                const activeLink = document.querySelector('.sidebar-nav-link.active');
+                if (activeLink) showSection(activeLink.dataset.section);
+            }
+        });
+        exitObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
         // Responsive Sidebar
         if (window.innerWidth <= 1024) {
-            const navLinks = document.querySelectorAll('.sidebar-nav-link');
-            navLinks.forEach(link => {
+            sectionLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    document.querySelectorAll('.sidebar-nav-link').forEach(l => l.classList.remove('active'));
+                    sectionLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
                 });
             });
         }
     </script>
+
+    <!-- GA Edit Component (pencil button + GitHub persistence) -->
+    <div id="ga-edit" data-startup="htg-medical" data-report="memo"></div>
+    <script src="https://filipensky-spec.github.io/portfolio-reporting/edit-component.js"></script>
 </body>
 </html>
