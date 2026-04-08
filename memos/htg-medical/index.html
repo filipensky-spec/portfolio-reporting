@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTG Medical – Investiční memorandum | Garage Angels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f3f4f6;
+            --color-text-primary: #111827;
+            --color-text-secondary: #6b7280;
+            --color-border: #e5e7eb;
+            --color-accent-invest: #059669;
+            --color-accent-explore: #d97706;
+            --color-accent-pass: #dc2626;
+            --color-risk-critical: #dc2626;
+            --color-risk-high: #ea580c;
+            --color-risk-medium: #d97706;
+            --color-risk-low: #059669;
+            --color-warning-bg: #fef3c7;
+            --color-warning-text: #92400e;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --font-mono: 'Courier New', monospace;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Logo Bar */
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) var(--space-lg);
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            gap: var(--space-lg);
+        }
+
+        .logo-bar-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--color-border);
+        }
+
+        .startup-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .logo-bar-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .edit-badge {
+            display: none;
+            background: var(--color-accent-explore);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .edit-badge.active {
+            display: inline-block;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: var(--color-bg-secondary);
+            border-right: 1px solid var(--color-border);
+            padding: var(--space-lg) 0;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: var(--space-sm) var(--space-sm);
+        }
+
+        .sidebar-nav-item {
+            margin: 4px 0;
+        }
+
+        .sidebar-nav-link {
+            display: block;
+            padding: var(--space-sm) var(--space-md);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav-link:hover {
+            color: var(--color-text-primary);
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .sidebar-nav-link.active {
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--color-accent-invest);
+            border-left-color: var(--color-accent-invest);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: var(--space-xl);
+            max-width: 900px;
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+            margin-bottom: var(--space-xl);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--space-md);
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent-invest);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: var(--space-lg) 0 var(--space-md) 0;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin: var(--space-md) 0 var(--space-sm) 0;
+            margin-top: var(--space-lg);
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+            color: var(--color-text-secondary);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .badge-invest {
+            background: rgba(5, 150, 105, 0.15);
+            color: var(--color-accent-invest);
+        }
+
+        .badge-explore {
+            background: rgba(217, 119, 6, 0.15);
+            color: var(--color-accent-explore);
+        }
+
+        .badge-pass {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--color-accent-pass);
+        }
+
+        .badge-risk-critical {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--color-risk-critical);
+        }
+
+        .badge-risk-high {
+            background: rgba(234, 88, 12, 0.15);
+            color: var(--color-risk-high);
+        }
+
+        .badge-risk-medium {
+            background: rgba(217, 119, 6, 0.15);
+            color: var(--color-risk-medium);
+        }
+
+        .badge-risk-low {
+            background: rgba(5, 150, 105, 0.15);
+            color: var(--color-risk-low);
+        }
+
+        /* Recommendation Box */
+        .recommendation-box {
+            background: var(--color-bg-secondary);
+            border-left: 4px solid var(--color-accent-explore);
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin: var(--space-lg) 0;
+        }
+
+        .recommendation-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: var(--space-lg) 0;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            background: var(--color-bg-secondary);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        th {
+            padding: var(--space-md);
+            text-align: left;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        tbody tr:hover {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: var(--color-warning-bg);
+            border-left: 4px solid #fbbf24;
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin: var(--space-md) 0;
+            font-size: 14px;
+            color: var(--color-warning-text);
+        }
+
+        .warning-icon {
+            display: inline;
+            margin-right: 4px;
+            font-weight: 600;
+        }
+
+        /* Person Card */
+        .person-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: var(--space-md);
+            border-radius: var(--border-radius);
+            margin: var(--space-md) 0;
+        }
+
+        .person-name {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .person-title {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .person-details {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Monospace for numbers */
+        .number {
+            font-family: var(--font-mono);
+            font-weight: 500;
+        }
+
+        /* Edit Toolbar */
+        .edit-toolbar {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            gap: var(--space-sm);
+            z-index: 200;
+        }
+
+        .edit-toolbar.active {
+            display: flex;
+        }
+
+        .edit-toolbar button {
+            padding: 10px 16px;
+            background: var(--color-accent-invest);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .edit-toolbar button:hover {
+            background: #047857;
+            transform: translateY(-2px);
+        }
+
+        .edit-toolbar button.secondary {
+            background: var(--color-text-secondary);
+        }
+
+        .edit-toolbar button.secondary:hover {
+            background: var(--color-text-primary);
+        }
+
+        /* Edit Mode Styles */
+        body.edit-mode .editable {
+            outline: 2px dashed var(--color-accent-explore);
+            outline-offset: 4px;
+        }
+
+        body.edit-mode .editable:hover {
+            background: rgba(217, 119, 6, 0.05);
+        }
+
+        .editable {
+            cursor: default;
+            transition: var(--transition);
+        }
+
+        body.edit-mode .editable {
+            cursor: text;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-lg);
+            margin-top: var(--space-xl);
+            text-align: center;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .footer-logo {
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: var(--space-md) auto 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                padding: var(--space-md) 0;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--space-sm);
+                padding: var(--space-sm) var(--space-lg);
+            }
+
+            .sidebar-nav-item {
+                margin: 0;
+            }
+
+            .sidebar-nav-link {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .sidebar-nav-link.active {
+                border-left: none;
+                border-bottom-color: var(--color-accent-invest);
+            }
+
+            .main-content {
+                padding: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .logo-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+                padding: var(--space-sm);
+            }
+
+            .logo-bar-right {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-content {
+                padding: var(--space-md);
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-number {
+                align-self: flex-start;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            .table-wrapper {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: var(--space-sm);
+            }
+
+            .edit-toolbar {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .logo-bar,
+            .sidebar,
+            .edit-toolbar {
+                display: none;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .section {
+                display: block;
+                page-break-inside: avoid;
+                page-break-after: avoid;
+            }
+
+            .main-content {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Bar -->
+    <div class="logo-bar">
+        <div class="logo-bar-left">
+            <div class="logo-text">Garage Angels</div>
+            <div class="logo-divider"></div>
+            <div class="startup-name">HTG Medical</div>
+        </div>
+        <div class="logo-bar-right">
+            <span id="current-date">8. dubna 2026</span>
+            <span class="edit-badge" id="edit-badge">Editační režim</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#section-1" class="sidebar-nav-link active" data-section="1">1. Executive Summary</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-2" class="sidebar-nav-link" data-section="2">2. Tým a zakladatelé</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-3" class="sidebar-nav-link" data-section="3">3. Problém a řešení</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-4" class="sidebar-nav-link" data-section="4">4. Produkt a technologie</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-5" class="sidebar-nav-link" data-section="5">5. Trh – TAM/SAM/SOM</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-6" class="sidebar-nav-link" data-section="6">6. Konkurence</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-7" class="sidebar-nav-link" data-section="7">7. Business model</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-8" class="sidebar-nav-link" data-section="8">8. Trakce a validace</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-9" class="sidebar-nav-link" data-section="9">9. Financials a podmínky</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-9b" class="sidebar-nav-link" data-section="9b">9b. Exit analýza</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-10" class="sidebar-nav-link" data-section="10">10. Regulace a certifikace</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-11" class="sidebar-nav-link" data-section="11">11. Rizika</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#section-12" class="sidebar-nav-link" data-section="12">12. Nezodpovězené otázky</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- SECTION 1: Executive Summary -->
+            <section id="section-1" class="section active">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h1 class="section-title">Executive Summary</h1>
+                </div>
+
+                <div class="editable">
+                    <p><strong>HTG Medical</strong> (htgmedical.com) je český medtech startup vyvíjející <strong>HTG Urogram</strong> – první cenově dostupné zařízení pro automatický monitoring výdeje moči na jednotkách intenzivní péče (JIP). Produkt nahrazuje manuální měření, které zabírá sestrám 60+ minut denně na lůžko a generuje chyby ±30 %.</p>
+
+                    <h3>Klíčové údaje</h3>
+                    <ul>
+                        <li><strong>Fáze:</strong> Pre-revenue, CE audit úspěšně absolvován (duben 2026), certifikát expected za 3–4 týdny</li>
+                        <li><strong>Sektor:</strong> Medtech / ICU monitoring / medical devices</li>
+                        <li><strong>Seeking:</strong> €300 000 bridge via Convertible Loan Agreement (CLA)</li>
+                        <li><strong>Podmínky CLA:</strong> 20% discount, €12M cap, €7M floor, 0% úrok, 24 měsíců splatnost, MFN klauzule</li>
+                        <li><strong>Předchozí kolo:</strong> €670K (€500K equity + €170K granty) při €2,5M post-money (únor 2025)</li>
+                        <li><strong>Plánované další kolo:</strong> Seed, late 2027, cíl €1,3–2M při ~€14M pre-money</li>
+                        <li><strong>Trakce:</strong> 15 zařízení prodáno do IKEM (prototypová fáze), 5 distributor partnerships podepsáno</li>
+                    </ul>
+
+                    <div class="recommendation-box">
+                        <div class="recommendation-label">Doporučení</div>
+                        <div style="margin-bottom: var(--space-md);">
+                            <span class="badge badge-explore">EXPLORE</span>
+                        </div>
+                        <p>Promyšlený produkt s reálnou klinickou validací, silným IP a potvrzenou CE certifikací v atraktivním medtech segmentu. Founder call (8. 4. 2026) potvrdil komerční připravenost – 15 zařízení prodáno do IKEM, 5 distributorů v pipeline, CE audit „na jedničku". Bridge podmínky (€12M cap) jsou pro pre-revenue startup ambiciózní, ale pozitivní signály z auditu a distribučního pipeline snižují risk profil.</p>
+                    </div>
+
+                    <h3>Top 3 důvody PRO</h3>
+                    <ol>
+                        <li><strong>Kapitálová efektivita + CE na dosah</strong> – dosáhl CE certifikace a klinické validace za €670K, zatímco konkurenti utratili $14–76M a většinou zkrachovali. CE audit (duben 2026) proběhl „na jedničku".</li>
+                        <li><strong>Silný IP moat + patentová páka</strong> – exkluzivní licence patentu University of Leicester (EP3422948B1) v 8 klíčových EU trzích + vlastní patent na proprietární tubing collar. BD drží US patent blokující HTG, ale HTG drží EU patent blokující BD → vzájemná páka pro potenciální M&A/licensing deal.</li>
+                        <li><strong>Razor-blade model s OPEX kanálem</strong> – OPEX model (€300/rok device + €10/sáček) obchází nemocniční tendry (jde přes spotřební materiál), budget-neutrální pro nemocnice. Distribuční marže 35 % zajišťuje motivaci partnerů.</li>
+                    </ol>
+
+                    <h3>Top 3 důvody PROTI</h3>
+                    <ol>
+                        <li><strong>Pre-revenue startup s ambiciózními projekcemi</strong> – cíl ~€150K revenue do konce 2026 (dle Excel modelu), přechod z pilot → paid deployment stále neověřen na škále</li>
+                        <li><strong>Závislost na distribuční síti</strong> – 5 distributorů v pipeline, ale žádný zatím negeneruje revenue. Sales cycle ~3 týdny do pilotu + 2–3 týdny pilot = nejméně 5–6 týdnů do prvního revenue z nové nemocnice</li>
+                        <li><strong>€12M valuation cap na CLA zůstává agresivní</strong> – pro pre-revenue medtech, při seed kole €14M pre-money je upside omezený. Ale 20% discount + MFN + floor €7M poskytují downside ochranu.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Tým a zakladatelé -->
+            <section id="section-2" class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h1 class="section-title">Tým a zakladatelé</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Tobiáš Vybíral, CEO & Co-founder (full-time)</h3>
+                    <div class="person-card">
+                        <div class="person-name">Tobiáš Vybíral</div>
+                        <div class="person-title">CEO & Co-founder (full-time)</div>
+                        <div class="person-details">
+                            <p>16 let v product designu a UX. Dle decku ex-Google a ex-Rohlík. LinkedIn: linkedin.com/in/uxtobias. Osobní web: uxtobias.cz</p>
+                            <p><strong>Ověřeno:</strong> Google zkušenosti potvrzeny (marketing B2C projekty). Rohlík zmíněn, ale konkrétní role neověřena. Silné UX/design portfolio, ocenění T-Mobile CZ Prize, Deloitte CZ Prize, CEE Hacks Prize.</p>
+                            <p><strong>Role:</strong> Vede GTM, fundraising a distribuční partnerství.</p>
+                        </div>
+                    </div>
+
+                    <h3>Max Klimeš, CTO & Co-founder (full-time)</h3>
+                    <div class="person-card">
+                        <div class="person-name">Max Klimeš</div>
+                        <div class="person-title">CTO & Co-founder (full-time)</div>
+                        <div class="person-details">
+                            <p>Dle decku ex-Prusa Research, ex-J&T Ventures. Hardware, firmware, software, datová infrastruktura. LinkedIn: linkedin.com/in/maxklimes</p>
+                            <p><strong>Ověřeno:</strong> Spojení s Prusa Research potvrzeno. J&T Ventures zmíněno.</p>
+                            <div class="warning-box">
+                                <span class="warning-icon">⚠️</span>
+                                Některé zdroje naznačují, že může být velmi mladý (studium gymnázia v době článku) – je potřeba ověřit věk a senioritu.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Ing. Krištof Šaman, COO & Co-founder (full-time)</h3>
+                    <div class="person-card">
+                        <div class="person-name">Ing. Krištof Šaman</div>
+                        <div class="person-title">COO & Co-founder (full-time)</div>
+                        <div class="person-details">
+                            <p>Aerospace/manufacturing background. CNC, mechanický design, kompozitní díly. LinkedIn: linkedin.com/in/kristof-saman</p>
+                            <p><strong>Ověřeno:</strong> Potvrzeno – Rohlík, Zuri (VTOL letadla), Prusa Research. Výhra Space2Business 2022 (SOLAR FOCUS, ESA patent). Věk ~32 let.</p>
+                            <p><strong>Role:</strong> Řídí výrobu, supply chain, operace.</p>
+                        </div>
+                    </div>
+
+                    <h3>MUDr. Marek Šramko, Ph.D., FESC – Chief Medical Officer (part-time)</h3>
+                    <div class="person-card">
+                        <div class="person-name">MUDr. Marek Šramko, Ph.D., FESC</div>
+                        <div class="person-title">Chief Medical Officer (part-time, aktivní lékař)</div>
+                        <div class="person-details">
+                            <p>20 let ICU a kardiologie. Přednosta oddělení akutní kardiologie IKEM Praha.</p>
+                            <p><strong>Ověřeno:</strong> IKEM potvrzeno. Johns Hopkins – postdoc 2002–2005 potvrzen. Stanford – kurz 2013 potvrzen. FESC potvrzen. 1 598 citací.</p>
+                            <p><strong>🆕 Živé svědectví (founder call 8. 4. 2026):</strong> Dr. Šramko se osobně zapojil do hovoru. Potvrdil klinickou hodnotu – „za jednu službu jsem prošla 10 pacientů, u 6 bych změnil dávku diuretik na základě dat z Urogramu". Probíhá studie predikce diurézy na 15 minut dopředu (preview data ukazují přesnost). Šramko aktivně evangelizuje produkt kolegům v IKEM a připravuje Benelux roadshow s distributory.</p>
+                            <div class="warning-box">
+                                <span class="warning-icon">⚠️</span>
+                                Part-time – aktivní lékař v IKEM. CMO role je spíše advisory/klinická podpora než full-time C-level. Ale jeho osobní angažovanost a klinické svědectví výrazně posilují důvěryhodnost produktu.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Další klíčoví členové</h3>
+                    <ul>
+                        <li>Zofie Dvorak – Clinical Success & Implementation (joining, Benelux roadshow)</li>
+                        <li>Lucie Dorková (🆕 „Lucka") – Regulatory & Quality Manager (MDR, ISO 13485). Dle founder callu: bývalá dětská sestra, nyní v soukromém sektoru. Řídí regulatorní agendu.</li>
+                        <li>Lenka Krejčová – EU Grant & Funding Manager</li>
+                        <li>Rozšířený tým 11 lidí: full-stack devs, firmware eng., HL7/FHIR specialisté, elektronici</li>
+                        <li>🆕 ~20 externích konzultantů na projektové bázi (dle founder callu)</li>
+                    </ul>
+
+                    <h3>Advisory board</h3>
+                    <ul>
+                        <li><strong>Tomáš Studeník</strong> – MedTech podnikatel, organizátor IKEM Healthcare Hackathon (kde HTG vznikl)</li>
+                        <li><strong>Miloš Dendis</strong> (DENDIS VENTURES s.r.o.) – Healthcare/biotech investor</li>
+                    </ul>
+
+                    <h3>🆕 Bridge round investoři (dle founder callu)</h3>
+                    <ul>
+                        <li><strong>Purple Ventures</strong> – zájem potvrzen</li>
+                        <li><strong>Why Why Why Investment</strong> – zájem potvrzen. Pozn.: zakladatelé jsou spolužáci ze zakladatelů HTG, provozují marketingovou agenturu.</li>
+                        <li><strong>JITS Ventures</strong> – zájem potvrzen</li>
+                        <li><strong>Garage Angels</strong> – předběžný zájem ~€200K (6 zdravotně zaměřených investorů). Aktivní účastníci due diligence callu: Karel Bastl (detailní dotazy na business model a finance), Miloš Dendis (stávající investor, 500K EUR seed), Aleš Filipenský (syndikát lead, moderátor).</li>
+                        <li>Další investoři z předchozího kola (LUMUS, Jinej fond, 10x, Dendis) – follow-on potvrzen</li>
+                    </ul>
+
+                    <h3>Cap table</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Akcionář</th>
+                                    <th>Podíl</th>
+                                    <th>Typ akcií</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3 co-founders (CEO, CTO, COO)</td>
+                                    <td><span class="number">67,1 %</span></td>
+                                    <td>Ordinary shares</td>
+                                </tr>
+                                <tr>
+                                    <td>Seed investoři & advisoři (6 osob)</td>
+                                    <td><span class="number">22,9 %</span></td>
+                                    <td>Preferred A + Ordinary</td>
+                                </tr>
+                                <tr>
+                                    <td>CMO (Šramko)</td>
+                                    <td><span class="number">0,5 %</span></td>
+                                    <td>Ordinary</td>
+                                </tr>
+                                <tr>
+                                    <td>VSOP pool</td>
+                                    <td><span class="number">9,5 %</span></td>
+                                    <td>Options (6 % alokováno CMO, 3,5 % rezerva)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><strong>Hodnocení týmu:</strong> Silný – kombinace product design (CEO), hardware engineering (CTO), manufacturing/ops (COO) a klinické kredibility (CMO z IKEM). Founder call potvrdil: Tobiáš je silný v GTM strategii a distributor managementu, Dr. Šramko aktivně evangelizuje produkt a přináší klinické důkazy. Slabina: stále chybí dedicated sales hire (plánováno v příštím kole). Zofie Dvorak nastupuje na Clinical Success & Implementation (Benelux focus).</p>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Problém a řešení -->
+            <section id="section-3" class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h1 class="section-title">Problém a řešení</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Problém</h3>
+                    <p>Měření výdeje moči je poslední vitální funkce na JIP, která se stále měří manuálně. 80 % pacientů na JIP vyžaduje monitoring výdeje moči. Sestry kontrolují sáčky každou hodinu – zabere to 60+ minut denně na lůžko. Manuální měření má chybovost ±30 %. Lékaři nemají real-time data – klinická rozhodnutí se odkládají.</p>
+                    <blockquote style="border-left: 3px solid var(--color-accent-explore); padding-left: var(--space-sm); color: var(--color-text-secondary); font-style: italic; margin: var(--space-sm) 0;">
+                        „Pojďte tohle věc automatizovat. Vůbec nedává smysl, že pořád je to dělení manuálně." — Tobiáš Vybíral, founder call 8. 4. 2026
+                    </blockquote>
+                    <blockquote style="border-left: 3px solid var(--color-accent-explore); padding-left: var(--space-sm); color: var(--color-text-secondary); font-style: italic; margin: var(--space-sm) 0;">
+                        „Víc než jednou za hodinu člověk nezíská tu informaci a i ta je nepřesná." — Dr. Šramko o manuálním měření
+                    </blockquote>
+
+                    <h3>Kvantifikace problému</h3>
+                    <p>Klesající výdej moči je nejčasnější indikátor akutního poškození ledvin (AKI). >50 % pacientů na JIP vyvine AKI v prvním týdnu (PMC, 2022). AKI zvyšuje mortalitu 2–7× dle závažnosti (Stage 3 ≈ 6,88×). Roční náklady AKI v USA: $5,4–24 mld. USD (PMC, 2017). Náklady navíc na pacienta s AKI: $7 933 (J. Hosp. Med., 2017).</p>
+
+                    <h3>Řešení</h3>
+                    <p><strong>HTG Urogram</strong> – zařízení velikosti paperbacku, které se připevní na standard ICU bed rail. Váží připojený sáček každých 5 minut pomocí strain gauge load cell (97% přesnost). Data přenáší přes LoRaWAN (AES-128 šifrování) do HTG cloudu → nemocničního IS. Žádná WiFi závislost, žádný zásah sestry.</p>
+
+                    <h3>Jak to zákazníci řeší dnes</h3>
+                    <p>Manuální odečty ze sáčků každou hodinu + ruční zápis do dokumentace. Alternativy – premium hourly meter bags (€8–20/ks), které ale stále vyžadují manuální odečet.</p>
+
+                    <p><strong>🆕 Klinické svědectví (Dr. Šramko, IKEM, 8. 4. 2026):</strong> „Za jednu službu jsem prošla 10 pacientů, u 6 bych změnil dávku diuretik na základě dat z Urogramu." Probíhá studie predikce diurézy na 15 minut dopředu – preview data ukazují funkční přesnost. Toto je konkrétní evidence klinické hodnoty od praktikujícího lékaře.</p>
+
+                    <h3>🆕 Inbound poptávka z nemocnic</h3>
+                    <blockquote style="border-left: 3px solid var(--color-accent-explore); padding-left: var(--space-sm); color: var(--color-text-secondary); font-style: italic; margin: var(--space-sm) 0;">
+                        „Teďka už i samou nemocnice proaktivně hledají po tom trhu, co zrovna tuhle bolest by jí mohlo vyřešit." — Tobiáš Vybíral
+                    </blockquote>
+                    <p>Dle founder callu nemocnice aktivně vyhledávají řešení — přechod od outbound na inbound demand. Klíčový driver: rostoucí nedostatek sester napříč Evropou, Amerikou i Asií. „Není to problém jenom v Česku, je to problém v celé Evropě a rozpluchává se do Ameriky i do asijských zemí." — Tobiáš</p>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Produkt a technologie -->
+            <section id="section-4" class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h1 class="section-title">Produkt a technologie</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Stav produktu</h3>
+                    <p>Manufacturing-ready hardware + firmware. 24 iterací produktu. 4 000+ hodin klinického testování v IKEM Praha a FN Olomouc. Pre-produkční zařízení vyrobena.</p>
+
+                    <h3>Technické specifikace</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parametr</th>
+                                    <th>Hodnota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Měření</td>
+                                    <td>Strain gauge load cell, rozlišení 1 ml, rozsah 0–3 000 ml</td>
+                                </tr>
+                                <tr>
+                                    <td>Přesnost</td>
+                                    <td>97 % validováno v klinických podmínkách</td>
+                                </tr>
+                                <tr>
+                                    <td>Interval</td>
+                                    <td>Každých 5 minut (vs. 1× za hodinu manuálně = 12× granularnější data)</td>
+                                </tr>
+                                <tr>
+                                    <td>Baterie</td>
+                                    <td>5+ měsíců na 2× AA baterie</td>
+                                </tr>
+                                <tr>
+                                    <td>Konektivita</td>
+                                    <td>LoRaWAN (EU868) primární, Bluetooth LE fallback</td>
+                                </tr>
+                                <tr>
+                                    <td>Medical grade</td>
+                                    <td>IP53 (splash-proof), IEC 60601-1 compliant</td>
+                                </tr>
+                                <tr>
+                                    <td>Velikost</td>
+                                    <td>Menší než paperback</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Proprietární spotřební materiál</h3>
+                    <ul>
+                        <li>HTG urine bags s proprietárním tubing collar</li>
+                        <li>€2,50–10/sáček (dle revenue modelu) vs. €8–20 premium meter bags vs. €1–3 standard bags</li>
+                        <li>Lock-in: Proprietární collar = sáčky třetích stran nelze použít</li>
+                    </ul>
+
+                    <h3>Software stack</h3>
+                    <p>Data pipeline: Sensor → ML filtering → Calibration → Volume → Encryption → LoRaWAN → Cloud → HIS</p>
+                    <ul>
+                        <li>HTG WebApp (standalone dashboard, bez nutnosti HIS integrace)</li>
+                        <li>HL7 v2.x / FHIR R4 API (validováno se Zlatokop HIS)</li>
+                        <li>Integrace s GE, Philips, Mindray monitory (diskuze)</li>
+                    </ul>
+
+                    <h3>🆕 Dvě vrstvy hodnoty (z founder callu)</h3>
+                    <p>Dr. Šramko popsal dvě odlišné hodnoty produktu:</p>
+                    <ul>
+                        <li><strong>Sestrská hodnota (Nurse Value):</strong> Úspora 60+ minut/den na lůžko, eliminace manuálního měření → řeší nedostatek sester</li>
+                        <li><strong>Medicínská hodnota (Medical Value):</strong> Real-time data pro klinická rozhodnutí, predikce diurézy, včasná detekce AKI → řeší diagnostické mezery</li>
+                    </ul>
+                    <p>Tato dvojí hodnota je klíčová pro prodejní argumentaci – oslovuje obě rozhodovací strany v nemocnici (nursing management i lékaře).</p>
+
+                    <h3>AI/ML</h3>
+                    <p><strong>Aktuálně:</strong> Pattern recognition, anomaly detection (leaky, disconnections), auto-zero calibration</p>
+                    <p><strong>AI roadmap (2027–28):</strong> AKI prediction, sepsis detection, fluid balance optimization. 🆕 Dle founder callu: AI diagnostické moduly budou zpracovávat data z gateway → potenciální upsell na software licenci.</p>
+
+                    <h3>IP (Intellectual Property)</h3>
+                    <ul>
+                        <li><strong>Licensed patent:</strong> EP3422948B1 (University of Leicester) – „Urine Weighing Apparatus". Exkluzivní práva v 8 EU trzích (DE, ES, FR, IT, NL, IE, CZ, UK). Filed 2017, expires ~2037. Licence: 0,5 % royalty z net sales, žádné minimum sales milestones. <div class="warning-box" style="margin-top: var(--space-sm); margin-bottom: 0;"><span class="warning-icon">⚠️</span> Plné znění licence pod NDA – ověřit exclusivity podmínky.</div></li>
+                        <li><strong>Vlastní patent:</strong> Tubing mount + collar system (filed 2025, mezinárodní extension pathway)</li>
+                        <li><strong>Trade secrets:</strong> Kalibrační algoritmy, LoRaWAN implementace, ML modely</li>
+                    </ul>
+
+                    <p><strong>TRL:</strong> ~7–8 (systém validován v operačním prostředí, pre-production zařízení vyrobena)</p>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Trh – TAM/SAM/SOM -->
+            <section id="section-5" class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h1 class="section-title">Trh – TAM / SAM / SOM</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>TAM (vlastní kalkulace – ověření tvrzení z decku)</h3>
+                    <p>Deck tvrdí: €2 mld./rok trh disposable urine meter bags.</p>
+                    <p><strong>Ověření:</strong> Grand View Research (2023) uvádí $1,9 mld. pro CELÝ trh urine bags (drainage, leg, meter, bedside atd.). Urine meter bags jsou jen jeden segment – realisticky 10–20 % = <span class="number">$190–380 mil.</span> specificky pro meter bags.</p>
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        HTG tvrdí €2B „beachhead market" – ale toto je celý urine bag market, nikoliv pouze meter segment. Je to zavádějící framing.
+                    </div>
+                    <p>Nicméně HTG nenahrazuje jen meter bags – nahrazuje JAKÝKOLIV sáček na ICU lůžku proprietárním sáčkem. Takže relevantnější je:</p>
+                    <ul>
+                        <li>EU ICU lůžka: ~75 000–80 000</li>
+                        <li>US ICU lůžka: ~107 000</li>
+                        <li>Revenue/bed/year (EU): €1 000–1 500 (device amortizace + consumables)</li>
+                        <li>Revenue/bed/year (US): $3 300–6 600</li>
+                    </ul>
+
+                    <h3>Vlastní bottom-up TAM</h3>
+                    <ul>
+                        <li>EU: <span class="number">80 000</span> lůžek × €1 250/bed/rok = €100 mil./rok</li>
+                        <li>US: <span class="number">107 000</span> lůžek × $5 000/bed/rok = $535 mil./rok</li>
+                        <li><strong>TAM (EU + US): ~€600–700 mil./rok</strong> (nižší než deck claims, ale stále velký trh)</li>
+                    </ul>
+
+                    <h3>SAM (6 počátečních EU trhů: CZ, PL, SK, AT, NL, FI)</h3>
+                    <ul>
+                        <li><span class="number">16 200</span> ICU lůžek × €1 250 = <strong>~€20 mil./rok</strong></li>
+                        <li>S expanzí (CEE + further EU): ~29 000 lůžek = <strong>~€36 mil./rok</strong></li>
+                    </ul>
+
+                    <h3>SOM (2026–2028, 🆕 aktualizováno dle Excel modelu + founder call)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rok</th>
+                                    <th>Kumulativní zařízení</th>
+                                    <th>Revenue HTG</th>
+                                    <th>Founder projekce</th>
+                                    <th>Realizovatelnost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026</td>
+                                    <td><span class="number">~1 221</span></td>
+                                    <td>~€500K–750K</td>
+                                    <td>~€750K (Excel model)</td>
+                                    <td>⚠️ Závisí na ramp-upu od 40 na 230 inst./měsíc</td>
+                                </tr>
+                                <tr>
+                                    <td>2027</td>
+                                    <td><span class="number">~2 900+</span></td>
+                                    <td>€3–4M</td>
+                                    <td>€4,5–5M</td>
+                                    <td>⚠️ Optimistické, ale podpořeno Excel modelem</td>
+                                </tr>
+                                <tr>
+                                    <td>2028</td>
+                                    <td><span class="number">~5 000+</span></td>
+                                    <td>€6–8M</td>
+                                    <td>€8–10M</td>
+                                    <td>⚠️ Optimistické, vyžaduje expanzi do dalších trhů</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Konkurence -->
+            <section id="section-6" class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h1 class="section-title">Konkurence</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Competitive landscape</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Konkurent</th>
+                                    <th>Geo</th>
+                                    <th>Funding</th>
+                                    <th>Fáze</th>
+                                    <th>Cena device</th>
+                                    <th>Cena sáčku</th>
+                                    <th>Klíčová slabina</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Potrero Medical</td>
+                                    <td>USA</td>
+                                    <td><span class="number">$75,9M</span></td>
+                                    <td>❌ Bankrot (2023)</td>
+                                    <td>Complex system</td>
+                                    <td>N/A</td>
+                                    <td>Over-engineering, Chapter 11</td>
+                                </tr>
+                                <tr>
+                                    <td>FIZE Medical</td>
+                                    <td>Israel</td>
+                                    <td><span class="number">$38,9M</span></td>
+                                    <td>⚠️ Komercializuje</td>
+                                    <td>€3 000</td>
+                                    <td>€40/ks</td>
+                                    <td>Drahé consumables, complex integration</td>
+                                </tr>
+                                <tr>
+                                    <td>Observe Medical</td>
+                                    <td>SE/NO</td>
+                                    <td><span class="number">$10M+</span></td>
+                                    <td>⚠️ Distressed (Oslo SE)</td>
+                                    <td>€1 500+</td>
+                                    <td>€20/ks</td>
+                                    <td>Reverse stock split 15:1, pricing</td>
+                                </tr>
+                                <tr>
+                                    <td>RenalSense</td>
+                                    <td>IL/SG</td>
+                                    <td><span class="number">$14M</span></td>
+                                    <td>⚠️ Stalled</td>
+                                    <td>£3 810</td>
+                                    <td>£65/sensor</td>
+                                    <td>Parent deprioritizing</td>
+                                </tr>
+                                <tr>
+                                    <td>Serenno Medical</td>
+                                    <td>Israel</td>
+                                    <td><span class="number">$2,4M</span></td>
+                                    <td>❌ Ceased ops</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>Flow-based approach failed</td>
+                                </tr>
+                                <tr>
+                                    <td>FlowSense → Baxter</td>
+                                    <td>Israel</td>
+                                    <td>N/A</td>
+                                    <td>Acquired 2013</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>Optical sensor, acquired pre-scale</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>HTG Medical</strong></td>
+                                    <td><strong>CZ</strong></td>
+                                    <td><strong>€670K</strong></td>
+                                    <td><strong>✅ On track</strong></td>
+                                    <td><strong>€3 000/€300yr</strong></td>
+                                    <td><strong>€2,50–10</strong></td>
+                                    <td><strong>Pre-revenue</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>3 měřitelné odlišení HTG</h3>
+                    <ol>
+                        <li><strong>Cena consumables:</strong> €2,50–10 vs. €20–65 u konkurence (4–25× levnější)</li>
+                        <li><strong>Budget neutralita:</strong> OPEX model nahrazuje existující spend, nevyžaduje nový budget line</li>
+                        <li><strong>Kapitálová efektivita:</strong> CE + validace + 5 distributorů za €670K vs. $14–76M u ostatních</li>
+                    </ol>
+
+                    <h3>🆕 Nové poznatky z founder callu (8. 4. 2026)</h3>
+                    <h4>Kolaps dominantního dodavatele sáčků</h4>
+                    <p>Předchozí dominantní evropský dodavatel urinárních sáčků (výroba v Bělorusku) <strong>kontroloval 70 % evropského trhu</strong> před válkou na Ukrajině. Zkrachoval v důsledku sankcí a přerušení výroby. Toto vytvořilo masivní tržní vakuum a příležitost pro HTG vstoupit s vlastními proprietárními sáčky.</p>
+                    <blockquote style="border-left: 3px solid var(--color-accent-explore); padding-left: var(--space-sm); color: var(--color-text-secondary); font-style: italic; margin: var(--space-sm) 0;">
+                        „To je právě zajímavý, že před válkou na Ukrajině, tak 70 % trhu měl jeden řád." — Tobiáš Vybíral
+                    </blockquote>
+                    <p>Dodavatel HTG v Číně (20+ let zkušeností, dodává i pro Dahlhausen) je stabilní alternativa. Reference: Hartmann jako benchmark pro cenovou politiku consumables.</p>
+
+                    <h4>BD (Becton Dickinson) – patentová dynamika</h4>
+                    <p>BD drží <strong>US patent na weight-based urine monitoring</strong>, který blokuje HTG vstup na americký trh. Současně ale HTG drží EU patent (Leicester licence), který blokuje BD v Evropě. Toto vytváří <strong>vzájemnou patentovou páku</strong> – ideální pozice pro M&A nebo cross-licensing deal. BD nedávno koupila Edwards Critical Care za $4,2B a aktivně buduje ICU portfolio.</p>
+
+                    <p><strong>Komentář:</strong> Diferenciace je silná cenově, ale udržitelnost závisí na kvalitě proprietárních sáčků a reálné klinické adopti. Konkurenti selhali primárně kvůli vysokým cenám consumables – HTG tento problém řeší. Kolaps běloruského dodavatele otevřel tržní okno. Vzájemná patentová blokáda s BD je strategicky cenná – BD je potenciální acquirer, nikoliv jen konkurent. Hlavní riziko: FIZE Medical s $39M má prostředky na cenovou válku.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 7: Business model -->
+            <section id="section-7" class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h1 class="section-title">Business model a unit economics</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Revenue model</h3>
+                    <p><strong>Razor-blade</strong> – levné zařízení (nebo subscription) + drahé proprietární sáčky.</p>
+                    <ul>
+                        <li><strong>Device:</strong> €3 000 (CAPEX) nebo €300/rok (OPEX subscription) → nízká bariéra vstupu</li>
+                        <li><strong>Sáčky:</strong> €2,50/ks (CAPEX model) až €10/ks (OPEX model) → hlavní margin driver</li>
+                        <li><strong>Spotřeba:</strong> ~5 sáčků/měsíc/zařízení (životnost sáčku ~6 dní)</li>
+                        <li><strong>Accessories (mount, collar):</strong> €40 (CAPEX) nebo included (OPEX)</li>
+                    </ul>
+
+                    <h3>Unit economics</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metrika</th>
+                                    <th>Hodnota</th>
+                                    <th>Benchmark</th>
+                                    <th>Hodnocení</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Device mfg cost</td>
+                                    <td>€200</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Device sell CAPEX</td>
+                                    <td>€3 000</td>
+                                    <td>—</td>
+                                    <td>93 % margin ✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Bag mfg cost</td>
+                                    <td>€1,50</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Bag sell CAPEX</td>
+                                    <td>€2,50</td>
+                                    <td>—</td>
+                                    <td>40 % margin</td>
+                                </tr>
+                                <tr>
+                                    <td>Bag sell OPEX</td>
+                                    <td>€10</td>
+                                    <td>—</td>
+                                    <td>85 % margin ✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue/bed/year EU</td>
+                                    <td>€1 000–1 500</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Blended gross margin (2026)</td>
+                                    <td><span class="number">38–64 %</span></td>
+                                    <td>50 %+ for HW+SaaS</td>
+                                    <td>⚠️ Nízké zpočátku</td>
+                                </tr>
+                                <tr>
+                                    <td>Blended gross margin (at scale)</td>
+                                    <td><span class="number">80 %+</span></td>
+                                    <td><span class="number">70–85 %</span> SaaS</td>
+                                    <td>✓ Atraktivní</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Distributor economics (🆕 upřesněno z founder callu)</h3>
+                    <p>HTG prodává device distributorům za ~€1 200 wholesale. Distributoři mají <strong>35 % marži</strong> (oproti původně uváděných 60 % – 60 % byl iniciální pilotní discount). Distributoři deployují převážně OPEX model do nemocnic.</p>
+                    <ul>
+                        <li><strong>5 pojmenovaných distributorů:</strong> Finsko, Polsko, CH/AT/SK/SI, Benelux, UK/IE</li>
+                        <li>Každý distributor pokrývá 1–3 trhy → celkem 10+ zemí v pipeline</li>
+                    </ul>
+
+                    <h3>🆕 OPEX model – klíč k rychlé adopci</h3>
+                    <p>Founder call potvrdil, že <strong>OPEX model je primární go-to-market kanál</strong>. Důvod: nemocnice nakupují sáčky přes oddělení spotřebního materiálu → obchází se procurement/tendrový proces. Device za €300/rok jde do budgetu na spotřební materiál, ne na investice.</p>
+                    <ul>
+                        <li><strong>Sales cycle:</strong> ~3 týdny do pilotu, pilot trvá 2–3 týdny, poté rollout → celkem 5–6 týdnů do prvního revenue</li>
+                        <li><strong>Pilot strategie:</strong> 3–5 zařízení na oddělení, pak rozšíření na celou JIP (typicky 20–40 lůžek)</li>
+                        <li><strong>Implementace:</strong> Instalace + školení + gateway setup + sběr dat → 2–3 týdny deployment</li>
+                    </ul>
+
+                    <h3>🆕 Doctor-to-doctor sales dynamika</h3>
+                    <p>Klíčový insight z founder callu: <strong>Dr. Šramko aktivně evangelizuje produkt</strong> kolegům na mezinárodních konferencích. Dle Tobiáše: „Marek často vystupuje na konferenci v zahraničí a má opravdu zajímavý network mezinárodní." Odlišná dynamika: lékař vysvětlující lékaři vs. obchodník → výrazně vyšší konverzní síla. Šramko přináší sestrskou hodnotu (úspora času) i medicínskou hodnotu (diagnostika) – obě strany rozhodovacího procesu v nemocnici.</p>
+                    <p>Synergie s distributory: v některých trzích sdílí distributor s MetaVision (SW provider), což umožňuje cross-sell do nemocnic, kde MetaVision už operuje.</p>
+
+                    <h3>Klíčové pozorování</h3>
+                    <p>Model je promyšlený – budget-neutrální pro nemocnice (nahrazuje existující spend €800–1 500/bed/rok na urine bags). OPEX kanál přes spotřební materiál je strategická výhoda – obchází pomalý tendrový proces. Sales cycle 5–6 týdnů je výrazně kratší než typických 6–18 měsíců v medtechu. Distribuční marže 35 % je udržitelná a motivuje partnery. Break-even ~Oct 2026 je stále ambiciózní, ale s CE certifikací na dosah a distribuční sítí ready to go je realističtější než před rokem.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 8: Trakce a validace -->
+            <section id="section-8" class="section">
+                <div class="section-header">
+                    <div class="section-number">8</div>
+                    <h1 class="section-title">Trakce a validace</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Klinická validace</h3>
+                    <ul>
+                        <li><span class="number">4 000+</span> hodin bedside testování</li>
+                        <li>97 % přesnost (vs. ±30 % manuální měření)</li>
+                        <li>Klíčová validační pracoviště: IKEM Praha, FN Olomouc, UKM Münster</li>
+                        <li>24 produktových iterací</li>
+                        <li>🆕 <strong>15 zařízení prodáno do IKEM</strong> (prototypová/pilotní fáze, potvrzeno ve founder callu)</li>
+                        <li>🆕 Probíhá studie predikce diurézy na 15 minut dopředu (Dr. Šramko, IKEM)</li>
+                    </ul>
+
+                    <h3>🆕 CE audit (duben 2026)</h3>
+                    <p><strong>Status: CE audit proběhl úspěšně („na jedničku")</strong> – dle founder callu 8. 4. 2026. Certifikát očekáván za 3–4 týdny (cca květen 2026). Auditor neměl zásadní připomínky. Toto je klíčový de-risking milestone.</p>
+
+                    <h3>Distribuční pipeline (🆕 upřesněno)</h3>
+                    <ul>
+                        <li><strong>5 distributorů s podepsanými smlouvami/LOI:</strong></li>
+                        <li>🇫🇮 Finsko – distributor potvrzen</li>
+                        <li>🇵🇱 Polsko (SKAMEX) – distributor potvrzen</li>
+                        <li>🇨🇭🇦🇹🇸🇰🇸🇮 Švýcarsko/Rakousko/Slovensko/Slovinsko – distributor potvrzen</li>
+                        <li>🇧🇪🇳🇱🇱🇺 Benelux – distributor potvrzen (Zofie Dvorak na Benelux roadshow)</li>
+                        <li>🇬🇧🇮🇪 UK/Irsko – distributor potvrzen</li>
+                        <li>10+ nemocnic s verbal commitments</li>
+                    </ul>
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        LOI nejsou závazné smlouvy – ale distributor pipeline je nyní pojmenovaný a geograficky konkrétní, což zvyšuje důvěryhodnost.
+                    </div>
+
+                    <h3>🆕 Instalační cíle (dle Excel modelu)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Měsíc</th>
+                                    <th>Nové instalace</th>
+                                    <th>Kumulativně zařízení</th>
+                                    <th>Revenue/měsíc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Květen 2026</td>
+                                    <td><span class="number">40</span></td>
+                                    <td><span class="number">~40</span></td>
+                                    <td>€12K</td>
+                                </tr>
+                                <tr>
+                                    <td>Říjen 2026</td>
+                                    <td><span class="number">~160</span></td>
+                                    <td><span class="number">~700</span></td>
+                                    <td>~€80K</td>
+                                </tr>
+                                <tr>
+                                    <td>Prosinec 2026</td>
+                                    <td><span class="number">230</span></td>
+                                    <td><span class="number">1 221</span></td>
+                                    <td>€150K</td>
+                                </tr>
+                                <tr>
+                                    <td>Červen 2027</td>
+                                    <td><span class="number">320</span></td>
+                                    <td><span class="number">2 906</span></td>
+                                    <td>€545K</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Granty a podpory</h3>
+                    <ul>
+                        <li>€250K non-dilutivní granty: CzechInvest + OP TAK</li>
+                        <li>Caelestinus accelerator, ČSOB Start-IT, InterSystems Dev Community</li>
+                    </ul>
+
+                    <h3>Revenue</h3>
+                    <p>€0 aktuálně (pre-revenue). CE certifikát expected květen 2026. <strong>První revenue plánováno květen 2026</strong> (~€12K z 40 instalací). Cíl: ~€150K měsíčně do konce 2026.</p>
+
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        <strong>Datová diskrepance:</strong> Tobiáš v hovoru zmínil cíl „500–600 lůžek do konce 2026", zatímco Excel model ukazuje 1 221 kumulativních zařízení. Možné vysvětlení: 1 lůžko = 1 zařízení, ale ne všechna zařízení jsou na aktivních lůžkách současně (rotace, piloty, zásoby u distributorů). Alternativně Tobiáš hovořil o konzervativnějším scénáři verbálně, zatímco Excel ukazuje optimistický plán.
+                    </div>
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        Instalační ramp-up od 40 → 230 zařízení/měsíc za 7 měsíců je agresivní. Vyžaduje, aby všech 5 distributorů aktivně prodávalo od Q2 2026. Founder call potvrdil připravenost, ale reálná exekuce stále neověřena.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 9: Financials a investiční podmínky -->
+            <section id="section-9" class="section">
+                <div class="section-header">
+                    <div class="section-number">9</div>
+                    <h1 class="section-title">Financials a investiční podmínky</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Investiční nástroj: CLA (Convertible Loan Agreement)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parametr</th>
+                                    <th>Hodnota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bridge</td>
+                                    <td>€300 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Discount</td>
+                                    <td><span class="number">20 %</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Valuation cap</td>
+                                    <td>€12M</td>
+                                </tr>
+                                <tr>
+                                    <td>Valuation floor</td>
+                                    <td>€7M</td>
+                                </tr>
+                                <tr>
+                                    <td>Úrok</td>
+                                    <td>0 %</td>
+                                </tr>
+                                <tr>
+                                    <td>Splatnost</td>
+                                    <td>24 měsíců</td>
+                                </tr>
+                                <tr>
+                                    <td>At maturity</td>
+                                    <td>Automatická konverze na equity při cap (€12M)</td>
+                                </tr>
+                                <tr>
+                                    <td>MFN klauzule</td>
+                                    <td>Pokud HTG vydá CLA s lepšími podmínkami, tyto se automaticky matchují</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Předchozí kolo</h3>
+                    <p>€670K (€500K equity + €170K granty) při €2,5M post-money (únor 2025)</p>
+                    <p><strong>Investoři:</strong> LUMUS Collective, Jinej fond, 10x, Dendis Capital</p>
+
+                    <h3>Plánované Seed kolo</h3>
+                    <p>Late 2027, €1,3–2M při ~€14M pre-money</p>
+
+                    <h3>Burn rate & runway (🆕 upřesněno z founder callu + Excel)</h3>
+                    <ul>
+                        <li><strong>Burn rate:</strong> €25–30K/měsíc (500K CZK) – potvrzeno ve founder callu</li>
+                        <li>S €300K bridge: runway ~10–12 měsíců bez revenue</li>
+                        <li><strong>EBITDA pozitivní od ~října 2026</strong> (dle Excel modelu)</li>
+                        <li>EBITDA červen 2027: €351K/měsíc</li>
+                        <li>Operating costs rostou na €757K/měsíc do poloviny 2027 (team + infrastructure scale)</li>
+                        <li>Acquisition costs (device production, inventory): ramp od €60K na €1 608K/měsíc do poloviny 2027</li>
+                    </ul>
+
+                    <h3>🆕 Měsíční finanční projekce (z Excel modelu)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metrika</th>
+                                    <th>Kvě 2026</th>
+                                    <th>Říj 2026</th>
+                                    <th>Pro 2026</th>
+                                    <th>Čer 2027</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Revenue/měsíc</td>
+                                    <td>€12K</td>
+                                    <td>~€80K</td>
+                                    <td>€150K</td>
+                                    <td>€545K</td>
+                                </tr>
+                                <tr>
+                                    <td>Gross margin</td>
+                                    <td><span class="number">~25 %</span></td>
+                                    <td><span class="number">~60 %</span></td>
+                                    <td><span class="number">~75 %</span></td>
+                                    <td><span class="number">~83 %</span></td>
+                                </tr>
+                                <tr>
+                                    <td>EBITDA</td>
+                                    <td>záporná</td>
+                                    <td>~break-even</td>
+                                    <td>pozitivní</td>
+                                    <td>€351K</td>
+                                </tr>
+                                <tr>
+                                    <td>Kumulativní zařízení</td>
+                                    <td><span class="number">~40</span></td>
+                                    <td><span class="number">~700</span></td>
+                                    <td><span class="number">1 221</span></td>
+                                    <td><span class="number">2 906</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>🆕 Long-term revenue outlook (z founder callu)</h3>
+                    <ul>
+                        <li>2027: €4,5–5M</li>
+                        <li>2028: €8–10M</li>
+                        <li>2029: €12–15M</li>
+                        <li>2030: €20–25M</li>
+                    </ul>
+
+                    <h3>Use of funds (€300K)</h3>
+                    <ul>
+                        <li>GTM execution: Sales tým, distributor enablement, konference, marketing</li>
+                        <li>Device & consumable production: Inventory, bag production run</li>
+                        <li>Working capital: Team costs, operational expenses, regulatory maintenance</li>
+                    </ul>
+
+                    <h3>🔍 HLOUBKOVÁ ANALÝZA VALUACE – €300K GA ticket</h3>
+
+                    <h4>A) Step-up analýza: je €12M cap oprávněný?</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metrika</th>
+                                    <th>HTG Medical</th>
+                                    <th>Benchmark</th>
+                                    <th>Hodnocení</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Předchozí valuace</td>
+                                    <td>€2,5M post-money (02/2025)</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>CLA cap</td>
+                                    <td>€12M</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Step-up multiple</strong></td>
+                                    <td><strong><span class="number">4,8×</span></strong></td>
+                                    <td>Carta median seed→A: 2,6× (2025); Medtech A step-up: 1,46× (Mercer 2023)</td>
+                                    <td><span class="badge badge-risk-high">VYSOKÝ</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Čas mezi koly</td>
+                                    <td>14 měsíců</td>
+                                    <td>12–18 měsíců typicky</td>
+                                    <td>✓ OK</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue při bridge</td>
+                                    <td>€0 (pre-revenue)</td>
+                                    <td>Ideálně first revenue</td>
+                                    <td>⚠️</td>
+                                </tr>
+                                <tr>
+                                    <td>Klíčový milestone</td>
+                                    <td>CE audit passed ✅</td>
+                                    <td>CE = hlavní de-risking</td>
+                                    <td>✓ Silné</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><strong>Argument HTG pro €12M cap</strong> (dle Max Klimeše, founder call): „Racio je v comparables – za prvý v multiplech valuace, za kterou jsme nejzvali předtím (€2,5M), a za druhý v comps z healthcare sektoru – získání MDR certifikace vám dává valuace kolem 7 milionů. Plus vidíme ty naše kompetitory, který rizují 30milionový Series A za exorbitantní valuace."</p>
+
+                    <p><strong>Naše protiargumenty:</strong></p>
+                    <ol>
+                        <li><strong>4,8× step-up je nad mediánem.</strong> Carta data (2025) ukazuje median seed→Series A step-up 2,6×. Medtech specificky ještě nižší (1,46× dle Mercer Capital 2023). HTG požaduje 4,8× na bridge kolo, které je PRE seed.</li>
+                        <li><strong>Peers zkrachovali.</strong> Porovnávat se s Potrero ($76M raised, bankrot), FIZE ($39M, stále komercializuje) nebo RenalSense ($14M, stalled) je ošidné – tyto firmy valuace nedosáhly, většina zničila hodnotu.</li>
+                        <li><strong>CE ≠ revenue.</strong> CE certifikace je nutná podmínka, nikoliv postačující. 90 %+ medtech startupů s CE selže na komercializaci, ne na regulaci.</li>
+                        <li><strong>€12M cap chrání primárně HTG.</strong> Pokud seed přijde při €14M, cap se neuplatní (20% discount dá €11,2M < €12M). Cap chrání investora jen pokud seed přijde nad €15M.</li>
+                    </ol>
+
+                    <h4>B) Floor €7M – anti-investor klauzule</h4>
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        <strong>Floor je nestandardní a chrání FIRMU, ne investora.</strong> Pokud seed kolo proběhne při €5M (katastrofický scénář), CLA konvertuje při €7M – investor dostane MÉNĚ akcií, než kdyby investoval přímo v seed kole. Standardní SAFE/CLA nemá floor.
+                    </div>
+                    <p>Floor €7M znamená: investor nese downside risk (firma se nedaří → nízká seed valuace), ale nedostane odpovídající upside (konvertuje při flooru, ne při tržní ceně). Jediná obrana investora je MFN klauzule.</p>
+
+                    <h4>C) Konverzní mechanika – €300K ticket</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Seed valuace</th>
+                                    <th>20% discount</th>
+                                    <th>Efektivní konverze</th>
+                                    <th>GA podíl (€300K)</th>
+                                    <th>Komentář</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>€20M</td>
+                                    <td>€16M</td>
+                                    <td><strong>€12M (cap)</strong></td>
+                                    <td><span class="number">2,50 %</span></td>
+                                    <td>✓ Cap chrání – nejlepší scénář</td>
+                                </tr>
+                                <tr>
+                                    <td>€14M (cíl HTG)</td>
+                                    <td>€11,2M</td>
+                                    <td><strong>€11,2M (discount)</strong></td>
+                                    <td><span class="number">2,68 %</span></td>
+                                    <td>Cap se neuplatní – jen discount funguje</td>
+                                </tr>
+                                <tr>
+                                    <td>€12M</td>
+                                    <td>€9,6M</td>
+                                    <td><strong>€9,6M (discount)</strong></td>
+                                    <td><span class="number">3,13 %</span></td>
+                                    <td>✓ Discount funguje dobře</td>
+                                </tr>
+                                <tr>
+                                    <td>€8M</td>
+                                    <td>€6,4M</td>
+                                    <td><strong>€7M (floor!)</strong></td>
+                                    <td><span class="number">4,29 %</span></td>
+                                    <td>⚠️ Floor bije – investor přeplácí vs. tržní cena</td>
+                                </tr>
+                                <tr>
+                                    <td>€5M (katastrofa)</td>
+                                    <td>€4M</td>
+                                    <td><strong>€7M (floor!)</strong></td>
+                                    <td><span class="number">4,29 %</span></td>
+                                    <td>🔴 Floor dramaticky znevýhodňuje investora</td>
+                                </tr>
+                                <tr>
+                                    <td>Žádné seed (maturity)</td>
+                                    <td>—</td>
+                                    <td><strong>€12M (auto-konverze)</strong></td>
+                                    <td><span class="number">2,50 %</span></td>
+                                    <td>🔴 Nejhorší scénář – firma neraised, investor na capu</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>D) Porovnání s tržními podmínkami CLA/SAFE (2025)</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parametr</th>
+                                    <th>HTG Medical</th>
+                                    <th>Tržní standard (Carta 2025)</th>
+                                    <th>Hodnocení</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Discount</td>
+                                    <td>20 %</td>
+                                    <td>20 % (standard)</td>
+                                    <td>✓ OK</td>
+                                </tr>
+                                <tr>
+                                    <td>Cap</td>
+                                    <td>€12M</td>
+                                    <td>$7,7M median pre-seed (US)</td>
+                                    <td>⚠️ Nad mediánem</td>
+                                </tr>
+                                <tr>
+                                    <td>Floor</td>
+                                    <td>€7M</td>
+                                    <td>Nestandardní (většina SAFE nemá floor)</td>
+                                    <td>🔴 Anti-investor</td>
+                                </tr>
+                                <tr>
+                                    <td>Úrok</td>
+                                    <td>0 %</td>
+                                    <td>0–6 % (SAFE = 0 %, CLA typicky 4–6 %)</td>
+                                    <td>⚠️ Pro CLA nestandardně nízký</td>
+                                </tr>
+                                <tr>
+                                    <td>Splatnost</td>
+                                    <td>24 měsíců</td>
+                                    <td>18–24 měsíců</td>
+                                    <td>✓ OK</td>
+                                </tr>
+                                <tr>
+                                    <td>MFN</td>
+                                    <td>Ano</td>
+                                    <td>Standard</td>
+                                    <td>✓ OK</td>
+                                </tr>
+                                <tr>
+                                    <td>Pro-rata práva</td>
+                                    <td>Nezmíněno</td>
+                                    <td>Běžné pro €300K ticket</td>
+                                    <td>🔴 Chybí</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>E) Distribuční marže – dopad na reálnou ekonomiku</h4>
+                    <p>Důležitý detail z founder callu (@1:00:00): distribuční marže <strong>začíná na 60 %</strong> jako ramp-down incentiva (první 3 měsíce), poté klesá na 40 % (další 3 měsíce), a stabilizuje se na <strong>35 %</strong> pro běžné prodeje. Pilot nasazení má navíc 25 % slevu.</p>
+                    <p>To znamená, že v prvních 6 měsících komercializace HTG realizuje <strong>výrazně nižší marži</strong> z distribuovaných prodejů, než ukazuje steady-state model. Excel projekce nemusí plně reflektovat tento margin ramp-up efekt.</p>
+
+                    <h4>F) Gross margin deep-dive (z founder callu + Excel)</h4>
+                    <p>Max Klimeš potvrdil: device heavy model má gross margin <strong>~85 %</strong>, bags ~70 %. Celkový blended gross margin roste z 25 % (květen 2026) na 83 % (červen 2027) jak se mix posouvá od device sales k recurring consumables.</p>
+                    <p><strong>Pozor:</strong> Výrobní cena sáčku „přichází na 200 kaček za pytlík" (dle Tobiáše). Competitor rigidní pytlíky stojí 130–170 Kč, ale jsou složitější. HTG tvrdí, že jejich jednoduchý soft bag je levnější na výrobu. Toto potvrzuje €1,50 mfg cost z Excelu (~38 CZK), nikoliv 200 CZK – 200 CZK je pravděpodobně cena konkurenčních rigidních pytlíků.</p>
+
+                    <h4>🎯 DOPORUČENÍ PRO VYJEDNÁVÁNÍ</h4>
+                    <ol>
+                        <li><strong>Vyjednat cap na €8–10M</strong> (odpovídá 3,2–4× step-up, blíže mediánu). Argument: CE je milestone, ale revenue je €0. Fair cap pro pre-revenue medtech s CE = €8–10M.</li>
+                        <li><strong>Odstranit nebo snížit floor na €4–5M.</strong> Floor €7M je pro investora rizikový. Alternativně: požadovat, aby floor byl odstraněn a CLA měl jen cap + discount.</li>
+                        <li><strong>Požadovat 25 % discount</strong> (místo 20 %). Pro €300K ticket (celý bridge) by 25 % discount bylo standardní.</li>
+                        <li><strong>Požadovat pro-rata práva</strong> pro seed kolo. Při €300K ticketu je to naprosto oprávněný požadavek.</li>
+                        <li><strong>Požadovat 4–5 % úrok na CLA.</strong> SAFE má 0 %, ale CLA typicky nese úrok. Absence úroku je de facto further discount pro firmu.</li>
+                        <li><strong>Informační práva + board observer seat.</strong> Při €300K (celý bridge) by GA měl mít měsíční reporting a observer seat.</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        <strong>Klíčové riziko pro €300K ticket:</strong> Pokud seed kolo proběhne při HTG cíli €14M, cap €12M se NEUPLATNÍ. GA konvertuje při €11,2M (jen 20% discount). Efektivně: GA nedostane žádnou výhodu z capu – cap je nastaven příliš vysoko na to, aby chránil investora v base-case scénáři. Cap chrání jen pokud seed přijde nad €15M.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 9b: Exit analýza -->
+            <section id="section-9b" class="section">
+                <div class="section-header">
+                    <div class="section-number">9b</div>
+                    <h1 class="section-title">Exit analýza a návratnost investice</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>A) Srovnávací exity v sektoru</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Startup</th>
+                                    <th>Sektor</th>
+                                    <th>Exit rok</th>
+                                    <th>Typ</th>
+                                    <th>Exit valuace</th>
+                                    <th>Revenue</th>
+                                    <th>Multiple</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cheetah Medical</td>
+                                    <td>ICU fluid monitoring</td>
+                                    <td>2019</td>
+                                    <td>M&A (Baxter)</td>
+                                    <td><span class="number">$230M</span></td>
+                                    <td>~$20–30M est.</td>
+                                    <td>~8–12× rev</td>
+                                </tr>
+                                <tr>
+                                    <td>FlowSense</td>
+                                    <td>Urine monitoring</td>
+                                    <td>2013</td>
+                                    <td>M&A (Baxter)</td>
+                                    <td>Undisclosed</td>
+                                    <td>Pre-scale</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Edwards Critical Care</td>
+                                    <td>ICU hemodynamic</td>
+                                    <td>2024</td>
+                                    <td>Divestiture (BD)</td>
+                                    <td><span class="number">$4,2B</span></td>
+                                    <td>Large</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>Smiths Medical</td>
+                                    <td>Infusion/critical care</td>
+                                    <td>2022</td>
+                                    <td>M&A (ICU Medical)</td>
+                                    <td><span class="number">$2,35B</span></td>
+                                    <td>~$800M+</td>
+                                    <td>~3×</td>
+                                </tr>
+                                <tr>
+                                    <td>Masimo</td>
+                                    <td>Patient monitoring</td>
+                                    <td>2026</td>
+                                    <td>M&A (Danaher)</td>
+                                    <td><span class="number">$9,9B</span></td>
+                                    <td>~$2B est.</td>
+                                    <td>~5×</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>Relevantní benchmark pro HTG: Cheetah Medical – M&A od Baxter za $230M po deploymentu v 400+ nemocnicích. Toto je nejbližší comp.</p>
+
+                    <p><strong>Realistické exit multiple pro sektor:</strong> Medtech ICU devices: 3–8× revenue, nebo milestone-based (pre-revenue acquisitions).</p>
+
+                    <h3>B) Zpětná kalkulace – €300K GA ticket</h3>
+                    <p><strong>Předpoklady (base case – aktuální podmínky):</strong></p>
+                    <ul>
+                        <li>GA ticket: <strong>€300K</strong> (celý bridge)</li>
+                        <li>Seed valuace: €14M (cíl HTG) → efektivní konverze při €11,2M (20% discount, cap se neuplatní)</li>
+                        <li>GA podíl po konverzi: <span class="number">2,68 %</span></li>
+                        <li>Diluci: 2 další kola (Seed €2M + Series A), každé ~20–25 % → GA podíl klesne na ~<span class="number">1,51 %</span></li>
+                    </ul>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scénář</th>
+                                    <th>Cílový return</th>
+                                    <th>GA potřebuje</th>
+                                    <th>Potřebná exit valuace</th>
+                                    <th>Potřebný revenue (při 5× multiple)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1× (návrat jistiny)</strong></td>
+                                    <td>€300K</td>
+                                    <td>€300K</td>
+                                    <td><strong>€19,9M</strong></td>
+                                    <td>€4M</td>
+                                </tr>
+                                <tr>
+                                    <td>3× (minimum)</td>
+                                    <td>€900K</td>
+                                    <td>€900K</td>
+                                    <td><strong>€59,6M</strong></td>
+                                    <td>€11,9M</td>
+                                </tr>
+                                <tr>
+                                    <td>5× (dobrý)</td>
+                                    <td>€1,5M</td>
+                                    <td>€1,5M</td>
+                                    <td><strong>€99,3M</strong></td>
+                                    <td>€19,9M</td>
+                                </tr>
+                                <tr>
+                                    <td>10× (cílový)</td>
+                                    <td>€3M</td>
+                                    <td>€3M</td>
+                                    <td><strong>€198,7M</strong></td>
+                                    <td>€39,7M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Porovnání: pokud GA vyjedná lepší cap (€9M)</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scénář</th>
+                                    <th>Aktuální (€11,2M entry)</th>
+                                    <th>Vyjednaný cap €9M</th>
+                                    <th>Rozdíl v returnu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GA podíl (pre-dilution)</td>
+                                    <td><span class="number">2,68 %</span></td>
+                                    <td><span class="number">3,33 %</span></td>
+                                    <td>+24 % víc akcií</td>
+                                </tr>
+                                <tr>
+                                    <td>GA podíl (post-dilution)</td>
+                                    <td><span class="number">1,51 %</span></td>
+                                    <td><span class="number">1,88 %</span></td>
+                                    <td>+24 % víc akcií</td>
+                                </tr>
+                                <tr>
+                                    <td>3× return potřebuje exit</td>
+                                    <td>€59,6M</td>
+                                    <td><strong>€47,9M</strong></td>
+                                    <td>Reálnější o €12M</td>
+                                </tr>
+                                <tr>
+                                    <td>10× return potřebuje exit</td>
+                                    <td>€198,7M</td>
+                                    <td><strong>€159,6M</strong></td>
+                                    <td>Reálnější o €39M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>Závěr:</strong> Vyjednání capu na €9M místo €12M zvyšuje return o 24 % ve VŠECH scénářích. Při €300K ticketu to je rozdíl mezi €900K a €1,12M při 3× exitu.</p>
+
+                    <h3>C) Exit profil firmy</h3>
+
+                    <h4>🆕 Pojmenovaní exit acquireři (z founder callu)</h4>
+                    <p>Tobiáš explicitně zmínil tyto potenciální acquirery: <strong>Philips, GE, Siemens, BD (Becton Dickinson), J&J, Roche, Fresenius</strong>. Cílový exit horizont: <strong>5–6 let</strong>.</p>
+                    <p><strong>BD je nejsilnější kandidát</strong> – drží US patent na weight-based urine monitoring, právě koupil Edwards Critical Care za $4,2B, aktivně buduje ICU portfolio. Vzájemná patentová blokáda (BD→US, HTG→EU) vytváří přirozenou motivaci pro akvizici.</p>
+
+                    <h4>Scénář 10× (€179M exit)</h4>
+                    <ul>
+                        <li>Revenue: €35M+ ARR (HTG projekce 2030: €20–25M → potřeba 1–2 roky navíc)</li>
+                        <li>YoY growth: >40 %</li>
+                        <li>Gross margin: >70 % (Excel model ukazuje 83 % at scale)</li>
+                        <li>Deployed beds: 15 000+</li>
+                        <li>Markets: 10+ EU zemí + US entry (via BD deal nebo FDA)</li>
+                        <li>Tým: 100+ lidí</li>
+                        <li>Horizont: 7–10 let</li>
+                        <li>Vyžaduje buď US entry, nebo premium akvizici jako strategický asset (patent + data moat)</li>
+                    </ul>
+
+                    <h4>Scénář 3× (€54M exit) – 🆕 nyní realističtější</h4>
+                    <ul>
+                        <li>Revenue: €10M ARR (HTG projekce 2028: €8–10M → na dosah)</li>
+                        <li>Deployed beds: 5 000+ (Excel model ukazuje 2 906 do června 2027)</li>
+                        <li>Markets: 5+ EU zemí</li>
+                        <li>Horizont: 5–6 let (potvrzeno jako cíl)</li>
+                        <li>Dosažitelné při úspěšné EU expanzi dle aktuálního plánu</li>
+                    </ul>
+
+                    <h3>D) Hodnocení dosažitelnosti – €300K ticket</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scénář</th>
+                                    <th>Exit valuace</th>
+                                    <th>GA return (€300K in)</th>
+                                    <th>Roky</th>
+                                    <th>Pravděpodobnost</th>
+                                    <th>Komentář</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1× (jistina)</strong></td>
+                                    <td>€20M</td>
+                                    <td>€300K</td>
+                                    <td>3–5</td>
+                                    <td>Střední-vysoká</td>
+                                    <td>Vyžaduje €4M revenue – HTG projekce 2027: €4,5–5M. Dosažitelné.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3× (minimum angel)</strong></td>
+                                    <td>€60M</td>
+                                    <td>€900K</td>
+                                    <td>5–7</td>
+                                    <td>Střední</td>
+                                    <td>Vyžaduje €12M ARR – HTG projekce 2029: €12–15M. Na hraně.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5× (dobrý angel)</strong></td>
+                                    <td>€100M</td>
+                                    <td>€1,5M</td>
+                                    <td>5–7</td>
+                                    <td>Nízká-střední</td>
+                                    <td>Vyžaduje €20M ARR – HTG projekce 2030: €20–25M. Reálné jen při 8–10× multiple.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>10× (home run)</strong></td>
+                                    <td>€199M</td>
+                                    <td>€3M</td>
+                                    <td>7–10</td>
+                                    <td>Nízká</td>
+                                    <td>Vyžaduje €40M ARR nebo strategickou premium akvizici (BD/Philips). Cheetah Medical comp ($230M).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Totální ztráta</strong></td>
+                                    <td>€0</td>
+                                    <td>-€300K</td>
+                                    <td>2–4</td>
+                                    <td>20–30 %</td>
+                                    <td>Medtech angel failure rate. Hlavní rizika: GTM execution, funding gap, competitive pressure.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Závěrečné hodnocení dealu – €300K GA ticket</h3>
+
+                    <h4>Shrnutí risk/reward</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Faktor</th>
+                                    <th>Hodnocení</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Produkt & technologie</td>
+                                    <td><span class="badge badge-risk-low">SILNÉ</span></td>
+                                    <td>CE audit ✅, 4 000+ hodin validace, 97% přesnost, proprietární IP</td>
+                                </tr>
+                                <tr>
+                                    <td>Tým</td>
+                                    <td><span class="badge badge-risk-low">SILNÝ</span></td>
+                                    <td>Šramko klinická důvěryhodnost, Vybíral GTM, Klimeš tech, 11+ core team</td>
+                                </tr>
+                                <tr>
+                                    <td>Trh & timing</td>
+                                    <td><span class="badge badge-risk-low">PŘÍZNIVÝ</span></td>
+                                    <td>Nursing shortage, competitor insolvence, inbound poptávka</td>
+                                </tr>
+                                <tr>
+                                    <td>GTM execution</td>
+                                    <td><span class="badge badge-risk-medium">NEOVĚŘENO</span></td>
+                                    <td>5 distributorů, ale €0 revenue. Ramp 40→230 inst./měsíc agresivní.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Valuační podmínky</strong></td>
+                                    <td><span class="badge badge-risk-high">NEVÝHODNÉ</span></td>
+                                    <td>€12M cap = 4,8× step-up, floor €7M anti-investor, 0% úrok, chybí pro-rata</td>
+                                </tr>
+                                <tr>
+                                    <td>Exit potenciál</td>
+                                    <td><span class="badge badge-risk-medium">STŘEDNÍ</span></td>
+                                    <td>BD patentová páka je unikátní, ale 3× return vyžaduje €60M exit</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Doporučení pro GA</h4>
+                    <p><strong>EXPLORE s podmínkou vyjednání lepších podmínek.</strong></p>
+                    <p>HTG Medical je kvalitní medtech startup s reálnou klinickou validací, silným IP a unikátní strategickou pozicí (BD patentová páka). Produkt i tým jsou nadprůměrné. Ale <strong>aktuální podmínky CLA jsou pro €300K ticket nevýhodné:</strong></p>
+                    <ol>
+                        <li>Cap €12M se v base-case (seed €14M) neuplatní – investor získá jen 20% discount</li>
+                        <li>Floor €7M chrání firmu na úkor investora v downside scénáři</li>
+                        <li>0% úrok na CLA je nestandardní – peníze mají časovou hodnotu</li>
+                        <li>Chybí pro-rata práva a informační práva pro největšího investora v bridge</li>
+                    </ol>
+
+                    <p><strong>Pokud GA investuje €300K za aktuálních podmínek:</strong></p>
+                    <ul>
+                        <li>Expected return: €300K → ~€600–900K (2–3×) za 5–7 let v realistickém scénáři</li>
+                        <li>To odpovídá ~15–20 % IRR – pod typickým angel cílem 25 %+</li>
+                    </ul>
+
+                    <p><strong>Pokud GA vyjedná cap €9M + odstranění flooru + pro-rata + 5% úrok:</strong></p>
+                    <ul>
+                        <li>Expected return: €300K → ~€750K–1,1M (2,5–3,7×) za 5–7 let</li>
+                        <li>To odpovídá ~20–25 % IRR – blíže angel cíli</li>
+                        <li>Plus: pro-rata umožňuje follow-on v seed kole za známých podmínek</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠️</span>
+                        <strong>Závěr:</strong> Investujte jen pokud se podaří vyjednat lepší podmínky. Při aktuálním capu €12M a flooru €7M je risk/reward pro €300K ticket pod angel standardem. Doporučení: cap €8–10M, žádný floor (nebo €4M), 25% discount, 4–5% úrok, pro-rata + information rights + board observer.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 10: Regulace a certifikace -->
+            <section id="section-10" class="section">
+                <div class="section-header">
+                    <div class="section-number">10</div>
+                    <h1 class="section-title">Regulace a certifikace</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>CE MDR Class Im</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parametr</th>
+                                    <th>Hodnota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Klasifikace</td>
+                                    <td>Class Im (measuring function), nejnižší riziková třída medical device s měřicí funkcí</td>
+                                </tr>
+                                <tr>
+                                    <td>Notified Body</td>
+                                    <td>ČMI (Czech Metrology Institute), NB ID 1383. <div class="warning-box" style="margin-top: var(--space-sm); margin-bottom: 0;"><span class="warning-icon">⚠️</span> ČMI je relativně nový NB (designated Dec 2023).</div></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>Všechny materiály předloženy. Zbývá finální audit. Očekávané schválení: duben 2026.</td>
+                                </tr>
+                                <tr>
+                                    <td>Scope</td>
+                                    <td>Automated urine output measurement for ICU monitoring</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Certifikace a normy</h3>
+                    <ul>
+                        <li><strong>ISO 13485:2016:</strong> ✅ Certified (audit September 2025). Scope: Design, development, manufacturing of medical devices for automated patient monitoring.</li>
+                    </ul>
+
+                    <h3>Compliance framework</h3>
+                    <ul>
+                        <li>Risk management: ISO 14971</li>
+                        <li>Software lifecycle: IEC 62304</li>
+                        <li>Electrical safety: IEC 60601-1</li>
+                        <li>Environmental: IP53 (splash-proof)</li>
+                        <li>Data: AES-128 encryption, GDPR-compliant EU servers</li>
+                    </ul>
+
+                    <h3>Manufacturing (🆕 upřesněno)</h3>
+                    <ul>
+                        <li><strong>Device electronics:</strong> ČR – Tier 1 manufacturer, ISO 9001, kapacita 1 000+ ks/měsíc (škálovatelné na 5 000+)</li>
+                        <li><strong>Proprietární sáčky:</strong> Čína – specializovaný medical bag manufacturer s 20+ lety zkušeností, dodává i pro Dahlhausen (velký EU distributor). Stabilní partner. Backup identified, not contracted.</li>
+                        <li><strong>Kontext:</strong> Předchozí dominantní evropský dodavatel urinárních sáčků (výroba v Bělorusku) zkrachoval kvůli válce na Ukrajině → tržní vakuum, které HTG může vyplnit.</li>
+                    </ul>
+
+                    <h3>Regulatory roadmap</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Milník</th>
+                                    <th>Timeline</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ISO 13485</td>
+                                    <td>Sept 2025</td>
+                                    <td>✅ Complete</td>
+                                </tr>
+                                <tr>
+                                    <td>Technical file submission</td>
+                                    <td>Q4 2025</td>
+                                    <td>✅ Complete</td>
+                                </tr>
+                                <tr>
+                                    <td>CE MDR Class Im audit</td>
+                                    <td>April 2026</td>
+                                    <td>✅ Audit passed „na jedničku" (8. 4. 2026), certifikát za 3–4 týdny</td>
+                                </tr>
+                                <tr>
+                                    <td>FDA pathway (future)</td>
+                                    <td>2028+</td>
+                                    <td>Planned</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><strong>Poznámka:</strong> FDA registrace není v plánu pro toto kolo – US trh je budoucí expanze. Class Im nevyžaduje klinické studie pro CE, což je výhoda (rychlejší approval), ale také limitace (méně klinických dat pro argumentaci u nemocnic).</p>
+                </div>
+            </section>
+
+            <!-- SECTION 11: Rizika -->
+            <section id="section-11" class="section">
+                <div class="section-header">
+                    <div class="section-number">11</div>
+                    <h1 class="section-title">Rizika</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>1. Tým</h3>
+                    <p><span class="badge badge-risk-medium">MEDIUM</span> Silný technický tým. Slabina: chybí dedicated sales, CEO nemá medtech sales zkušenosti. CMO je part-time. Mitigace: distribuční model snižuje sales burden, Zofie Dvorak joining.</p>
+
+                    <h3>2. Konkurence</h3>
+                    <p><span class="badge badge-risk-medium">MEDIUM</span> Hlavní competitor FIZE Medical má $39M a CE mark. Pokud sníží ceny consumables, HTG ztrácí hlavní diferenciátor. Mitigace: IP moat (Leicester patent), 4–6 let time-to-replicate. Ale FIZE může atakovat trhy mimo patent coverage.</p>
+
+                    <h3>3. Technologie</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> Produkt je funkční, validovaný (4 000+ hodin, 97% accuracy). Weight-based měření je proven approach. Žádná závislost na technologickém průlomu.</p>
+
+                    <h3>4. Trh</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> ICU monitoring je rostoucí segment (7–9% CAGR). Nursing shortage je strukturální trend. TAM je dostatečný.</p>
+
+                    <h3>5. Regulace</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> 🆕 <strong>CE audit proběhl úspěšně</strong> (duben 2026, „na jedničku"). Certifikát očekáván za 3–4 týdny. Toto bylo největší regulatorní riziko – nyní de-riskováno. ČMI sice je nový NB, ale audit proběhl bez zásadních připomínek.</p>
+
+                    <h3>6. GTM (Go-To-Market)</h3>
+                    <p><span class="badge badge-risk-medium">MEDIUM</span> 🆕 Founder call snížil GTM riziko: OPEX model obchází tendrový proces (sáčky jdou přes spotřební materiál), sales cycle potvrzen na 5–6 týdnů (3 týdny do pilotu + 2–3 týdny pilot), 5 distributorů pojmenovaných a pokrývajících 10+ zemí. Přechod z pilot → paid deployment je stále neověřený na škále, ale mechanismus je promyšlený. Mitigace: OPEX kanál, budget-neutral positioning, zkrácený sales cycle.</p>
+
+                    <h3>7. Finance</h3>
+                    <p><span class="badge badge-risk-medium">MEDIUM</span> 🆕 Excel model ukazuje realističtější ramp-up: €12K v květnu → €150K v prosinci 2026 (ne €751K ročně). EBITDA pozitivní od října 2026. Burn rate potvrzený €25–30K/měsíc → s €300K bridge = 10–12 měsíců runway bez revenue. CE audit proběhl úspěšně → hlavní prerequisite splněn. Riziko: ramp-up od 40 na 230 instalací/měsíc za 7 měsíců vyžaduje, aby distributoři skutečně prodávali. Gross margin roste z 25 % na 83 % – mix shift z device na consumables.</p>
+
+                    <h3>8. IP (Intellectual Property)</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> Trojvrstvá IP ochrana (licensed patent + vlastní patent + trade secrets). Leicester patent expires 2037. Licence terms: 0,5 % royalty, žádné minimums. Silné. ⚠️ Ověřit exclusivity podmínky v plném znění licence (pod NDA).</p>
+
+                    <h3>9. Timing</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> 2026 je selection window – nursing shortage, digitalization budgets, vendor lock-in. Kategorie je stále otevřená (žádný standard). Timing je spíše pozitivní.</p>
+
+                    <h3>10. Focus</h3>
+                    <p><span class="badge badge-risk-low">LOW</span> Jasný focus na jednu vertikálu (ICU urine monitoring). AI/diagnostics roadmap je budoucí – nezatěžuje aktuální exekuci. ✓</p>
+
+                    <h3>Deal-breakers</h3>
+                    <p>Žádné identifikované deal-breakers. Po founder callu se celkový risk profil mírně zlepšil – CE audit de-riskován, distribuční pipeline konkrétnější, burn rate potvrzený. Největší zbývající rizika: GTM execution (ramp-up 40 → 230 instalací/měsíc) a závislost na distribuční síti.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 12: Nezodpovězené otázky -->
+            <section id="section-12" class="section">
+                <div class="section-header">
+                    <div class="section-number">12</div>
+                    <h1 class="section-title">Nezodpovězené otázky a další kroky</h1>
+                </div>
+
+                <div class="editable">
+                    <h3>Zodpovězené otázky (founder call 8. 4. 2026)</h3>
+                    <ol>
+                        <li>✅ <strong>CE certifikace:</strong> Audit proběhl „na jedničku", certifikát za 3–4 týdny.</li>
+                        <li>✅ <strong>Distribuční partnerství:</strong> 5 pojmenovaných distributorů (FI, PL, CH/AT/SK/SI, Benelux, UK/IE) – smlouvy podepsány.</li>
+                        <li>✅ <strong>Burn rate:</strong> €25–30K/měsíc (500K CZK), potvrzeno.</li>
+                        <li>✅ <strong>Bag manufacturing:</strong> Čínský dodavatel s 20+ lety zkušeností, dodává i Dahlhausen. Stabilní.</li>
+                        <li>✅ <strong>Klinická reference:</strong> Dr. Šramko osobně potvrdil klinickou hodnotu (6 z 10 pacientů → změna dávky diuretik).</li>
+                    </ol>
+
+                    <h3>Zbývající nezodpovězené otázky</h3>
+                    <ol>
+                        <li>Plné znění Leicester licence – je exclusivita opravdu neomezená? Jsou teritoria pokryta i mimo 8 jmenovaných zemí?</li>
+                        <li>Max Klimeš (CTO) – ověřit věk a senioritu. Některé zdroje naznačují velmi mladý věk.</li>
+                        <li>Reálná conversion rate z pilot → paid deployment – 15 zařízení v IKEM jsou „prodána", ale za jakou cenu? (prototypová fáze = pravděpodobně zvýhodněné podmínky)</li>
+                        <li>BD patentový scénář – existuje aktivní komunikace s BD, nebo je to jen interní strategie HTG?</li>
+                        <li>Bag backup supplier – identified but not contracted. Jaký je lead time pro aktivaci?</li>
+                        <li>Přesná struktura VSOP pool – 6 % CMO + 3,5 % rezerva. Jaké jsou vesting podmínky?</li>
+                        <li>Revenue model detail – jaký poměr CAPEX vs OPEX deployments očekávají? Excel model nespecifikuje.</li>
+                    </ol>
+
+                    <h3>Doporučené další kroky</h3>
+                    <ol>
+                        <li><s>Founder call – deep dive na GTM pipeline, CE timeline</s> ✅ <strong>Proběhl 8. 4. 2026</strong></li>
+                        <li><s>Referenční hovor – IKEM (Dr. Šramko)</s> ✅ <strong>Dr. Šramko se osobně zúčastnil founder callu</strong></li>
+                        <li><strong>NDA + Leicester licence review</strong> – ověřit exclusivitu a podmínky</li>
+                        <li><strong>Product demo</strong> – remote nebo in-person (nabízeno v DD materials)</li>
+                        <li><strong>Expert review</strong> – zapojit GA investora se zkušenostmi v medtech distribuci</li>
+                        <li>🆕 <strong>BD patent research</strong> – ověřit rozsah US patentu a vzájemnou blokační dynamiku</li>
+                        <li>🆕 <strong>Distributor reference call</strong> – kontaktovat jednoho z 5 distributorů pro nezávislé potvrzení pipeline</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-logo">GARAGE ANGELS</div>
+                <p>Investiční memorandum – HTG Medical<br>
+                Datum: <span id="footer-date">8. dubna 2026</span></p>
+                <div class="footer-disclaimer">
+                    <p>Toto memorandum je důvěrné a určeno výhradně pro členy Garage Angels. Není na prodej nebo distribuci třetím stranám bez souhlasu. Údaje v tomto dokumentu jsou založeny na informacích poskytnutých HTG Medical a veřejně dostupných zdrojích. Garage Angels nenese odpovědnost za přesnost, úplnost nebo správnost těchto informací. Toto memorandum není nabídkou k nákupu nebo prodeji, nýbrž výhradně informačním materiálem pro interní evaluaci.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Toolbar -->
+    <div class="edit-toolbar" id="edit-toolbar">
+        <button onclick="saveChanges()">💾 Uložit změny</button>
+        <button class="secondary" onclick="exportJSON()">📥 Exportovat JSON</button>
+    </div>
+
+    <script>
+        // Initialize
+        const params = new URLSearchParams(window.location.search);
+        const isEditMode = params.get('edit') === 'garageangels';
+        const dateObj = new Date('2026-04-08');
+        const dateString = dateObj.toLocaleDateString('cs-CZ', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        document.getElementById('current-date').textContent = dateString;
+        document.getElementById('footer-date').textContent = dateString;
+
+        if (isEditMode) {
+            document.body.classList.add('edit-mode');
+            document.getElementById('edit-badge').classList.add('active');
+            document.getElementById('edit-toolbar').classList.add('active');
+            enableEditMode();
+        }
+
+        // Section Navigation
+        const sectionLinks = document.querySelectorAll('.sidebar-nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        sectionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionNum = link.dataset.section;
+                showSection(sectionNum);
+            });
+        });
+
+        function showSection(sectionNum) {
+            sections.forEach(s => s.classList.remove('active'));
+            sectionLinks.forEach(l => l.classList.remove('active'));
+
+            const targetSection = document.getElementById(`section-${sectionNum}`);
+            const targetLink = document.querySelector(`[data-section="${sectionNum}"]`);
+
+            if (targetSection) targetSection.classList.add('active');
+            if (targetLink) targetLink.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Edit Mode
+        function enableEditMode() {
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                el.addEventListener('click', (e) => {
+                    if (e.target !== el) return;
+                    makeEditable(el);
+                });
+            });
+        }
+
+        function makeEditable(element) {
+            const originalHTML = element.innerHTML;
+            const input = document.createElement('textarea');
+            input.value = originalHTML.replace(/<br>/g, '\n');
+            input.style.width = '100%';
+            input.style.minHeight = '200px';
+            input.style.fontFamily = 'monospace';
+            input.style.padding = '10px';
+            input.style.border = '2px solid #059669';
+            input.style.borderRadius = '4px';
+
+            element.innerHTML = '';
+            element.appendChild(input);
+            input.focus();
+
+            const saveEdit = () => {
+                element.innerHTML = input.value.replace(/\n/g, '<br>');
+                loadStoredChanges();
+            };
+
+            input.addEventListener('blur', saveEdit);
+            input.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    saveEdit();
+                    input.blur();
+                }
+            });
+        }
+
+        // Save/Load Changes
+        function saveChanges() {
+            const data = {};
+            sections.forEach((section, idx) => {
+                const sectionNum = idx + 1;
+                data[`section-${sectionNum}`] = section.innerHTML;
+            });
+            localStorage.setItem('htg-memo-changes', JSON.stringify(data));
+            localStorage.setItem('htg-memo-version', new Date().toISOString());
+            alert('Změny uloženy! (localStorage)');
+        }
+
+        function loadStoredChanges() {
+            const stored = localStorage.getItem('htg-memo-changes');
+            if (!stored) return;
+            const data = JSON.parse(stored);
+            Object.keys(data).forEach(key => {
+                const section = document.getElementById(key);
+                if (section) section.innerHTML = data[key];
+            });
+        }
+
+        function exportJSON() {
+            const data = {
+                title: 'HTG Medical – Investiční memorandum',
+                date: dateString,
+                sections: {}
+            };
+
+            sections.forEach((section, idx) => {
+                const sectionNum = idx + 1;
+                data.sections[`section-${sectionNum}`] = {
+                    html: section.innerHTML,
+                    text: section.innerText
+                };
+            });
+
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'htg-medical-memo.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Load changes on page load
+        if (isEditMode) {
+            loadStoredChanges();
+        }
+
+        // Responsive Sidebar
+        if (window.innerWidth <= 1024) {
+            const navLinks = document.querySelectorAll('.sidebar-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelectorAll('.sidebar-nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
