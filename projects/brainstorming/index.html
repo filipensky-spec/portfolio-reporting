@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brainstorming — 105 nápadů na 1-Man AI Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-dark: #1d4ed8;
+    --green: #10b981;
+    --green-light: #ecfdf5;
+    --amber: #f59e0b;
+    --amber-light: #fffbeb;
+    --red: #ef4444;
+    --red-light: #fef2f2;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: var(--gray-900); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 24px;
+    height: 60px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .nav-logo { font-weight: 700; font-size: 15px; color: var(--gray-900); text-decoration: none; }
+  .nav-sep { color: var(--gray-300); }
+  .nav-current { font-size: 14px; color: var(--gray-500); }
+  .nav-spacer { flex: 1; }
+  .nav-link {
+    font-size: 13px; font-weight: 500; color: var(--gray-600);
+    text-decoration: none; padding: 6px 12px; border-radius: 8px;
+    transition: all 0.15s;
+  }
+  .nav-link:hover { background: var(--gray-100); color: var(--gray-900); }
+
+  /* HERO */
+  .hero {
+    padding: 120px 24px 64px;
+    max-width: 960px; margin: 0 auto;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-size: 40px; font-weight: 800; line-height: 1.15;
+    color: var(--gray-900); margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 17px; color: var(--gray-500); max-width: 640px;
+    margin: 0 auto 32px;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    padding: 0 24px 48px;
+    max-width: 960px; margin: 0 auto;
+  }
+  .stat-pill {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: 999px; padding: 8px 18px;
+    font-size: 14px; color: var(--gray-600);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stat-pill strong { color: var(--gray-900); font-weight: 700; }
+  .stat-pill .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot-green { background: var(--green); }
+  .dot-amber { background: var(--amber); }
+  .dot-red { background: var(--red); }
+  .dot-blue { background: var(--accent); }
+
+  /* FILTER & SORT */
+  .filter-wrap {
+    position: sticky; top: 60px; z-index: 90;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 12px 24px;
+  }
+  .filter-inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .filter-label { font-size: 12px; font-weight: 600; color: var(--gray-400); letter-spacing: 0.05em; text-transform: uppercase; width: 60px; flex-shrink: 0; }
+  .filter-btn {
+    font-size: 13px; font-weight: 500; padding: 5px 12px;
+    border-radius: 8px; border: 1px solid var(--gray-200);
+    background: #fff; color: var(--gray-600);
+    cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .filter-btn.special { border-style: dashed; }
+  .filter-btn.special.active { border-style: solid; }
+
+  .sort-select {
+    font-size: 13px; font-weight: 500; padding: 5px 10px;
+    border-radius: 8px; border: 1px solid var(--gray-200);
+    background: #fff; color: var(--gray-700); cursor: pointer;
+    outline: none;
+  }
+  .sort-select:focus { border-color: var(--accent); }
+
+  /* SEARCH */
+  .search-input {
+    font-size: 13px; padding: 5px 12px;
+    border-radius: 8px; border: 1px solid var(--gray-200);
+    background: #fff; color: var(--gray-900); outline: none;
+    min-width: 180px; flex: 1; max-width: 280px;
+    font-family: 'Inter', sans-serif;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--gray-400); }
+
+  /* GRID */
+  .grid-wrap { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+  .results-info { font-size: 13px; color: var(--gray-400); margin-bottom: 20px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* CARD */
+  .card {
+    background: #fff; border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    display: flex; flex-direction: column; gap: 12px;
+    cursor: default;
+    border-left: 3px solid var(--gray-200);
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+  .card.verdict-go { border-left-color: var(--green); }
+  .card.verdict-maybe { border-left-color: var(--amber); }
+  .card.verdict-no { border-left-color: var(--red); }
+
+  .card-header { display: flex; align-items: flex-start; gap: 10px; }
+  .card-icon { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+  .card-titles { flex: 1; min-width: 0; }
+  .card-id { font-size: 11px; font-weight: 600; color: var(--gray-400); letter-spacing: 0.05em; }
+  .card-title { font-size: 15px; font-weight: 700; color: var(--gray-900); line-height: 1.3; }
+  .card-score-badge {
+    flex-shrink: 0;
+    font-size: 13px; font-weight: 700; width: 36px; height: 36px;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    background: var(--gray-100); color: var(--gray-700);
+  }
+  .card-score-badge.score-high { background: var(--green-light); color: #059669; }
+  .card-score-badge.score-mid { background: var(--amber-light); color: #d97706; }
+  .card-score-badge.score-low { background: var(--red-light); color: #dc2626; }
+
+  .card-desc { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+  .card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px;
+    border-radius: 999px; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .badge-solo-good { background: var(--green-light); color: #059669; }
+  .badge-solo-bad { background: var(--red-light); color: #dc2626; }
+  .badge-margin-high { background: var(--green-light); color: #059669; }
+  .badge-margin-mid { background: var(--amber-light); color: #d97706; }
+  .badge-margin-low { background: var(--red-light); color: #dc2626; }
+  .badge-ceiling-high { background: var(--green-light); color: #059669; }
+  .badge-ceiling-mid { background: var(--amber-light); color: #d97706; }
+  .badge-ceiling-low { background: var(--red-light); color: #dc2626; }
+  .badge-tag { background: var(--gray-100); color: var(--gray-600); }
+  .badge-unicorn { background: #faf5ff; color: #7c3aed; }
+  .badge-trifecta { background: #fff7ed; color: #c2410c; }
+  .badge-martell { background: #fff1f2; color: #be123c; }
+  .badge-pdf { background: #f0fdf4; color: #16a34a; }
+  .badge-ryze { background: #fefce8; color: #a16207; }
+  .badge-best { background: var(--accent-light); color: var(--accent); }
+
+  .card-divider { border: none; border-top: 1px solid var(--gray-100); }
+
+  .card-formula { font-size: 12px; color: var(--gray-500); font-style: italic; }
+  .card-unit { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+
+  .card-verdict {
+    font-size: 12px; line-height: 1.45;
+    padding: 8px 10px; border-radius: 8px;
+  }
+  .card-verdict.verdict-go { background: var(--green-light); color: #065f46; }
+  .card-verdict.verdict-maybe { background: var(--amber-light); color: #78350f; }
+  .card-verdict.verdict-no { background: var(--red-light); color: #7f1d1d; }
+
+  .card-meta {
+    display: flex; gap: 12px; font-size: 11px; color: var(--gray-400);
+  }
+  .card-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* CATEGORY SECTION HEADERS */
+  .category-header {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0 4px;
+    margin-top: 8px;
+  }
+  .category-header:first-child { margin-top: 0; }
+  .category-header-icon { font-size: 20px; }
+  .category-header-title { font-size: 16px; font-weight: 700; color: var(--gray-800); }
+  .category-header-count { font-size: 13px; color: var(--gray-400); }
+  .category-header-line { flex: 1; height: 1px; background: var(--gray-200); }
+
+  /* EMPTY STATE */
+  .empty-state {
+    grid-column: 1 / -1; text-align: center;
+    padding: 80px 24px; color: var(--gray-400);
+  }
+  .empty-state-icon { font-size: 48px; margin-bottom: 12px; }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    background: var(--gray-50); border-top: 1px solid var(--gray-200);
+    padding: 20px 24px;
+    position: sticky; bottom: 0; z-index: 90;
+  }
+  .summary-inner {
+    max-width: 960px; margin: 0 auto;
+    display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  }
+  .summary-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .summary-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .summary-item strong { font-weight: 700; font-size: 16px; }
+  .summary-item span { color: var(--gray-500); }
+  .summary-spacer { flex: 1; }
+
+  /* EDIT FAB */
+  .edit-fab {
+    position: fixed; bottom: 72px; right: 24px; z-index: 200;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s;
+  }
+  .edit-fab:hover { background: var(--accent-dark); transform: scale(1.08); }
+  .edit-fab.active { background: var(--green); box-shadow: 0 4px 12px rgba(16,185,129,0.4); }
+
+  /* EDIT MODE */
+  [data-editable]:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  body.edit-mode [data-editable] { cursor: text; }
+  body.edit-mode [data-editable]:hover { outline: 1px dashed var(--accent); outline-offset: 2px; }
+
+  /* SAVE STATUS */
+  .save-status {
+    position: fixed; bottom: 72px; left: 50%; transform: translateX(-50%);
+    background: var(--gray-900); color: #fff;
+    font-size: 13px; padding: 8px 18px; border-radius: 999px;
+    pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    z-index: 300;
+  }
+  .save-status.show { opacity: 1; }
+
+  /* PAT DIALOG */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 500; display: none; align-items: center; justify-content: center;
+  }
+  .overlay.show { display: flex; }
+  .dialog {
+    background: #fff; border-radius: 16px; padding: 32px;
+    max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .dialog h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .dialog p { font-size: 14px; color: var(--gray-500); margin-bottom: 20px; }
+  .dialog input {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--gray-300);
+    border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif;
+    outline: none; margin-bottom: 16px;
+  }
+  .dialog input:focus { border-color: var(--accent); }
+  .dialog-btns { display: flex; gap: 10px; justify-content: flex-end; }
+  .btn { padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
+  .btn-secondary:hover { background: var(--gray-200); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .section-title { font-size: 28px; }
+    .hero { padding: 100px 16px 40px; }
+    .filter-wrap { padding: 10px 16px; }
+    .grid-wrap { padding: 24px 16px; }
+    .filter-label { display: none; }
+    .stats-bar { padding: 0 16px 32px; gap: 10px; }
+    .summary-inner { gap: 12px; }
+    nav { padding: 0 16px; }
+  }
+
+  /* TRIFECTA highlight */
+  .card.is-trifecta { background: linear-gradient(135deg, #fff 0%, #eff6ff 100%); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://filipensky-spec.github.io/portfolio-reporting/projects/" class="nav-logo">Garage Angels</a>
+  <span class="nav-sep">›</span>
+  <span class="nav-current">Brainstorming</span>
+  <div class="nav-spacer"></div>
+  <a href="https://filipensky-spec.github.io/portfolio-reporting/projects/" class="nav-link">← Projekty</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="section-label" data-editable="hero-label">AI Business Canvas 2024</span>
+  <h1 class="section-title" data-editable="hero-title">Brainstorming — 105 nápadů na 1-Man AI Business</h1>
+  <p class="section-desc" data-editable="hero-desc">Kompletní přehled 105 business idejí rozdělených do 17 kategorií. Každá idea hodnocena podle solo-score, marže, stropu příjmů a rychlosti MVP. Najdi svou Trifectu.</p>
+</section>
+
+<!-- STATS PILLS -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat-pill"><span class="dot dot-blue"></span><strong id="stat-total">105</strong><span>nápadů</span></div>
+  <div class="stat-pill"><span class="dot dot-green"></span><strong id="stat-go">0</strong><span>Go</span></div>
+  <div class="stat-pill"><span class="dot dot-amber"></span><strong id="stat-maybe">0</strong><span>Maybe</span></div>
+  <div class="stat-pill"><span class="dot dot-red"></span><strong id="stat-no">0</strong><span>No</span></div>
+  <div class="stat-pill">🦄 <strong id="stat-unicorn">0</strong><span>100M+</span></div>
+  <div class="stat-pill">⚡ <strong id="stat-martell">0</strong><span>Rychlý cash</span></div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <!-- Search + Sort row -->
+    <div class="filter-row">
+      <input type="text" class="search-input" id="search-input" placeholder="🔍 Hledat nápady..." oninput="applyFilters()">
+      <div class="nav-spacer"></div>
+      <label style="font-size:12px;color:var(--gray-500);font-weight:500;">Řadit:</label>
+      <select class="sort-select" id="sort-select" onchange="applyFilters()">
+        <option value="score">Skóre</option>
+        <option value="solo">Solo score</option>
+        <option value="margin">Marže %</option>
+        <option value="ceiling">Strop příjmů</option>
+        <option value="mvp">MVP čas</option>
+        <option value="to1m">Čas k 1M</option>
+      </select>
+    </div>
+    <!-- Category filters -->
+    <div class="filter-row">
+      <span class="filter-label">Kategorie</span>
+      <button class="filter-btn active" data-filter="all" onclick="setCatFilter('all')">Vše</button>
+      <button class="filter-btn" data-filter="newsletter" onclick="setCatFilter('newsletter')">📰 Newsletter</button>
+      <button class="filter-btn" data-filter="pitchdeck" onclick="setCatFilter('pitchdeck')">📊 Pitch Deck</button>
+      <button class="filter-btn" data-filter="portfolio" onclick="setCatFilter('portfolio')">💼 Portfolio</button>
+      <button class="filter-btn" data-filter="voice" onclick="setCatFilter('voice')">🎙 Voice</button>
+      <button class="filter-btn" data-filter="outreach" onclick="setCatFilter('outreach')">✉️ Outreach</button>
+      <button class="filter-btn" data-filter="workshop" onclick="setCatFilter('workshop')">🎓 Workshop</button>
+      <button class="filter-btn" data-filter="content" onclick="setCatFilter('content')">📝 Content</button>
+      <button class="filter-btn" data-filter="brand" onclick="setCatFilter('brand')">🤖 Brand</button>
+      <button class="filter-btn" data-filter="realestate" onclick="setCatFilter('realestate')">🏠 Real Estate</button>
+      <button class="filter-btn" data-filter="agents" onclick="setCatFilter('agents')">🤖 Agenti</button>
+      <button class="filter-btn" data-filter="microsaas" onclick="setCatFilter('microsaas')">⚙️ Micro-SaaS</button>
+      <button class="filter-btn" data-filter="regtech" onclick="setCatFilter('regtech')">⚖️ RegTech</button>
+      <button class="filter-btn" data-filter="agency" onclick="setCatFilter('agency')">🧩 Agency</button>
+      <button class="filter-btn" data-filter="industrial" onclick="setCatFilter('industrial')">🏭 Industrial</button>
+      <button class="filter-btn" data-filter="ecommerce" onclick="setCatFilter('ecommerce')">🛒 E-commerce</button>
+      <button class="filter-btn" data-filter="b2binfra" onclick="setCatFilter('b2binfra')">🔒 B2B Infra</button>
+      <button class="filter-btn" data-filter="niche" onclick="setCatFilter('niche')">🎯 Niche</button>
+    </div>
+    <!-- Special filters -->
+    <div class="filter-row">
+      <span class="filter-label">Speciální</span>
+      <button class="filter-btn special" data-special="trifecta" onclick="toggleSpecial('trifecta')">🔥 Trifecta</button>
+      <button class="filter-btn special" data-special="unicorn" onclick="toggleSpecial('unicorn')">🦄 100M+</button>
+      <button class="filter-btn special" data-special="solo" onclick="toggleSpecial('solo')">👤 Solo-friendly</button>
+      <button class="filter-btn special" data-special="martell" onclick="toggleSpecial('martell')">⚡ Rychlý cash</button>
+      <button class="filter-btn special" data-special="ryze" onclick="toggleSpecial('ryze')">🎯 Ultra-niche</button>
+      <button class="filter-btn special" data-special="go" onclick="toggleSpecial('go')">✅ Verdict Go</button>
+      <button class="filter-btn special" data-special="best" onclick="toggleSpecial('best')">⭐ Best</button>
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-wrap">
+  <div class="results-info" id="results-info">Zobrazeno 105 nápadů</div>
+  <div class="grid" id="ideas-grid"></div>
+</div>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar">
+  <div class="summary-inner">
+    <div class="summary-item">
+      <div class="summary-dot" style="background:var(--accent)"></div>
+      <strong id="sum-shown">105</strong><span>zobrazeno</span>
+    </div>
+    <div class="summary-item">
+      <div class="summary-dot" style="background:var(--green)"></div>
+      <strong id="sum-go">0</strong><span>Go</span>
+    </div>
+    <div class="summary-item">
+      <div class="summary-dot" style="background:var(--amber)"></div>
+      <strong id="sum-maybe">0</strong><span>Maybe</span>
+    </div>
+    <div class="summary-item">
+      <div class="summary-dot" style="background:var(--red)"></div>
+      <strong id="sum-no">0</strong><span>No</span>
+    </div>
+    <div class="summary-spacer"></div>
+    <div class="summary-item" style="color:var(--gray-400);font-size:12px;">
+      Prům. marže: <strong id="sum-avg-margin" style="color:var(--gray-700);margin-left:4px;">—</strong>
+    </div>
+    <div class="summary-item" style="color:var(--gray-400);font-size:12px;">
+      Prům. solo: <strong id="sum-avg-solo" style="color:var(--gray-700);margin-left:4px;">—</strong>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT FAB -->
+<button class="edit-fab" id="edit-fab" title="Aktivovat editační režim" onclick="toggleEditMode()">✏️</button>
+
+<!-- SAVE STATUS -->
+<div class="save-status" id="save-status">Ukládám...</div>
+
+<!-- PAT DIALOG -->
+<div class="overlay" id="pat-overlay">
+  <div class="dialog">
+    <h3>GitHub PAT token</h3>
+    <p>Pro ukládání editací do GitHubu zadej Personal Access Token. Token se uloží do localStorage pouze v tvém prohlížeči.</p>
+    <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxx">
+    <div class="dialog-btns">
+      <button class="btn btn-secondary" onclick="closePATDialog()">Zrušit</button>
+      <button class="btn btn-primary" onclick="savePAT()">Uložit & aktivovat editaci</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== DATA =====================
+const parents = [
+  {id:"newsletter",icon:"📰",title:"AI Newsletter Empire",desc:"Automatizované newslettery. AI generuje, ty kurátuj."},
+  {id:"pitchdeck",icon:"📊",title:"AI Pitch Deck Generator",desc:"AI vytvoří investor-ready pitch deck z inputů."},
+  {id:"portfolio",icon:"💼",title:"Investor Portfolio Tracker",desc:"SaaS pro angel investory — tracking, reporting."},
+  {id:"voice",icon:"🎙",title:"AI Voice Agent Agency",desc:"Hlasové AI agenty pro firmy."},
+  {id:"outreach",icon:"✉️",title:"AI Email/Outreach Writer",desc:"AI generuje personalizované outreach sekvence."},
+  {id:"workshop",icon:"🎓",title:"AI Workshopy pro firmy",desc:"Praktické workshopy pro manažery a týmy."},
+  {id:"content",icon:"📝",title:"AI Content Studio",desc:"Productized content — AI + review."},
+  {id:"brand",icon:"🤖",title:"AI Personal Brand Builder",desc:"Automatizace osobní značky na LinkedInu."},
+  {id:"realestate",icon:"🏠",title:"AI Real Estate Analyzer CZ",desc:"AI analýza investičního potenciálu nemovitostí."},
+  {id:"agents",icon:"🤖",title:"Autonomní AI Agenti",desc:"AI agenti nahrazující lidské role: SDR, právníci, účetní, HR."},
+  {id:"microsaas",icon:"⚙️",title:"Vertikální Micro-SaaS",desc:"Úzce zaměřené SaaS produkty pro specifické industry."},
+  {id:"regtech",icon:"⚖️",title:"RegTech & Compliance AI",desc:"AI řešení pro legislativu, compliance, právní dokumenty."},
+  {id:"agency",icon:"🧩",title:"AI Automation Agency (OaaS)",desc:"Outcome-as-a-Service: klient platí za výsledek."},
+  {id:"industrial",icon:"🏭",title:"Industrial AI & PropTech",desc:"AI pro fyzický svět: zemědělství, stavebnictví, logistika."},
+  {id:"ecommerce",icon:"🛒",title:"E-commerce & Content Economy",desc:"AI pro e-commerce, digitální obsah, edtech."},
+  {id:"b2binfra",icon:"🔒",title:"B2B Infrastruktura & Security",desc:"Interní nástroje, datová bezpečnost, korporátní software."},
+  {id:"niche",icon:"🎯",title:"Ultra-Niche (Low Competition)",desc:"Hyper-specifické trhy s minimální konkurencí."}
+];
+
+const ideas = [
+  // NEWSLETTER
+  {id:"N1",parent:"newsletter",title:"AI Startup Digest CZ/SK",desc:"Týdenní newsletter o AI pro CZ/SK. AI scrapuje, generuje summary.",mvpWeeks:2,soloScore:5,margin:85,ceiling:30,ceilingLabel:"~30M",tags:["substack","ai-generated"],best:true,unitPrice:"Sponzor: 15-40k/vydání",to1mMonths:18,formula:"3 NL × 2 sponzoři × 40k × 4/měs = 960k",verdictType:"maybe",verdict:"Solo-friendly a vysoká marže, ale strop ~30M/rok."},
+  {id:"N2",parent:"newsletter",title:"Investor Intel Weekly",desc:"Premium newsletter pro investory: AI analyzuje dealy, trendy v CEE.",mvpWeeks:3,soloScore:4,margin:80,ceiling:50,ceilingLabel:"~50M",tags:["GA synergy","premium"],unitPrice:"Premium: 800 CZK/měs",to1mMonths:16,formula:"400 premium × 800 = 320k + sponzoři 200k + data 500k",verdictType:"maybe",verdict:"Niche je malý ale hodnotný. Data tier zvedá strop."},
+  {id:"N3",parent:"newsletter",title:"No-Code AI Newsletter Network",desc:"3-5 niche NL pod různými brandy. Každý cílí jiný segment.",mvpWeeks:4,soloScore:4,margin:90,ceiling:60,ceilingLabel:"~60M",tags:["anonymous","multi-brand"],best:true,unitPrice:"Sponzor: 10-25k/NL/vydání",to1mMonths:15,formula:"5 NL × 2 sponz × 20k × 4/měs = 800k + affiliate 200k",verdictType:"maybe",verdict:"Vysoká marže, no-name, sólo. Ale NL network má strop."},
+  {id:"N4",parent:"newsletter",title:"AI Curated Deal Flow Digest",desc:"Auto digest nových startupů. AI crawluje AngelList, Crunchbase.",mvpWeeks:5,soloScore:5,margin:90,ceiling:200,ceilingLabel:"200M+",tags:["data product","automated","b2b"],best:true,unicorn:true,unitPrice:"Sub: 2 000 CZK/měs",to1mMonths:14,formula:"200 sub × 2k = 400k + 30 enterprise × 20k = 600k",verdictType:"go",verdict:"🦄 DATA PRODUKT = klíč. Automatizované, no-name, sólo, obrovská marže."},
+  {id:"N5",parent:"newsletter",title:"Paid Community + Newsletter",desc:"Newsletter + placená Slack/Discord komunita pro AI enthusiasty.",mvpWeeks:3,soloScore:2,margin:70,ceiling:25,ceilingLabel:"~25M",tags:["community","retention"],unitPrice:"Členství: 500 CZK/měs",to1mMonths:20,formula:"800 členů × 500 = 400k + sponzoři 300k + eventy 300k",verdictType:"no",verdict:"Závisí na tvém jméně, community management není sólo-friendly."},
+
+  // PITCH DECK
+  {id:"P1",parent:"pitchdeck",title:"DeckForge — Self-serve builder",desc:"Web app: founder vyplní formulář → AI vygeneruje .pptx deck.",mvpWeeks:8,soloScore:5,margin:92,ceiling:300,ceilingLabel:"300M+",tags:["saas","product-led"],best:true,unicorn:true,unitPrice:"Per deck: 500-2 000 CZK",to1mMonths:16,formula:"300 decků × 1.5k + 350 sub × 1.5k = 975k",verdictType:"go",verdict:"🦄 TRIFECTA. Pure SaaS, nulový marginal cost, globální trh."},
+  {id:"P2",parent:"pitchdeck",title:"Pitch Deck Review AI",desc:"Upload deck → AI scoring, red flags, doporučení.",mvpWeeks:5,soloScore:5,margin:93,ceiling:250,ceilingLabel:"250M+",tags:["analysis","saas"],best:true,unicorn:true,unitPrice:"Per review: 300-1 000 CZK",to1mMonths:18,formula:"500 Pro × 2k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Každý founder chce feedback na svůj deck."},
+  {id:"P3",parent:"pitchdeck",title:"Deck-as-a-Service (productized)",desc:"Fixní cena: brief → AI deck → designer doladí. 48h turnaround.",mvpWeeks:3,soloScore:2,margin:50,ceiling:40,ceilingLabel:"~40M",tags:["productized","fast cash"],martell:true,unitPrice:"15-25k CZK per deck",to1mMonths:10,formula:"50 decků/měs × 20k = 1M (s 2 juniory)",verdictType:"maybe",verdict:"⚡ Martell-validated: rychlý cash. Ale potřebuješ lidi."},
+  {id:"P4",parent:"pitchdeck",title:"Investor Deck Template Marketplace",desc:"Prémiové šablony (Figma/PPTX/Canva) z reálných úspěšných decků.",mvpWeeks:6,soloScore:5,margin:95,ceiling:30,ceilingLabel:"~30M",tags:["digital product","passive"],best:true,unitPrice:"Template: 500-2 000 CZK",to1mMonths:22,formula:"500 prodejů/měs × 2k = 1M (potřeba volume)",verdictType:"maybe",verdict:"Perfektně solo, nejvyšší marže (95%), ale nízký strop."},
+  {id:"P5",parent:"pitchdeck",title:"Pitch Practice AI Coach",desc:"Nahraje pitch → AI analyzuje storytelling, čísla, delivery.",mvpWeeks:10,soloScore:4,margin:88,ceiling:150,ceilingLabel:"150M+",tags:["unique","video ai"],unicorn:true,unitPrice:"Sub: 3 000/měs",to1mMonths:20,formula:"350 sub × 3k = 1.05M",verdictType:"go",verdict:"🦄 Unikátní produkt, těžko kopírovatelný. Video AI je frontier tech."},
+
+  // PORTFOLIO
+  {id:"PT1",parent:"portfolio",title:"AngelBook — Portfolio SaaS",desc:"Web-app pro angel investory: tracking, valuace, kvartální reporty.",mvpWeeks:12,soloScore:3,margin:85,ceiling:500,ceilingLabel:"500M+",tags:["saas","defensible"],best:true,unicorn:true,unitPrice:"Jednotlivec: 500, Syndikát: 5k, Fond: 25k/měs",to1mMonths:20,formula:"500×500 + 50×5k + 20×25k = 1M",verdictType:"go",verdict:"🦄 Carta je $8B company. CEE verze pro menší investory."},
+  {id:"PT2",parent:"portfolio",title:"LP Report Generator",desc:"Upload data → AI vygeneruje profesionální LP report (PDF/PPTX).",mvpWeeks:6,soloScore:5,margin:92,ceiling:80,ceilingLabel:"~80M",tags:["micro-saas","niche"],best:true,martell:true,unitPrice:"Per report: 1-3k CZK",to1mMonths:18,formula:"200 fondů × 5k = 1M",verdictType:"maybe",verdict:"⚡ Perfektní Martell entry point: micro-tool, jasná hodnota."},
+  {id:"PT3",parent:"portfolio",title:"Deal Flow CRM pro syndikáty",desc:"Pipeline management pro angel groups: tracking, voting, DD checklist.",mvpWeeks:14,soloScore:2,margin:82,ceiling:300,ceilingLabel:"300M+",tags:["crm","complex"],unicorn:true,unitPrice:"5-15k CZK/měs",to1mMonths:22,formula:"100 syndikátů × 10k = 1M",verdictType:"maybe",verdict:"Vysoký strop ale complex build + support = těžko sólo."},
+  {id:"PT4",parent:"portfolio",title:"Portfolio Benchmark Dashboard",desc:"Porovnej portfolio vs. market. AI agreguje valuace, exit data.",mvpWeeks:8,soloScore:4,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["data product","analytics"],unicorn:true,unitPrice:"3-10k CZK/měs",to1mMonths:20,formula:"150 fondů × 7k = 1.05M",verdictType:"go",verdict:"🦄 Data produkt s high margin. Konkuruje PitchBook za zlomek ceny."},
+  {id:"PT5",parent:"portfolio",title:"Cap Table Calculator CZ",desc:"Investice, kola, ESOP → cap table, dilution, exit waterfall.",mvpWeeks:6,soloScore:5,margin:94,ceiling:40,ceilingLabel:"~40M",tags:["micro-saas","utility"],best:true,unitPrice:"Pro: 800 CZK/měs",to1mMonths:24,formula:"1 250 × 800 = 1M (nutná EU expanze)",verdictType:"maybe",verdict:"Perfektně solo + marže, ale český trh moc malý na 100M+."},
+
+  // VOICE
+  {id:"V1",parent:"voice",title:"AI Receptionist pro kliniky/salóny",desc:"Hlasový AI: zvedá telefony, bookuje termíny, FAQ.",mvpWeeks:8,soloScore:3,margin:75,ceiling:500,ceilingLabel:"500M+",tags:["vertical","recurring"],best:true,unicorn:true,martell:true,unitPrice:"Setup: 30-60k, Měsíčně: 5-15k",to1mMonths:12,formula:"Setup 10/měs × 40k + recurring 60 × 10k = 1M",verdictType:"go",verdict:"🦄⚡ SILNÝ KANDIDÁT. Voice AI je mega trend."},
+  {id:"V2",parent:"voice",title:"AI Follow-up Caller pro sales",desc:"Po meetingu AI zavolá leadovi, potvrdí zájem, naplánuje follow-up.",mvpWeeks:10,soloScore:3,margin:78,ceiling:200,ceilingLabel:"200M+",tags:["b2b","crm"],unitPrice:"Per seat: 3-8k/měs",to1mMonths:14,formula:"20 firem × 5 seats × 5k = 500k + enterprise 500k",verdictType:"maybe",verdict:"B2B voice má potenciál ale complex integrace."},
+  {id:"V3",parent:"voice",title:"Voice Agent White-label Platform",desc:"No-code platforma: firmy si samy nakonfigurují voice agenta.",mvpWeeks:16,soloScore:4,margin:80,ceiling:2000,ceilingLabel:"2 000M+",tags:["platform","scalable"],best:true,unicorn:true,unitPrice:"Per minuta: 3-8 CZK",to1mMonths:16,formula:"100 firem × 2k + 100k min × 5 CZK + premium 300k",verdictType:"go",verdict:"🦄 NEJVYŠŠÍ STROP. Platform play = winner takes most."},
+  {id:"V4",parent:"voice",title:"AI Outbound Dialer (cold calling)",desc:"AI volá cold leads, kvalifikuje, předává salesákům.",mvpWeeks:10,soloScore:3,margin:70,ceiling:150,ceilingLabel:"150M+",tags:["outbound","high roi"],unitPrice:"Per lead: 200-500 CZK",to1mMonths:12,formula:"20 klientů × 100 leads × 300 = 600k + fees",verdictType:"maybe",verdict:"Performance model je atraktivní ale GDPR risk v EU."},
+  {id:"V5",parent:"voice",title:"Restaurant AI Host",desc:"Voice agent pro restaurace: rezervace, objednávky, FAQ.",mvpWeeks:8,soloScore:3,margin:72,ceiling:200,ceilingLabel:"200M+",tags:["hospitality","repeatable"],unitPrice:"Setup: 20-40k, Měsíčně: 3-8k",to1mMonths:16,formula:"15/měs × 30k + 100 × 5.5k = 1M",verdictType:"maybe",verdict:"Solid vertikála ale restaurant = nízké budgety, vysoký churn."},
+
+  // OUTREACH
+  {id:"O1",parent:"outreach",title:"ColdCraft — AI outreach builder",desc:"SaaS: cílovka + produkt → 5-email sekvence personalizovaná per lead.",mvpWeeks:6,soloScore:5,margin:92,ceiling:500,ceilingLabel:"500M+",tags:["micro-saas","product-led"],best:true,unicorn:true,unitPrice:"Pro: 1 000/měs",to1mMonths:16,formula:"500 Pro × 1k + 100 Team × 2.5k + 50 Ent × 5k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Každá B2B firma potřebuje outreach. PLG model."},
+  {id:"O2",parent:"outreach",title:"LinkedIn Message Generator (ext.)",desc:"Chrome ext: na profilu klikneš → personalizovaný connection request.",mvpWeeks:4,soloScore:5,margin:93,ceiling:300,ceilingLabel:"300M+",tags:["chrome ext","viral"],best:true,unicorn:true,unitPrice:"Pro: 500 CZK/měs",to1mMonths:18,formula:"2 000 platících × 500 = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Chrome ext = virální distribuce."},
+  {id:"O3",parent:"outreach",title:"AI SDR-as-a-Service",desc:"Klient platí měsíčně, AI + tým dělá outreach.",mvpWeeks:3,soloScore:1,margin:40,ceiling:60,ceilingLabel:"~60M",tags:["agency","high value"],martell:true,unitPrice:"30-80k/měs",to1mMonths:8,formula:"20 klientů × 50k = 1M (3-4 SDR zaměstnanci)",verdictType:"no",verdict:"⚡ Nejrychlejší k 1M ale NENÍ solo a nízká marže."},
+  {id:"O4",parent:"outreach",title:"Proposal & Quote Generator",desc:"Brief → profesionální nabídka/proposal (PDF).",mvpWeeks:6,soloScore:5,margin:93,ceiling:100,ceilingLabel:"~100M",tags:["utility","b2b"],best:true,unitPrice:"Pro: 1 200/měs unlimited",to1mMonths:20,formula:"800 Pro × 1.2k = 960k",verdictType:"maybe",verdict:"Solo + marže perfektní. Strop ~100M je hraniční."},
+  {id:"O5",parent:"outreach",title:"Email Subject Line Tester",desc:"Kontext → 10 subject lines s predikovaným open rate.",mvpWeeks:3,soloScore:5,margin:95,ceiling:10,ceilingLabel:"~10M",tags:["micro-tool","lead magnet"],unitPrice:"Pro: 300 CZK/měs",to1mMonths:30,formula:"Samo těžké. Lépe jako lead magnet pro O1.",verdictType:"no",verdict:"Příliš malý trh a nízká cena. Skvělý lead magnet ale ne standalone."},
+
+  // WORKSHOP
+  {id:"W1",parent:"workshop",title:"AI Readiness Workshop",desc:"4h workshop pro management: AI quick wins, hands-on.",mvpWeeks:2,soloScore:2,margin:75,ceiling:20,ceilingLabel:"~20M",tags:["in-person","high margin"],martell:true,unitPrice:"30-80k per workshop",to1mMonths:8,formula:"15 WS/měs × 65k = 975k (s trainery)",verdictType:"no",verdict:"⚡ Rychlý cash ale: závisí na TOBĚ, fyzicky nepřítomný = 0 revenue."},
+  {id:"W2",parent:"workshop",title:"Online AI Masterclass",desc:"Nahraný video kurz: 10 modulů, cvičení, certifikát.",mvpWeeks:8,soloScore:4,margin:82,ceiling:80,ceilingLabel:"~80M",tags:["passive","scalable"],unitPrice:"3-8k per student",to1mMonths:14,formula:"200 studentů/měs × 5k = 1M",verdictType:"maybe",verdict:"Dobrá marže, sólo-friendly, ale závisí na osobní značce."},
+  {id:"W3",parent:"workshop",title:"Corporate AI Training License",desc:"Firma koupí licenci na training program. HR školí samo.",mvpWeeks:6,soloScore:4,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["b2b license","no-face"],best:true,unicorn:true,unitPrice:"Roční licence: 50-200k",to1mMonths:12,formula:"80 firem × 150k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 Skrytý winner! No-name, one-to-many, high margin."},
+  {id:"W4",parent:"workshop",title:"Workshop Franchise / Trainer Network",desc:"5-10 trainerů pod neutrální značkou. Ty bereš 30-50% cut.",mvpWeeks:8,soloScore:3,margin:40,ceiling:50,ceilingLabel:"~50M",tags:["franchise","leverage"],best:true,unitPrice:"WS cena: 50-80k, Tvůj cut: 30-50%",to1mMonths:10,formula:"10 trainerů × 6 WS × 65k × 40% = ~1M",verdictType:"maybe",verdict:"No-name a leverage — ale nízká marže a management trainerů."},
+  {id:"W5",parent:"workshop",title:"AI Sprint — 2-week transformation",desc:"2-týdenní program: audit → workshop → implementace → handover.",mvpWeeks:4,soloScore:1,margin:55,ceiling:30,ceilingLabel:"~30M",tags:["high ticket","consulting"],martell:true,unitPrice:"150-300k per firma",to1mMonths:8,formula:"5 sprintů × 200k = 1M (potřeba konzultanti)",verdictType:"no",verdict:"⚡ Rychlý cash ale absolutně ne solo."},
+
+  // CONTENT
+  {id:"C1",parent:"content",title:"ContentBot — blog subscription",desc:"Paušál → X blog postů/měsíc. AI generuje, editor kontroluje.",mvpWeeks:2,soloScore:2,margin:55,ceiling:50,ceilingLabel:"~50M",tags:["productized","recurring"],best:true,martell:true,unitPrice:"15-40k/měs per klient",to1mMonths:12,formula:"40 klientů × 25k = 1M (s 2-3 editory)",verdictType:"no",verdict:"⚡ Martell-validated ale NENÍ solo a marže ~55%."},
+  {id:"C2",parent:"content",title:"Social Media Auto-Pilot",desc:"AI generuje denní SM posty. Klient batch-schválí, AI postuje.",mvpWeeks:3,soloScore:2,margin:50,ceiling:40,ceilingLabel:"~40M",tags:["managed","social media"],unitPrice:"10-25k/měs per klient",to1mMonths:14,formula:"60 klientů × 17k = 1M (delegovatelné)",verdictType:"no",verdict:"Service, ne product. Potřebuješ lidi, nízká marže."},
+  {id:"C3",parent:"content",title:"AI SEO Content Factory",desc:"SEO články: keyword research → AI → editor → publikace.",mvpWeeks:3,soloScore:2,margin:55,ceiling:60,ceilingLabel:"~60M",tags:["seo","b2b"],best:true,martell:true,unitPrice:"Per článek: 3-8k, Paušál: 20-50k/měs",to1mMonths:12,formula:"30 klientů × 35k = 1.05M (potřeba editory)",verdictType:"no",verdict:"⚡ Martell cashflow play, ale ne solo/scale."},
+  {id:"C4",parent:"content",title:"Newsletter-as-a-Service (white-label)",desc:"Celý newsletter management pod značkou klienta.",mvpWeeks:2,soloScore:2,margin:55,ceiling:40,ceilingLabel:"~40M",tags:["white-label","recurring"],best:true,unitPrice:"10-25k/měs per klient",to1mMonths:14,formula:"60 klientů × 17k = 1M",verdictType:"no",verdict:"Další service play. Není solo, není scale."},
+  {id:"C5",parent:"content",title:"AI Copywriting API / SaaS",desc:"API: brief → copy (product descriptions, ads, emails). Pay-per-use.",mvpWeeks:6,soloScore:5,margin:80,ceiling:300,ceilingLabel:"300M+",tags:["api","scalable"],unicorn:true,unitPrice:"Per request: 5-20 CZK, Pro: 2k/měs",to1mMonths:22,formula:"200 Pro × 2k + 100k req × 6 = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. API = zero marginal cost, sólo, globální."},
+
+  // BRAND
+  {id:"B1",parent:"brand",title:"LinkedInGhost — AI ghostwriter SaaS",desc:"Téma → LinkedIn post v tvém tónu. Naučí se styl z historie.",mvpWeeks:6,soloScore:5,margin:91,ceiling:500,ceilingLabel:"500M+",tags:["saas","linkedin boom"],best:true,unicorn:true,unitPrice:"Pro: 700/měs, Business: 2k/měs",to1mMonths:16,formula:"800 Pro × 700 + 200 Biz × 2k = 960k",verdictType:"go",verdict:"🦄 TRIFECTA. LinkedIn má 1B+ userů. Validovaný trh."},
+  {id:"B2",parent:"brand",title:"PersonaBrand Kit (one-time)",desc:"AI analyzuje LinkedIn → bio texty, headline, about, speaker bio.",mvpWeeks:3,soloScore:5,margin:95,ceiling:30,ceilingLabel:"~30M",tags:["digital product","quick"],best:true,unitPrice:"2-5k per kit",to1mMonths:22,formula:"300 kitů/měs × 3.5k = 1.05M (potřeba volume)",verdictType:"maybe",verdict:"Perfektně solo + marže, ale one-time = žádný recurring."},
+  {id:"B3",parent:"brand",title:"AI Thought Leadership (managed)",desc:"AI + editor: 3-4 LinkedIn posty + 1 článek/měsíc per klient.",mvpWeeks:2,soloScore:2,margin:55,ceiling:40,ceilingLabel:"~40M",tags:["managed","premium"],martell:true,unitPrice:"15-30k/měs per klient",to1mMonths:12,formula:"45 klientů × 22k = 990k",verdictType:"no",verdict:"⚡ Martell entry: rychlý cash. Ale service = ne solo, ne scale."},
+  {id:"B4",parent:"brand",title:"Personal Website Generator",desc:"LinkedIn URL → kompletní personal website. One-click deploy.",mvpWeeks:8,soloScore:5,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["product","automated"],best:true,unicorn:true,unitPrice:"Setup: 3-8k, Hosting: 200/měs",to1mMonths:20,formula:"150 webů/měs × 5k + 1500 hosting × 200 = 1.05M",verdictType:"go",verdict:"🦄 Zajímavý hybrid: one-time + recurring hosting."},
+  {id:"B5",parent:"brand",title:"Speaker Profile Generator",desc:"Micro-tool: speaker bio, talk abstracts, one-pager.",mvpWeeks:3,soloScore:5,margin:95,ceiling:5,ceilingLabel:"~5M",tags:["micro-tool","niche"],unitPrice:"500-1.5k per profil",to1mMonths:30,formula:"Příliš úzký niche. Max 100-200k/měs.",verdictType:"no",verdict:"Niche příliš malý. Perfektní jako feature B1, ne standalone."},
+
+  // REAL ESTATE
+  {id:"R1",parent:"realestate",title:"FlatScore.cz — investiční skóre",desc:"Odkaz na Sreality → AI: rental yield, ROI, okolí, predikce ceny.",mvpWeeks:8,soloScore:5,margin:88,ceiling:300,ceilingLabel:"300M+",tags:["saas","data-driven"],best:true,unicorn:true,unitPrice:"Pro: 500/měs, Investor: 2k/měs",to1mMonths:18,formula:"1000 Pro × 500 + 250 Inv × 2k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Zillow model pro ČR/CEE."},
+  {id:"R2",parent:"realestate",title:"AI Rental Yield Calculator",desc:"Cena + lokalita → nájem, yield, cash flow, návratnost.",mvpWeeks:4,soloScore:5,margin:85,ceiling:80,ceilingLabel:"~80M",tags:["micro-saas","lead gen"],best:true,martell:true,unitPrice:"Pro: 300/měs",to1mMonths:24,formula:"500 sub × 300 = 150k + affiliate 500k + ads 350k",verdictType:"maybe",verdict:"⚡ Perfektní Martell entry point — validace pro R1."},
+  {id:"R3",parent:"realestate",title:"AI Property Report pro makléře",desc:"Adresa → profesionální report pro kupce. White-label pro realitky.",mvpWeeks:6,soloScore:4,margin:85,ceiling:100,ceilingLabel:"~100M",tags:["b2b","white-label"],unitPrice:"Per report: 200-500, Paušál: 2k/měs",to1mMonths:18,formula:"300 makléřů × 2k + reports 400k",verdictType:"maybe",verdict:"B2B white-label je dobrý model. Hraniční strop."},
+  {id:"R4",parent:"realestate",title:"Airbnb Opportunity Finder",desc:"AI analyzuje Airbnb data: výnosy, obsazenost, sezónnost.",mvpWeeks:6,soloScore:4,margin:85,ceiling:80,ceilingLabel:"~80M",tags:["data product","airbnb"],unitPrice:"Pro: 1.5k/měs",to1mMonths:22,formula:"500 Pro × 1.5k + one-time 250k",verdictType:"maybe",verdict:"AirDNA dělá toto globálně. CZ verze = menší trh."},
+  {id:"R5",parent:"realestate",title:"AI Správce nemovitostí",desc:"AI pro majitele: komunikace s nájemníky, platby, smlouvy.",mvpWeeks:10,soloScore:4,margin:82,ceiling:300,ceilingLabel:"300M+",tags:["saas","sticky"],unicorn:true,unitPrice:"Per byt: 300-800/měs",to1mMonths:20,formula:"2000 bytů × 500 = 1M",verdictType:"go",verdict:"🦄 Property management je $20B+ trh. AI-native PM tool."},
+
+  // AGENTS
+  {id:"AG1",parent:"agents",title:"B2B SDR AI Agent",desc:"Autonomní outbound sales agent. Scrapuje LinkedIn, píše personalizované emaily.",mvpWeeks:8,soloScore:4,margin:85,ceiling:500,ceilingLabel:"500M+",tags:["b2b","outbound"],best:true,unicorn:true,pdf:true,unitPrice:"Per seat: 3-8k/měs",to1mMonths:14,formula:"50 firem × 4 seats × 5k = 1M",verdictType:"go",verdict:"🦄 Obrovský trh — každá B2B firma potřebuje outbound."},
+  {id:"AG2",parent:"agents",title:"AI Legal Document Analyzer",desc:"Upload smlouvu → AI identifikuje rizika, nestandardní klauzule.",mvpWeeks:10,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["legal","analysis"],best:true,unicorn:true,pdf:true,unitPrice:"Per dokument: 500-2k, Pro: 3k/měs",to1mMonths:16,formula:"300 Pro × 3k + one-time 100k",verdictType:"go",verdict:"🦄 TRIFECTA. Legal tech je $30B+ trh."},
+  {id:"AG3",parent:"agents",title:"AI Financial Controller",desc:"Automatizované účetnictví: kategorizace výdajů, cash flow predikce.",mvpWeeks:12,soloScore:4,margin:88,ceiling:400,ceilingLabel:"400M+",tags:["fintech","accounting"],unicorn:true,pdf:true,unitPrice:"SMB: 2-5k/měs, Mid: 10-20k/měs",to1mMonths:18,formula:"100 SMB × 3k + 30 Mid × 15k = 750k + add-ons",verdictType:"go",verdict:"🦄 Účetnictví je $500B+ globální trh. AI nahrazuje juniorní účetní."},
+  {id:"AG4",parent:"agents",title:"AI Customer Feedback Analyst",desc:"Ingests reviews, support tickets, NPS data → generuje akční insights.",mvpWeeks:6,soloScore:5,margin:92,ceiling:200,ceilingLabel:"200M+",tags:["analytics","b2b-saas"],best:true,unicorn:true,pdf:true,unitPrice:"Starter: 1.5k/měs, Pro: 5k/měs",to1mMonths:16,formula:"150 Starter × 1.5k + 80 Pro × 5k = 625k + enterprise",verdictType:"go",verdict:"🦄 TRIFECTA. Každý e-shop a SaaS chce rozumět zákazníkům."},
+  {id:"AG5",parent:"agents",title:"AI Debt Collection Agent",desc:"Gentilní automatizované upomínky, návrhy splátkových kalendářů.",mvpWeeks:8,soloScore:5,margin:85,ceiling:150,ceilingLabel:"150M+",tags:["fintech","niche"],best:true,pdf:true,unitPrice:"% z vybraných dluhů (5-15%)",to1mMonths:14,formula:"50 klientů × avg 20k = 1M (performance fee)",verdictType:"go",verdict:"🦄 Unikátní niche. Inkasní agentury účtují 30-50%, AI to udělá za 5-15%."},
+  {id:"AG6",parent:"agents",title:"AI Anti-Churn Predictor",desc:"Predikuje odchod zákazníků z behaviorálních dat, auto-triggers retention.",mvpWeeks:8,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["retention","saas"],best:true,unicorn:true,pdf:true,unitPrice:"% z ušetřeného revenue, Min: 5k/měs",to1mMonths:16,formula:"100 SaaS klientů × 10k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Churn je #1 problém SaaS firem."},
+
+  // MICRO-SAAS
+  {id:"MS1",parent:"microsaas",title:"Synthetic Data Generator",desc:"Generuje realistická testovací data pro vývojáře. API: specifikuj schéma → miliony řádků.",mvpWeeks:6,soloScore:5,margin:93,ceiling:200,ceilingLabel:"200M+",tags:["dev-tools","api"],best:true,unicorn:true,pdf:true,unitPrice:"Free tier + Pro: 1.5k/měs",to1mMonths:18,formula:"400 Pro × 1.5k + 50 Team × 5k = 850k + enterprise",verdictType:"go",verdict:"🦄 TRIFECTA. Každý developer potřebuje test data. GDPR = must."},
+  {id:"MS2",parent:"microsaas",title:"Local SEO Auditor AI",desc:"Zadej firmu → instant audit: Google Business, citace, reviews, ranking.",mvpWeeks:4,soloScore:5,margin:92,ceiling:150,ceilingLabel:"150M+",tags:["seo","smb"],best:true,pdf:true,unitPrice:"Per audit: 300-800, Agency: 3k/měs",to1mMonths:18,formula:"200 Agency × 3k + one-time 400k",verdictType:"go",verdict:"🦄 Miliony SMB potřebují local SEO. Self-serve audit tool."},
+  {id:"MS3",parent:"microsaas",title:"ESG Reporting Autopilot",desc:"Automatizované ESG reporty pro mid-market firmy. AI dle EU standardů (CSRD).",mvpWeeks:10,soloScore:4,margin:88,ceiling:300,ceilingLabel:"300M+",tags:["compliance","eu-regulation"],best:true,unicorn:true,pdf:true,unitPrice:"Annual: 50-200k CZK",to1mMonths:14,formula:"60 firem × 200k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 REGULATORNÍ GOLDMINE. EU CSRD vyžaduje ESG reporting od 2025+."},
+  {id:"MS4",parent:"microsaas",title:"Solopreneur CRM",desc:"Ultra-jednoduchý CRM pro 1-person business. Kontakty, pipeline, AI follow-up.",mvpWeeks:6,soloScore:5,margin:90,ceiling:150,ceilingLabel:"150M+",tags:["crm","solopreneur"],best:true,pdf:true,unitPrice:"Pro: 500/měs",to1mMonths:20,formula:"2000 Pro × 500 = 1M",verdictType:"go",verdict:"🦄 67M solopreneurů v US. HubSpot je overkill, spreadsheet underkill."},
+  {id:"MS5",parent:"microsaas",title:"AI Video Dubbing & Localization",desc:"Upload video → AI přeloží a nadabuje do 50+ jazyků. Lip-sync.",mvpWeeks:12,soloScore:4,margin:85,ceiling:500,ceilingLabel:"500M+",tags:["video","localization"],unicorn:true,pdf:true,unitPrice:"Per minuta: 50-200 CZK, Pro: 5k/měs",to1mMonths:16,formula:"200 Pro × 5k = 1M",verdictType:"go",verdict:"🦄 Video je #1 content format. Dubbing tradičně $1000+/min. AI = $2/min."},
+  {id:"MS6",parent:"microsaas",title:"Sales Call Coaching AI",desc:"Nahraje sales call → AI analyzuje: talk ratio, objection handling, closing.",mvpWeeks:8,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["sales","coaching"],best:true,unicorn:true,pdf:true,unitPrice:"Per seat: 1.5-4k/měs",to1mMonths:16,formula:"100 firem × 3 seats × 3k = 900k + enterprise",verdictType:"go",verdict:"🦄 TRIFECTA. Gong.io dělá $250M+/rok. AI-native alternativa."},
+  {id:"MS7",parent:"microsaas",title:"Content Repurposing Engine",desc:"1 long-form blog/video → AI vytvoří 30+ social postů, email, thread.",mvpWeeks:4,soloScore:5,margin:92,ceiling:200,ceilingLabel:"200M+",tags:["content","automation"],best:true,pdf:true,unitPrice:"Pro: 1k/měs, Agency: 3k/měs",to1mMonths:18,formula:"500 Pro × 1k + 100 Agency × 3k = 800k + enterprise",verdictType:"go",verdict:"🦄 TRIFECTA. Každý content creator má tento problém."},
+
+  // REGTECH
+  {id:"RT1",parent:"regtech",title:"EU AI Act Compliance Labeler",desc:"Auto-klasifikace AI systémů dle EU AI Act (high-risk, limited, minimal).",mvpWeeks:8,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["eu-regulation","compliance"],best:true,unicorn:true,pdf:true,unitPrice:"Per assessment: 10-30k, Annual: 50-150k",to1mMonths:12,formula:"80 firem × 150k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 REGULATORNÍ GOLDMINE. EU AI Act platí od 2025."},
+  {id:"RT2",parent:"regtech",title:"AI Contract Redlining",desc:"Upload smlouvu → AI marks rizikové klauzule, navrhuje alternativní znění.",mvpWeeks:8,soloScore:5,margin:92,ceiling:300,ceilingLabel:"300M+",tags:["legal","automation"],best:true,unicorn:true,pdf:true,unitPrice:"Per smlouva: 500-2k, Pro: 3k/měs",to1mMonths:16,formula:"300 Pro × 3k + enterprise 100k",verdictType:"go",verdict:"🦄 TRIFECTA. Právníci stráví 60% času redliningem. AI za minuty."},
+  {id:"RT3",parent:"regtech",title:"GDPR Data Retention Bot",desc:"Automatizovaná správa data retention schedules. Skenuje systémy, identifikuje osobní data.",mvpWeeks:6,soloScore:5,margin:90,ceiling:200,ceilingLabel:"200M+",tags:["gdpr","automation"],best:true,pdf:true,unitPrice:"SaaS: 2-8k/měs",to1mMonths:16,formula:"150 firem × 7k = 1.05M",verdictType:"go",verdict:"🦄 GDPR pokuta = až 4% obratu. Každá EU firma se bojí."},
+  {id:"RT4",parent:"regtech",title:"Hallucination Checker pro Legal",desc:"Validuje AI-generované právní texty proti skutečným zákonům a precedentům.",mvpWeeks:8,soloScore:5,margin:93,ceiling:250,ceilingLabel:"250M+",tags:["legal-ai","trust"],best:true,unicorn:true,pdf:true,unitPrice:"API: per check 50-200 CZK, Pro: 5k/měs",to1mMonths:18,formula:"200 kanceláří × 5k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. AI hallucinations v právních dokumentech = katastrofa."},
+  {id:"RT5",parent:"regtech",title:"Carbon Credit Audit Trail",desc:"AI verifikuje carbon offset claims. Satelitní data, registry, blockchain.",mvpWeeks:10,soloScore:4,margin:85,ceiling:200,ceilingLabel:"200M+",tags:["esg","sustainability"],unicorn:true,pdf:true,unitPrice:"Per audit: 20-50k, Annual: 100-300k",to1mMonths:16,formula:"50 firem × 240k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 Carbon credit fraud je obrovský problém ($100B+)."},
+
+  // AGENCY
+  {id:"OA1",parent:"agency",title:"E-commerce Growth Lab",desc:"AI optimalizuje product listings, PPC kampaně, pricing strategii.",mvpWeeks:4,soloScore:3,margin:70,ceiling:100,ceilingLabel:"~100M",tags:["ecommerce","performance"],martell:true,pdf:true,unitPrice:"Setup: 30k + 5-10% z nárůstu",to1mMonths:10,formula:"30 e-shopů × avg 35k = 1.05M",verdictType:"maybe",verdict:"⚡ Martell entry: rychlý cash přes performance model."},
+  {id:"OA2",parent:"agency",title:"Voice Agent SMMA",desc:"Nasazuješ voice AI agenty pro SMB (restaurace, kliniky, salóny).",mvpWeeks:6,soloScore:3,margin:75,ceiling:200,ceilingLabel:"200M+",tags:["voice","smb"],martell:true,pdf:true,unitPrice:"Setup: 20-50k, Měsíčně: 5-15k",to1mMonths:12,formula:"Setup 10/měs × 35k + recurring 80 × 10k = 1.15M",verdictType:"maybe",verdict:"⚡ Perfektní Martell Phase 1 pro V1/V3."},
+  {id:"OA3",parent:"agency",title:"Lead Reactivation Agency",desc:"Klient dá přístup k CRM → AI oživí mrtvé leady personalizovanými sekvencemi.",mvpWeeks:3,soloScore:4,margin:80,ceiling:100,ceilingLabel:"~100M",tags:["lead-gen","quick-win"],best:true,martell:true,pdf:true,unitPrice:"Per meeting: 2-5k, Min: 15k/měs",to1mMonths:8,formula:"50 klientů × 20k = 1M",verdictType:"maybe",verdict:"⚡ NEJRYCHLEJŠÍ CASH z celého canvasu. 3 týdny MVP!"},
+  {id:"OA4",parent:"agency",title:"Document Processing Agency",desc:"Digitalizace papírových dokumentů → strukturovaná data. AI OCR + extraction.",mvpWeeks:4,soloScore:4,margin:80,ceiling:150,ceilingLabel:"150M+",tags:["automation","b2b"],martell:true,pdf:true,unitPrice:"Per 1000 docs: 5-15k, Měsíčně: 10-30k",to1mMonths:12,formula:"60 klientů × 17k = 1M",verdictType:"maybe",verdict:"⚡ Obrovský underserved trh — firmy mají tuny papírových dokumentů."},
+
+  // INDUSTRIAL
+  {id:"IN1",parent:"industrial",title:"Precision Agriculture SaaS",desc:"Satelitní data + AI → modelování plodin, navigace zavlažování, predikce úrody.",mvpWeeks:12,soloScore:4,margin:85,ceiling:300,ceilingLabel:"300M+",tags:["agritech","satellite"],unicorn:true,pdf:true,unitPrice:"$5-15 per akr/rok",to1mMonths:20,formula:"200 farem × 60k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 AgriTech AI trh roste 25%/rok na $15B+."},
+  {id:"IN2",parent:"industrial",title:"Predictive Maintenance SaaS",desc:"IoT data z továren → AI predikuje selhání strojů. Snižuje odstávky o 80-90%.",mvpWeeks:14,soloScore:3,margin:82,ceiling:500,ceilingLabel:"500M+",tags:["industrial","iot"],unicorn:true,pdf:true,unitPrice:"SaaS: 10-50k/měs",to1mMonths:18,formula:"30 továren × 35k = 1.05M",verdictType:"maybe",verdict:"🦄 Obrovský trh ($50B+) ale: potřebuješ IoT integraci."},
+  {id:"IN3",parent:"industrial",title:"Smart Energy Management",desc:"PropTech: optimalizuje vytápění/chlazení budov pomocí AI.",mvpWeeks:12,soloScore:4,margin:82,ceiling:300,ceilingLabel:"300M+",tags:["proptech","energy"],unicorn:true,pdf:true,unitPrice:"% z úspory (25%), Min: 5k/měs",to1mMonths:16,formula:"100 budov × 10k = 1M (savings share model)",verdictType:"go",verdict:"🦄 Energie je top náklad budov. AI šetří 20-40%."},
+  {id:"IN4",parent:"industrial",title:"Fleet Logistics AI",desc:"Optimalizace tras pro rozvážkové firmy. Real-time reakce na dopravu.",mvpWeeks:10,soloScore:4,margin:85,ceiling:300,ceilingLabel:"300M+",tags:["logistics","optimization"],unicorn:true,pdf:true,unitPrice:"Per vozidlo: 500-2k/měs",to1mMonths:18,formula:"500 vozidel × 2k = 1M (10-20 firem)",verdictType:"go",verdict:"🦄 Logistika je $10T globální trh. AI šetří 15-30% na palivu."},
+  {id:"IN5",parent:"industrial",title:"ESG Monitoring & Scope 3 Tracker",desc:"AI skenuje supply chain, měří carbon footprint, generuje ESG reporty.",mvpWeeks:10,soloScore:4,margin:85,ceiling:300,ceilingLabel:"300M+",tags:["esg","supply-chain"],unicorn:true,pdf:true,unitPrice:"Annual: 80-300k",to1mMonths:16,formula:"50 korporací × 240k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 EU regulace tlačí na Scope 3 reporting."},
+
+  // E-COMMERCE
+  {id:"EC1",parent:"ecommerce",title:"Personalized Kids Books AI",desc:"Rodič nahraje fotku dítěte + jméno → AI vytvoří unikátní ilustrovanou knihu.",mvpWeeks:8,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["b2c","print-on-demand"],best:true,unicorn:true,pdf:true,unitPrice:"Per kniha: $30-50",to1mMonths:14,formula:"2000 knih/měs × 800 CZK + 500 sub × 500",verdictType:"go",verdict:"🦄 Nano Banana model — One-Person Unicorn příklad. Virální."},
+  {id:"EC2",parent:"ecommerce",title:"Faceless YouTube Cash Cow",desc:"AI generuje kompletní YouTube kanály: scénáře, voiceover, video editing.",mvpWeeks:4,soloScore:5,margin:85,ceiling:100,ceilingLabel:"~100M",tags:["youtube","passive-income"],best:true,pdf:true,unitPrice:"AdSense: $5-20 RPM",to1mMonths:16,formula:"5 kanálů × 2M views × $10 RPM + sponsory",verdictType:"maybe",verdict:"Perfektně solo + no-name, ale YouTube algorithm risk."},
+  {id:"EC3",parent:"ecommerce",title:"Synthetic UGC Video Creator",desc:"AI generuje realistické UGC product review videa. Digitální 'herci'.",mvpWeeks:6,soloScore:5,margin:90,ceiling:200,ceilingLabel:"200M+",tags:["ugc","ai-video"],best:true,unicorn:true,pdf:true,unitPrice:"Per video: 500-2k, Paušál: 15-40k/měs",to1mMonths:12,formula:"50 brandů × 20k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. UGC je #1 conversion driver. 25x cenová arbitráž."},
+  {id:"EC4",parent:"ecommerce",title:"Print-on-Demand AI Store",desc:"AI analyzuje trendy → generuje designs → automaticky listuje na Etsy/Amazon.",mvpWeeks:4,soloScore:5,margin:75,ceiling:100,ceilingLabel:"~100M",tags:["pod","automated"],pdf:true,unitPrice:"Per item: 200-800 CZK profit",to1mMonths:20,formula:"5000 prodejů/měs × 400 CZK margin",verdictType:"maybe",verdict:"Solo + no-name, ale nižší marže (75%) a hodně competition."},
+  {id:"EC5",parent:"ecommerce",title:"EdTech Upskilling Platform",desc:"AI career advisor: mapuje tržní chování, vytváří osobní vzdělávací plán.",mvpWeeks:10,soloScore:4,margin:85,ceiling:300,ceilingLabel:"300M+",tags:["edtech","career"],unicorn:true,pdf:true,unitPrice:"B2C: 500/měs, B2B: 5-20k/měs",to1mMonths:18,formula:"500 B2C × 500 + 50 B2B × 10k = 750k + enterprise",verdictType:"go",verdict:"🦄 AI transformuje pracovní trh. LinkedIn Learning dělá $1B+."},
+  {id:"EC6",parent:"ecommerce",title:"Podcast Show Notes Autopilot",desc:"RSS feed → AI transkribuje, vytváří blog post, social snippety.",mvpWeeks:3,soloScore:5,margin:92,ceiling:100,ceilingLabel:"~100M",tags:["podcast","automation"],best:true,pdf:true,unitPrice:"Pro: 800/měs, Agency: 3k/měs",to1mMonths:20,formula:"800 Pro × 800 + 50 Agency × 3k = 790k + enterprise",verdictType:"maybe",verdict:"Perfektně solo, rychlý MVP, vysoká marže. Dobrý micro-SaaS."},
+
+  // B2B INFRA
+  {id:"BI1",parent:"b2binfra",title:"AI Cybersecurity Pentester",desc:"Autonomní white-hat penetrační testování. AI skenuje servery, cloudy, sítě.",mvpWeeks:12,soloScore:4,margin:88,ceiling:500,ceilingLabel:"500M+",tags:["cybersecurity","autonomous"],unicorn:true,pdf:true,unitPrice:"Per scan: 10-30k, Annual: 100-500k",to1mMonths:14,formula:"40 firem × 300k/rok = 12M/rok = 1M/měs",verdictType:"go",verdict:"🦄 Cybersecurity trh = $300B+ do 2026."},
+  {id:"BI2",parent:"b2binfra",title:"AI Legal Forensics",desc:"Analyzuje tisíce soudních spisů, smluv. Vytahuje precedenty, najde vzory.",mvpWeeks:10,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["legal","enterprise"],best:true,unicorn:true,pdf:true,unitPrice:"Enterprise: 10-50k/měs",to1mMonths:16,formula:"50 kanceláří × 20k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. Právníci tráví 30% času hledáním precedentů."},
+  {id:"BI3",parent:"b2binfra",title:"Client Portal 360 pro Freelancery",desc:"White-label klientský portál: fakturace, podepisování smluv, sdílení souborů.",mvpWeeks:8,soloScore:5,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["freelancer","portal"],best:true,pdf:true,unitPrice:"Pro: 500/měs, Agency: 2k/měs",to1mMonths:20,formula:"1000 Pro × 500 + 200 Agency × 2k = 900k + enterprise",verdictType:"go",verdict:"🦄 TRIFECTA. 76M freelancerů jen v US."},
+  {id:"BI4",parent:"b2binfra",title:"EAA Accessibility Compliance Tool",desc:"European Accessibility Act compliance: AI skenuje web, identifikuje bariéry.",mvpWeeks:8,soloScore:5,margin:90,ceiling:300,ceilingLabel:"300M+",tags:["accessibility","eu-regulation"],best:true,unicorn:true,pdf:true,unitPrice:"SaaS: 1-5k/měs",to1mMonths:14,formula:"300 webů × 3.5k = 1.05M",verdictType:"go",verdict:"🦄 REGULATORNÍ GOLDMINE #2. EAA vyžaduje accessibility od 2025."},
+  {id:"BI5",parent:"b2binfra",title:"Shopify/Webflow Plugin Factory",desc:"Stavíš micro-pluginy vyplňující mezery ve velkých platformách.",mvpWeeks:4,soloScore:5,margin:92,ceiling:200,ceilingLabel:"200M+",tags:["plugins","marketplace"],best:true,pdf:true,unitPrice:"Per plugin: $5-29/měs",to1mMonths:18,formula:"10 pluginů × 500 uživatelů × $10 = $50k/měs",verdictType:"go",verdict:"🦄 TRIFECTA. Shopify App Store = built-in distribuce."},
+  {id:"BI6",parent:"b2binfra",title:"A/B Testing Autopilot for E-commerce",desc:"AI auto-generuje varianty landing pages, CTA, copy. Automaticky testuje.",mvpWeeks:6,soloScore:5,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["conversion","automation"],best:true,unicorn:true,pdf:true,unitPrice:"% z nárůstu konverzí, Min: 3k/měs",to1mMonths:14,formula:"200 e-shopů × 5k = 1M",verdictType:"go",verdict:"🦄 TRIFECTA. CRO trh = $15B+. Každý e-shop chce vyšší konverze."},
+
+  // NICHE
+  {id:"NI1",parent:"niche",title:"AI Sommelier SaaS",desc:"Vinárny/importéři nahrají menu → AI páruje vína, navrhuje pricing.",mvpWeeks:6,soloScore:5,margin:90,ceiling:100,ceilingLabel:"~100M",tags:["wine","hospitality"],best:true,ryze:true,unitPrice:"Pro: 1.5k/měs, Chain: 5k/měs",to1mMonths:20,formula:"400 Pro × 1.5k + 40 Chain × 5k = 800k + import data",verdictType:"maybe",verdict:"🎯 Ultra-niche: vinný průmysl je $400B+ globálně. Zero competition."},
+  {id:"NI2",parent:"niche",title:"Veterinary AI Triage",desc:"Majitel popíše symptomy mazlíčka → AI určí urgentnost + doporučí veterináře.",mvpWeeks:8,soloScore:5,margin:88,ceiling:200,ceilingLabel:"200M+",tags:["pet-tech","health"],best:true,unicorn:true,ryze:true,unitPrice:"Pet owner: 200/měs, Clinic: 3k/měs",to1mMonths:16,formula:"2000 owners × 200 + 150 clinics × 3k = 850k + premium",verdictType:"go",verdict:"🎯🦄 Pet industry = $350B+ globálně a roste."},
+  {id:"NI3",parent:"niche",title:"AI Tattoo Design Studio",desc:"Popiš nápad → AI generuje custom tattoo designy v různých stylech.",mvpWeeks:4,soloScore:5,margin:93,ceiling:150,ceilingLabel:"150M+",tags:["creative","b2c"],best:true,ryze:true,unitPrice:"Per design pack: 300-800, Pro: 500/měs",to1mMonths:16,formula:"3000 designs × 500 + 500 Pro × 500 = 1.75M",verdictType:"go",verdict:"🎯🦄 Tattoo industry = $3B+ a roste. Virální na TikTok/Instagram."},
+  {id:"NI4",parent:"niche",title:"AI Wedding Planner",desc:"Budget + preference → kompletní svatební plán: harmonogram, vendor matching.",mvpWeeks:8,soloScore:5,margin:90,ceiling:200,ceilingLabel:"200M+",tags:["wedding","planning"],best:true,unicorn:true,ryze:true,unitPrice:"Planning: 2-5k jednorázově, Premium: 1k/měs",to1mMonths:16,formula:"300 weddings × 3.5k = 1.05M",verdictType:"go",verdict:"🎯🦄 Svatební průmysl = $300B+ globálně. 30x cenová arbitráž."},
+  {id:"NI5",parent:"niche",title:"AI Grant Writer",desc:"Startup/NGO zadá projekt → AI generuje grant aplikaci dle požadavků grantu.",mvpWeeks:6,soloScore:5,margin:92,ceiling:200,ceilingLabel:"200M+",tags:["grants","ngo"],best:true,unicorn:true,ryze:true,unitPrice:"Per aplikace: 5-20k, Sub: 3k/měs",to1mMonths:14,formula:"200 sub × 3k + 100 one-time × 10k = 1.6M",verdictType:"go",verdict:"🎯🦄 HIDDEN GEM. Grant writing = $50k+ per projekt. ZERO competition."},
+  {id:"NI6",parent:"niche",title:"Micro-Brewery Quality Tracker",desc:"Computer vision + senzory pro monitoring kvašení. Sleduje chemii, teplotu.",mvpWeeks:10,soloScore:4,margin:85,ceiling:80,ceilingLabel:"~80M",tags:["brewery","iot"],ryze:true,pdf:true,unitPrice:"SaaS: 2-5k/měs",to1mMonths:22,formula:"300 pivovarů × 3.5k = 1.05M",verdictType:"maybe",verdict:"🎯 Ultra-niche: craft brewery boom globálně. Strop ~80M."},
+  {id:"NI7",parent:"niche",title:"AI Notary Document Prep (CZ)",desc:"Připrav notářské dokumenty z jednoduchých inputů. České právní specifika.",mvpWeeks:8,soloScore:5,margin:90,ceiling:100,ceilingLabel:"~100M",tags:["legal-cz","niche"],best:true,ryze:true,unitPrice:"Per dokument: 500-2k, Pro: 2k/měs",to1mMonths:20,formula:"300 Pro × 2k + one-time 400k",verdictType:"maybe",verdict:"🎯 CZ-specifický niche. Notářské dokumenty = standardizovatelné."},
+  {id:"NI8",parent:"niche",title:"AI Mushroom/Supplement Brand Builder",desc:"Ryze-inspired platform: AI generuje kompletní DTC supplement brand.",mvpWeeks:10,soloScore:4,margin:80,ceiling:300,ceilingLabel:"300M+",tags:["dtc","supplements","ryze-model"],best:true,unicorn:true,ryze:true,unitPrice:"Platform: 3-8k/měs + % z tržeb",to1mMonths:16,formula:"100 brands × 5k + revenue share 500k",verdictType:"go",verdict:"🎯🦄 DIRECT RYZE PLAYBOOK. Supplements = $180B trh."},
+  {id:"NI9",parent:"niche",title:"AI Cemetery & Memorial Manager",desc:"Digitální památníky, generátor nekrologů, správa pozůstalostních dokumentů.",mvpWeeks:6,soloScore:5,margin:92,ceiling:100,ceilingLabel:"~100M",tags:["memorial","aging-population"],best:true,ryze:true,unitPrice:"B2B: 2k/měs, B2C: 200/měs per memorial",to1mMonths:22,formula:"200 B2B × 2k + 2000 B2C × 200 = 800k + one-time",verdictType:"maybe",verdict:"🎯 Citlivý ale rostoucí trh. Stárnoucí populace. Zero competition."},
+  {id:"NI10",parent:"niche",title:"AI Autopilot Viral Content Creator",desc:"Generátor datových vizualizací a srovnávacích videí pro TikTok/Reels.",mvpWeeks:3,soloScore:5,margin:88,ceiling:100,ceilingLabel:"~100M",tags:["viral","tiktok","no-face"],best:true,ryze:true,unitPrice:"AdSense + affiliate + SaaS: 1k/měs",to1mMonths:14,formula:"Own channels 300k + 500 SaaS × 1k = 800k + sponsory",verdictType:"maybe",verdict:"🎯 Dual model: vlastní kanály (cashflow) + SaaS (scale). Faceless."}
+];
+
+// ===================== SCORE CALC =====================
+function calcScore(i) {
+  const soloN = i.soloScore / 5;
+  const marginN = Math.min(i.margin / 95, 1);
+  const ceilN = Math.min(i.ceiling / 500, 1);
+  const speedN = Math.max(0, 1 - i.to1mMonths / 30);
+  return Math.round((soloN * 0.25 + marginN * 0.25 + ceilN * 0.25 + speedN * 0.25) * 100);
+}
+
+// Pre-compute scores
+ideas.forEach(i => { i._score = calcScore(i); });
+
+// ===================== STATE =====================
+let activeCat = 'all';
+let activeSpecials = new Set();
+let currentSort = 'score';
+let searchQuery = '';
+
+// ===================== FILTER LOGIC =====================
+function setCatFilter(cat) {
+  activeCat = cat;
+  document.querySelectorAll('[data-filter]').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === cat);
+  });
+  applyFilters();
+}
+
+function toggleSpecial(key) {
+  if (activeSpecials.has(key)) activeSpecials.delete(key);
+  else activeSpecials.add(key);
+  document.querySelectorAll('[data-special]').forEach(b => {
+    b.classList.toggle('active', activeSpecials.has(b.dataset.special));
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  currentSort = document.getElementById('sort-select').value;
+  searchQuery = document.getElementById('search-input').value.toLowerCase();
+
+  let filtered = ideas.filter(i => {
+    // Category
+    if (activeCat !== 'all' && i.parent !== activeCat) return false;
+    // Search
+    if (searchQuery) {
+      const hay = (i.title + ' ' + i.desc + ' ' + i.verdict + ' ' + (i.tags || []).join(' ')).toLowerCase();
+      if (!hay.includes(searchQuery)) return false;
+    }
+    // Special filters
+    for (const s of activeSpecials) {
+      if (s === 'trifecta' && !isTrifecta(i)) return false;
+      if (s === 'unicorn' && !i.unicorn) return false;
+      if (s === 'solo' && i.soloScore < 4) return false;
+      if (s === 'martell' && !i.martell) return false;
+      if (s === 'ryze' && !i.ryze) return false;
+      if (s === 'go' && i.verdictType !== 'go') return false;
+      if (s === 'best' && !i.best) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a, b) => {
+    if (currentSort === 'score') return b._score - a._score;
+    if (currentSort === 'solo') return b.soloScore - a.soloScore;
+    if (currentSort === 'margin') return b.margin - a.margin;
+    if (currentSort === 'ceiling') return b.ceiling - a.ceiling;
+    if (currentSort === 'mvp') return a.mvpWeeks - b.mvpWeeks;
+    if (currentSort === 'to1m') return a.to1mMonths - b.to1mMonths;
+    return 0;
+  });
+
+  renderGrid(filtered);
+  updateSummary(filtered);
+}
+
+function isTrifecta(i) {
+  return i.soloScore >= 4 && i.margin >= 80 && i.ceiling >= 100;
+}
+
+// ===================== RENDER =====================
+function getParent(id) { return parents.find(p => p.id === id) || {}; }
+
+function renderGrid(list) {
+  const grid = document.getElementById('ideas-grid');
+  document.getElementById('results-info').textContent = `Zobrazeno ${list.length} z ${ideas.length} nápadů`;
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-state-icon">🔍</div><div>Žádné nápady neodpovídají filtrům.<br>Zkus jiná kritéria.</div></div>`;
+    return;
+  }
+
+  // Group by category if showing all
+  let html = '';
+  if (activeCat === 'all' && !searchQuery && activeSpecials.size === 0) {
+    // Group by parent category preserving sort within each category
+    const byParent = {};
+    list.forEach(i => {
+      if (!byParent[i.parent]) byParent[i.parent] = [];
+      byParent[i.parent].push(i);
+    });
+    parents.forEach(p => {
+      const items = byParent[p.id];
+      if (!items || items.length === 0) return;
+      html += `<div class="category-header">
+        <span class="category-header-icon">${p.icon}</span>
+        <span class="category-header-title">${p.title}</span>
+        <span class="category-header-count">${items.length} nápadů</span>
+        <div class="category-header-line"></div>
+      </div>`;
+      items.forEach(i => { html += renderCard(i, p); });
+    });
+  } else {
+    list.forEach(i => {
+      const p = getParent(i.parent);
+      html += renderCard(i, p);
+    });
+  }
+
+  grid.innerHTML = html;
+}
+
+function badgeSolo(i) {
+  if (i.soloScore >= 4) return `<span class="badge badge-solo-good">👤 Solo ${i.soloScore}/5</span>`;
+  return `<span class="badge badge-solo-bad">👤 Solo ${i.soloScore}/5</span>`;
+}
+function badgeMargin(i) {
+  const cls = i.margin >= 75 ? 'badge-margin-high' : i.margin >= 55 ? 'badge-margin-mid' : 'badge-margin-low';
+  return `<span class="badge ${cls}">📈 ${i.margin}%</span>`;
+}
+function badgeCeiling(i) {
+  const cls = i.ceiling >= 100 ? 'badge-ceiling-high' : i.ceiling >= 50 ? 'badge-ceiling-mid' : 'badge-ceiling-low';
+  return `<span class="badge ${cls}">🏔️ ${i.ceilingLabel}</span>`;
+}
+function badgeMVP(i) {
+  return `<span class="badge badge-tag">⚡ MVP ${i.mvpWeeks}t</span>`;
+}
+function scoreClass(s) {
+  if (s >= 70) return 'score-high';
+  if (s >= 50) return 'score-mid';
+  return 'score-low';
+}
+
+function renderCard(i, p) {
+  const trifecta = isTrifecta(i);
+  const score = i._score;
+  let extraBadges = '';
+  if (i.unicorn) extraBadges += `<span class="badge badge-unicorn">🦄 100M+</span>`;
+  if (trifecta) extraBadges += `<span class="badge badge-trifecta">🔥 Trifecta</span>`;
+  if (i.martell) extraBadges += `<span class="badge badge-martell">⚡ Rychlý cash</span>`;
+  if (i.ryze) extraBadges += `<span class="badge badge-ryze">🎯 Ultra-niche</span>`;
+  if (i.best) extraBadges += `<span class="badge badge-best">⭐ Best</span>`;
+
+  return `<div class="card verdict-${i.verdictType}${trifecta ? ' is-trifecta' : ''}">
+    <div class="card-header">
+      <span class="card-icon">${p.icon || '💡'}</span>
+      <div class="card-titles">
+        <div class="card-id">${i.id}</div>
+        <div class="card-title">${i.title}</div>
+      </div>
+      <div class="card-score-badge ${scoreClass(score)}">${score}</div>
+    </div>
+    <div class="card-desc">${i.desc}</div>
+    <div class="card-badges">
+      ${badgeSolo(i)}${badgeMargin(i)}${badgeCeiling(i)}${badgeMVP(i)}
+      ${extraBadges}
+    </div>
+    <hr class="card-divider">
+    <div class="card-unit">💰 ${i.unitPrice}</div>
+    <div class="card-formula">📐 ${i.formula}</div>
+    <div class="card-verdict verdict-${i.verdictType}">${i.verdict}</div>
+    <div class="card-meta">
+      <span>⏱ k 1M: ${i.to1mMonths} měs.</span>
+      <span>🔨 MVP: ${i.mvpWeeks} týd.</span>
+    </div>
+  </div>`;
+}
+
+function updateSummary(list) {
+  const go = list.filter(i => i.verdictType === 'go').length;
+  const maybe = list.filter(i => i.verdictType === 'maybe').length;
+  const no = list.filter(i => i.verdictType === 'no').length;
+  const avgMargin = list.length ? Math.round(list.reduce((a, b) => a + b.margin, 0) / list.length) : 0;
+  const avgSolo = list.length ? (list.reduce((a, b) => a + b.soloScore, 0) / list.length).toFixed(1) : '—';
+
+  document.getElementById('sum-shown').textContent = list.length;
+  document.getElementById('sum-go').textContent = go;
+  document.getElementById('sum-maybe').textContent = maybe;
+  document.getElementById('sum-no').textContent = no;
+  document.getElementById('sum-avg-margin').textContent = list.length ? avgMargin + '%' : '—';
+  document.getElementById('sum-avg-solo').textContent = avgSolo + '/5';
+
+  // Update hero stats
+  document.getElementById('stat-total').textContent = ideas.length;
+  document.getElementById('stat-go').textContent = ideas.filter(i => i.verdictType === 'go').length;
+  document.getElementById('stat-maybe').textContent = ideas.filter(i => i.verdictType === 'maybe').length;
+  document.getElementById('stat-no').textContent = ideas.filter(i => i.verdictType === 'no').length;
+  document.getElementById('stat-unicorn').textContent = ideas.filter(i => i.unicorn).length;
+  document.getElementById('stat-martell').textContent = ideas.filter(i => i.martell).length;
+}
+
+// ===================== EDIT MODE =====================
+let editMode = false;
+let saveTimer = null;
+const REPO = 'filipensky-spec/portfolio-reporting';
+const EDITS_FILE = 'data/brainstorming-edits.json';
+const PAT_KEY = 'ga-github-pat';
+const EDITS_KEY = 'brainstorming-edits';
+
+function toggleEditMode() {
+  const pat = localStorage.getItem(PAT_KEY);
+  if (!editMode && !pat) {
+    showPATDialog();
+    return;
+  }
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const fab = document.getElementById('edit-fab');
+  fab.classList.toggle('active', editMode);
+  fab.title = editMode ? 'Deaktivovat editaci' : 'Aktivovat editační režim';
+  fab.textContent = editMode ? '💾' : '✏️';
+
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+    if (editMode) {
+      el.addEventListener('input', onEditInput);
+    } else {
+      el.removeEventListener('input', onEditInput);
+    }
+  });
+
+  if (!editMode) saveEdits();
+}
+
+function onEditInput() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveEdits, 1500);
+}
+
+function collectEdits() {
+  const edits = {};
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    edits[el.dataset.editable] = el.innerHTML;
+  });
+  return edits;
+}
+
+function applyEdits(edits) {
+  if (!edits) return;
+  Object.entries(edits).forEach(([key, val]) => {
+    const el = document.querySelector(`[data-editable="${key}"]`);
+    if (el) el.innerHTML = val;
+  });
+}
+
+async function loadEdits() {
+  const pat = localStorage.getItem(PAT_KEY);
+  // Try GitHub first
+  if (pat) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${EDITS_FILE}`, {
+        headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+        applyEdits(content);
+        localStorage.setItem(EDITS_KEY, JSON.stringify(content));
+        return;
+      }
+    } catch(e) {}
+  }
+  // Fallback to localStorage
+  const local = localStorage.getItem(EDITS_KEY);
+  if (local) applyEdits(JSON.parse(local));
+}
+
+async function saveEdits() {
+  const edits = collectEdits();
+  localStorage.setItem(EDITS_KEY, JSON.stringify(edits));
+
+  const pat = localStorage.getItem(PAT_KEY);
+  if (!pat) return;
+
+  showSaveStatus('Ukládám do GitHubu...');
+  try {
+    // Get current SHA
+    let sha = null;
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${EDITS_FILE}`, {
+      headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (getRes.ok) {
+      const d = await getRes.json();
+      sha = d.sha;
+    }
+
+    const body = { message: 'Update brainstorming edits', content: btoa(unescape(encodeURIComponent(JSON.stringify(edits, null, 2)))) };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${EDITS_FILE}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `token ${pat}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (putRes.ok) showSaveStatus('Uloženo ✓');
+    else showSaveStatus('Chyba ukládání');
+  } catch(e) {
+    showSaveStatus('Offline — uloženo lokálně');
+  }
+}
+
+function showSaveStatus(msg) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ===================== PAT DIALOG =====================
+function showPATDialog() { document.getElementById('pat-overlay').classList.add('show'); }
+function closePATDialog() { document.getElementById('pat-overlay').classList.remove('show'); }
+function savePAT() {
+  const val = document.getElementById('pat-input').value.trim();
+  if (!val) return;
+  localStorage.setItem(PAT_KEY, val);
+  closePATDialog();
+  toggleEditMode();
+}
+
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded', async () => {
+  applyFilters();
+  await loadEdits();
+});
+</script>
+</body>
+</html>
