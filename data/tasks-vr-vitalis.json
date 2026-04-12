@@ -59,18 +59,6 @@
       "createdInReport": "2026-03-26",
       "completedAt": null,
       "notes": "Čeká na Šemíka"
-    },
-    {
-      "id": "t-vr09",
-      "title": "Aktualizovat recurring měsíční pozvánky + 15.4. kvartální",
-      "owner": "Jana/Aleš",
-      "deadline": "2026-04-15",
-      "priority": "low",
-      "done": false,
-      "createdAt": "2026-03-26T09:00:00Z",
-      "createdInReport": "2026-03-26",
-      "completedAt": null,
-      "notes": ""
     }
   ]
 }
