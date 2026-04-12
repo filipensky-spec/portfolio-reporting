@@ -61,18 +61,6 @@
       "notes": "Čeká na Šemíka"
     },
     {
-      "id": "t-vr08",
-      "title": "Opravit GA kalendářové pozvánky — rozbalit skupinový email g-a-v-r-v@garageangels.cz",
-      "owner": "Aleš",
-      "deadline": "",
-      "priority": "low",
-      "done": false,
-      "createdAt": "2026-03-26T09:00:00Z",
-      "createdInReport": "2026-03-26",
-      "completedAt": null,
-      "notes": ""
-    },
-    {
       "id": "t-vr09",
       "title": "Aktualizovat recurring měsíční pozvánky + 15.4. kvartální",
       "owner": "Jana/Aleš",
