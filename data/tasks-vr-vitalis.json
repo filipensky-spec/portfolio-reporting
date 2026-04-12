@@ -25,18 +25,6 @@
       "notes": "Co nejdříve"
     },
     {
-      "id": "t-vr03",
-      "title": "Popohnat Miloše — intro na polského distributora",
-      "owner": "Aleš",
-      "deadline": "",
-      "priority": "high",
-      "done": false,
-      "createdAt": "2026-03-26T09:00:00Z",
-      "createdInReport": "2026-03-26",
-      "completedAt": null,
-      "notes": "Ihned"
-    },
-    {
       "id": "t-vr04",
       "title": "Odeslat odkaz na certifikační disk USA partnerovi + checklist dokumentace",
       "owner": "Marie/Jana",
