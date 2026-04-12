@@ -61,18 +61,6 @@
       "notes": "Čeká na Šemíka"
     },
     {
-      "id": "t-vr07",
-      "title": "Naplánovat 2. pohovor s Janem Sikorou",
-      "owner": "Marie/Jana",
-      "deadline": "",
-      "priority": "medium",
-      "done": false,
-      "createdAt": "2026-03-26T09:00:00Z",
-      "createdInReport": "2026-03-26",
-      "completedAt": null,
-      "notes": "Domluvit"
-    },
-    {
       "id": "t-vr08",
       "title": "Opravit GA kalendářové pozvánky — rozbalit skupinový email g-a-v-r-v@garageangels.cz",
       "owner": "Aleš",
