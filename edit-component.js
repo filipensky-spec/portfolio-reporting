@@ -32,6 +32,7 @@
   let isEditing = false;
   let originalTexts = {};
   let savedEdits = {};
+  let editElements = []; // Store element refs from when edit mode started
 
   // ── Inject CSS ───────────────────────────────────────────────────────────
   const style = document.createElement('style');
@@ -244,6 +245,7 @@
     editBar.classList.add('visible');
 
     const elements = getTextElements();
+    editElements = elements; // Lock element refs for this session
     originalTexts = {};
     elements.forEach((el, idx) => {
       const key = getElementKey(el, idx);
@@ -254,7 +256,7 @@
   }
 
   function saveAndExit() {
-    const elements = getTextElements();
+    const elements = editElements; // Use locked refs, not re-queried list
     const edits = {};
     let hasChanges = false;
 
@@ -292,7 +294,7 @@
   }
 
   function cancelEdit() {
-    const elements = getTextElements();
+    const elements = editElements; // Use locked refs
     elements.forEach((el, idx) => {
       el.contentEditable = 'false';
       el.classList.remove('ga-edit-target');
