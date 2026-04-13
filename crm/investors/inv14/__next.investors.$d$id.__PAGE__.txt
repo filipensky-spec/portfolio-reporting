@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-2:I[43464,["/portfolio-reporting/crm/_next/static/chunks/59dfe6f96a0eeac0.js","/portfolio-reporting/crm/_next/static/chunks/fbf0b86c256d5a37.js","/portfolio-reporting/crm/_next/static/chunks/7ee2ed0418ce7d10.js"],"default"]
-3:I[97367,["/portfolio-reporting/crm/_next/static/chunks/ff1a16fafef87110.js","/portfolio-reporting/crm/_next/static/chunks/a2dfb6fc5208ab9b.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"ctbc2MNAQ6nY_goyd8-R9","rsc":["$","$1","c",{"children":[["$","$L2",null,{"id":"inv14"}],[["$","script","script-0",{"src":"/portfolio-reporting/crm/_next/static/chunks/7ee2ed0418ce7d10.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
