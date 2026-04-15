@@ -177,7 +177,7 @@
         /* ========== WHY US — 3 CARDS ========== */
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 24px;
         }
         .why-card {
@@ -440,6 +440,105 @@
             line-height: 1.65;
         }
 
+        /* ========== FULL GA OVERVIEW (mini grids) ========== */
+        .full-subhead { margin-top: 48px; margin-bottom: 24px; }
+        .full-subhead:first-child { margin-top: 0; }
+        .full-subhead h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+        .full-subhead p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.65;
+        }
+        .mini-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 14px;
+        }
+        .mini-startup-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+        .mini-startup-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .mini-startup-card img {
+            width: 28px; height: 28px; border-radius: 6px;
+        }
+        .mini-startup-card .mini-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.2px;
+        }
+        .mini-startup-card .mini-link {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .mini-investors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 10px;
+        }
+        .mini-investor-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .mini-investor-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .mini-investor-avatar {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .mini-investor-card h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-900);
+            flex-grow: 1;
+            margin: 0;
+        }
+        .mini-investor-linkedin {
+            flex-shrink: 0;
+            color: var(--accent);
+            display: inline-flex;
+        }
+
         /* ========== CLOSING ========== */
         .closing {
             padding: 80px 0 96px;
@@ -574,6 +673,8 @@
             .why-grid { grid-template-columns: 1fr; }
             .experts-grid { grid-template-columns: 1fr; }
             .portfolio-grid { grid-template-columns: 1fr; }
+            .mini-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .mini-investors-grid { grid-template-columns: 1fr; }
             .section { padding: 60px 0; }
         }
     </style>
@@ -652,11 +753,6 @@
                 <h3 data-editable="why2-title">Vlastní peníze, vlastní rozhodování</h3>
                 <p data-editable="why2-desc">Investujeme výhradně svoje peníze. Žádní LP, žádný umělý tlak na rychlý exit, žádná kvartální reportingová mašinérie. Dlouhý horizont a klidná hlava, když je to potřeba.</p>
             </div>
-            <div class="why-card">
-                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <h3 data-editable="why3-title">Flexibilita v podmínkách</h3>
-                <p data-editable="why3-desc">Term sheet šijeme na míru každému projektu. U HTG Medical jsme kvůli férovému ohodnocení zrušili valuation floor a snížili cap. Podmínky jsou pro nás nástroj, ne rituál — a dokážeme se jim přizpůsobit, když dává smysl jít vám naproti.</p>
-            </div>
         </div>
     </div>
 </section>
@@ -675,7 +771,6 @@
                 <div class="expert-body">
                     <div class="expert-head">
                         <h3>Electron Capital Partners</h3>
-                        <span class="badge">Těžká váha</span>
                     </div>
                     <div class="expert-linkedin">electroncp.cz →</div>
                     <p data-editable="expert-electron-desc">Rodinná investiční kancelář zakladatelů společnosti TESCAN. Přinášejí silný kapitál, dekády zkušeností z budování globální firmy na přesné přístroje a rozsáhlou síť kontaktů v průmyslu vědecké instrumentace — obor, který má přímé přesahy do MedTechu.</p>
@@ -795,6 +890,153 @@
                 <p data-editable="carebot-desc">Carebot sice nemáme přímo v portfoliu GA, ale investovali do něj osobně <strong>Karel Bastl</strong> a <strong>Miloš Dendis</strong> — dva z našich klíčových MedTech specialistů. AI pro automatickou analýzu rentgenových snímků. Další projekt, ve kterém naši lidé sbírají operativní zkušenosti z českého zdravotnictví.</p>
             </div>
             <a href="https://www.carebot.com/" target="_blank">carebot.com&nbsp;→</a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FULL GA OVERVIEW ========== -->
+<section class="section section-alt" id="full-ga">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="full-label">Celá šíře Garage Angels</div>
+            <h2 class="section-title" data-editable="full-title">Co ještě v GA najdete</h2>
+            <p class="section-desc" data-editable="full-desc">MedTech je jen část naší sítě. Kromě něj máme za sebou 9 dalších investic v různých oborech — od agritechu přes e-commerce po kosmické technologie — a dvacítku dalších investorů s unikátním know-how, kteří jsou součástí GA.</p>
+        </div>
+
+        <!-- Non-MedTech portfolio -->
+        <div class="full-subhead">
+            <h3 data-editable="full-portfolio-title">Zbytek portfolia</h3>
+            <p data-editable="full-portfolio-desc">Kompletní přehled nemedtechových investic Garage Angels.</p>
+        </div>
+        <div class="mini-portfolio-grid">
+            <a href="https://agdata.ag/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=agdata.ag&sz=64" alt="">
+                <div class="mini-name">AG Data</div>
+                <span class="mini-link">agdata.ag&nbsp;→</span>
+            </a>
+            <a href="https://realpadsoftware.com/cs/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=realpadsoftware.com&sz=64" alt="">
+                <div class="mini-name">RealPad</div>
+                <span class="mini-link">realpadsoftware.com&nbsp;→</span>
+            </a>
+            <a href="https://www.myco.cz/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=myco.cz&sz=64" alt="">
+                <div class="mini-name">MYCO</div>
+                <span class="mini-link">myco.cz&nbsp;→</span>
+            </a>
+            <a href="https://groundcom.space/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=groundcom.space&sz=64" alt="">
+                <div class="mini-name">Groundcom</div>
+                <span class="mini-link">groundcom.space&nbsp;→</span>
+            </a>
+            <a href="https://localazy.com/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=localazy.com&sz=64" alt="">
+                <div class="mini-name">Localazy</div>
+                <span class="mini-link">localazy.com&nbsp;→</span>
+            </a>
+            <a href="https://www.scaut.com/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=scaut.com&sz=64" alt="">
+                <div class="mini-name">Scaut</div>
+                <span class="mini-link">scaut.com&nbsp;→</span>
+            </a>
+            <a href="https://keyguru.cz/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=keyguru.cz&sz=64" alt="">
+                <div class="mini-name">KeyGuru</div>
+                <span class="mini-link">keyguru.cz&nbsp;→</span>
+            </a>
+            <a href="https://www.senzoor.cz/" target="_blank" class="mini-startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=senzoor.cz&sz=64" alt="">
+                <div class="mini-name">Senzoor</div>
+                <span class="mini-link">senzoor.cz&nbsp;→</span>
+            </a>
+        </div>
+
+        <!-- Full investors list -->
+        <div class="full-subhead">
+            <h3 data-editable="full-investors-title">Další investoři v GA</h3>
+            <p data-editable="full-investors-desc">Podnikatelé a operátoři napříč obory, kteří jsou součástí Garage Angels — mimo pětici MedTech specialistů uvedených výše.</p>
+        </div>
+        <div class="mini-investors-grid">
+            <a href="https://www.linkedin.com/in/jiri-hlavenka-a9887b3" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">JH</div>
+                <h4>Jiří Hlavenka</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/karelobluk/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">KO</div>
+                <h4>Karel Obluk</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/jan-hladky-42a49a2/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">JH</div>
+                <h4>Jan Hladký</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/jiri-nepala/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">JN</div>
+                <h4>Jiří Nepala</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/najvarek" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">JN</div>
+                <h4>Jan Najvárek</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/libordanek1/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">LD</div>
+                <h4>Libor Daněk</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="http://linkedin.com/in/miroslav-novosvetsky" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">MN</div>
+                <h4>Miroslav Novosvetský</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="http://linkedin.com/in/janosik" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">PJ</div>
+                <h4>Petr Janošík</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/pepamech" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">JM</div>
+                <h4>Josef Mech</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/ivo-bezloja-30718929" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">IB</div>
+                <h4>Ivo Bezloja</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/smidpetr/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">PS</div>
+                <h4>Petr Šmíd</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/adam-dan%C4%9Bk-24969330/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">AD</div>
+                <h4>Adam Daněk</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/dominik-bozek-9ba07213" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">DB</div>
+                <h4>Dominik Bozek</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/anton%C3%ADn-kunz-9b2a56111" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">AK</div>
+                <h4>Antonín Kunz</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/marek-nechv%C3%A1tal-151bb94/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">MN</div>
+                <h4>Marek Nechvátal</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/machek/" target="_blank" class="mini-investor-card">
+                <div class="mini-investor-avatar">OM</div>
+                <h4>Ondřej Machek</h4>
+                <span class="mini-investor-linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
         </div>
     </div>
 </section>
