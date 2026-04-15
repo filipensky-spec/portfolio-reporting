@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Garage Angels — Pro HTG Medical</title>
+    <link rel="icon" href="https://www.google.com/s2/favicons?domain=htgmedical.com&sz=64">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #1a1a2e;
+            --dark-light: #2d2d44;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logos {
+            display: flex; align-items: center; gap: 16px;
+        }
+        .nav-logos img { height: 36px; width: auto; }
+        .nav-logos .sep {
+            width: 1px; height: 24px; background: var(--gray-300);
+        }
+        .nav-links {
+            display: flex; gap: 24px; list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--dark); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 140px 0 72px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner { max-width: 820px; }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        .hero h1 {
+            font-size: clamp(34px, 4.8vw, 52px);
+            font-weight: 800;
+            line-height: 1.12;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+            letter-spacing: -1.3px;
+        }
+        .hero .subtitle {
+            font-size: 18px;
+            color: var(--gray-600);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            max-width: 680px;
+        }
+        .hero .subtitle strong { color: var(--gray-900); font-weight: 700; }
+
+        /* ========== KPI STRIP ========== */
+        .kpi-strip {
+            padding: 48px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .kpi-item {
+            text-align: center;
+            padding: 16px 24px;
+            border-right: 1px solid var(--gray-200);
+        }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -1px;
+        }
+        .kpi-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section { padding: 80px 0; }
+        .section-alt { background: var(--gray-50); }
+        .section-header { margin-bottom: 48px; }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            font-size: 17px;
+            color: var(--gray-500);
+            max-width: 720px;
+            line-height: 1.7;
+        }
+
+        /* ========== WHY US — 3 CARDS ========== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .why-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        .why-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .why-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .why-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .why-card p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* ========== EXPERTS GRID — larger investor cards with description ========== */
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .expert-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.3s;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            text-decoration: none;
+            color: inherit;
+        }
+        .expert-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .expert-avatar {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            background: var(--accent-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .expert-body { flex: 1; }
+        .expert-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .expert-head h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.2px;
+        }
+        .expert-head .badge {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #047857;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .expert-linkedin {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+        .expert-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.65;
+        }
+
+        /* ========== PORTFOLIO GRID ========== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .startup-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px 22px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+        .startup-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .startup-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        .startup-favicon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+        .startup-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+        .startup-card p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .startup-meta {
+            margin-top: 6px;
+            padding-top: 10px;
+            border-top: 1px solid var(--gray-100);
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+        .startup-card.highlighted {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, var(--white) 0%, var(--accent-bg) 100%);
+        }
+        .startup-card .intl-tag {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-top: 2px;
+            align-self: flex-start;
+        }
+
+        /* ========== CAREBOT CALLOUT ========== */
+        .bonus-card {
+            margin-top: 24px;
+            background: var(--white);
+            border: 1px dashed var(--gray-300);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .bonus-card img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .bonus-card .bonus-body {
+            flex: 1;
+            min-width: 260px;
+        }
+        .bonus-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .bonus-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+        .bonus-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        /* ========== INTL HIGHLIGHT BOX ========== */
+        .intl-box {
+            margin-top: 36px;
+            padding: 28px 32px;
+            background: linear-gradient(135deg, var(--accent-bg) 0%, #fef3c7 100%);
+            border: 1px solid rgba(37,99,235,0.15);
+            border-radius: var(--radius);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .intl-box .intl-icon {
+            font-size: 32px;
+            width: 56px; height: 56px;
+            background: white;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .intl-box .intl-text { flex: 1; min-width: 280px; }
+        .intl-box h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+        }
+        .intl-box p {
+            font-size: 14px;
+            color: var(--gray-700);
+            line-height: 1.65;
+        }
+
+        /* ========== CLOSING ========== */
+        .closing {
+            padding: 80px 0 96px;
+            background: var(--gray-50);
+            text-align: center;
+        }
+        .closing h2 {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.6px;
+            margin-bottom: 16px;
+        }
+        .closing p {
+            font-size: 17px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 28px;
+        }
+        .closing-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 24px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            text-decoration: none;
+        }
+        .closing-contact .contact-avatar {
+            width: 44px; height: 44px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .closing-contact .contact-info {
+            text-align: left;
+        }
+        .closing-contact .contact-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .closing-contact .contact-role {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .closing-contact .contact-action {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 36px 0 28px;
+            background: var(--gray-900);
+            color: var(--gray-400);
+            text-align: center;
+        }
+        .footer img { height: 36px; width: auto; margin-bottom: 12px; }
+        .footer p { font-size: 13px; color: var(--gray-500); }
+
+        /* ========== EDIT MODE ========== */
+        .edit-fab {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            width: 48px; height: 48px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .edit-fab:hover { background: var(--dark); transform: scale(1.1); }
+        .edit-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--dark); color: white;
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px;
+            z-index: 200;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .edit-bar.visible { transform: translateY(0); }
+        .edit-bar button {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .edit-bar .btn-save { background: var(--green); color: white; }
+        .edit-bar .btn-save:hover { opacity: 0.9; }
+        .edit-bar .btn-cancel { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .edit-bar .btn-cancel:hover { border-color: white; }
+        .edit-bar .btn-reset { background: transparent; color: #f87171; border: 1px solid #f87171; }
+        .edit-bar .btn-reset:hover { background: #f87171; color: white; }
+        .edit-bar span { font-size: 14px; color: rgba(255,255,255,0.7); }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+            min-height: 1em;
+        }
+        body.editing [data-editable]:focus {
+            outline-color: var(--green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        body.editing .edit-fab { display: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-logos img { height: 30px; }
+            .hero { padding: 110px 0 60px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-item { border-bottom: 1px solid var(--gray-200); padding: 16px 12px; }
+            .kpi-item:nth-child(2) { border-right: none; }
+            .kpi-value { font-size: 28px; }
+            .why-grid { grid-template-columns: 1fr; }
+            .experts-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <div class="nav-logos">
+            <img src="https://filipensky-spec.github.io/portfolio-reporting/Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
+            <div class="sep"></div>
+            <img src="htg-logo.svg" alt="HTG Medical">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#proc-my">Proč my</a></li>
+            <li><a href="#experts">Specialisté</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-badge" data-editable="hero-badge">Doplněk k term sheetu</div>
+            <h1 data-editable="hero-title">Vážení Tobiáši, Maxi a&nbsp;Krištofe</h1>
+            <p class="subtitle" data-editable="hero-subtitle">
+                spolu s naším term sheetem vám posíláme i tento krátký dokument. Shrnuje, co vám do <strong>HTG Medical</strong> kromě kapitálu přinášíme — lidi, zkušenosti a otevřené dveře v oboru MedTech. Věříme, že právě tato přidaná hodnota je důvodem, proč si vybrat partnerství s Garage Angels.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KPI STRIP ========== -->
+<section class="kpi-strip">
+    <div class="container">
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-1-value">€9M+</div>
+                <div class="kpi-label" data-editable="kpi-1-label">proinvestovaného kapitálu</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-2-value">14</div>
+                <div class="kpi-label" data-editable="kpi-2-label">firem v portfoliu GA</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-3-value">20+</div>
+                <div class="kpi-label" data-editable="kpi-3-label">investorů s unikátním know-how</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-4-value">5</div>
+                <div class="kpi-label" data-editable="kpi-4-label">MedTech firem v portfoliu</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PROC MY ========== -->
+<section class="section" id="proc-my">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="why-label">Proč Garage Angels</div>
+            <h2 class="section-title" data-editable="why-title">Za term sheetem stojí lidé, ne fond</h2>
+            <p class="section-desc" data-editable="why-desc">Nejsme klasický VC fond a neinvestujeme evropské peníze. Za každou investicí GA stojí konkrétní podnikatelé, kteří svoje vlastní prostředky dávají do projektů, kterým rozumí. A právě v tom je naše přidaná hodnota pro vás.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 data-editable="why1-title">20+ investorů, různé expertízy</h3>
+                <p data-editable="why1-desc">Za GA stojí přes dvacet podnikatelů a operátorů — každý s vlastním oborem, sítí kontaktů a zkušenostmi. Pro HTG Medical to znamená, že kdykoli narazíte na problém, existuje velká šance, že už ho někdo z nás řešil.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <h3 data-editable="why2-title">Vlastní peníze, vlastní rozhodování</h3>
+                <p data-editable="why2-desc">Investujeme výhradně svoje peníze. Žádní LP, žádný umělý tlak na rychlý exit, žádná kvartální reportingová mašinérie. Dlouhý horizont a klidná hlava, když je to potřeba.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <h3 data-editable="why3-title">Flexibilita v podmínkách</h3>
+                <p data-editable="why3-desc">Term sheet šijeme na míru každému projektu. U HTG Medical jsme kvůli férovému ohodnocení zrušili valuation floor a snížili cap. Podmínky jsou pro nás nástroj, ne rituál — a dokážeme se jim přizpůsobit, když dává smysl jít vám naproti.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== EXPERTS ========== -->
+<section class="section section-alt" id="experts">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="experts-label">MedTech specialisté v naší síti</div>
+            <h2 class="section-title" data-editable="experts-title">Lidé, kteří vám otevřou dveře</h2>
+            <p class="section-desc" data-editable="experts-desc">Tohle není pasivní kapitál. Tihle investoři MedTechu rozumí, mají přímé kontakty do nemocnic, na distributory i do zahraničních kol, a budou na HTG Medical pracovat aktivně — radit, propojovat, otevírat dveře.</p>
+        </div>
+        <div class="experts-grid">
+            <a href="https://electroncp.cz/" target="_blank" class="expert-card">
+                <div class="expert-avatar">EL</div>
+                <div class="expert-body">
+                    <div class="expert-head">
+                        <h3>Electron Capital Partners</h3>
+                        <span class="badge">Těžká váha</span>
+                    </div>
+                    <div class="expert-linkedin">electroncp.cz →</div>
+                    <p data-editable="expert-electron-desc">Rodinná investiční kancelář zakladatelů společnosti TESCAN. Přinášejí silný kapitál, dekády zkušeností z budování globální firmy na přesné přístroje a rozsáhlou síť kontaktů v průmyslu vědecké instrumentace — obor, který má přímé přesahy do MedTechu.</p>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/pavelstrasak/" target="_blank" class="expert-card">
+                <div class="expert-avatar">PŠ</div>
+                <div class="expert-body">
+                    <div class="expert-head">
+                        <h3>Pavel Strašák</h3>
+                    </div>
+                    <div class="expert-linkedin">LinkedIn →</div>
+                    <p data-editable="expert-strasak-desc">Aktivní investor se zaměřením na MedTech, s přímými vazbami na trh. Při projektech, kde je klíčové pochopit, jak produkt prorazí do klinické praxe, je to jeden z prvních lidí, kterých se ptáme.</p>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/karel-bastl-12b31446/" target="_blank" class="expert-card">
+                <div class="expert-avatar">KB</div>
+                <div class="expert-body">
+                    <div class="expert-head">
+                        <h3>Karel Bastl</h3>
+                    </div>
+                    <div class="expert-linkedin">LinkedIn →</div>
+                    <p data-editable="expert-bastl-desc">Specialista s přímými kontakty na kliniky a nemocnice. Má reálné zkušenosti s distribucí a prodejem zdravotnických produktů, které pro HTG Urogram znamenají zkratku přes několik měsíců go-to-market učení.</p>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/michaelmladek" target="_blank" class="expert-card">
+                <div class="expert-avatar">MM</div>
+                <div class="expert-body">
+                    <div class="expert-head">
+                        <h3>Michael Mladek</h3>
+                    </div>
+                    <div class="expert-linkedin">LinkedIn →</div>
+                    <p data-editable="expert-mladek-desc">Zkušený CFO, který už do MedTech startupů investoval a v oboru se skvěle orientuje. Kombinace finanční disciplíny s praktickým porozuměním tomu, jak MedTech firma ve skutečnosti běží.</p>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/milo%C5%A1-dendis-708b14209/" target="_blank" class="expert-card">
+                <div class="expert-avatar">MD</div>
+                <div class="expert-body">
+                    <div class="expert-head">
+                        <h3>Miloš Dendis</h3>
+                        <span class="badge">10+ MedTech investic</span>
+                    </div>
+                    <div class="expert-linkedin">LinkedIn →</div>
+                    <p data-editable="expert-dendis-desc">Investor s přímou zkušeností z BioTechu — už úspěšně exitoval firmu vyrábějící přístroje a má za sebou přes deset investic do zdravotnických projektů. Pro HTG Medical je to blízký spojenec, který přesně ví, co znamená dostat zdravotnický přístroj od prototypu k reálnému provozu.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PORTFOLIO ========== -->
+<section class="section" id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="portfolio-label">MedTech v portfoliu GA</div>
+            <h2 class="section-title" data-editable="portfolio-title">V MedTechu nejsme sami</h2>
+            <p class="section-desc" data-editable="portfolio-desc">Pět aktivních investic v oboru — od virtuální reality v rehabilitaci přes AI v kardiologii až po vývoj léčiv. Díky tomu máme čerstvý přehled o tom, co v MedTechu funguje, a můžeme vás propojit s týmy, které řeší podobné výzvy.</p>
+        </div>
+        <div class="portfolio-grid">
+            <a href="https://vrvitalis.cz/" target="_blank" class="startup-card">
+                <div class="startup-head">
+                    <img src="https://www.google.com/s2/favicons?domain=vrvitalis.cz&sz=64" alt="" class="startup-favicon">
+                    <div class="startup-name">VR Vitalis</div>
+                </div>
+                <p data-editable="startup-vrvitalis-desc">Software kombinující fyzioterapii s virtuální realitou pro profesionální rehabilitační oddělení.</p>
+                <div class="startup-meta"><span>Investice 2026</span><span>vrvitalis.cz&nbsp;→</span></div>
+            </a>
+            <a href="https://kardi.ai/" target="_blank" class="startup-card">
+                <div class="startup-head">
+                    <img src="https://www.google.com/s2/favicons?domain=kardi.ai&sz=64" alt="" class="startup-favicon">
+                    <div class="startup-name">Kardi AI</div>
+                </div>
+                <p data-editable="startup-kardiai-desc">Certifikovaný zdravotnický prostředek pro dlouhodobé domácí monitorování srdečního rytmu — chytrý hrudní pás a AI analýza.</p>
+                <div class="startup-meta"><span>Investice 2025</span><span>kardi.ai&nbsp;→</span></div>
+            </a>
+            <a href="https://www.aiffinity.com/" target="_blank" class="startup-card">
+                <div class="startup-head">
+                    <img src="https://www.google.com/s2/favicons?domain=aiffinity.com&sz=64" alt="" class="startup-favicon">
+                    <div class="startup-name">AIffinity</div>
+                </div>
+                <p data-editable="startup-aiffinity-desc">Platforma kombinující NMR spektroskopii s umělou inteligencí pro zrychlení objevu léků a strukturní biologii.</p>
+                <div class="startup-meta"><span>Investice 2024</span><span>aiffinity.com&nbsp;→</span></div>
+            </a>
+            <a href="https://www.casinvent.com/" target="_blank" class="startup-card">
+                <div class="startup-head">
+                    <img src="https://www.google.com/s2/favicons?domain=casinvent.com&sz=64" alt="" class="startup-favicon">
+                    <div class="startup-name">CasInvent Pharma</div>
+                </div>
+                <p data-editable="startup-casinvent-desc">Vývoj léčiv zaměřených na inhibitory kinasy CK1 — překonávání rezistence nádorů vůči cílené terapii.</p>
+                <div class="startup-meta"><span>Investice 2025</span><span>casinvent.com&nbsp;→</span></div>
+            </a>
+            <a href="https://www.sendance.at/" target="_blank" class="startup-card highlighted">
+                <div class="startup-head">
+                    <img src="https://www.google.com/s2/favicons?domain=sendance.at&sz=64" alt="" class="startup-favicon">
+                    <div class="startup-name">Sendance</div>
+                </div>
+                <span class="intl-tag">🇦🇹 Rakousko</span>
+                <p data-editable="startup-sendance-desc">Tenké pružné senzorové mřížky pro nositelná medicínská, sportovní a výzkumná zařízení. Rakouský startup, který nám otevírá přímé napojení na zahraniční kola.</p>
+                <div class="startup-meta"><span>Investice 2026</span><span>sendance.at&nbsp;→</span></div>
+            </a>
+        </div>
+
+        <!-- Intl box -->
+        <div class="intl-box">
+            <div class="intl-icon">🌍</div>
+            <div class="intl-text">
+                <h4 data-editable="intl-title">Mezinárodní přesah, ne jen český investor</h4>
+                <p data-editable="intl-desc">Díky investici do rakouského Sendance máme v GA síť kontaktů napojenou na zahraniční investory a další rakouská/německá kola. Pro HTG Medical to znamená, že až budete chystat follow-on kolo nebo expanzi do DACH regionu, nezačínáte od nuly — máte v GA lidi, kteří už tu síť mají postavenou.</p>
+            </div>
+        </div>
+
+        <!-- Carebot bonus -->
+        <div class="bonus-card">
+            <img src="https://www.google.com/s2/favicons?domain=carebot.com&sz=64" alt="Carebot">
+            <div class="bonus-body">
+                <h4 data-editable="carebot-title">Bonus: Carebot</h4>
+                <p data-editable="carebot-desc">Carebot sice nemáme přímo v portfoliu GA, ale investovali do něj osobně <strong>Karel Bastl</strong> a <strong>Miloš Dendis</strong> — dva z našich klíčových MedTech specialistů. AI pro automatickou analýzu rentgenových snímků. Další projekt, ve kterém naši lidé sbírají operativní zkušenosti z českého zdravotnictví.</p>
+            </div>
+            <a href="https://www.carebot.com/" target="_blank">carebot.com&nbsp;→</a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CLOSING ========== -->
+<section class="closing">
+    <div class="container">
+        <h2 data-editable="closing-title">Těšíme se na spolupráci</h2>
+        <p data-editable="closing-desc">Finanční podmínky najdete v přiloženém term sheetu. Tento dokument je tu proto, abyste věděli, co přesně vám Garage Angels kromě kapitálu přinášíme. Pokud budete mít jakékoli otázky — ohledně lidí v GA, MedTech portfolia nebo spolupráce obecně — ozvěte se.</p>
+        <a href="mailto:filipensky@g-angels.cz" class="closing-contact">
+            <div class="contact-avatar">AF</div>
+            <div class="contact-info">
+                <div class="contact-name">Aleš Filipenský</div>
+                <div class="contact-role">Investiční ředitel Garage Angels</div>
+            </div>
+            <div class="contact-action">filipensky@g-angels.cz&nbsp;→</div>
+        </a>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="container">
+        <img src="https://filipensky-spec.github.io/portfolio-reporting/Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
+        <p>Garage Angels · Purkyňova 127, Brno · JIC INMEC 1. patro</p>
+    </div>
+</footer>
+
+<!-- EDIT FAB + BAR -->
+<button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<div class="edit-bar" id="editBar">
+    <span>Editujete texty</span>
+    <button class="btn-save" onclick="saveEdits()">Uložit</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+    <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
+</div>
+
+<script>
+// ========== GITHUB PERSISTENCE ==========
+const REPO = 'filipensky-spec/portfolio-reporting';
+const DATA_FILE = 'data/founders-htg-medical-edits.json';
+const GH_API = 'https://api.github.com';
+const PAT_KEY = 'ga-github-pat';
+const STORAGE_KEY = 'founders-htg-medical-edits';
+let ghSha = null;
+let isEditing = false;
+let savedState = {};
+
+function getGitHubPAT() { return localStorage.getItem(PAT_KEY); }
+function setGitHubPAT(t) { localStorage.setItem(PAT_KEY, t); }
+async function validatePAT(token) {
+    try { return (await fetch(`${GH_API}/user`, { headers: { Authorization: `token ${token}` } })).ok; } catch { return false; }
+}
+function showPATDialog() {
+    const existing = document.getElementById('pat-dialog'); if (existing) existing.remove();
+    const d = document.createElement('div'); d.id = 'pat-dialog';
+    d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button><button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button></div></div></div>`;
+    document.body.appendChild(d); document.getElementById('pat-input').focus();
+}
+async function submitPAT() {
+    const input = document.getElementById('pat-input'), err = document.getElementById('pat-error'), token = input.value.trim();
+    if (!token) return; input.disabled = true;
+    if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token uložen'); }
+    else { err.style.display = 'block'; input.disabled = false; }
+}
+async function fetchFromGitHub() {
+    try {
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json' }, cache: 'no-store' });
+        if (!r.ok) return null;
+        const j = await r.json(); ghSha = j.sha;
+        return JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\s/g, '')))));
+    } catch { return null; }
+}
+async function saveToGitHub(data) {
+    const token = getGitHubPAT(); if (!token) return false;
+    try {
+        if (!ghSha) { const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}` }, cache: 'no-store' }); if (r.ok) ghSha = (await r.json()).sha; }
+        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        const body = { message: `Update founders HTG edits ${new Date().toISOString().slice(0,16)}`, content: encoded }; if (ghSha) body.sha = ghSha;
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { method: 'PUT', headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        if (r.ok) { ghSha = (await r.json()).content.sha; return true; } return false;
+    } catch { return false; }
+}
+let _saveTimer = null;
+function debouncedSave(data) {
+    if (_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(async () => { const ok = await saveToGitHub(data); showToast(ok ? 'Uloženo do GitHubu' : 'Chyba při ukládání — zkontroluj token'); _saveTimer = null; }, 1500);
+}
+
+function toggleEdit() {
+    if (isEditing) return;
+    if (!getGitHubPAT()) { showPATDialog(); return; }
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => { savedState[el.dataset.editable] = el.innerHTML; el.contentEditable = 'true'; });
+    document.querySelectorAll('a[href]').forEach(a => { if (a.closest('[data-editable]') || a.querySelector('[data-editable]')) { a.dataset.href = a.href; a.removeAttribute('href'); } });
+}
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => { el.contentEditable = 'false'; edits[el.dataset.editable] = el.innerHTML; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    debouncedSave(edits);
+    exitEditMode();
+}
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => { el.contentEditable = 'false'; el.innerHTML = savedState[el.dataset.editable]; });
+    exitEditMode();
+}
+function resetEdits() { localStorage.removeItem(STORAGE_KEY); saveToGitHub({}); location.reload(); }
+function exitEditMode() {
+    isEditing = false; document.body.classList.remove('editing'); document.getElementById('editBar').classList.remove('visible'); savedState = {};
+    document.querySelectorAll('a[data-href]').forEach(a => { a.href = a.dataset.href; a.removeAttribute('data-href'); });
+}
+async function loadEdits() {
+    const ghData = await fetchFromGitHub();
+    if (ghData && Object.keys(ghData).length > 0) { localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData)); applyEdits(ghData); return; }
+    const saved = localStorage.getItem(STORAGE_KEY); if (saved) { try { applyEdits(JSON.parse(saved)); } catch {} }
+}
+function applyEdits(edits) {
+    Object.entries(edits).forEach(([key, val]) => { const el = document.querySelector(`[data-editable="${key}"]`); if (el) el.innerHTML = val; });
+}
+function showToast(msg) {
+    const t = document.createElement('div'); t.textContent = msg;
+    Object.assign(t.style, { position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)', background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px', fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' });
+    document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+}
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+});
+loadEdits();
+</script>
+
+</body>
+</html>
