@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Garage Angels — Co-investice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #1a1a2e;
+            --dark-light: #2d2d44;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+        }
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--dark); }
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--dark) !important; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--dark); margin: 5px 0; transition: 0.3s; }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+        .hero-inner {
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+        .hero .subtitle {
+            font-size: 19px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 640px;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--dark); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ========== KPI STRIP ========== */
+        .kpi-strip {
+            padding: 48px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .kpi-item {
+            text-align: center;
+            padding: 16px 24px;
+            border-right: 1px solid var(--gray-200);
+        }
+        .kpi-item:last-child { border-right: none; }
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -1px;
+        }
+        .kpi-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 80px 0;
+        }
+        .section-alt {
+            background: var(--gray-50);
+        }
+        .section-header {
+            margin-bottom: 48px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            font-size: 17px;
+            color: var(--gray-500);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ========== WHY US — CARDS (2-column grid) ========== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .why-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        .why-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .why-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .why-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .why-card p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* ========== PROCESS ========== */
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+        .process-step {
+            flex: 0 0 calc(100% / 3);
+            max-width: calc(100% / 3);
+            text-align: center;
+            padding: 32px 24px;
+            position: relative;
+        }
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 52px;
+            right: -12px;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-300);
+        }
+        .process-step:last-child::after { display: none; }
+        .step-number {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 0 auto 16px;
+        }
+        .process-step h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .process-step p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ========== SPV EXPLAINER ========== */
+        .spv-box {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 48px;
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+        .spv-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+        .spv-node {
+            background: var(--accent-bg);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 10px;
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 140px;
+        }
+        .spv-node strong {
+            display: block;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .spv-node span {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .spv-arrow {
+            font-size: 20px;
+            color: var(--gray-400);
+        }
+        .spv-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .spv-detail {
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+        }
+        .spv-detail strong {
+            font-size: 13px;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .spv-detail span {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        /* ========== PORTFOLIO GRID ========== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+        .startup-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+        }
+        .startup-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .startup-favicon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+        .startup-logo {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+        .startup-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* ========== INVESTORS GRID ========== */
+        .investors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .investor-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .investor-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .investor-avatar {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--accent-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .investor-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+            flex-grow: 1;
+        }
+        .investor-linkedin {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        /* ========== TECH STACK ========== */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .tech-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .tech-card:hover { border-color: var(--accent); }
+        .tech-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+        .tech-card p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 36px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--dark);
+        }
+        .cta-section .btn-primary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 48px 0 32px;
+            background: var(--gray-900);
+            color: var(--gray-400);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-logo img {
+            height: 48px;
+            width: auto;
+        }
+        .footer-logo span {
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        .footer-tagline {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .footer-contact {
+            text-align: right;
+        }
+        .footer-contact a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-contact a:hover { color: white; }
+        .footer-bottom {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-800);
+            font-size: 13px;
+            color: var(--gray-500);
+            text-align: center;
+        }
+
+        /* ========== EDIT MODE ========== */
+        .edit-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edit-fab:hover { background: var(--dark); transform: scale(1.1); }
+        .edit-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 200;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .edit-bar.visible { transform: translateY(0); }
+        .edit-bar button {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .edit-bar .btn-save { background: var(--green); color: white; }
+        .edit-bar .btn-save:hover { opacity: 0.9; }
+        .edit-bar .btn-cancel { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .edit-bar .btn-cancel:hover { border-color: white; }
+        .edit-bar .btn-reset { background: transparent; color: #f87171; border: 1px solid #f87171; }
+        .edit-bar .btn-reset:hover { background: #f87171; color: white; }
+        .edit-bar span { font-size: 14px; color: rgba(255,255,255,0.7); }
+        body.editing [data-editable] {
+            outline: 2px dashed var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+            min-height: 1em;
+        }
+        body.editing [data-editable]:focus {
+            outline-color: var(--green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        body.editing .edit-fab { display: none; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 24px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-lg);
+            }
+            .nav-toggle { display: block; }
+            .hero { padding: 110px 0 60px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-item { border-bottom: 1px solid var(--gray-200); }
+            .kpi-item:nth-child(2) { border-right: none; }
+            .why-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .investors-grid { grid-template-columns: 1fr; }
+            .spv-flow { flex-direction: column; }
+            .spv-arrow { transform: rotate(90deg); }
+            .spv-details { grid-template-columns: 1fr; }
+            .process-step { flex: 0 0 100%; max-width: 100%; }
+            .process-step::after { display: none; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-contact { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#" class="nav-logo">
+            <img src="Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
+        </a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#do-ceho">Do čeho investujeme</a></li>
+            <li><a href="#parametry">Parametry</a></li>
+            <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-badge" data-editable="hero-badge">Pro co-investory</div>
+            <h1 data-editable="hero-title">Co-investujte s námi do prověřených early-stage projektů</h1>
+            <p class="subtitle" data-editable="hero-subtitle">
+                Garage Angels je syndikát zkušených podnikatelů a investorů. Sdílíme dealflow, vedeme dealy a nabízíme čistou SPV strukturu — ideálního partnera pro VC fondy i angel investory, kteří chtějí investovat po našem boku.
+            </p>
+            <div class="hero-ctas">
+                <a href="#kontakt" class="btn btn-primary">Chci s vámi co-investovat</a>
+                <a href="#portfolio" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M8 2v12"/></svg>
+                    Prohlédnout portfolio
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KPI STRIP ========== -->
+<section class="kpi-strip">
+    <div class="container">
+        <div class="kpi-grid">
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-1-value">€9M+</div>
+                <div class="kpi-label" data-editable="kpi-1-label">proinvestovaného kapitálu</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-2-value">14</div>
+                <div class="kpi-label" data-editable="kpi-2-label">firem v portfoliu</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-3-value">20+</div>
+                <div class="kpi-label" data-editable="kpi-3-label">aktivních investorů</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-value" data-editable="kpi-4-value">60+</div>
+                <div class="kpi-label" data-editable="kpi-4-label">investic našich členů mimo GA</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== DO ČEHO INVESTUJEME ========== -->
+<section class="section section-alt" id="do-ceho">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="focus-label">Investiční zaměření</div>
+            <h2 class="section-title" data-editable="focus-title">Do čeho investujeme</h2>
+            <p class="section-desc" data-editable="focus-desc">Zaměřujeme se na technologické projekty s globálním potenciálem v early-stage fázi. Sázíme na silné týmy a defenzibilní technologie. Posuzujeme je lidé, kteří danému oboru opravdu rozumí.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
+                <h3 data-editable="sec1-title">HealthTech & MedTech</h3>
+                <p data-editable="sec1-desc">Digitální zdraví, diagnostika, AI v medicíně a zdravotnické technologie. Jeden z našich nejsilnějších oborů s expertní skupinou inhouse.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h3 data-editable="sec2-title">Cybersecurity</h3>
+                <p data-editable="sec2-desc">Bezpečnostní technologie a software. Máme za sebou lidi, kteří v oboru budovali a prodávali firmy světového formátu.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                <h3 data-editable="sec3-title">SaaS & E-commerce</h3>
+                <p data-editable="sec3-desc">Softwarové produkty s opakovatelným modelem a online byznysy s rychlou škálovatelností a jasnou unit ekonomikou.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                <h3 data-editable="sec4-title">Deep Tech & High Tech</h3>
+                <p data-editable="sec4-desc">Průlomové technologie — od kvantových počítačů přes kosmické technologie po pokročilou AI. Hledáme defenzibilní inovace.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <h3 data-editable="sec5-title">Univerzitní spin-offy</h3>
+                <p data-editable="sec5-desc">Aktivně spolupracujeme s univerzitami a podílíme se na přenosu výzkumu do komerční praxe. Unikátní zdroj kvalitního dealflow.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <h3 data-editable="sec6-title">ČR, CEE & Evropa</h3>
+                <p data-editable="sec6-desc">Geograficky se soustředíme na český a středoevropský region s ambicí projektů expandovat globálně. Silní jsme zejména v Brně a okolí.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PARAMETRY INVESTICE ========== -->
+<section class="section" id="parametry">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="param-label">Parametry investice</div>
+            <h2 class="section-title" data-editable="param-title">Jak velké dealy děláme</h2>
+            <p class="section-desc" data-editable="param-desc">Typické parametry investic, do kterých se s námi můžete zapojit. Konkrétní podmínky se vždy liší podle dealu.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card" style="border-left: 3px solid var(--accent);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 8px;" data-editable="param1-value">€100–500K</div>
+                <h3 data-editable="param1-title">Typická účast GA v kole</h3>
+                <p data-editable="param1-desc">Souhrnná částka, kterou členové Garage Angels obvykle alokují do jednoho investičního kola. Pro větší dealy spojujeme síly s VC fondy a dalšími angely.</p>
+            </div>
+            <div class="why-card" style="border-left: 3px solid var(--green);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 8px;" data-editable="param2-value">Pre-seed & Seed</div>
+                <h3 data-editable="param2-title">Investiční fáze</h3>
+                <p data-editable="param2-desc">Vstupujeme nejčastěji v early-stage fázích, kde umíme přinést nejvíc hodnoty hands-on podporou a oborovou expertízou.</p>
+            </div>
+        </div>
+        <div class="spv-box" style="margin-top: 32px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="param-grid-title">Klíčové parametry na první pohled</h3>
+                <p style="font-size: 15px; color: var(--gray-500);" data-editable="param-grid-desc">Orientační hodnoty — finální podmínky vždy konzultujeme individuálně.</p>
+            </div>
+            <div class="spv-details">
+                <div class="spv-detail">
+                    <strong>Fáze</strong>
+                    <span data-editable="pd-stage">Pre-seed, Seed</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Typický ticket co-investora</strong>
+                    <span data-editable="pd-ticket">od €10–20K výše, dle dealu</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Geografie</strong>
+                    <span data-editable="pd-geo">ČR, CEE, Evropa</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Struktura</strong>
+                    <span data-editable="pd-struct">Účelové SPV s.r.o. + SHA</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Lead investor</strong>
+                    <span data-editable="pd-lead">Každý deal má na straně GA leada</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Reporting</strong>
+                    <span data-editable="pd-report">Pravidelný reporting cally se startupy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PROČ CO-INVESTOVAT S GA ========== -->
+<section class="section section-alt" id="proc">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="why-label">Proč s námi</div>
+            <h2 class="section-title" data-editable="why-title">Proč co-investovat s Garage Angels</h2>
+            <p class="section-desc" data-editable="why-desc">Jsme skupina podnikatelů, kteří budovali nebo stále budují vlastní firmy — někteří s exity za stovky milionů až jednotky miliard korun. Investujeme vlastní peníze a otevíráme svůj dealflow i partnerům.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 data-editable="why1-title">Sdílený dealflow</h3>
+                <p data-editable="why1-desc">Otevíráme prověřené dealy dalším angel investorům a VC fondům. Kombinujeme kapitál, sdílíme rizika a rozšiřujeme síť kontaktů pro portfolio firmy.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                <h3 data-editable="why2-title">Expertní skupiny podle oborů</h3>
+                <p data-editable="why2-desc">Máme interní expertní skupiny: HealthTech & MedTech, Cybersecurity, E-commerce, SaaS, Deep Tech. Každý projekt posoudí lidé, kteří oboru rozumí.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <h3 data-editable="why3-title">Vlastní peníze, žádný umělý tlak</h3>
+                <p data-editable="why3-desc">Investujeme výhradně své peníze. Žádní LP, žádný umělý tlak na rychlý exit. Rozhodujeme se podle toho, co dává smysl pro firmu.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <h3 data-editable="why4-title">Hands-on podpora</h3>
+                <p data-editable="why4-desc">Radíme, mentorujeme a otevíráme dveře. Firma zůstává founderům — my přinášíme zkušenost, kontakty a oborový pohled.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <h3 data-editable="why5-title">Spolupráce s JIC</h3>
+                <p data-editable="why5-desc">Spolupracujeme s <a href="https://www.jic.cz" target="_blank" style="color: var(--accent); font-weight: 600;">Jihomoravským inovačním centrem</a> — jedním z nejsilnějších startupových hubů v regionu.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                <h3 data-editable="why6-title">Čistá a transparentní struktura</h3>
+                <p data-editable="why6-desc">Každý deal = vlastní účelové SPV se standardní SHA. Přehledné podíly, jasná pravidla a profesionální správa pro všechny investory.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== JAK TO FUNGUJE ========== -->
+<section class="section" id="jak-to-funguje">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="process-label">Jak co-investice probíhá</div>
+            <h2 class="section-title" data-editable="process-title">Jak to celé funguje</h2>
+            <p class="section-desc" data-editable="process-desc">Od sdíleného dealflow až po investici přes SPV. Celý proces koordinuje investiční ředitel Aleš Filipenský spolu s lead investorem dealu.</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4 data-editable="step1-title">Sdílení dealu</h4>
+                <p data-editable="step1-desc">Představíme vám prověřený projekt, který prošel naším interním screeningem a hodnocením investorů.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4 data-editable="step2-title">Pitch & Q&A</h4>
+                <p data-editable="step2-desc">Společný call s foundery. Doptáme se na klíčové informace a osobně poznáte zakladatele.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4 data-editable="step3-title">Due Diligence</h4>
+                <p data-editable="step3-desc">Vedená lead investorem a Alešem ve spolupráci s právním týmem Hladký.Legal.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4 data-editable="step4-title">Term Sheet</h4>
+                <p data-editable="step4-desc">Podmínky investice vyjednává lead investor s foundery. Potvrdíte, zda a kolik investujete.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h4 data-editable="step5-title">SPV & Closing</h4>
+                <p data-editable="step5-desc">Investice probíhá přes účelové SPV se standardní SHA. Finální transakční dokumentace.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h4 data-editable="step6-title">Reporting</h4>
+                <p data-editable="step6-desc">Pravidelné reporting cally se startupy a průběžná komunikace o vývoji firmy.</p>
+            </div>
+        </div>
+
+        <!-- SPV Explainer -->
+        <div class="spv-box">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="spv-title">Struktura investice: SPV</h3>
+                <p style="font-size: 15px; color: var(--gray-500);" data-editable="spv-desc">Každý deal = vlastní účelové SPV</p>
+            </div>
+            <div class="spv-flow">
+                <div class="spv-node">
+                    <strong>Investor</strong>
+                    <span>Pošle částku do SPV</span>
+                </div>
+                <div class="spv-arrow">&rarr;</div>
+                <div class="spv-node">
+                    <strong>SPV s.r.o.</strong>
+                    <span>Účelová společnost</span>
+                </div>
+                <div class="spv-arrow">&rarr;</div>
+                <div class="spv-node">
+                    <strong>Startup</strong>
+                    <span>Investice do firmy</span>
+                </div>
+            </div>
+            <div class="spv-details">
+                <div class="spv-detail">
+                    <strong>Jednatel SPV</strong>
+                    <span>Aleš Filipenský</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Právní rámec</strong>
+                    <span>SHA — Shareholders Agreement</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Komunikace</strong>
+                    <span>Přes Lead investora nebo Aleše</span>
+                </div>
+                <div class="spv-detail">
+                    <strong>Reporting</strong>
+                    <span>Pravidelné reporting cally se startupy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Grid -->
+        <div style="margin-top: 64px;">
+            <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); text-align: center; margin-bottom: 8px;" data-editable="tools-title">Naše nástroje & spolupráce</h3>
+            <p style="font-size: 15px; color: var(--gray-500); text-align: center; margin-bottom: 32px;" data-editable="tools-desc">Profesionální proces postavený na osvědčených nástrojích.</p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h4 data-editable="tool1-title">Dealum</h4>
+                    <p data-editable="tool1-desc">Platforma pro sdílení projektů, hlasování a komunikaci mezi investory. Naše centrála pro dealflow.</p>
+                </div>
+                <div class="tech-card">
+                    <h4 data-editable="tool2-title">Hladký.Legal</h4>
+                    <p data-editable="tool2-desc">Právní podpora pro due diligence, transakční dokumentaci a vyjednávání investičních podmínek.</p>
+                </div>
+                <div class="tech-card">
+                    <h4 data-editable="tool3-title">SPV s.r.o.</h4>
+                    <p data-editable="tool3-desc">Každý deal = vlastní účelová společnost. Čistý právní rámec, transparentní podíly, standardní SHA.</p>
+                </div>
+                <div class="tech-card">
+                    <h4 data-editable="tool4-title">Reporting & Slack</h4>
+                    <p data-editable="tool4-desc">Pravidelné reporting cally s foundery + Slack pro rychlou komunikaci investorů. Vše na jednom místě.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PORTFOLIO ========== -->
+<section class="section section-alt" id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="portfolio-label">Naše portfolio</div>
+            <h2 class="section-title" data-editable="portfolio-title">Do čeho jsme už investovali</h2>
+            <p class="section-desc" data-editable="portfolio-desc">Výběr firem, které jsou součástí portfolia Garage Angels.</p>
+        </div>
+        <div class="portfolio-grid">
+            <a href="https://www.sendance.at/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=sendance.at&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Sendance</div>
+                <span class="startup-link">sendance.at &rarr;</span>
+            </a>
+            <a href="https://vrvitalis.cz/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=vrvitalis.cz&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">VR Vitalis</div>
+                <span class="startup-link">vrvitalis.cz &rarr;</span>
+            </a>
+            <a href="https://realpadsoftware.com/cs/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=realpadsoftware.com&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">RealPad</div>
+                <span class="startup-link">realpadsoftware.com &rarr;</span>
+            </a>
+            <a href="https://agdata.ag/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=agdata.ag&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">AG Data</div>
+                <span class="startup-link">agdata.ag &rarr;</span>
+            </a>
+            <a href="https://groundcom.space/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=groundcom.space&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Groundcom</div>
+                <span class="startup-link">groundcom.space &rarr;</span>
+            </a>
+            <a href="https://localazy.com/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=localazy.com&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Localazy</div>
+                <span class="startup-link">localazy.com &rarr;</span>
+            </a>
+            <a href="https://kardi.ai/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=kardi.ai&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Kardi AI</div>
+                <span class="startup-link">kardi.ai &rarr;</span>
+            </a>
+            <a href="https://www.scaut.com/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=scaut.com&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Scaut</div>
+                <span class="startup-link">scaut.com &rarr;</span>
+            </a>
+            <a href="https://www.aiffinity.com/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=aiffinity.com&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">AIffinity</div>
+                <span class="startup-link">aiffinity.com &rarr;</span>
+            </a>
+            <a href="https://www.casinvent.com/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=casinvent.com&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">CasInvent</div>
+                <span class="startup-link">casinvent.com &rarr;</span>
+            </a>
+            <a href="https://keyguru.cz/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=keyguru.cz&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">KeyGuru</div>
+                <span class="startup-link">keyguru.cz &rarr;</span>
+            </a>
+            <a href="https://www.myco.cz/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=myco.cz&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Myco</div>
+                <span class="startup-link">myco.cz &rarr;</span>
+            </a>
+            <a href="https://www.senzoor.cz/" target="_blank" class="startup-card">
+                <img src="https://www.google.com/s2/favicons?domain=senzoor.cz&sz=32" alt="" class="startup-favicon">
+                <div class="startup-logo">Senzoor</div>
+                <span class="startup-link">senzoor.cz &rarr;</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== INVESTORI ========== -->
+<section class="section" id="investori">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label" data-editable="investors-label">Naši investoři</div>
+            <h2 class="section-title" data-editable="investors-title">Kdo s námi investuje</h2>
+            <p class="section-desc" data-editable="investors-desc">Zkušení a úspěšní podnikatelé a investoři, kteří stojí za Garage Angels.</p>
+        </div>
+        <div class="investors-grid">
+            <a href="https://www.linkedin.com/in/jiri-hlavenka-a9887b3" target="_blank" class="investor-card">
+                <div class="investor-avatar">JH</div>
+                <h4>Jiří Hlavenka</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/karelobluk/" target="_blank" class="investor-card">
+                <div class="investor-avatar">KO</div>
+                <h4>Karel Obluk</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/jan-hladky-42a49a2/" target="_blank" class="investor-card">
+                <div class="investor-avatar">JH</div>
+                <h4>Jan Hladký</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/jiri-nepala/" target="_blank" class="investor-card">
+                <div class="investor-avatar">JN</div>
+                <h4>Jiří Nepala</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/najvarek" target="_blank" class="investor-card">
+                <div class="investor-avatar">JN</div>
+                <h4>Jan Najvárek</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/libordanek1/" target="_blank" class="investor-card">
+                <div class="investor-avatar">LD</div>
+                <h4>Libor Daněk</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="http://linkedin.com/in/miroslav-novosvetsky" target="_blank" class="investor-card">
+                <div class="investor-avatar">MN</div>
+                <h4>Miroslav Novosvetský</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="http://linkedin.com/in/janosik" target="_blank" class="investor-card">
+                <div class="investor-avatar">PJ</div>
+                <h4>Petr Janošík</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/milo%C5%A1-dendis-708b14209/" target="_blank" class="investor-card">
+                <div class="investor-avatar">MD</div>
+                <h4>Miloš Dendis</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/pepamech" target="_blank" class="investor-card">
+                <div class="investor-avatar">JM</div>
+                <h4>Josef Mech</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/ivo-bezloja-30718929" target="_blank" class="investor-card">
+                <div class="investor-avatar">IB</div>
+                <h4>Ivo Bezloja</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/smidpetr/" target="_blank" class="investor-card">
+                <div class="investor-avatar">PS</div>
+                <h4>Petr Šmíd</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/michaelmladek" target="_blank" class="investor-card">
+                <div class="investor-avatar">MM</div>
+                <h4>Michael Mladek</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/adam-dan%C4%9Bk-24969330/" target="_blank" class="investor-card">
+                <div class="investor-avatar">AD</div>
+                <h4>Adam Daněk</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/dominik-bozek-9ba07213" target="_blank" class="investor-card">
+                <div class="investor-avatar">DB</div>
+                <h4>Dominik Bozek</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/anton%C3%ADn-kunz-9b2a56111" target="_blank" class="investor-card">
+                <div class="investor-avatar">AK</div>
+                <h4>Antonín Kunz</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/karel-bastl-12b31446/" target="_blank" class="investor-card">
+                <div class="investor-avatar">KB</div>
+                <h4>Karel Bastl</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/marek-nechv%C3%A1tal-151bb94/" target="_blank" class="investor-card">
+                <div class="investor-avatar">MN</div>
+                <h4>Marek Nechvátal</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/machek/" target="_blank" class="investor-card">
+                <div class="investor-avatar">OM</div>
+                <h4>Ondřej Machek</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+            <a href="https://www.linkedin.com/in/pavelstrasak/" target="_blank" class="investor-card">
+                <div class="investor-avatar">PŠ</div>
+                <h4>Pavel Strašák</h4>
+                <span class="investor-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section" id="kontakt">
+    <div class="container">
+        <h2 data-editable="cta-title">Chcete co-investovat s Garage Angels?</h2>
+        <p data-editable="cta-desc">Ozvěte se Alešovi. Rád probere možnosti spolupráce a sdílení dealflow.</p>
+        <a href="mailto:filipensky@g-angels.cz" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l6 4 6-4M2 4v8h12V4"/></svg>
+            filipensky@g-angels.cz
+        </a>
+        <div style="margin-top:16px; color: rgba(255,255,255,0.5); font-size: 15px;">
+            Tel: +420 603 290 756 · Aleš Filipenský, investiční ředitel
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="footer-logo">
+                <img src="Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
+            </div>
+            <div class="footer-tagline" style="margin-top: 12px;">Purkyňova 127, Brno · JIC INMEC 1. patro</div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Garage Angels. Všechna práva vyhrazena.
+        </div>
+    </div>
+</footer>
+
+<!-- EDIT FAB + BAR -->
+<button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<div class="edit-bar" id="editBar">
+    <span>Editujete texty</span>
+    <button class="btn-save" onclick="saveEdits()">Uložit</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
+    <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
+</div>
+
+<script>
+// ========== GITHUB PERSISTENCE ==========
+const REPO = 'filipensky-spec/portfolio-reporting';
+const DATA_FILE = 'data/coinvestors-edits.json';
+const GH_API = 'https://api.github.com';
+const PAT_KEY = 'ga-github-pat';
+const STORAGE_KEY = 'coinvestors-edits';
+let ghSha = null;
+let isEditing = false;
+let savedState = {};
+
+function getGitHubPAT() { return localStorage.getItem(PAT_KEY); }
+function setGitHubPAT(t) { localStorage.setItem(PAT_KEY, t); }
+async function validatePAT(token) {
+    try { return (await fetch(`${GH_API}/user`, { headers: { Authorization: `token ${token}` } })).ok; } catch { return false; }
+}
+function showPATDialog() {
+    const existing = document.getElementById('pat-dialog'); if (existing) existing.remove();
+    const d = document.createElement('div'); d.id = 'pat-dialog';
+    d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button><button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button></div></div></div>`;
+    document.body.appendChild(d); document.getElementById('pat-input').focus();
+}
+async function submitPAT() {
+    const input = document.getElementById('pat-input'), err = document.getElementById('pat-error'), token = input.value.trim();
+    if (!token) return; input.disabled = true;
+    if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token uložen'); }
+    else { err.style.display = 'block'; input.disabled = false; }
+}
+async function fetchFromGitHub() {
+    try {
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json' }, cache: 'no-store' });
+        if (!r.ok) return null; const json = await r.json(); ghSha = json.sha;
+        return JSON.parse(decodeURIComponent(escape(atob(json.content.replace(/\n/g, '')))));
+    } catch { return null; }
+}
+async function saveToGitHub(data) {
+    const token = getGitHubPAT(); if (!token) return false;
+    try {
+        if (!ghSha) { const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}` }, cache: 'no-store' }); if (r.ok) ghSha = (await r.json()).sha; }
+        const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        const body = { message: `Update co-investors edits ${new Date().toISOString().slice(0,16)}`, content: encoded }; if (ghSha) body.sha = ghSha;
+        const r = await fetch(`${GH_API}/repos/${REPO}/contents/${DATA_FILE}`, { method: 'PUT', headers: { Accept: 'application/vnd.github.v3+json', Authorization: `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        if (r.ok) { ghSha = (await r.json()).content.sha; return true; } return false;
+    } catch { return false; }
+}
+let _saveTimer = null;
+function debouncedSave(data) {
+    if (_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(async () => { const ok = await saveToGitHub(data); showToast(ok ? 'Uloženo do GitHubu' : 'Chyba při ukládání — zkontroluj token'); _saveTimer = null; }, 1500);
+}
+
+function toggleEdit() {
+    if (isEditing) return;
+    if (!getGitHubPAT()) { showPATDialog(); return; }
+    isEditing = true;
+    document.body.classList.add('editing');
+    document.getElementById('editBar').classList.add('visible');
+    document.querySelectorAll('[data-editable]').forEach(el => { savedState[el.dataset.editable] = el.innerHTML; el.contentEditable = 'true'; });
+    document.querySelectorAll('a[href]').forEach(a => { if (a.closest('[data-editable]') || a.querySelector('[data-editable]')) { a.dataset.href = a.href; a.removeAttribute('href'); } });
+}
+function saveEdits() {
+    const edits = {};
+    document.querySelectorAll('[data-editable]').forEach(el => { el.contentEditable = 'false'; edits[el.dataset.editable] = el.innerHTML; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
+    debouncedSave(edits);
+    exitEditMode();
+}
+function cancelEdits() {
+    document.querySelectorAll('[data-editable]').forEach(el => { el.contentEditable = 'false'; el.innerHTML = savedState[el.dataset.editable]; });
+    exitEditMode();
+}
+function resetEdits() { localStorage.removeItem(STORAGE_KEY); saveToGitHub({}); location.reload(); }
+function exitEditMode() {
+    isEditing = false; document.body.classList.remove('editing'); document.getElementById('editBar').classList.remove('visible'); savedState = {};
+    document.querySelectorAll('a[data-href]').forEach(a => { a.href = a.dataset.href; a.removeAttribute('data-href'); });
+}
+async function loadEdits() {
+    const ghData = await fetchFromGitHub();
+    if (ghData && Object.keys(ghData).length > 0) { localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData)); applyEdits(ghData); return; }
+    const saved = localStorage.getItem(STORAGE_KEY); if (saved) { try { applyEdits(JSON.parse(saved)); } catch {} }
+}
+function applyEdits(edits) {
+    Object.entries(edits).forEach(([key, val]) => { const el = document.querySelector(`[data-editable="${key}"]`); if (el) el.innerHTML = val; });
+}
+function showToast(msg) {
+    const t = document.createElement('div'); t.textContent = msg;
+    Object.assign(t.style, { position: 'fixed', bottom: '80px', left: '50%', transform: 'translateX(-50%)', background: '#10b981', color: 'white', padding: '10px 24px', borderRadius: '10px', fontSize: '14px', fontWeight: '600', zIndex: '300', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' });
+    document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+}
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.querySelector('.nav-links').classList.remove('open'); } });
+});
+loadEdits();
+</script>
+
+</body>
+</html>
