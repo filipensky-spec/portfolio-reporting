@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Garage Angels — Co-investice</title>
+    <title>Garage Angels — Co-Investment</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -279,116 +279,6 @@
             line-height: 1.7;
         }
 
-        /* ========== PROCESS ========== */
-        .process-steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            position: relative;
-        }
-        .process-step {
-            flex: 0 0 calc(100% / 3);
-            max-width: calc(100% / 3);
-            text-align: center;
-            padding: 32px 24px;
-            position: relative;
-        }
-        .process-step::after {
-            content: '';
-            position: absolute;
-            top: 52px;
-            right: -12px;
-            width: 24px;
-            height: 2px;
-            background: var(--gray-300);
-        }
-        .process-step:last-child::after { display: none; }
-        .step-number {
-            width: 44px;
-            height: 44px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-            margin: 0 auto 16px;
-        }
-        .process-step h4 {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-        }
-        .process-step p {
-            font-size: 13px;
-            color: var(--gray-500);
-            line-height: 1.6;
-        }
-
-        /* ========== SPV EXPLAINER ========== */
-        .spv-box {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 48px;
-            max-width: 800px;
-            margin: 48px auto 0;
-        }
-        .spv-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin: 32px 0;
-        }
-        .spv-node {
-            background: var(--accent-bg);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            border-radius: 10px;
-            padding: 16px 24px;
-            text-align: center;
-            min-width: 140px;
-        }
-        .spv-node strong {
-            display: block;
-            font-size: 14px;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .spv-node span {
-            font-size: 12px;
-            color: var(--gray-500);
-        }
-        .spv-arrow {
-            font-size: 20px;
-            color: var(--gray-400);
-        }
-        .spv-details {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 24px;
-        }
-        .spv-detail {
-            padding: 16px;
-            background: var(--gray-50);
-            border-radius: var(--radius-sm);
-        }
-        .spv-detail strong {
-            font-size: 13px;
-            color: var(--gray-700);
-            display: block;
-            margin-bottom: 4px;
-        }
-        .spv-detail span {
-            font-size: 13px;
-            color: var(--gray-500);
-        }
-
         /* ========== PORTFOLIO GRID ========== */
         .portfolio-grid {
             display: grid;
@@ -477,33 +367,6 @@
             color: var(--accent);
         }
 
-        /* ========== TECH STACK ========== */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-        .tech-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            padding: 28px;
-            text-align: center;
-            transition: all 0.2s;
-        }
-        .tech-card:hover { border-color: var(--accent); }
-        .tech-card h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-        }
-        .tech-card p {
-            font-size: 13px;
-            color: var(--gray-500);
-            line-height: 1.6;
-        }
-
         /* ========== CTA SECTION ========== */
         .cta-section {
             padding: 80px 0;
@@ -567,15 +430,6 @@
             font-size: 13px;
             color: var(--gray-500);
         }
-        .footer-contact {
-            text-align: right;
-        }
-        .footer-contact a {
-            color: var(--gray-400);
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .footer-contact a:hover { color: white; }
         .footer-bottom {
             margin-top: 32px;
             padding-top: 24px;
@@ -674,13 +528,7 @@
             .why-grid { grid-template-columns: 1fr; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .investors-grid { grid-template-columns: 1fr; }
-            .spv-flow { flex-direction: column; }
-            .spv-arrow { transform: rotate(90deg); }
-            .spv-details { grid-template-columns: 1fr; }
-            .process-step { flex: 0 0 100%; max-width: 100%; }
-            .process-step::after { display: none; }
             .footer-inner { flex-direction: column; text-align: center; }
-            .footer-contact { text-align: center; }
         }
     </style>
 </head>
@@ -696,11 +544,11 @@
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="#do-ceho">Do čeho investujeme</a></li>
-            <li><a href="#parametry">Parametry</a></li>
-            <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+            <li><a href="#focus">Investment Focus</a></li>
+            <li><a href="#parameters">Parameters</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+            <li><a href="#investors">Investors</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
         </ul>
     </div>
 </nav>
@@ -709,16 +557,16 @@
 <section class="hero">
     <div class="container">
         <div class="hero-inner">
-            <div class="hero-badge" data-editable="hero-badge">Pro co-investory</div>
-            <h1 data-editable="hero-title">Co-investujte s námi do prověřených early-stage projektů</h1>
+            <div class="hero-badge" data-editable="hero-badge">For Co-Investors</div>
+            <h1 data-editable="hero-title">Co-invest with us in vetted early-stage companies</h1>
             <p class="subtitle" data-editable="hero-subtitle">
-                Garage Angels je syndikát zkušených podnikatelů a investorů. Sdílíme dealflow, vedeme dealy a nabízíme čistou SPV strukturu — ideálního partnera pro VC fondy i angel investory, kteří chtějí investovat po našem boku.
+                Garage Angels is a syndicate of seasoned founders and investors. We share our deal flow, lead deals and offer a clean SPV structure — an ideal partner for VC funds and angel investors who want to invest alongside us.
             </p>
             <div class="hero-ctas">
-                <a href="#kontakt" class="btn btn-primary">Chci s vámi co-investovat</a>
+                <a href="#contact" class="btn btn-primary">Co-invest with us</a>
                 <a href="#portfolio" class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M8 2v12"/></svg>
-                    Prohlédnout portfolio
+                    View portfolio
                 </a>
             </div>
         </div>
@@ -731,281 +579,145 @@
         <div class="kpi-grid">
             <div class="kpi-item">
                 <div class="kpi-value" data-editable="kpi-1-value">€9M+</div>
-                <div class="kpi-label" data-editable="kpi-1-label">proinvestovaného kapitálu</div>
+                <div class="kpi-label" data-editable="kpi-1-label">capital deployed</div>
             </div>
             <div class="kpi-item">
                 <div class="kpi-value" data-editable="kpi-2-value">14</div>
-                <div class="kpi-label" data-editable="kpi-2-label">firem v portfoliu</div>
+                <div class="kpi-label" data-editable="kpi-2-label">portfolio companies</div>
             </div>
             <div class="kpi-item">
                 <div class="kpi-value" data-editable="kpi-3-value">20+</div>
-                <div class="kpi-label" data-editable="kpi-3-label">aktivních investorů</div>
+                <div class="kpi-label" data-editable="kpi-3-label">active investors</div>
             </div>
             <div class="kpi-item">
                 <div class="kpi-value" data-editable="kpi-4-value">60+</div>
-                <div class="kpi-label" data-editable="kpi-4-label">investic našich členů mimo GA</div>
+                <div class="kpi-label" data-editable="kpi-4-label">investments by our members outside GA</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== DO ČEHO INVESTUJEME ========== -->
-<section class="section section-alt" id="do-ceho">
+<!-- ========== INVESTMENT FOCUS ========== -->
+<section class="section section-alt" id="focus">
     <div class="container">
         <div class="section-header">
-            <div class="section-label" data-editable="focus-label">Investiční zaměření</div>
-            <h2 class="section-title" data-editable="focus-title">Do čeho investujeme</h2>
-            <p class="section-desc" data-editable="focus-desc">Zaměřujeme se na technologické projekty s globálním potenciálem v early-stage fázi. Sázíme na silné týmy a defenzibilní technologie. Posuzujeme je lidé, kteří danému oboru opravdu rozumí.</p>
+            <div class="section-label" data-editable="focus-label">Investment Focus</div>
+            <h2 class="section-title" data-editable="focus-title">What we invest in</h2>
+            <p class="section-desc" data-editable="focus-desc">We back early-stage technology companies with global potential. We bet on strong teams and defensible technology — evaluated by people who genuinely understand the field.</p>
         </div>
         <div class="why-grid">
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
-                <h3 data-editable="sec1-title">HealthTech & MedTech</h3>
-                <p data-editable="sec1-desc">Digitální zdraví, diagnostika, AI v medicíně a zdravotnické technologie. Jeden z našich nejsilnějších oborů s expertní skupinou inhouse.</p>
+                <h3 data-editable="sec1-title">HealthTech &amp; MedTech</h3>
+                <p data-editable="sec1-desc">Digital health, diagnostics, AI in medicine and medical devices. One of our strongest verticals, with a dedicated in-house expert group.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                 <h3 data-editable="sec2-title">Cybersecurity</h3>
-                <p data-editable="sec2-desc">Bezpečnostní technologie a software. Máme za sebou lidi, kteří v oboru budovali a prodávali firmy světového formátu.</p>
+                <p data-editable="sec2-desc">Security technology and software. We have people behind us who have built and exited world-class companies in the field.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+                <h3 data-editable="sec3-title">AI, Automation &amp; Robotics</h3>
+                <p data-editable="sec3-desc">Artificial intelligence, process automation and robotics across industries. We look for teams turning cutting-edge AI into real-world products and measurable efficiency gains.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-                <h3 data-editable="sec3-title">SaaS & E-commerce</h3>
-                <p data-editable="sec3-desc">Softwarové produkty s opakovatelným modelem a online byznysy s rychlou škálovatelností a jasnou unit ekonomikou.</p>
+                <h3 data-editable="sec4-title">SaaS &amp; E-commerce</h3>
+                <p data-editable="sec4-desc">Software products with recurring revenue and online businesses with fast scalability and clear unit economics.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-                <h3 data-editable="sec4-title">Deep Tech & High Tech</h3>
-                <p data-editable="sec4-desc">Průlomové technologie — od kvantových počítačů přes kosmické technologie po pokročilou AI. Hledáme defenzibilní inovace.</p>
+                <h3 data-editable="sec5-title">Deep Tech &amp; High Tech</h3>
+                <p data-editable="sec5-desc">Breakthrough technologies — from quantum computing and space tech to advanced AI. We look for defensible innovation.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-                <h3 data-editable="sec5-title">Univerzitní spin-offy</h3>
-                <p data-editable="sec5-desc">Aktivně spolupracujeme s univerzitami a podílíme se na přenosu výzkumu do komerční praxe. Unikátní zdroj kvalitního dealflow.</p>
+                <h3 data-editable="sec6-title">University spin-offs</h3>
+                <p data-editable="sec6-desc">We actively work with universities and help bring research to market. A unique source of high-quality deal flow.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-                <h3 data-editable="sec6-title">ČR, CEE & Evropa</h3>
-                <p data-editable="sec6-desc">Geograficky se soustředíme na český a středoevropský region s ambicí projektů expandovat globálně. Silní jsme zejména v Brně a okolí.</p>
+                <h3 data-editable="sec7-title">CEE &amp; Europe</h3>
+                <p data-editable="sec7-desc">Geographically we focus on Czechia and the wider CEE region, backing companies built to scale globally. We are especially strong in and around Brno.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== PARAMETRY INVESTICE ========== -->
-<section class="section" id="parametry">
+<!-- ========== INVESTMENT PARAMETERS ========== -->
+<section class="section" id="parameters">
     <div class="container">
         <div class="section-header">
-            <div class="section-label" data-editable="param-label">Parametry investice</div>
-            <h2 class="section-title" data-editable="param-title">Jak velké dealy děláme</h2>
-            <p class="section-desc" data-editable="param-desc">Typické parametry investic, do kterých se s námi můžete zapojit. Konkrétní podmínky se vždy liší podle dealu.</p>
+            <div class="section-label" data-editable="param-label">Investment Parameters</div>
+            <h2 class="section-title" data-editable="param-title">The deals we do</h2>
+            <p class="section-desc" data-editable="param-desc">Typical parameters of the investments you can join us in. Final terms always depend on the specific deal.</p>
         </div>
         <div class="why-grid">
             <div class="why-card" style="border-left: 3px solid var(--accent);">
-                <div style="font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 8px;" data-editable="param1-value">€100–500K</div>
-                <h3 data-editable="param1-title">Typická účast GA v kole</h3>
-                <p data-editable="param1-desc">Souhrnná částka, kterou členové Garage Angels obvykle alokují do jednoho investičního kola. Pro větší dealy spojujeme síly s VC fondy a dalšími angely.</p>
+                <div style="font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 8px;" data-editable="param1-value">€100K – €1M</div>
+                <h3 data-editable="param1-title">Typical GA participation per round</h3>
+                <p data-editable="param1-desc">The aggregate amount Garage Angels members typically allocate to a single round. For larger deals we join forces with VC funds and other angels.</p>
             </div>
             <div class="why-card" style="border-left: 3px solid var(--green);">
-                <div style="font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 8px;" data-editable="param2-value">Pre-seed & Seed</div>
-                <h3 data-editable="param2-title">Investiční fáze</h3>
-                <p data-editable="param2-desc">Vstupujeme nejčastěji v early-stage fázích, kde umíme přinést nejvíc hodnoty hands-on podporou a oborovou expertízou.</p>
-            </div>
-        </div>
-        <div class="spv-box" style="margin-top: 32px;">
-            <div style="text-align: center; margin-bottom: 24px;">
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="param-grid-title">Klíčové parametry na první pohled</h3>
-                <p style="font-size: 15px; color: var(--gray-500);" data-editable="param-grid-desc">Orientační hodnoty — finální podmínky vždy konzultujeme individuálně.</p>
-            </div>
-            <div class="spv-details">
-                <div class="spv-detail">
-                    <strong>Fáze</strong>
-                    <span data-editable="pd-stage">Pre-seed, Seed</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Typický ticket co-investora</strong>
-                    <span data-editable="pd-ticket">od €10–20K výše, dle dealu</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Geografie</strong>
-                    <span data-editable="pd-geo">ČR, CEE, Evropa</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Struktura</strong>
-                    <span data-editable="pd-struct">Účelové SPV s.r.o. + SHA</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Lead investor</strong>
-                    <span data-editable="pd-lead">Každý deal má na straně GA leada</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Reporting</strong>
-                    <span data-editable="pd-report">Pravidelný reporting cally se startupy</span>
-                </div>
+                <div style="font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 8px;" data-editable="param2-value">Pre-seed &amp; Seed</div>
+                <h3 data-editable="param2-title">Investment stage</h3>
+                <p data-editable="param2-desc">We typically come in at early stages, where we can add the most value through hands-on support and sector expertise.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== PROČ CO-INVESTOVAT S GA ========== -->
-<section class="section section-alt" id="proc">
+<!-- ========== WHY CO-INVEST WITH GA ========== -->
+<section class="section section-alt" id="why">
     <div class="container">
         <div class="section-header">
-            <div class="section-label" data-editable="why-label">Proč s námi</div>
-            <h2 class="section-title" data-editable="why-title">Proč co-investovat s Garage Angels</h2>
-            <p class="section-desc" data-editable="why-desc">Jsme skupina podnikatelů, kteří budovali nebo stále budují vlastní firmy — někteří s exity za stovky milionů až jednotky miliard korun. Investujeme vlastní peníze a otevíráme svůj dealflow i partnerům.</p>
+            <div class="section-label" data-editable="why-label">Why us</div>
+            <h2 class="section-title" data-editable="why-title">Why co-invest with Garage Angels</h2>
+            <p class="section-desc" data-editable="why-desc">We are a group of entrepreneurs who have built — or are still building — their own companies, some with exits in the hundreds of millions to billions of CZK. We invest our own money and open our deal flow to partners.</p>
         </div>
         <div class="why-grid">
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                <h3 data-editable="why1-title">Sdílený dealflow</h3>
-                <p data-editable="why1-desc">Otevíráme prověřené dealy dalším angel investorům a VC fondům. Kombinujeme kapitál, sdílíme rizika a rozšiřujeme síť kontaktů pro portfolio firmy.</p>
+                <h3 data-editable="why1-title">Shared deal flow</h3>
+                <p data-editable="why1-desc">We open our vetted deals to other angel investors and VC funds. We pool capital, share risk and expand the network of contacts for our portfolio companies.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                <h3 data-editable="why2-title">Expertní skupiny podle oborů</h3>
-                <p data-editable="why2-desc">Máme interní expertní skupiny: HealthTech & MedTech, Cybersecurity, E-commerce, SaaS, Deep Tech. Každý projekt posoudí lidé, kteří oboru rozumí.</p>
+                <h3 data-editable="why2-title">Sector expert groups</h3>
+                <p data-editable="why2-desc">We run in-house expert groups: HealthTech &amp; MedTech, Cybersecurity, E-commerce, SaaS and Deep Tech. Every project is assessed by people who understand the field.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                <h3 data-editable="why3-title">Vlastní peníze, žádný umělý tlak</h3>
-                <p data-editable="why3-desc">Investujeme výhradně své peníze. Žádní LP, žádný umělý tlak na rychlý exit. Rozhodujeme se podle toho, co dává smysl pro firmu.</p>
+                <h3 data-editable="why3-title">Own capital, no artificial pressure</h3>
+                <p data-editable="why3-desc">We invest exclusively our own money. No LPs, no artificial pressure for a quick exit. We decide based on what makes sense for the company.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <h3 data-editable="why4-title">Hands-on podpora</h3>
-                <p data-editable="why4-desc">Radíme, mentorujeme a otevíráme dveře. Firma zůstává founderům — my přinášíme zkušenost, kontakty a oborový pohled.</p>
+                <h3 data-editable="why4-title">Hands-on support</h3>
+                <p data-editable="why4-desc">We advise, mentor and open doors. The company stays with the founders — we bring experience, contacts and a sector perspective.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-                <h3 data-editable="why5-title">Spolupráce s JIC</h3>
-                <p data-editable="why5-desc">Spolupracujeme s <a href="https://www.jic.cz" target="_blank" style="color: var(--accent); font-weight: 600;">Jihomoravským inovačním centrem</a> — jedním z nejsilnějších startupových hubů v regionu.</p>
+                <h3 data-editable="why5-title">Partnership with JIC</h3>
+                <p data-editable="why5-desc">We partner with the <a href="https://www.jic.cz" target="_blank" style="color: var(--accent); font-weight: 600;">South Moravian Innovation Centre (JIC)</a> — one of the strongest startup hubs in the region.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-                <h3 data-editable="why6-title">Čistá a transparentní struktura</h3>
-                <p data-editable="why6-desc">Každý deal = vlastní účelové SPV se standardní SHA. Přehledné podíly, jasná pravidla a profesionální správa pro všechny investory.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== JAK TO FUNGUJE ========== -->
-<section class="section" id="jak-to-funguje">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-label" data-editable="process-label">Jak co-investice probíhá</div>
-            <h2 class="section-title" data-editable="process-title">Jak to celé funguje</h2>
-            <p class="section-desc" data-editable="process-desc">Od sdíleného dealflow až po investici přes SPV. Celý proces koordinuje investiční ředitel Aleš Filipenský spolu s lead investorem dealu.</p>
-        </div>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h4 data-editable="step1-title">Sdílení dealu</h4>
-                <p data-editable="step1-desc">Představíme vám prověřený projekt, který prošel naším interním screeningem a hodnocením investorů.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h4 data-editable="step2-title">Pitch & Q&A</h4>
-                <p data-editable="step2-desc">Společný call s foundery. Doptáme se na klíčové informace a osobně poznáte zakladatele.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h4 data-editable="step3-title">Due Diligence</h4>
-                <p data-editable="step3-desc">Vedená lead investorem a Alešem ve spolupráci s právním týmem Hladký.Legal.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h4 data-editable="step4-title">Term Sheet</h4>
-                <p data-editable="step4-desc">Podmínky investice vyjednává lead investor s foundery. Potvrdíte, zda a kolik investujete.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <h4 data-editable="step5-title">SPV & Closing</h4>
-                <p data-editable="step5-desc">Investice probíhá přes účelové SPV se standardní SHA. Finální transakční dokumentace.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">6</div>
-                <h4 data-editable="step6-title">Reporting</h4>
-                <p data-editable="step6-desc">Pravidelné reporting cally se startupy a průběžná komunikace o vývoji firmy.</p>
-            </div>
-        </div>
-
-        <!-- SPV Explainer -->
-        <div class="spv-box">
-            <div style="text-align: center; margin-bottom: 32px;">
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;" data-editable="spv-title">Struktura investice: SPV</h3>
-                <p style="font-size: 15px; color: var(--gray-500);" data-editable="spv-desc">Každý deal = vlastní účelové SPV</p>
-            </div>
-            <div class="spv-flow">
-                <div class="spv-node">
-                    <strong>Investor</strong>
-                    <span>Pošle částku do SPV</span>
-                </div>
-                <div class="spv-arrow">&rarr;</div>
-                <div class="spv-node">
-                    <strong>SPV s.r.o.</strong>
-                    <span>Účelová společnost</span>
-                </div>
-                <div class="spv-arrow">&rarr;</div>
-                <div class="spv-node">
-                    <strong>Startup</strong>
-                    <span>Investice do firmy</span>
-                </div>
-            </div>
-            <div class="spv-details">
-                <div class="spv-detail">
-                    <strong>Jednatel SPV</strong>
-                    <span>Aleš Filipenský</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Právní rámec</strong>
-                    <span>SHA — Shareholders Agreement</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Komunikace</strong>
-                    <span>Přes Lead investora nebo Aleše</span>
-                </div>
-                <div class="spv-detail">
-                    <strong>Reporting</strong>
-                    <span>Pravidelné reporting cally se startupy</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tools Grid -->
-        <div style="margin-top: 64px;">
-            <h3 style="font-size: 20px; font-weight: 700; color: var(--gray-900); text-align: center; margin-bottom: 8px;" data-editable="tools-title">Naše nástroje & spolupráce</h3>
-            <p style="font-size: 15px; color: var(--gray-500); text-align: center; margin-bottom: 32px;" data-editable="tools-desc">Profesionální proces postavený na osvědčených nástrojích.</p>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <h4 data-editable="tool1-title">Dealum</h4>
-                    <p data-editable="tool1-desc">Platforma pro sdílení projektů, hlasování a komunikaci mezi investory. Naše centrála pro dealflow.</p>
-                </div>
-                <div class="tech-card">
-                    <h4 data-editable="tool2-title">Hladký.Legal</h4>
-                    <p data-editable="tool2-desc">Právní podpora pro due diligence, transakční dokumentaci a vyjednávání investičních podmínek.</p>
-                </div>
-                <div class="tech-card">
-                    <h4 data-editable="tool3-title">SPV s.r.o.</h4>
-                    <p data-editable="tool3-desc">Každý deal = vlastní účelová společnost. Čistý právní rámec, transparentní podíly, standardní SHA.</p>
-                </div>
-                <div class="tech-card">
-                    <h4 data-editable="tool4-title">Reporting & Slack</h4>
-                    <p data-editable="tool4-desc">Pravidelné reporting cally s foundery + Slack pro rychlou komunikaci investorů. Vše na jednom místě.</p>
-                </div>
+                <h3 data-editable="why6-title">Clean, transparent structure</h3>
+                <p data-editable="why6-desc">Every deal sits in its own dedicated SPV with a standard shareholders' agreement. Clear ownership, clear rules and professional administration for all investors.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ========== PORTFOLIO ========== -->
-<section class="section section-alt" id="portfolio">
+<section class="section" id="portfolio">
     <div class="container">
         <div class="section-header">
-            <div class="section-label" data-editable="portfolio-label">Naše portfolio</div>
-            <h2 class="section-title" data-editable="portfolio-title">Do čeho jsme už investovali</h2>
-            <p class="section-desc" data-editable="portfolio-desc">Výběr firem, které jsou součástí portfolia Garage Angels.</p>
+            <div class="section-label" data-editable="portfolio-label">Our portfolio</div>
+            <h2 class="section-title" data-editable="portfolio-title">Where we have already invested</h2>
+            <p class="section-desc" data-editable="portfolio-desc">A selection of companies in the Garage Angels portfolio.</p>
         </div>
         <div class="portfolio-grid">
             <a href="https://www.sendance.at/" target="_blank" class="startup-card">
@@ -1077,13 +789,13 @@
     </div>
 </section>
 
-<!-- ========== INVESTORI ========== -->
-<section class="section" id="investori">
+<!-- ========== INVESTORS ========== -->
+<section class="section section-alt" id="investors">
     <div class="container">
         <div class="section-header">
-            <div class="section-label" data-editable="investors-label">Naši investoři</div>
-            <h2 class="section-title" data-editable="investors-title">Kdo s námi investuje</h2>
-            <p class="section-desc" data-editable="investors-desc">Zkušení a úspěšní podnikatelé a investoři, kteří stojí za Garage Angels.</p>
+            <div class="section-label" data-editable="investors-label">Our investors</div>
+            <h2 class="section-title" data-editable="investors-title">Who invests with us</h2>
+            <p class="section-desc" data-editable="investors-desc">Experienced and successful entrepreneurs and investors behind Garage Angels.</p>
         </div>
         <div class="investors-grid">
             <a href="https://www.linkedin.com/in/jiri-hlavenka-a9887b3" target="_blank" class="investor-card">
@@ -1191,16 +903,16 @@
 </section>
 
 <!-- ========== CTA ========== -->
-<section class="cta-section" id="kontakt">
+<section class="cta-section" id="contact">
     <div class="container">
-        <h2 data-editable="cta-title">Chcete co-investovat s Garage Angels?</h2>
-        <p data-editable="cta-desc">Ozvěte se Alešovi. Rád probere možnosti spolupráce a sdílení dealflow.</p>
+        <h2 data-editable="cta-title">Want to co-invest with Garage Angels?</h2>
+        <p data-editable="cta-desc">Reach out to Aleš. He will be happy to discuss collaboration and deal-flow sharing.</p>
         <a href="mailto:filipensky@g-angels.cz" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l6 4 6-4M2 4v8h12V4"/></svg>
             filipensky@g-angels.cz
         </a>
         <div style="margin-top:16px; color: rgba(255,255,255,0.5); font-size: 15px;">
-            Tel: +420 603 290 756 · Aleš Filipenský, investiční ředitel
+            Tel: +420 603 290 756 · Aleš Filipenský, Investment Director
         </div>
     </div>
 </section>
@@ -1212,21 +924,21 @@
             <div class="footer-logo">
                 <img src="Garage_Angels_logo_FINAL_v4.png" alt="Garage Angels">
             </div>
-            <div class="footer-tagline" style="margin-top: 12px;">Purkyňova 127, Brno · JIC INMEC 1. patro</div>
+            <div class="footer-tagline" style="margin-top: 12px;">Purkyňova 127, Brno · JIC INMEC, 1st floor</div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Garage Angels. Všechna práva vyhrazena.
+            &copy; 2026 Garage Angels. All rights reserved.
         </div>
     </div>
 </footer>
 
 <!-- EDIT FAB + BAR -->
-<button class="edit-fab" onclick="toggleEdit()" title="Upravit texty">&#9998;</button>
+<button class="edit-fab" onclick="toggleEdit()" title="Edit text">&#9998;</button>
 <div class="edit-bar" id="editBar">
-    <span>Editujete texty</span>
-    <button class="btn-save" onclick="saveEdits()">Uložit</button>
-    <button class="btn-cancel" onclick="cancelEdits()">Zrušit</button>
-    <button class="btn-reset" onclick="resetEdits()">Reset na originál</button>
+    <span>Editing text</span>
+    <button class="btn-save" onclick="saveEdits()">Save</button>
+    <button class="btn-cancel" onclick="cancelEdits()">Cancel</button>
+    <button class="btn-reset" onclick="resetEdits()">Reset to original</button>
 </div>
 
 <script>
@@ -1248,13 +960,13 @@ async function validatePAT(token) {
 function showPATDialog() {
     const existing = document.getElementById('pat-dialog'); if (existing) existing.remove();
     const d = document.createElement('div'); d.id = 'pat-dialog';
-    d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Pro ukládání změn zadej GitHub Personal Access Token.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Neplatný token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Zrušit</button><button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Ověřit a uložit</button></div></div></div>`;
+    d.innerHTML = `<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="background:white;border-radius:16px;padding:32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);font-family:Inter,sans-serif;"><h3 style="margin-bottom:8px;font-size:18px;">GitHub Token</h3><p style="color:#6b7280;font-size:14px;margin-bottom:16px;">Enter a GitHub Personal Access Token to save changes.</p><input id="pat-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:12px;"><div id="pat-error" style="color:#ef4444;font-size:13px;margin-bottom:12px;display:none;">Invalid token</div><div style="display:flex;gap:8px;justify-content:flex-end;"><button onclick="document.getElementById('pat-dialog').remove()" style="padding:8px 16px;border:1px solid #e5e7eb;border-radius:8px;background:white;cursor:pointer;font-family:inherit;font-size:13px;">Cancel</button><button onclick="submitPAT()" style="padding:8px 16px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;">Verify and save</button></div></div></div>`;
     document.body.appendChild(d); document.getElementById('pat-input').focus();
 }
 async function submitPAT() {
     const input = document.getElementById('pat-input'), err = document.getElementById('pat-error'), token = input.value.trim();
     if (!token) return; input.disabled = true;
-    if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token uložen'); }
+    if (await validatePAT(token)) { setGitHubPAT(token); document.getElementById('pat-dialog').remove(); showToast('Token saved'); }
     else { err.style.display = 'block'; input.disabled = false; }
 }
 async function fetchFromGitHub() {
@@ -1277,7 +989,7 @@ async function saveToGitHub(data) {
 let _saveTimer = null;
 function debouncedSave(data) {
     if (_saveTimer) clearTimeout(_saveTimer);
-    _saveTimer = setTimeout(async () => { const ok = await saveToGitHub(data); showToast(ok ? 'Uloženo do GitHubu' : 'Chyba při ukládání — zkontroluj token'); _saveTimer = null; }, 1500);
+    _saveTimer = setTimeout(async () => { const ok = await saveToGitHub(data); showToast(ok ? 'Saved to GitHub' : 'Save failed — check your token'); _saveTimer = null; }, 1500);
 }
 
 function toggleEdit() {
