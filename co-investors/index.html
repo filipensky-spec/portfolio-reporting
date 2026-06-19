@@ -944,10 +944,12 @@ Tel: +420 603 290 756 · Aleš Filipenský, Investment Director
 <script>
 // ========== GITHUB PERSISTENCE ==========
 const REPO = 'filipensky-spec/portfolio-reporting';
-const DATA_FILE = 'data/coinvestors-edits.json';
+const DATA_FILE = 'data/coinvestors-edits-en.json';
 const GH_API = 'https://api.github.com';
 const PAT_KEY = 'ga-github-pat';
-const STORAGE_KEY = 'coinvestors-edits';
+const STORAGE_KEY = 'coinvestors-edits-en';
+// One-time cleanup of stale Czech v1 edits cached in localStorage
+try { localStorage.removeItem('coinvestors-edits'); } catch {}
 let ghSha = null;
 let isEditing = false;
 let savedState = {};
