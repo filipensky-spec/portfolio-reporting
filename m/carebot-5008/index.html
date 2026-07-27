@@ -651,10 +651,21 @@
         }
 
         @media print {
-            .header, .sidebar, .nav-toggle, .header-actions, .hero::before { display: none; }
+            .header, .sidebar, .nav-toggle, .header-actions, .hero::before,
+            #ga-edit, .ga-edit-fab, .ga-edit-bar { display: none !important; }
             .layout { grid-template-columns: 1fr; }
+            .main, .content { padding: 0; max-width: none; }
             .hero { padding: var(--spacing-xl); }
-            section { page-break-inside: avoid; }
+            /* Sekce jsou delsi nez stranka — zlom povolime uvnitr sekci,
+               ale ne uvnitr tabulek, karet a callout boxu */
+            section { page-break-inside: auto; page-break-before: auto; }
+            section > .section-header { page-break-after: avoid; }
+            h3, h4 { page-break-after: avoid; page-break-inside: avoid; }
+            .table-wrapper, table, .callout, .card, .unverified { page-break-inside: avoid; }
+            thead { display: table-header-group; }
+            tr { page-break-inside: avoid; }
+            a { text-decoration: none; color: inherit; }
+            body { background: #fff; }
         }
 
         /* Utility */
