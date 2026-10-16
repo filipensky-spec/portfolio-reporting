@@ -1623,7 +1623,8 @@ function exitEditMode() {
 }
 async function loadEdits() {
     const ghData = await fetchFromGitHub();
-    if (ghData && Object.keys(ghData).length > 0) { localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData)); applyEdits(ghData); return; }
+    // GitHub is the source of truth; stale local edits are used only when GitHub is unreachable
+    if (ghData && typeof ghData === 'object') { localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData)); applyEdits(ghData); return; }
     const saved = localStorage.getItem(STORAGE_KEY); if (saved) { try { applyEdits(JSON.parse(saved)); } catch {} }
 }
 function applyEdits(edits) {
